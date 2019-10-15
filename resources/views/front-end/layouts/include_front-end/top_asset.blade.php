@@ -10,6 +10,15 @@
 <link href="{{asset('front-end-css/css/icomoon.css')}}" rel="stylesheet">
 <link href="{{asset('front-end-css/css/animate.css')}}" rel="stylesheet">
 <!-- Css Files End -->
+{{--css menu---}}
+<style>.topmenu li a {
+        color: #000;
+        color: #656667;
+        font-size: 14px;
+    }</style>
+
+
+
 {{--<style>--}}
 {{--    html {--}}
 {{--        font-size: 14px;--}}
