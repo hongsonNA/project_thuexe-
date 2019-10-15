@@ -1,7 +1,11 @@
 <?php
 
-Route::get('/', 'HomeController@index')->name('index');
+//-----------------------client-------------------------------
 
+Route::get('/', 'HomeController@index')->name('index');
+Route::get('/about','HomeController@about')->name('about');
+
+//-----------------------End client-------------------------------
 Auth::routes();
 
 //-----------------------DASHBOARD-----------------------
@@ -14,3 +18,6 @@ Route::post('/dashboard/category/add-category', 'Admin\CategoryController@catego
 
 
 //-----------------------END DASHBOARD-----------------------
+
+
+
