@@ -1,8 +1,8 @@
 <div class="sidebar" data-color="rose" data-background-color="black"
      data-image="{{ asset('image_display/sidebar-2.jpg') }}">
     <div class="logo">
-        <a href="#" class="simple-text logo-mini">CT</a>
-        <a href="#" class="simple-text logo-normal">Creative Tim</a>
+        <a href="#" class="simple-text logo-mini">VB</a>
+        <a href="#" class="simple-text logo-normal">Vehicel Booking</a>
     </div>
     <div class="sidebar-wrapper">
         <div class="user">
@@ -38,22 +38,34 @@
                     <p> Dashboard </p>
                 </a>
             </li>
+
+            {{---------------------------------------category---------------------------------------}}
             <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-                    <i class="material-icons">content_paste</i>
-                    <p> Bảng <b class="caret"></b></p>
+                <a class="nav-link collapsed" data-toggle="collapse" href="#tablesExamples" aria-expanded="false">
+                    <i class="material-icons">list</i>
+                    <p> Danh mục
+                        <b class="caret"></b>
+                    </p>
                 </a>
-                <div class="collapse" id="formsExamples">
+                <div class="collapse" id="tablesExamples" style="">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="">
-                                <span class="sidebar-mini"> B </span>
-                                <span class="sidebar-normal">Bảng</span>
+                            <a class="nav-link" href="#">
+                                <span class="sidebar-mini"> DM </span>
+                                <span class="sidebar-normal"> Danh Sách </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
+                                <span class="sidebar-mini"> DM </span>
+                                <span class="sidebar-normal"> Thêm Danh Mục </span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
+            {{---------------------------------------category---------------------------------------}}
+
         </ul>
     </div>
 </div>
