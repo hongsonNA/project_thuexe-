@@ -1,8 +1,8 @@
 <div class="sidebar" data-color="rose" data-background-color="black"
      data-image="{{ asset('image_display/sidebar-2.jpg') }}">
     <div class="logo">
-        <a href="#" class="simple-text logo-mini">VB</a>
-        <a href="#" class="simple-text logo-normal">Vehicel Booking</a>
+        <a href="{{ route('dashboard') }}" class="simple-text logo-mini">VB</a>
+        <a href="{{ route('dashboard') }}" class="simple-text logo-normal">Vehicel Booking</a>
     </div>
     <div class="sidebar-wrapper">
         <div class="user">
@@ -50,13 +50,13 @@
                 <div class="collapse" id="tablesExamples" style="">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('category_list') }}">
                                 <span class="sidebar-mini"> DM </span>
                                 <span class="sidebar-normal"> Danh Sách </span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('category_add') }}">
                                 <span class="sidebar-mini"> DM </span>
                                 <span class="sidebar-normal"> Thêm Danh Mục </span>
                             </a>
