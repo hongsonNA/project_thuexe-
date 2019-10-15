@@ -105,50 +105,22 @@
                         <!-- Navigation Content Start -->
                         <div class="collapse navbar-collapse" id="tj-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="home-1.html">Homepage 01</a></li>
-                                        <li><a href="home-2.html">Homepage 02</a></li>
-                                        <li><a href="home-3.html">Homepage 03</a></li>
-                                    </ul>
+                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+
                                 </li>
                                 <li>
                                     <a href="aboutus.html">Aboutus</a>
                                 </li>
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="services.html">Our Services</a></li>
+                                        <li><a href="services.html">Xe du lịch</a></li>
+                                        <li><a href="services.html">Xe cưới </a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Fleets<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="fleet-grid.html">Car Fleet Grid</a></li>
-                                        <li><a href="fleet-list.html">Car Fleet List</a></li>
-                                        <li><a href="fleet-detail.html">Fleet Detail</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="blog.html">Our Blog</a></li>
-                                        <li><a href="blog-list.html">Blog List</a></li>
-                                        <li><a href="blog-detail.html">Blog Detail</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="404.html">404</a></li>
-                                        <li><a href="register.html">Register</a></li>
-                                        <li><a href="login.html">Login</a></li>
-                                        <li><a href="faq.html">FAQ</a></li>
-                                        <li><a href="booking-form.html">Booking Form</a></li>
-                                        <li><a href="confirm-booking.html">Confirm Booking</a></li>
-                                        <li><a href="payment.html">Payment</a></li>
-                                        <li><a href="payment-confirmation.html">Confirm Payment</a></li>
-                                        <li><a href="booking-cancel.html">Booking Cancel</a></li>
-                                        <li><a href="user-account.html">User Account</a></li>
 
-                                    </ul>
+                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News</a>
                                 </li>
+
                                 <li>
                                     <a href="contact.html">Contactus</a>
                                 </li>

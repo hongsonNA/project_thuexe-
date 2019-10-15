@@ -1,7 +1,11 @@
 <?php
 
-Route::get('/', 'HomeController@index')->name('index');
+//-----------------------client-------------------------------
 
+Route::get('/', 'HomeController@index')->name('index');
+Route::get('/about','HomeController@about')->name('about');
+
+//-----------------------End client-------------------------------
 Auth::routes();
 
 //-----------------------DASHBOARD-----------------------
@@ -9,3 +13,6 @@ Auth::routes();
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
 
 //-----------------------END DASHBOARD-----------------------
+
+
+

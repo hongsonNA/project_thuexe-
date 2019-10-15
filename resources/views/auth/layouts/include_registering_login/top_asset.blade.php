@@ -1,4 +1,9 @@
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="{{ asset('css/material-dashboard.minf066.css?v=2.1.0') }}" rel="stylesheet"/>
-<link href="{{ asset('css/demo.css') }}" rel="stylesheet"/>
+<link href="{{asset("front-end-css/css/bootstrap.css")}}" rel="stylesheet">
+<link href="{{asset('front-end-css/css/style.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{asset("front-end-css/css/fontawesome-all.min.css")}}">
+<link id="switcher" href="{{asset('front-end-css/css/color.css')}}" rel="stylesheet">
+<link href="{{asset('front-end-css/css/color-switcher.css')}}" rel="stylesheet">
+<link href="{{asset('front-end-css/css/owl.carousel.css')}}" rel="stylesheet">
+<link href="{{asset('front-end-css/css/responsive.css')}}" rel="stylesheet">
+<link href="{{asset('front-end-css/css/icomoon.css')}}" rel="stylesheet">
+<link href="{{asset('front-end-css/css/animate.css')}}" rel="stylesheet">
