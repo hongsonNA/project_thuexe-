@@ -2,98 +2,98 @@
 @section('title', 'Category')
 
 @section('content')
-    <div class="content">
-        @if(session('mess'))
-            <script>
-                setTimeout(function () {
-                    $('#success_cate').hide(5000)
-                });
-            </script>
 
-            <div class="alert alert-success" id="success_cate">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="material-icons">close</i>
-                </button>
-                <span>{{ session('mess') }}</span>
-            </div>
-        @endif
+    <div class="content">
         <div class="container-fluid">
+
+            @if(session('mess'))
+                <script>
+                    setTimeout(function () {
+                        $('#success_cate').slideUp(10000)
+                    });
+                </script>
+
+                <div class="alert alert-success" id="success_cate">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <span>{{ session('mess') }}</span>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-md-10 ml-auto mr-auto">
                     <div class="card">
-                        <div class="card-header card-header-default card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">list</i>
-                            </div>
-                            <h4 class="card-title">Danh Sách Danh Mục</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="material-datatables">
-                                <div id="datatables_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-8"></div>
-                                        <div class="col-sm-12 col-md-4">
-                                            <span class="bmd-form-group bmd-form-group-sm">
-                                                <input type="text" class="form-control form-control-sm" placeholder="Search">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th class="text-center">ID</th>
-
-                                                    <th class="text-center">Name</th>
-                                                    <th class="text-right">
-                                                        <a href="{{ route('category_add') }}" class="btn btn-success">
-                                                            <span class="btn-label"><i class="material-icons">add</i></span>ADD
-                                                        </a>
-                                                    </th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                @foreach( $categories as $cate)
-                                                    <tr>
-
-                                                        <td class="text-center">{{ $cate['id'] }}</td>
-
-                                                        <td class="text-center">{{ $cate['name'] }}</td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip"
-                                                                    class="btn btn-info btn-link"
-                                                                    data-original-title="" title="Sửa danh mục">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" class="btn btn-danger btn-link"
-                                                                    data-original-title="" title="Xóa danh mục">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-5">
-                                        </div>
-                                        <div class="col-sm-12 col-md-7">
-                                            <div class="dataTables_paginate paging_full_numbers">
-                                                {{ $categories->links() }}
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="row">
+                            <div class="card-header card-header-primary card-header-icon col-6">
+                                <div class="card-icon">
+                                    <i class="material-icons">assignment</i>
                                 </div>
+                                <h4 class="card-title">Danh sách danh mục</h4>
+                            </div>
+
+                            <div class="col-5 text-right">
+                                <a href="{{ route('category_add') }}" class="btn btn-success">
+                                    <span class="btn-label"><i class="material-icons">add</i></span>Thêm mới danh mục
+                                </a>
                             </div>
                         </div>
+
+                        <div class="card-body">
+                            <div class="toolbar">
+                            </div>
+                            <div class="material-datatables">
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                       style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th width="50px">No</th>
+                                        <th>Name</th>
+                                        <th>Created At</th>
+                                        <th>Updated At</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- end content-->
                     </div>
+                    <!--  end card  -->
                 </div>
+                <!-- end col-md-12 -->
             </div>
+            <!-- end row -->
         </div>
     </div>
+
+
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#datatables').DataTable({
+
+                // "lengthMenu": true,
+                pageLength: 0,
+                lengthMenu: [5, 10, 20, 50, 100, 300, 500],
+                order: [[0, 'desc']],
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/dashboard/allCategory',
+                },
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'created_at', name: 'created_at'},
+                    {data: 'updated_at', name: 'updated_at'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                ]
+            });
+        });
+    </script>
 @endsection
