@@ -4,7 +4,8 @@
 
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/about','HomeController@about')->name('about');
-
+Route::get('/contact','HomeController@contact')->name('contact');
+Route::get('/logout','\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 //-----------------------End client-------------------------------
 Auth::routes();
 
