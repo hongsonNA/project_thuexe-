@@ -612,24 +612,7 @@
     </section>
     <!--Footer Content End-->
     <!--Footer Copyright Start-->
-    <section class="tj-copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <p>&copy; Copyrights 2018 <a href="home-1.html">Prime Cab</a>. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <ul class="payment-icons">
-                        <li><i class="fab fa-cc-visa"></i></li>
-                        <li><i class="fab fa-cc-mastercard"></i></li>
-                        <li><i class="fab fa-cc-paypal"></i></li>
-                        <li><i class="fab fa-cc-discover"></i></li>
-                        <li><i class="fab fa-cc-jcb"></i></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!--Footer Copyright End-->
     <!-- /CONTENT AREA -->
 @endsection
