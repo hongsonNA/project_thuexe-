@@ -3,13 +3,29 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav navbar-nav topmenu-contact pull-left">
-                    <li style="padding-top:15px;"><i class="fa fa-phone"></i> <span>Hotline:0908 77 00 95</span></li>
+                    <li style="padding-top:15px;"></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm">
-                    <li class="order-check"><a href="/kiem-tra-don-hang.html"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp cho thuê </a></li>
-{{--                    <li class="order-cart"><a href="/gio-hang.html"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>--}}
-                    <li class="account-login"><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Đăng nhập </a></li>
-                    <li class="account-register"><a href="{{ route('register') }}"><i class="fa fa-key"></i> Đăng ký </a></li>
+                    @if(isset(Auth::user()->email))
+                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i>đăng ký cho thuê xe </a></li>
+                    <li>
+                        <div class="dropdown">
+                            <div class="profile-user">
+                                <span>{{Auth::user()->name}}</span>
+                                <img src="https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png" class="Profile" alt="">
+                            </div>
+                            <div class="dropdown-content">
+                                <a href="javascript:;">profile</a>
+                                <a href="{{ route('logout') }}">Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                        @else
+                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp cho thuê </a></li>
+                        <li class="account-login"><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Đăng nhập </a></li>
+                        <li class="account-register"><a href="{{ route('register') }}"><i class="fa fa-key"></i> Đăng ký </a></li>
+                        @endif
+
                 </ul>
                 <div class="show-mobile hidden-lg hidden-md">
                     <div class="quick-user">
@@ -51,7 +67,7 @@
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <!--Logo Start-->
                 <div class="tj-logo">
-                    <h1><a href="home-1.html">Prime Cab</a></h1>
+                    <h1><a href="/">Prime Cab</a></h1>
                 </div>
                 <!--Logo End-->
             </div>
@@ -109,7 +125,7 @@
 
                                 </li>
                                 <li>
-                                    <a href="aboutus.html">Aboutus</a>
+                                    <a href="{{ route('about') }}">About</a>
                                 </li>
                                 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
@@ -122,7 +138,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="contact.html">Contactus</a>
+                                    <a href="{{ route('contact') }}">Contact</a>
                                 </li>
 
                             </ul>
@@ -131,7 +147,7 @@
                     </nav>
                     <!--Menu Holder End-->
                     <div class="book_btn">
-                        <a href="contact.html">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                        <a href="#">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                     </div>
                 </div><!--Nav Holder End-->
             </div>
