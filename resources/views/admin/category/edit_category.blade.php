@@ -10,7 +10,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-8 ml-auto mr-auto">
 
 
-                        <form method="post" action="{{ route('category_update') }}" novalidate="novalidate">
+                        <form method="post" action="{{ route('category_edit', $cate->id) }}" novalidate="novalidate">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
                             <div class="card">

@@ -2,14 +2,13 @@
 @section('title', 'Category')
 
 @section('content')
-
     <div class="content">
         <div class="container-fluid">
 
-            @if(session('mess'))
+            @if(session('mess_add'))
                 <script>
                     setTimeout(function () {
-                        $('#success_cate').slideUp(10000)
+                        $('#success_cate').fadeOut(5000)
                     });
                 </script>
 
@@ -17,26 +16,35 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <i class="material-icons">close</i>
                     </button>
-                    <span>{{ session('mess') }}</span>
+                    <span>{{ session('mess_add') }}</span>
+                </div>
+            @endif
+            @if(session('mess_update'))
+                <script>
+                    setTimeout(function () {
+                        $('#success_cate').fadeOut(5000)
+                    });
+                </script>
+
+                <div class="alert alert-success" id="success_cate">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <span>{{ session('mess_update') }}</span>
                 </div>
             @endif
 
             <div class="row">
                 <div class="col-md-10 ml-auto mr-auto">
                     <div class="card">
-                        <div class="row">
-                            <div class="card-header card-header-primary card-header-icon col-6">
-                                <div class="card-icon">
-                                    <i class="material-icons">assignment</i>
-                                </div>
-                                <h4 class="card-title">Danh sách danh mục</h4>
+                        <div class="card-header card-header-success card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">category</i>
                             </div>
-
-                            <div class="col-5 text-right">
-                                <a href="{{ route('category_add') }}" class="btn btn-success">
-                                    <span class="btn-label"><i class="material-icons">add</i></span>Thêm mới danh mục
-                                </a>
-                            </div>
+                            <h4 class="card-title">Danh sách danh mục</h4>
+                            <a href="{{ route('category_create') }}" class="pull-right btn btn-success">Thêm mới danh mục
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </a>
                         </div>
 
                         <div class="card-body">
@@ -79,12 +87,13 @@
 
                 // "lengthMenu": true,
                 pageLength: 0,
-                lengthMenu: [5, 10, 20, 50, 100, 300, 500],
+                lengthMenu: [5, 10, 20, 50],
                 order: [[0, 'desc']],
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '/dashboard/allCategory',
+                    url: '/dashboard/category/allCategory',
+
                 },
                 columns: [
                     {data: 'id', name: 'id'},
@@ -95,5 +104,6 @@
                 ]
             });
         });
+
     </script>
 @endsection

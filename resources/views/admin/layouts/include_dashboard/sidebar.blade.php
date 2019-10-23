@@ -11,7 +11,7 @@
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
-                    <span>Tania Andrew<b class="caret"></b></span>
+                    <span>{{ Auth::user()->name }}<b class="caret"></b></span>
                 </a>
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
@@ -42,7 +42,7 @@
             {{---------------------------------------category---------------------------------------}}
             <li class="nav-item ">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#tablesExamples" aria-expanded="false">
-                    <i class="material-icons">list</i>
+                    <i class="material-icons">category</i>
                     <p> Danh mục
                         <b class="caret"></b>
                     </p>
@@ -83,13 +83,13 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('category_add') }}">
+                            <a class="nav-link" href="">
                                 <span class="sidebar-mini"> C </span>
                                 <span class="sidebar-normal"> Thêm thành phố </span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('category_add') }}">
+                            <a class="nav-link" href="">
                                 <span class="sidebar-mini"> C </span>
                                 <span class="sidebar-normal"> Thêm quận, huyện </span>
                             </a>
@@ -110,21 +110,15 @@
                 <div class="collapse" id="post">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="">
-                                <span class="sidebar-mini"> C </span>
+                            <a class="nav-link" href="{{ route('post_list') }}">
+                                <span class="sidebar-mini"> P </span>
                                 <span class="sidebar-normal"> Danh Sách </span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('category_add') }}">
-                                <span class="sidebar-mini"> C </span>
-                                <span class="sidebar-normal"> Thêm thành phố </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('category_add') }}">
-                                <span class="sidebar-mini"> C </span>
-                                <span class="sidebar-normal"> Thêm quận, huyện </span>
+                            <a class="nav-link" href="">
+                                <span class="sidebar-mini"> P </span>
+                                <span class="sidebar-normal"> Thêm bài viết </span>
                             </a>
                         </li>
                     </ul>
@@ -143,13 +137,13 @@
                 <div class="collapse" id="user_list">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('user_list') }}">
                                 <span class="sidebar-mini"> U </span>
                                 <span class="sidebar-normal"> Danh Sách </span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('category_add') }}">
+                            <a class="nav-link" href="">
                                 <span class="sidebar-mini"> U </span>
                                 <span class="sidebar-normal"> Thêm tài khoản </span>
                             </a>

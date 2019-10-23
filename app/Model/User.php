@@ -20,4 +20,8 @@ class User extends Model
         'role',
     ];
 
+    public function posts()
+    {
+        return $this->hasMany('App\Model\Post', 'user_id');
+    }
 }

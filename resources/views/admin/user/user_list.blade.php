@@ -1,32 +1,23 @@
 @extends('admin.layouts.app_dashboard')
-@section('title', 'Danh sách user')
+@section('title', 'Tài khoản')
 
 @section('content')
-    @if(session('mess'))
-        <script>
-            setTimeout(function () {
-                $('#success_cate').hide(5000)
-            });
-        </script>
 
-        <div class="alert alert-success" id="success_cate">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <i class="material-icons">close</i>
-            </button>
-            <span>{{ session('mess') }}</span>
-        </div>
-    @endif
 
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-header card-header-success card-header-icon">
                             <div class="card-icon">
-                                <i class="material-icons">assignment</i>
+                                <i class="material-icons">perm_identity</i>
                             </div>
-                            <h4 class="card-title">DataTables.net</h4>
+                            <h4 class="card-title">Danh sách User</h4>
+                            <a href="{{ route('user_add') }}"
+                               class="pull-right btn btn-success">Thêm mới tài khoản
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </a>
                         </div>
                         <div class="card-body">
                             <div class="toolbar">
@@ -44,11 +35,7 @@
                                         <th>Email</th>
                                         <th>Số điện thoại</th>
                                         <th>Địa chỉ</th>
-                                        <th class="text-right">
-                                            <a href="" class="btn btn-success">
-                                                <span class="btn-label"><i class="material-icons">add</i></span>ADD
-                                            </a>
-                                        </th>
+                                        <th class="text-right">Action</th>
                                         <td class="text-right">
                                             <button type="button" rel="tooltip"
                                                     class="btn btn-info btn-link"
@@ -69,14 +56,22 @@
                                         <th>{{ $u->name }}</th>
                                         <th>{{ $u->image }}</th>
                                         <th>{{ $u->birthday }}</th>
-{{--                                        <th>@if($u == 0)--}}
-{{--                                        chua xac dinh--}}
-{{--                                            @elseif($u == 1)--}}
-{{--                                            nam--}}
-{{--                                                @else--}}
-{{--                                            nu--}}
-{{--                                            @endif--}}
-{{--                                        </th>--}}
+                                        <th>
+                                            @switch($u->gender)
+                                                @case("0")
+                                                Chưa xác định
+                                                @break;
+                                                @case("1")
+                                                Nữ
+                                                @break;
+                                                @case("2")
+                                                Nam
+                                                @break;
+                                                @default
+                                                Chưa xác đinh
+                                            @endswitch
+
+                                        </th>
                                         <th>{{ $u->email }}</th>
                                         <th>{{ $u->phone }}</th>
                                         <th>{{ $u->address }}</th>
