@@ -33,4 +33,7 @@ class HomeController extends Controller
     public  function contact(){
         return view('front-end.contact');
     }
+    public function  cate(){
+        return view('front-end.category');
+    }
 }
