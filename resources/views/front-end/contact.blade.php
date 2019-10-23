@@ -34,13 +34,14 @@
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <div class="form-holder">
-                        <form method="POST" class="tj-contact-form" id="contact-form" novalidate="novalidate">
+                        <form method="POST" onsubmit="return checkContact()" class="tj-contact-form" id="contact-form" novalidate="novalidate">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <!--Inner Holder Start-->
                                     <div class="inner-holder">
                                         <label for="name">Name</label>
                                         <input placeholder="Enter Your Name" name="name" type="text" id="name" required="">
+                                        <span id="error-name"></span>
                                     </div>
                                     <!--Inner Holder End-->
                                 </div>
@@ -70,7 +71,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="inner-holder">
-                                        <button class="btn-submit" type="submit" id="frm_submit_btn">Send Message <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+                                        <button class="btn-submit" type="" id="frm_submit_btn">Send Message <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +89,7 @@
                             <p>
                                 <a href="tel:1-234-567-7890">+1 234 567 7890</a>
                                 <a href="tel:1-234-567-7892">+1 234 567 7892</a>
-                            </p>
+                            </p>div
                         </div>
                         <div class="add-info">
                             <span class="icon-mail-envelope-open icomoon"></span>
@@ -104,4 +105,15 @@
         </div>
     </section>
     <!-- End contact -->
+    <script>
+        function checkContact(){
+
+            var name = document.getElementById('name');
+
+            if(name.value == ""){
+                $('#error-name').html('nhapp ten');
+            }
+        }
+
+    </script>
 @endsection

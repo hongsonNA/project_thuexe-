@@ -57,7 +57,24 @@
     .dropdown:hover .dropdown-content {display: block;}
 
     .dropdown:hover .dropbtn {background-color: red;}
-
+     /*back to top*/
+    .back-top:hover {
+        transition: opacity 0.2s ease-out;
+        color: #dd3e51;
+    }
+    .back-top {
+        color: #dd3e51;
+        display: none;
+        padding: 3px 15px 8px 15px;
+        font-size: 40px;
+        position: fixed;
+        z-index: 9999;
+        right: 11px;
+        bottom: 0;
+        text-decoration: none;
+        transition: opacity 0.2s ease-out;
+        border-radius: 2px;
+    }
 </style>
 
 

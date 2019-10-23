@@ -508,7 +508,7 @@
                                         <li><i class="far fa-clock"></i> Sep 19, 2018</li>
                                         <li><i class="far fa-comments"></i> 29</li>
                                     </ul>
-                                </div>
+                                </div>tj-cab-collection
                             </li>
                             <li>
                                 <figure>
@@ -615,4 +615,17 @@
 
     <!--Footer Copyright End-->
     <!-- /CONTENT AREA -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <a href="javascript:;"  class="back-top" id="back-to-top" title="Back to top"><i class="fas fa-arrow-circle-up"></i></a>
+    <script>
+        $(window).scroll(function(){
+            if ($(this).scrollTop() > 100) {
+                $(".back-top").css("display","block");
+            }else{$(".back-top").css("display","none");}
+        });
+        $("#back-to-top").click(function () {
+            $("html, body").animate({scrollTop: 0}, 1000);
+        });
+
+    </script>
 @endsection

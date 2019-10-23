@@ -13,6 +13,7 @@
         @yield('content')
 
         @include('front-end.layouts.include_front-end.footer_asset')
+
     </div>
 </body>
 @include('front-end.layouts.include_front-end.bottom_asset')

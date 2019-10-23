@@ -127,9 +127,9 @@
                                 <li>
                                     <a href="{{ route('about') }}">About</a>
                                 </li>
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <li class="dropdown"> <a href="javascrip:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="services.html">Xe du lịch</a></li>
+                                        <li><a href="{{ route('cate') }}">Xe du lịch</a></li>
                                         <li><a href="services.html">Xe cưới </a></li>
                                     </ul>
                                 </li>
