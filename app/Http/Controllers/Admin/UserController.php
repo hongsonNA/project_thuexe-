@@ -14,4 +14,9 @@ class UserController extends Controller
 
         return view('admin.user.user_list', compact('user'));
     }
+
+    public function user_add()
+    {
+        return view('admin.user.add_user');
+    }
 }

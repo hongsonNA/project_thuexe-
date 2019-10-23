@@ -26,6 +26,9 @@
                                         <div class="col-sm-7">
                                             <div class="form-group bmd-form-group">
                                                 <input type="text" name="name" value="{{ old('name') }}" class="form-control">
+                                                @if($errors->first('name'))
+                                                    <span class="text-danger">{{$errors->first('name')}}</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

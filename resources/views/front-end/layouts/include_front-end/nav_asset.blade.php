@@ -7,24 +7,44 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm">
                     @if(isset(Auth::user()->email))
-                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i>đăng ký cho thuê xe </a></li>
-                    <li>
-                        <div class="dropdown">
-                            <div class="profile-user">
-                                <span>{{Auth::user()->name}}</span>
-                                <img src="https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png" class="Profile" alt="">
-                            </div>
-                            <div class="dropdown-content">
-                                <a href="javascript:;">profile</a>
-                                <a href="{{ route('logout') }}">Logout</a>
-                            </div>
-                        </div>
-                    </li>
-                        @else
-                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp cho thuê </a></li>
-                        <li class="account-login"><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Đăng nhập </a></li>
-                        <li class="account-register"><a href="{{ route('register') }}"><i class="fa fa-key"></i> Đăng ký </a></li>
-                        @endif
+                        <li class="order-check">
+                            <a href="#">
+                                <i class="fa fa-pencil-square-o"></i>
+                                Đăng ký cho thuê xe
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                <img src="https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png" class="Profile">&nbsp;
+                                <span class="admin-name">{{Auth::user()->name}}</span>
+                                <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                            </a>
+                            <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+
+                                <li>
+                                    <a href="#">
+                                        <span class="edu-icon edu-user-rounded author-log-ic"></span>
+                                        My Profile
+                                    </a>
+                                <li>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <span class="edu-icon edu-locked author-log-ic"></span>
+                                        Log Out
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp
+                                cho thuê </a></li>
+                        <li class="account-login"><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Đăng nhập
+                            </a></li>
+                        <li class="account-register"><a href="{{ route('register') }}"><i class="fa fa-key"></i> Đăng ký
+                            </a></li>
+                    @endif
 
                 </ul>
                 <div class="show-mobile hidden-lg hidden-md">
@@ -49,8 +69,10 @@
                         </div>
                         <div class="inner-toggle">
                             <ul class="links">
-                                <li><a id="mobile-wishlist-total" href="/kiem-tra-don-hang.html" class="wishlist"><i class="fa fa-pencil-square-o"></i> Kiểm tra đơn hàng</a></li>
-                                <li><a href="/gio-hang.html" class="shoppingcart"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+                                <li><a id="mobile-wishlist-total" href="/kiem-tra-don-hang.html" class="wishlist"><i
+                                            class="fa fa-pencil-square-o"></i> Kiểm tra đơn hàng</a></li>
+                                <li><a href="/gio-hang.html" class="shoppingcart"><i class="fa fa-shopping-cart"></i>
+                                        Giỏ hàng</a></li>
                             </ul>
                         </div>
                     </div>
@@ -111,7 +133,8 @@
                     <!--Menu Holder Start-->
                     <nav class="navbar navbar-default">
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tj-navbar-collapse" aria-expanded="false">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#tj-navbar-collapse" aria-expanded="false">
                                 <span class="sr-only">Menu</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
@@ -121,20 +144,26 @@
                         <!-- Navigation Content Start -->
                         <div class="collapse navbar-collapse" id="tj-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                        role="button" aria-haspopup="true"
+                                                        aria-expanded="false">Home</a>
 
                                 </li>
                                 <li>
                                     <a href="{{ route('about') }}">About</a>
                                 </li>
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                        role="button" aria-haspopup="true" aria-expanded="false">Category<i
+                                            class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="services.html">Xe du lịch</a></li>
                                         <li><a href="services.html">Xe cưới </a></li>
                                     </ul>
                                 </li>
 
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News</a>
+                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                        role="button" aria-haspopup="true"
+                                                        aria-expanded="false">News</a>
                                 </li>
 
                                 <li>
@@ -154,4 +183,4 @@
         </div>
     </div>
 </header>
-    <!-- /HEADER -->
+<!-- /HEADER -->
