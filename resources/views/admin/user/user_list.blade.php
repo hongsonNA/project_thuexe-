@@ -30,51 +30,41 @@
                                         <th>ID</th>
                                         <th>Tên</th>
                                         <th>Ảnh</th>
-                                        <th>Ngày sinh</th>
-                                        <th>Giới tính</th>
                                         <th>Email</th>
                                         <th>Số điện thoại</th>
                                         <th>Địa chỉ</th>
                                         <th class="text-right">Action</th>
-                                        <td class="text-right">
-                                            <button type="button" rel="tooltip"
-                                                    class="btn btn-info btn-link"
-                                                    data-original-title="" title="Sửa danh mục">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" class="btn btn-danger btn-link"
-                                                    data-original-title="" title="Xóa danh mục">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
                                     </tr>
                                     </thead>
 
                                     <tbody>
                                     @foreach($user as $u)
-                                        <th>{{ $u->id }}</th>
-                                        <th>{{ $u->name }}</th>
-                                        <th>{{ $u->image }}</th>
-                                        <th>{{ $u->birthday }}</th>
-                                        <th>
-                                            @switch($u->gender)
-                                                @case("0")
-                                                Chưa xác định
-                                                @break;
-                                                @case("1")
-                                                Nữ
-                                                @break;
-                                                @case("2")
-                                                Nam
-                                                @break;
-                                                @default
-                                                Chưa xác đinh
-                                            @endswitch
+                                        <tr>
+                                            <td>{{ $u->id }}</td>
+                                            <td>{{ $u->name }}</td>
+                                            <td>{{ $u->image }}</td>
+                                            <td>{{ $u->email }}</td>
+                                            <td>{{ $u->phone }}</td>
+                                            <td>{{ $u->address }}</td>
+                                            <td class="text-right">
+                                                <a href="{{ route('user_edit', $u->id) }}">
+                                                    <button type="button" rel="tooltip"
+                                                            class="btn btn-info btn-link"
+                                                            data-original-title="" title="Sửa tài khoản">
+                                                        <i class="material-icons">edit</i>
+                                                    </button>
+                                                </a>
 
-                                        </th>
-                                        <th>{{ $u->email }}</th>
-                                        <th>{{ $u->phone }}</th>
-                                        <th>{{ $u->address }}</th>
+                                                <a href="{{ route('user_remove', $u->id) }}">
+                                                    <button type="button" rel="tooltip" class="btn btn-danger btn-link"
+                                                            data-original-title="" title="Xóa tài khoản">
+                                                        <i class="material-icons">close</i>
+                                                    </button>
+                                                </a>
+
+                                            </td>
+                                        </tr>
+
                                     @endforeach
                                     </tbody>
                                 </table>

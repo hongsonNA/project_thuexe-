@@ -10,7 +10,7 @@ class Post extends Model
 
     protected $fillable = [
         'title',
-        'brief_news',
+        'summary',
         'content',
         'status'
     ];

@@ -26,20 +26,52 @@ class PostController extends Controller
     {
         $post = New Post();
 
-        if ($request->hasFile('image_news')) {
-            $images_File = $request->file('image_news');
-            $FileName = 'image_post' . '-' . time() . '.' . $images_File->extension();
+        if ($request->hasFile('image_posts')) {
+            $images_File = $request->file('image_posts');
+            $FileName = 'image_post' . '_' . time() . '.' . $images_File->extension();
             $image_resize = Image::make($images_File->getRealPath())->resize(300, 300);
-            $image_resize->save(public_path('image_posts/' . $FileName));
-            $post->image_news = $FileName;
+            $image_resize->save(public_path('image_upload/post/' . $FileName));
+            $post->image_posts = $FileName;
         } else {
-            $post->image_news = "default.jpg";
+            $post->image_posts = "default.jpg";
         }
 
         $post->user_id = (Auth::user()->id);
         $post->fill($request->all());
 
         $post->save();
+
+        return redirect()->route('post_list', compact('post'));
+    }
+
+    public function post_edit($id)
+    {
+        $post = Post::find($id);
+
+        if (empty($post)) {
+            return view('admin.post.post_list');
+        }
+
+        return view('admin.post.edit_post', compact('post'));
+    }
+
+    public function post_update(Request $request, $id)
+    {
+        $post = Post::find($id);
+        if (empty($post)) {
+            return view('admin.user.edit_user');
+        } else {
+            if ($request->hasFile('image_posts')) {
+                $images_File = $request->file('image_posts');
+                $FileName = 'image_post' . '_' . time() . '.' . $images_File->extension();
+                $image_resize = Image::make($images_File->getRealPath())->resize(300, 300);
+                $image_resize->save(public_path('image_upload/post/' . $FileName));
+                $post->image_posts = $FileName;
+            }
+            $post->fill($request->all());
+
+            $post->save();
+        }
 
         return redirect()->route('post_list', compact('post'));
     }

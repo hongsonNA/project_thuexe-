@@ -31,10 +31,7 @@ class CategoryController extends Controller
                             <button type="button" rel="tooltip" class="btn btn-danger btn-link" data-original-title="Xóa danh mục" title="">
                                 <i class="material-icons">close</i>
                             <div class="ripple-container"></div></button>
-                        </a>
-                        
-                        
-                        ';
+                        </a>';
             })->rawColumns(['action'])
             ->make(true);
     }

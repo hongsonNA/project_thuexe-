@@ -1,12 +1,12 @@
 @extends('admin.layouts.app_dashboard')
-@section('title', 'Thêm mới tài khoản')
+@section('title', 'Chỉnh sửa tài khoản')
 
 @section('content')
 
     <div class="content">
 
         <div class="container-fluid" id="v_user">
-            <form action="{{ route('user_create') }}" method="post" enctype="multipart/form-data" novalidate>
+            <form action="{{ route('user_update', $user->id) }}" method="post" enctype="multipart/form-data" novalidate>
                 @csrf
                 <div class="row">
                     <div class="col-md-8">
@@ -15,7 +15,7 @@
                                 <div class="card-icon">
                                     <i class="material-icons">perm_identity</i>
                                 </div>
-                                <h4 class="card-title"> Thêm mới tài khoản </h4>
+                                <h4 class="card-title"> Sửa tài khoản </h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -24,7 +24,8 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                            <input type="text" class="form-control" name="name"
+                                                   value="{{ $user->name }}">
                                             @if($errors->first('name'))
                                                 <span class="text-danger">{{$errors->first('name')}}</span>
                                             @endif
@@ -38,7 +39,8 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="text" class="form-control" name="email" value="{{ old('email') }}">
+                                            <input type="text" class="form-control" name="email"
+                                                   value="{{ $user->email }}">
                                             @if($errors->first('email'))
                                                 <span class="text-danger">{{$errors->first('email')}}</span>
                                             @endif
@@ -52,7 +54,8 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="text" class="form-control" name="identity_card" value="{{ old('identity_card') }}">
+                                            <input type="text" class="form-control" name="identity_card"
+                                                   value="{{ $user->identity_card }}">
                                             @if($errors->first('identity_card'))
                                                 <span class="text-danger">{{$errors->first('identity_card')}}</span>
                                             @endif
@@ -66,7 +69,8 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+                                            <input type="text" class="form-control" name="phone"
+                                                   value="{{ $user->phone }}">
                                             @if($errors->first('phone'))
                                                 <span class="text-danger">{{$errors->first('phone')}}</span>
                                             @endif
@@ -80,37 +84,10 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="text" class="form-control" name="address" value="{{ old('address') }}">
+                                            <input type="text" class="form-control" name="address"
+                                                   value="{{ $user->address }}">
                                             @if($errors->first('address'))
                                                 <span class="text-danger">{{$errors->first('address')}}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <label class="col-sm-2 col-form-label lg_em_pa">
-                                        Mật khẩu <strong style="color: red">*</strong>
-                                    </label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group bmd-form-group">
-                                            <input type="password" class="form-control" name="password">
-                                            @if($errors->first('password'))
-                                                <span class="text-danger">{{$errors->first('password')}}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <label class="col-sm-2 col-form-label lg_em_pa">
-                                        Nhập lại mật khẩu <strong style="color: red">*</strong>
-                                    </label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group bmd-form-group">
-                                            <input type="password" class="form-control" name="password_confirmation">
-                                            @if($errors->first('password_confirmation'))
-                                                <span class="text-danger">{{$errors->first('password_confirmation')}}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -133,11 +110,12 @@
                                                 Đăng bài viết
                                             </label>
                                         </div>
-{{--                                        <div class="form-check-inline col-form-label">--}}
-{{--                                            <label class="form-check-label">--}}
-{{--                                                <input type="radio" class="form-check-input" name="role">Option 2--}}
-{{--                                            </label>--}}
-{{--                                        </div>--}}
+                                        <div class="form-check-inline col-form-label">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="role" value="3">
+                                                Chưa xác định
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -145,14 +123,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4" style="margin-top: 140px">
+                    <div class="col-md-4" style="margin-top: 60px">
                         <div class="card card-profile">
                             <div class="fileinput fileinput-new text-center fileinput_user" data-provides="fileinput"
                                  style="margin-top: 20px;">
                                 <h5 style="font-weight: bold"> IMAGE PROFILE </h5>
-                                <div class="fileinput-new thumbnail">
-                                    <img src="/image_upload/user/{{ Auth::user()->image }}" width="250px"
-                                         height="145px">
+                                <div class="fileinput-new thumbnail" style="width: 175px; height: 175px; border-radius:50%">
+                                    <img src="/image_upload/user/{{ $user->image }}">
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                 <div>
@@ -167,13 +144,6 @@
                                     </a>
                                 </div>
                             </div>
-{{--                            <div class="card-body">--}}
-{{--                                <h4 class="card-title" style="font-weight:bold"> @{{ name }} </h4>--}}
-{{--                                <h5 class="card-title">@{{ email }}</h5>--}}
-{{--                                <h5 class="card-title">@{{ identity_card }}</h5>--}}
-{{--                                <h5 class="card-title">@{{ phone }}</h5>--}}
-{{--                                <h5 class="card-title">@{{ address }}</h5>--}}
-{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -181,18 +151,4 @@
         </div>
 
     </div>
-{{--    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>--}}
-{{--    <script>--}}
-{{--        new Vue({--}}
-{{--            el: '#v_user',--}}
-
-{{--            data: {--}}
-{{--                name: '',--}}
-{{--                email: '',--}}
-{{--                identity_card: '',--}}
-{{--                phone: '',--}}
-{{--                address: '',--}}
-{{--            }--}}
-{{--        })--}}
-{{--    </script>--}}
 @endsection

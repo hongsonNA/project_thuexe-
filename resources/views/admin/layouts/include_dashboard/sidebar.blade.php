@@ -1,5 +1,5 @@
 <div class="sidebar" data-color="rose" data-background-color="black"
-     data-image="{{ asset('image_display/sidebar-2.jpg') }}">
+     data-image="{{ asset('image_upload/sidebar.jpg') }}">
     <div class="logo">
         <a href="{{ route('dashboard') }}" class="simple-text logo-mini">VB</a>
         <a href="{{ route('dashboard') }}" class="simple-text logo-normal">Vehicel Booking</a>
@@ -7,7 +7,7 @@
     <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="{{ asset('image_display/avatar.jpg') }}"/>
+                <img src="/image_upload/user/{{ Auth::user()->image }}"/>
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
@@ -116,7 +116,7 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('post_create') }}">
                                 <span class="sidebar-mini"> P </span>
                                 <span class="sidebar-normal"> Thêm bài viết </span>
                             </a>
@@ -143,7 +143,7 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('user_create') }}">
                                 <span class="sidebar-mini"> U </span>
                                 <span class="sidebar-normal"> Thêm tài khoản </span>
                             </a>
