@@ -126,36 +126,41 @@ h1,h2,h3,h4,h5,h6{
 	float:left;
 	width:100%;
 }
-.phone_icon:before {
-    content: '';
-    height: 85px;
-    width: 60px;
-    background: #374b5d;
-    display: block;
-    position: absolute;
-    top: 0;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-	box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.08);
-	-webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.08);
-	-moz-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.08);
-	-o-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.08);
-	-ms-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.08);
+/*.phone_icon:before {*/
+/*    content: '';*/
+/*    height: 85px;*/
+/*    width: 60px;*/
+/*    background: #374b5d;*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    border-bottom-left-radius: 25px;*/
+/*    border-bottom-right-radius: 25px;*/
+/*	box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.08);*/
+/*	-webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.08);*/
+/*	-moz-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.08);*/
+/*	-o-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.08);*/
+/*	-ms-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.08);*/
+/*}*/
+.phone_info i {
+    font-size: 22px;
+    width: 45px;
+    line-height: 40px;
+    height: 45px;
+    border-radius: 100%;
+    color: #dd3e51;
+    border: 2px solid #dd3e51;
+    text-align: center;
+    float: left;
+    /* background: #253747; */
+    position: relative;
+    top: 35px;
+    transition: .7s;
+    left: 7px;
 }
-.phone_info i{
-	font-size:22px;
-	width:45px;
-	line-height:40px;
-	height:45px;
-	border-radius:100%;
-	color:#fff;
-	border: 2px solid #495d6f;
-	text-align: center;
-	float: left;
-	background:#253747;
-	position: relative;
-	top: 35px;
-	left: 7px;
+.tj-wrapper header .phone_info i:hover {
+    transform: rotate(360deg);
+    transition: .5s;
 }
 .phone_info .phone_text{
 	float:left;
@@ -1213,7 +1218,7 @@ h1,h2,h3,h4,h5,h6{
 	width:195px;
 	text-align:center;
 	color:#fff;
-	background-color:#374b5d;
+    background-color: #dd3e51;
 	padding:16px 0;
 	margin:25px auto 0;
 }

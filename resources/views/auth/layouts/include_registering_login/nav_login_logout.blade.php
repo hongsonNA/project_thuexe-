@@ -1,37 +1,141 @@
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
+<section class="top-link clearfix">
     <div class="container">
-        <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#">{{ __('Dashboard') }}</a>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">{{ __('Toggle navigation') }}</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end">
-            <ul class="navbar-nav">
-
-                <li class="nav-item {{ Request::routeIs('register') ? 'active' : '' }}">
-                    <a href="{{ route('register') }}" class="nav-link">
-                        <i class="material-icons">{{__('person_add')}}</i> {{ __('Register') }}
-                    </a>
-                </li>
-
-                <li class="nav-item {{ Request::routeIs('login') ? 'active' : '' }}">
-                    <a href="{{ route('login') }}" class="nav-link">
-                        <i class="material-icons">{{__('fingerprint')}}</i> {{ __('Login') }}
-                    </a>
-                </li>
-
-                <li class="nav-item {{ Request::routeIs('password.request') ? 'active' : '' }}">
-                    <a href="{{ route('password.request') }}" class="nav-link">
-                        <i class="material-icons">{{__('lock_open')}}</i> {{ __('Forgot Password ?') }}
-                    </a>
-                </li>
-
-            </ul>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav navbar-nav topmenu-contact pull-left">
+                    <li style="padding-top:15px;"></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm">
+                    <li class="order-check"><a href="#"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp cho thuê </a></li>
+                    {{--                    <li class="order-cart"><a href="/gio-hang.html"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>--}}
+                    <li class="account-login"><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Đăng nhập </a></li>
+                    <li class="account-register"><a href="{{ route('register') }}"><i class="fa fa-key"></i> Đăng ký </a></li>
+                </ul>
+                <div class="show-mobile hidden-lg hidden-md">
+                    <div class="quick-user">
+                        <div class="quickaccess-toggle">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="inner-toggle">
+                            <ul class="login links">
+                                <li>
+                                    <a href="/dang-ky.html"><i class="fa fa-sign-in"></i> Đăng ký</a>
+                                </li>
+                                <li>
+                                    <a href="/dang-nhap.html"><i class="fa fa-key"></i> Đăng nhập</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="quick-access">
+                        <div class="quickaccess-toggle">
+                            <i class="fa fa-list"></i>
+                        </div>
+                        <div class="inner-toggle">
+                            <ul class="links">
+                                <li><a id="mobile-wishlist-total" href="/kiem-tra-don-hang.html" class="wishlist"><i class="fa fa-pencil-square-o"></i> Kiểm tra đơn hàng</a></li>
+                                <li><a href="/gio-hang.html" class="shoppingcart"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
+</section>
+<header class="tj-header">
+    <!--Header Content Start-->
+    <div class="container">
+        <div class="row">
+            <!--Toprow Content Start-->
+            <div class="col-md-3 col-sm-4 col-xs-12">
+                <!--Logo Start-->
+                <div class="tj-logo">
+                    <h1><a href="home-1.html">Prime Cab</a></h1>
+                </div>
+                <!--Logo End-->
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="info_box">
+                    <i class="fa fa-home"></i>
+                    <div class="info_text">
+                        <span class="info_title">Address</span>
+                        <span>Primecab, United States</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="info_box">
+                    <i class="fa fa-envelope"></i>
+                    <div class="info_text">
+                        <span class="info_title">Email Us</span>
+                        <span><a href="mailto:primecab@booking.com">primecab@booking.com</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <div class="phone_info">
+                    <div class="phone_icon animate_ro">
+                        <i class="fas fa-phone-volume animated_ro"></i>
+                    </div>
+                    <div class="phone_text">
+                        <span><a href="tel:1-234-000-2345">+1-234-000-2345</a></span>
+                    </div>
+                </div>
+            </div>
+            <!--Toprow Content End-->
+        </div>
+    </div>
+
+    <div class="tj-nav-row">
+        <div class="container">
+            <div class="row">
+                <!--Nav Holder Start-->
+                <div class="tj-nav-holder">
+                    <!--Menu Holder Start-->
+                    <nav class="navbar navbar-default">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tj-navbar-collapse" aria-expanded="false">
+                                <span class="sr-only">Menu</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <!-- Navigation Content Start -->
+                        <div class="collapse navbar-collapse" id="tj-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+
+                                </li>
+                                <li>
+                                    <a href="aboutus.html">Aboutus</a>
+                                </li>
+                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="services.html">Xe du lịch</a></li>
+                                        <li><a href="services.html">Xe cưới </a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News</a>
+                                </li>
+
+                                <li>
+                                    <a href="contact.html">Contactus</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- Navigation Content Start -->
+                    </nav>
+                    <!--Menu Holder End-->
+                    <div class="book_btn">
+                        <a href="contact.html">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                    </div>
+                </div><!--Nav Holder End-->
+            </div>
+        </div>
+    </div>
+</header>
+<!-- /HEADER -->
