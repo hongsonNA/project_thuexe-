@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Model\Post;
+
 class HomeController extends Controller
 {
     /**
@@ -35,5 +38,13 @@ class HomeController extends Controller
     }
     public function  cate(){
         return view('front-end.category');
+    }
+    public function news(){
+        $posts = DB::table('posts')->paginate(5);
+        //dd($posts->toArray());
+        return view('front-end.news',['posts'=> $posts]);
+    }
+    public function profile(){
+        return view('front-end.profile');
     }
 }

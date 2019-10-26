@@ -22,7 +22,7 @@
                             <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
 
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('profile') }}">
                                         <span class="edu-icon edu-user-rounded author-log-ic"></span>
                                         My Profile
                                     </a>
@@ -162,9 +162,7 @@
                                     </ul>
                                 </li>
 
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                        role="button" aria-haspopup="true"
-                                                        aria-expanded="false">News</a>
+                                <li ><a href="{{ route('news') }}">News</a>
                                 </li>
 
                                 <li>
