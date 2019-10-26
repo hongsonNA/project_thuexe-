@@ -3,12 +3,12 @@
 //-----------------------client-------------------------------
 
 Route::get('/', 'HomeController@index')->name('index');
-
 Route::get('/about','HomeController@about')->name('about');
 Route::get('/contact','HomeController@contact')->name('contact');
 Route::get('/logout','\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 Route::get('/cate','HomeController@cate')->name('cate');
-
+Route::get('/news','HomeController@news')->name('news');
+Route::get('/profile','HomeController@profile')->name('profile');
 
 //-----------------------End client-------------------------------
 Auth::routes();
