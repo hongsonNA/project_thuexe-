@@ -38,8 +38,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
 //        Route::get('/allCategory', 'Admin\\PostController@allCategory'); //datatable ajax
         Route::get('/add-post', 'Admin\\PostController@post_add')->name('post_add');
         Route::post('/add-post', 'Admin\\PostController@post_create')->name('post_create');
-//        Route::get('/{id}/edit-category', 'Admin\\PostController@category_edit')->name('category_edit');
-//        Route::post('/{id}/edit-category', 'Admin\\PostController@category_update')->name('category_update');
+        Route::get('/{id}/edit-post', 'Admin\\PostController@post_edit')->name('post_edit');
+        Route::post('/{id}/edit-post', 'Admin\\PostController@post_update')->name('post_update');
 //        Route::get('/{id}/remote-category', 'Admin\\PostController@category_remove')->name('category_remove');
     });
 
@@ -48,10 +48,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
         Route::get('/', 'Admin\\UserController@user_list')->name('user_list');
 //        Route::get('/allCategory', 'Admin\\PostController@allCategory'); //datatable ajax
         Route::get('/add-user', 'Admin\\UserController@user_add')->name('user_add');
-//        Route::post('/add-post', 'Admin\\UserController@post_create')->name('post_create');
-//        Route::get('/{id}/edit-category', 'Admin\\UserController@category_edit')->name('category_edit');
-//        Route::post('/{id}/edit-category', 'Admin\\UserController@category_update')->name('category_update');
-//        Route::get('/{id}/remote-category', 'Admin\\UserController@category_remove')->name('category_remove');
+        Route::post('/add-user', 'Admin\\UserController@user_create')->name('user_create');
+        Route::get('/{id}/edit-user', 'Admin\\UserController@user_edit')->name('user_edit');
+        Route::post('/{id}/edit-user', 'Admin\\UserController@user_update')->name('user_update');
+        Route::get('/{id}/remote-user', 'Admin\\UserController@user_remove')->name('user_remove');
     });
 
 });

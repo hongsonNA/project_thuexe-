@@ -73,12 +73,31 @@
                                         <tr>
                                             <td>{{$p->id}}</td>
                                             <td>{{$p->title}}</td>
-                                            <td>{{$p->brief_news}}</td>
-                                            <td>{{$p->image_news}}</td>
+                                            <td>{{$p->summary}}</td>
+                                            <td>
+                                                <img src="/image_upload/post/{{ $p->image_posts }}" >
+                                            </td>
                                             <td>{{ $p['user']['name'] }}</td>
                                             <td>{{$p->status}}</td>
-                                            <td>{{$p->create_at}}</td>
-                                            <td>{{$p->update_at}}</td>
+                                            <td>{{$p->created_at}}</td>
+                                            <td>{{$p->updated_at}}</td>
+                                            <td class="text-right">
+                                                <a href="{{ route('post_edit', $p->id) }}">
+                                                    <button type="button" rel="tooltip"
+                                                            class="btn btn-info btn-link"
+                                                            data-original-title="" title="Sửa tài khoản">
+                                                        <i class="material-icons">edit</i>
+                                                    </button>
+                                                </a>
+
+                                                <a href="">
+                                                    <button type="button" rel="tooltip" class="btn btn-danger btn-link"
+                                                            data-original-title="" title="Xóa tài khoản">
+                                                        <i class="material-icons">close</i>
+                                                    </button>
+                                                </a>
+
+                                            </td>
                                         </tr>
                                         @endforeach
 
