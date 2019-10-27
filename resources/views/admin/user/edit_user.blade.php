@@ -112,14 +112,14 @@
                                         </div>
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="role" value="3">
+                                                <input type="radio" class="form-check-input" name="role" value="4">
                                                 Chưa xác định
                                             </label>
                                         </div>
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-success pull-right">Thêm Profile</button>
+                                <button type="submit" class="btn btn-success pull-right">Sửa Profile</button>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,8 @@
                             <div class="fileinput fileinput-new text-center fileinput_user" data-provides="fileinput"
                                  style="margin-top: 20px;">
                                 <h5 style="font-weight: bold"> IMAGE PROFILE </h5>
-                                <div class="fileinput-new thumbnail" style="width: 175px; height: 175px; border-radius:50%">
+                                <div class="fileinput-new thumbnail"
+                                     style="width: 175px; height: 175px; border-radius:50%">
                                     <img src="/image_upload/user/{{ $user->image }}">
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail"></div>

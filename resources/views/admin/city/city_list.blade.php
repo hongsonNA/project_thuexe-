@@ -1,5 +1,5 @@
 @extends('admin.layouts.app_dashboard')
-@section('title', 'Tài khoản')
+@section('title', 'Thành phố')
 
 @section('content')
 
@@ -13,9 +13,9 @@
                             <div class="card-icon">
                                 <i class="material-icons">perm_identity</i>
                             </div>
-                            <h4 class="card-title">Danh sách User</h4>
-                            <a href="{{ route('user_add') }}"
-                               class="pull-right btn btn-success">Thêm mới tài khoản
+                            <h4 class="card-title">Danh sách Thành Phố</h4>
+                            <a href="{{ route('city_add') }}"
+                               class="pull-right btn btn-success">Thêm mới Thành Phố
                                 <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -29,35 +29,25 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Tên</th>
-                                        <th>Ảnh</th>
-                                        <th>Email</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Địa chỉ</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
-                                    @foreach($user as $u)
+                                    @foreach($city as $c)
                                         <tr>
-                                            <td>{{ $u->id }}</td>
-                                            <td>{{ $u->name }}</td>
-                                            <td>
-                                                <img src="/image_upload/user/{{ $u->image }}" width="70px">
-                                            </td>
-                                            <td>{{ $u->email }}</td>
-                                            <td>{{ $u->phone }}</td>
-                                            <td>{{ $u->address }}</td>
+                                            <td>{{ $c->id }}</td>
+                                            <td>{{ $c->name }}</td>
                                             <td class="text-right">
-                                                <a href="{{ route('user_edit', $u->id) }}">
+                                                <a href="{{ route('city_edit', $c->id) }}">
                                                     <button type="button" rel="tooltip"
-                                                            class="btn btn-info btn-link"
+                                            khoản                class="btn btn-info btn-link"
                                                             data-original-title="" title="Sửa tài khoản">
                                                         <i class="material-icons">edit</i>
                                                     </button>
                                                 </a>
 
-                                                <a href="{{ route('user_remove', $u->id) }}">
+                                                <a href="{{ route('city_remove', $c->id) }}">
                                                     <button type="button" rel="tooltip" class="btn btn-danger btn-link"
                                                             data-original-title="" title="Xóa tài khoản">
                                                         <i class="material-icons">close</i>

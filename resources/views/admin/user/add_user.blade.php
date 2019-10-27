@@ -94,7 +94,7 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="password" class="form-control" name="password">
+                                            <input type="password" class="form-control" name="password" value="{{ old('password') }}">
                                             @if($errors->first('password'))
                                                 <span class="text-danger">{{$errors->first('password')}}</span>
                                             @endif
@@ -104,7 +104,7 @@
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label lg_em_pa">
-                                        Nhập lại mật khẩu <strong style="color: red">*</strong>
+                                        Xác nhận mật khẩu <strong style="color: red">*</strong>
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
@@ -123,21 +123,27 @@
                                     <div class="col-sm-9">
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="role" value="4">
+                                                Chưa xác định
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check-inline col-form-label">
+                                            <label class="form-check-label">
                                                 <input type="radio" class="form-check-input" name="role" value="2">
                                                 Admin
                                             </label>
                                         </div>
+
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
                                                 <input type="radio" class="form-check-input" name="role" value="3">
                                                 Đăng bài viết
                                             </label>
                                         </div>
-{{--                                        <div class="form-check-inline col-form-label">--}}
-{{--                                            <label class="form-check-label">--}}
-{{--                                                <input type="radio" class="form-check-input" name="role">Option 2--}}
-{{--                                            </label>--}}
-{{--                                        </div>--}}
+                                        @if($errors->first('status'))
+                                            <br><span class="text-danger">{{$errors->first('status')}}</span>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -154,12 +160,15 @@
                                     <img src="/image_upload/user/{{ Auth::user()->image }}" width="250px"
                                          height="145px">
                                 </div>
+                                @if($errors->first('image'))
+                                    <div class="text-danger col-md-12">{{$errors->first('image')}}</div>
+                                @endif
                                 <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                 <div>
                           <span class="btn btn-success btn-sm btn-round btn-file">
                             <span class="fileinput-new">Select image</span>
                             <span class="fileinput-exists">Change</span>
-                            <input type="hidden"><input type="file" name="image">
+                            <input type="hidden"><input type="file" name="image" value="{{ old('image') }}">
                           <div class="ripple-container"></div></span>
                                     <a href="#pablo" class="btn btn-danger btn-sm btn-round fileinput-exists"
                                        data-dismiss="fileinput">
@@ -167,13 +176,7 @@
                                     </a>
                                 </div>
                             </div>
-{{--                            <div class="card-body">--}}
-{{--                                <h4 class="card-title" style="font-weight:bold"> @{{ name }} </h4>--}}
-{{--                                <h5 class="card-title">@{{ email }}</h5>--}}
-{{--                                <h5 class="card-title">@{{ identity_card }}</h5>--}}
-{{--                                <h5 class="card-title">@{{ phone }}</h5>--}}
-{{--                                <h5 class="card-title">@{{ address }}</h5>--}}
-{{--                            </div>--}}
+
                         </div>
                     </div>
                 </div>
@@ -181,18 +184,4 @@
         </div>
 
     </div>
-{{--    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>--}}
-{{--    <script>--}}
-{{--        new Vue({--}}
-{{--            el: '#v_user',--}}
-
-{{--            data: {--}}
-{{--                name: '',--}}
-{{--                email: '',--}}
-{{--                identity_card: '',--}}
-{{--                phone: '',--}}
-{{--                address: '',--}}
-{{--            }--}}
-{{--        })--}}
-{{--    </script>--}}
 @endsection
