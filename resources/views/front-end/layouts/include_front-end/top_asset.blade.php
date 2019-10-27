@@ -121,7 +121,45 @@
         -moz-box-shadow: -4px 3px 10px -4px rgba(0,0,0,0.75);
         box-shadow: -4px 3px 10px -4px rgba(0,0,0,0.75);
     }
-
+/*    profile */
+    .container .card .user_image {
+        width: 15rem;
+        height: auto;
+        border-radius: 100%;
+    }
+    .container .row .card {
+        padding: 30% 0 0 30%;
+    }
+    .renMal_boy {
+        padding: 10px;
+    }
+    .profile_user .form-group.row {
+        padding: 10px;
+    }
+    .tab-content.profile_user {
+        padding: 15px !important;
+    }
+    .profile_user .form-group.row label {
+        padding: 0;
+    }
+    .profi .nav ul li {
+        list-style: none;
+        padding: 7px 0;
+    }
+    .profi ul li label {
+        font-size: 20px;
+    }
+    .profi .nav ul li {
+        list-style: none;
+        padding: 7px 0;
+        /* color: #000; */
+        transition: .3s;
+    }
+    .profi .nav ul li a:hover {
+        text-decoration: none;
+        color: #dd3e51;
+        transition: .3s;
+    }
 </style>
 
 

@@ -3,12 +3,16 @@
 //-----------------------client-------------------------------
 
 Route::get('/', 'HomeController@index')->name('index');
-Route::get('/about', 'HomeController@about')->name('about');
-Route::get('/contact', 'HomeController@contact')->name('contact');
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-Route::get('/cate', 'HomeController@cate')->name('cate');
-Route::get('/news', 'HomeController@news')->name('news');
-Route::get('/profile', 'HomeController@profile')->name('profile');
+
+Route::get('/about','HomeController@about')->name('about');
+Route::get('/contact','HomeController@contact')->name('contact');
+Route::get('/logout','\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('/cate','HomeController@cate')->name('cate');
+Route::get('/news','HomeController@news')->name('news');
+Route::get('/profile','HomeController@profile')->name('profile');
+//update_account_user
+Route::post('/{id}/update_account','HomeController@update_account')->name('update_account');
+//end////
 
 //-----------------------End client-------------------------------
 Auth::routes();

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Model\Post;
+use App\Model\User;
 
 class HomeController extends Controller
 {
@@ -46,5 +47,15 @@ class HomeController extends Controller
     }
     public function profile(){
         return view('front-end.profile');
+    }
+    public function  update_account(Request $request, $id){
+       $data = $request->except('_token',$id);
+        $update_us = User::find($id);
+        $message = '';
+        if ( $update_us->update($data)){
+            $message='Câp nhật thành công';
+        }
+
+        return redirect()->back()->with('message', $message);
     }
 }
