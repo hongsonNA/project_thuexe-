@@ -77,7 +77,7 @@
                 <div class="collapse" id="city">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('city_list') }}">
                                 <span class="sidebar-mini"> C </span>
                                 <span class="sidebar-normal"> Danh Sách </span>
                             </a>

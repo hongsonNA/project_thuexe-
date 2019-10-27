@@ -3,12 +3,12 @@
 //-----------------------client-------------------------------
 
 Route::get('/', 'HomeController@index')->name('index');
-Route::get('/about','HomeController@about')->name('about');
-Route::get('/contact','HomeController@contact')->name('contact');
-Route::get('/logout','\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-Route::get('/cate','HomeController@cate')->name('cate');
-Route::get('/news','HomeController@news')->name('news');
-Route::get('/profile','HomeController@profile')->name('profile');
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('/cate', 'HomeController@cate')->name('cate');
+Route::get('/news', 'HomeController@news')->name('news');
+Route::get('/profile', 'HomeController@profile')->name('profile');
 
 //-----------------------End client-------------------------------
 Auth::routes();
@@ -30,6 +30,17 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
         Route::get('/{id}/edit-category', 'Admin\\CategoryController@category_edit')->name('category_edit');
         Route::post('/{id}/edit-category', 'Admin\\CategoryController@category_update')->name('category_update');
         Route::get('/{id}/remote-category', 'Admin\\CategoryController@category_remove')->name('category_remove');
+    });
+
+    //city
+    Route::group(['prefix' => 'city'], function () {
+        Route::get('/', 'Admin\CityController@city_list')->name('city_list');
+//        Route::get('/allCategory', 'Admin\\CityController@allCategory'); //datatable ajax
+        Route::get('/add-city', 'Admin\\CityController@city_add')->name('city_add');
+        Route::post('/add-city', 'Admin\\CityController@city_create')->name('city_create');
+        Route::get('/{id}/edit-city', 'Admin\\CityController@city_edit')->name('city_edit');
+        Route::post('/{id}/edit-city', 'Admin\\CityController@city_update')->name('city_update');
+        Route::get('/{id}/remote-city', 'Admin\\CityController@city_remove')->name('city_remove');
     });
 
     //posts
