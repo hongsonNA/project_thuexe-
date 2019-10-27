@@ -25,43 +25,52 @@ class UserAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:6|max:40',
+            'name' => 'required|min:4|max:40',
             'email' => [
                 'required',
                 'email',
                 Rule::unique('users')->ignore($this->id)
             ],
-//            'email' => 'required|email|unique:users',
-            'identity_card' => 'required|min:9|max:12|integer',
-            'phone' => 'required|numeric|phone_number|size:11',
+            'identity_card' => 'required|numeric|min:9',
+            'phone' => 'required|numeric|digits:10',
             'address' => 'required|max:60',
-            'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'required|min:8'
+//            'password' => 'required|min:8|confirmed',
+//            'password_confirmation' => 'required|min:8',
+            'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Vui lòng nhập vào Form.',
-            'name.min' => 'Tên tài khoản không ít hơn 6 ký tự.',
-            'name.max' => 'Tên tài khoản tối đa 40 ký tự.',
+            'name.required' => 'Trường Họ và Tên không được bỏ trống.',
+            'name.min' => 'Họ và tên nhập vào không được ít hơn 4 ký tự.',
+            'name.max' => 'Họ và tên nhập vào không quá 40 ký tự.',
 
-            'email.required' => 'Vui lòng nhập vào Form.',
-            'email.email' => 'Email phải là một địa chỉ email hợp lệ.',
-            'email.unique' => 'Email đã tồn tại.',
+            'email.required' => 'Trường Email không được bỏ trống.',
+            'email.email' => 'Trường Email phải là một địa chỉ email hợp lệ.',
+            'email.unique' => 'Trường Email đã tồn tại.',
 
-            'identity_card.required' => 'Vui lòng nhập vào Form.',
+            'identity_card.required' => 'Trường CMND không được bỏ trống.',
+            'identity_card.numeric' => 'Chứng minh nhân dân/Thẻ căn cước phải là số.',
             'identity_card.min' => 'Trường CMND không ít hơn 9 ký tự.',
-            'identity_card.max' => 'Trường CMND không quá 12 ký tự.',
-            'identity_card.integer' => 'Chứng minh nhân dân/Thẻ căn cước phải là số.',
 
-            'phone.required' => 'Vui lòng nhập vào Form.',
-            'address.required' => 'Vui lòng nhập vào Form.',
-            'address.max' => 'Trường đỉa chỉ tối đa 60 ký tự.',
-            'password.required' => 'Vui lòng nhập vào Form.',
+            'phone.required' => 'Trường Số Điện Thoại không được bỏ trống.',
+            'phone.numeric' => 'Trường Số Điện Thoại phải là một số.',
+            'phone.digits' => 'Trường Số Điện Thoại phải 10 số.',
 
+            'address.required' => 'Trường Địa Chỉ không được bỏ trống.',
+            'address.max' => 'Trường Đỉa Chỉ tối đa 60 ký tự được nhập vào.',
 
+            'password.required' => 'Trường Mật Khẩu không được bỏ trống.',
+            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
+            'password.confirmed' => 'Trường Mật Khẩu và Xác Nhận Mật Khẩu phải phù hợp.',
+
+            'password_confirmation.required' => 'Trường Xác Nhận Mật Khẩu không được bỏ trống.',
+            'password_confirmation.min' => 'Trường Xác Nhận Mật Khẩu phải có ít nhất 8 ký tự.',
+
+            'image.mimes' => 'Hình ảnh chỉ chứa các đuôi: jpeg, jpg, png, gif.',
+            'images.max' => 'Kích thước tối đa được phép cho một hình ảnh là 1MB',
 
         ];
     }

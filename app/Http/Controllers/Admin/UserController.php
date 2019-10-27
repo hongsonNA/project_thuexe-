@@ -25,7 +25,7 @@ class UserController extends Controller
         return view('admin.user.add_user');
     }
 
-    public function user_create(Request $request)
+    public function user_create(UserAdminRequest $request)
     {
         $user = New User();
 
@@ -39,9 +39,9 @@ class UserController extends Controller
             $user->image = "default.jpg";
         }
         $user->fill($request->all());
-        $user->password = Hash::make('password');
-        $user->save();
+        $user->password = Hash::make($request['password']);
 
+        $user->save();
 
         return redirect()->route('user_list', compact('user'));
     }
@@ -57,9 +57,10 @@ class UserController extends Controller
         return view('admin.user.edit_user', compact('user'));
     }
 
-    public function user_update(Request $request, $id)
+    public function user_update(UserAdminRequest $request, $id)
     {
         $user = User::find($id);
+
         if (empty($user)) {
             return view('admin.user.edit_user');
         } else {
