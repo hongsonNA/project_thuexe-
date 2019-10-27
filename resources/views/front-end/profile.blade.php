@@ -1,88 +1,97 @@
 @extends('front-end.layouts.app_front-end')
 @section('content')
     <!--User Account Section Start-->
-    <section class="tj-account-frm">
+    <section class="tj-account-frm" style="
+    background: #f3f1f1;">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="tj-tabs">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="active"><a href="#user_account" data-toggle="tab"><i class="far fa-user"></i> My Account</a></li>
-{{--                            <li><a href="#booking_history" data-toggle="tab">--}}
-{{--                                    <i class="far fa-chart-bar"></i> Booking History</a></li>--}}
-{{--                            <li><a href="#payment_history" data-toggle="tab"><i class="far fa-credit-card"></i> Payment History</a></li>--}}
-{{--                            <li><a href="#cancel_booking" data-toggle="tab"><i class="fas fa-times"></i> Cancel Booking</a></li>--}}
-{{--                            <li><a href="#Logout" data-toggle="tab"><i class="fas fa-sign-out-alt"></i> Logout</a></li>--}}
-                        </ul>
-                    </div>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="confirm_booking">
-                            <form class="account-frm" method="POST">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="account-field">
-                                        <label>First Name</label>
-                                        <span class="far fa-user"></span>
-                                        <input type="text" name="fname" placeholder="Enter First Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="account-field">
-                                        <label>Last Name</label>
-                                        <span class="far fa-user"></span>
-                                        <input type="text" name="lname" placeholder="Enter Last Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="account-field">
-                                        <label>Phone</label>
-                                        <span class="icon-phone icomoon"></span>
-                                        <input type="tel" name="phone_num" placeholder="Enter Phone Number">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="account-field">
-                                        <label>Email</label>
-                                        <span class="far fa-envelope"></span>
-                                        <input type="email" name="email_id" placeholder="Enter Email id">
-                                    </div>
-                                </div>
-{{--                                <div class="col-md-4 col-sm-4">--}}
-{{--                                    <div class="account-field">--}}
-{{--                                        <label>Old Password</label>--}}
-{{--                                        <span class="fas fa-lock"></span>--}}
-{{--                                        <input type="password" name="old_pass" placeholder="Password">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-md-4 col-sm-4">--}}
-{{--                                    <div class="account-field">--}}
-{{--                                        <label>New Password</label>--}}
-{{--                                        <span class="fas fa-lock"></span>--}}
-{{--                                        <input type="password" name="new_pass" placeholder="Password">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-md-4 col-sm-4">--}}
-{{--                                    <div class="account-field">--}}
-{{--                                        <label>Confirm Password</label>--}}
-{{--                                        <span class="fas fa-lock"></span>--}}
-{{--                                        <input type="password" name="confirm_pass" placeholder="Password">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="account-field">
-                                        <label>Profile Image</label>
-                                        <button class="file-btn"><i class="fas fa-download"></i> Upload Photo</button>
-                                        <span class="limit">Maximum file size : 6MB </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <button type="submit" class="save-btn">Save <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
-                                </div>
-                            </form>
-                        </div>
+            <div class="row" style="background-color: #f9f9f9;">
+                <div class="col-md-3  .col-sm-3">
+                    <div class="profi">
+                            <ul class="nav">
+                                <li><label for="">Hồ sơ cá nhân</label>
+                                <ul>
+                                   <li><a href="javascript:;">Đổi mật khẩu</a></li>
+                                    <li><a href="javascript:;">Quản lý tin đăng</a></li>
+                                    <li><a href="javascript:;">Đăng ký doanh nghiệp cho thuê xe </a></li>
+                                </ul>
+                                </li>
+                            </ul>
                     </div>
                 </div>
+                <div class="col-md-5 col-sm-5">
+                    <div class="tj-tabs">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="active"><a href="#user_account" data-toggle="tab"><i class="far fa-user"></i> Quản lý tài khoản</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content profile_user" >
+                        <form onsubmit="return checkPhone()" method="POST" enctype="multipart/form-data" action="{{ route('update_account',Auth::user()->id) }}">
+                            @csrf
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-2 col-form-label ">Họ tên:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="" value="{{ Auth::user()->name }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputBirthday" class="col-sm-2 col-form-label">So dien thoai</label>
+                                <div class="col-sm-10">
+                                    <input type="number" name="phone" class="form-control" id="phone" placeholder="" value="{{ Auth::user()->phone }}">
+                                    <span class="err_phone" id="errPhone" style="color: red;"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="address" class="col-sm-2 col-form-label">Địa chỉ:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="address" class="form-control" id="address" placeholder="" value="{{ Auth::user()->address }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input disabled type="email" name="email" class="form-control" id="email" placeholder="" value="{{ Auth::user()->email }}">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-primary">update</button>
+                            </div>
+
+                    </div>
+                </div>
+{{--                <div class="col-md-4 col-sm-4">--}}
+{{--                    <div class="card" style="">--}}
+{{--                        <img  src="https://bilutv.org/Theme/images/no-avatar.png" name="image" class="card-img-top img-fluid user_image" alt="...">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <a href="#" class="btn btn-primary">Đổi ảnh đại diện</a>--}}
+{{--                        </div>--}}
+
+{{--                    </div>--}}
+{{--                </div>--}}
+                </form>
             </div>
+
         </div>
+        @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
     </section>
     <!--User Account Section End-->
+    <script>
+        function checkPhone() {
+            var patemPhone = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+            var phone =  $('#phone').val();
+            if (phone !== "") {
+                if (patemPhone.test(phone) == false) {
+                    $('#errPhone').html('so dien thoai chua dung dinh dang ');
+                    return false;
+                }
+            }else {
+                   alert('12');
+                   return true;
+            }
+        }
+    </script>
 @endsection
