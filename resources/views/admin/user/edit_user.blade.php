@@ -93,6 +93,10 @@
                                     </div>
                                 </div>
 
+
+                                <input hidden type="password" name="password" value="{{ $user->password }}">
+                                <input hidden type="password" name="password_confirmation" value="{{ $user->password }}">
+
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label lg_em_pa">
                                         Quyền user <strong style="color: red">*</strong>
