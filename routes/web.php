@@ -50,7 +50,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
     //posts
     Route::group(['prefix' => 'posts'], function () {
         Route::get('/', 'Admin\\PostController@post_list')->name('post_list');
-//        Route::get('/allCategory', 'Admin\\PostController@allCategory'); //datatable ajax
+        Route::get('/allPost', 'Admin\\PostController@allPost'); //datatable ajax
         Route::get('/add-post', 'Admin\\PostController@post_add')->name('post_add');
         Route::post('/add-post', 'Admin\\PostController@post_create')->name('post_create');
         Route::get('/{id}/edit-post', 'Admin\\PostController@post_edit')->name('post_edit');
@@ -61,7 +61,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
     //user
     Route::group(['prefix' => 'user'], function () {
         Route::get('/', 'Admin\\UserController@user_list')->name('user_list');
-//        Route::get('/allCategory', 'Admin\\PostController@allCategory'); //datatable ajax
+        Route::get('/allUser', 'Admin\\UserController@allUser'); //datatable ajax
         Route::get('/add-user', 'Admin\\UserController@user_add')->name('user_add');
         Route::post('/add-user', 'Admin\\UserController@user_create')->name('user_create');
         Route::get('/{id}/edit-user', 'Admin\\UserController@user_edit')->name('user_edit');

@@ -7,14 +7,35 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
+use Yajra\DataTables\Facades\DataTables;
 
 class PostController extends Controller
 {
     public function post_list()
     {
-        $post = Post::all();
+        return view('admin.post.post_list');
+    }
 
-        return view('admin.post.post_list', compact('post'));
+    public function allPost()
+    {
+        return Datatables::of(Post::all())
+            ->editColumn('user_id', function($p) {
+                return $p['user']['name'];
+            })
+            ->addColumn('action', function ($p) {
+                return '<a href="' . route('post_edit', $p->id) . '">
+                            <button type="button" rel="tooltip" class="btn btn-info btn-link" data-original-title="Sửa bài viết" title="">
+                                <i class="material-icons">edit</i>
+                            <div class="ripple-container"></div></button>
+                        </a>
+                        
+                        <a href="" OnClick="return confirm(\'Bạn có chắc chắn muốn xóa bài viết này không?\')">
+                            <button type="button" rel="tooltip" class="btn btn-danger btn-link" data-original-title="Xóa bài viết" title="">
+                                <i class="material-icons">close</i>
+                            <div class="ripple-container"></div></button>
+                        </a>';
+            })->rawColumns(['user_id', 'action'])
+            ->make(true);
     }
 
     public function post_add()

@@ -9,15 +9,33 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
+use Yajra\DataTables\Facades\DataTables;
 use function GuzzleHttp\Promise\all;
 
 class UserController extends Controller
 {
     public function user_list()
     {
-        $user = User::all();
+        return view('admin.user.user_list');
+    }
 
-        return view('admin.user.user_list', compact('user'));
+    public function allUser()
+    {
+        return Datatables::of(User::all())
+            ->addColumn('action', function ($user) {
+                return '<a href="' . route('user_edit', $user->id) . '">
+                            <button type="button" rel="tooltip" class="btn btn-info btn-link" data-original-title="Sửa tài khoản" title="">
+                                <i class="material-icons">edit</i>
+                            <div class="ripple-container"></div></button>
+                        </a>
+                        
+                        <a href="" OnClick="return confirm(\'Bạn có chắc chắn muốn xóa tài khoản không?\')">
+                            <button type="button" rel="tooltip" class="btn btn-danger btn-link" data-original-title="Xóa tài khoản" title="">
+                                <i class="material-icons">close</i>
+                            <div class="ripple-container"></div></button>
+                        </a>';
+            })->rawColumns(['action'])
+            ->make(true);
     }
 
     public function user_add()
