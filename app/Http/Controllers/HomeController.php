@@ -58,4 +58,8 @@ class HomeController extends Controller
 
         return redirect()->back()->with('message', $message);
     }
+    //support
+    public function support(){
+        return view('front-end.support');
+    }
 }

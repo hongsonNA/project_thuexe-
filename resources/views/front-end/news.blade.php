@@ -14,7 +14,7 @@
                                     <!--thumbnail-->
                                     <div class="ratio_360-202 image-wrapper  posts_img">
                                         <a href="#">
-                                            <img class="" src="{{ asset('image_posts/'.$id->image_news)}}" alt="">
+                                            <img class="" src="{{ asset('image_upload/post/'.$id->image_posts)}}" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
                                             <time datetime="2019-10-21">Oct 21, 2019</time>
                                         </div>
                                         <!--description-->
-                                        <p class="card-text">{{ $id->brief_news }}</p>
+                                        <p class="card-text">{{ $id->summary }}</p>
                                         <!-- read more button -->
                                         <a class="btn btn-outline-primary" href="#">Read more</a>
                                     </div>

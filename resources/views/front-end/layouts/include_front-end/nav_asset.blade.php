@@ -40,7 +40,7 @@
                     @else
                         <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp
                                 cho thuê </a></li>
-                        <li class="account-login"><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Đăng nhập
+                        <li class="account-login" data-toggle="modal" data-target="#myModal" ><a href="javascript:;"><i class="fa fa-sign-in"></i> Đăng nhập
                             </a></li>
                         <li class="account-register"><a href="{{ route('register') }}"><i class="fa fa-key"></i> Đăng ký
                             </a></li>
@@ -55,10 +55,10 @@
                         <div class="inner-toggle">
                             <ul class="login links">
                                 <li>
-                                    <a href="/dang-ky.html"><i class="fa fa-sign-in"></i> Đăng ký</a>
+                                    <a   href="/dang-ky.html"><i class="fa fa-sign-in"></i> Đăng ký</a>
                                 </li>
                                 <li>
-                                    <a href="/dang-nhap.html"><i class="fa fa-key"></i> Đăng nhập</a>
+                                    <a  href="/dang-nhap.html"><i class="fa fa-key"></i> Đăng nhập</a>
                                 </li>
                             </ul>
                         </div>
@@ -182,4 +182,129 @@
         </div>
     </div>
 </header>
+
+{{--<div class="modall">--}}
+{{--    <div class="col-md-6 col-sm-6">--}}
+{{--      --}}
+{{--    </div>--}}
+{{--</div>--}}
+
 <!-- /HEADER -->
+<!-- FORM LOGIN -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+           <div class="modal-login">
+               <h3>Đăng nhập thành viên </h3>
+               <form class="login-frm" method="POST" action="{{ route('login') }}" novalidate>
+                   @csrf
+                   <div class="field-holder">
+                       <span class="far fa-envelope"></span>
+                       <input type="email" name="email" value="{{ old('email') }}"
+                              placeholder="Email"  class="@error('email') is-invalid @enderror">
+                   </div>
+                   @error('email')
+                   <label class="error_login">
+                       <strong>{{ $message }}</strong>
+                   </label>
+                   @enderror
+                   <div class="field-holder">
+                       <span class="fas fa-lock"></span>
+                       <input type="password" name="password"
+                              placeholder="password" class="@error('password') is-invalid @enderror">
+                   </div>
+                   @error('password')
+                   <label class="error_login">
+                       <strong>{{ $message }}</strong>
+                   </label>
+                   @enderror
+
+                   <div style="display: flex;justify-content: space-between">
+                       <a href="#" class="forget-pass">Quên mật khẩu?</a>
+                       <a href="javascript:;"  id="myBtn" class="forget-pass">Đăng ký thành viên </a>
+{{--                       <button type="button" class="btn btn-info btn-lg" id="myBtn">Open Modal</button>--}}
+                   </div>
+                   <button type="submit" class="reg-btn">Login <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+{{--                   <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+{{--                   <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+               </form>
+           </div>
+        </div>
+
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- form register -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModall" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <h3>Đăng ký thành viên</h3>
+            <div class="form-register">
+                <div class="modal-register" id="modal-register">
+                <form class="reg-frm" method="POST" action="{{ route('register') }}">
+                    @csrf
+
+                    <div class="field-holder">
+                        <span class="far fa-user"></span>
+                        <input type="text" name="name" value="{{ old('name') }}"
+                               placeholder="User_name" class="@error('name') is-invalid @enderror">
+                    </div>
+                    @error('name')
+                    <label class="error_login">
+                        <strong>{{ $message }}</strong>
+                    </label>
+                    @enderror
+                    <div class="field-holder">
+                        <span class="far fa-envelope"></span>
+                        <input type="email" name="email" value="{{ old('email') }}"
+                               placeholder="Email" class="@error('email') is-invalid @enderror">
+                    </div>
+                    @error('email')
+                    <label class="error_login">
+                        <strong>{{ $message }}</strong>
+                    </label>
+                    @enderror
+                    <div class="field-holder">
+                        <span class="fas fa-lock"></span>
+                        <input type="password" name="password"
+                               placeholder="password" class="@error('password') is-invalid @enderror">
+                    </div>
+                    @error('password')
+                    <label class="error_login">
+                        <strong>{{ $message }}</strong>
+                    </label>
+                    @enderror
+                    <div class="field-holder">
+                        <span class="fas fa-lock"></span>
+                        <input type="password" name="password_confirmation"
+                               placeholder="password confirmation">
+                    </div>
+                    <label for="terms">
+                        <input type="checkbox" name="terms" id="terms">
+                        I accept terms & conditions
+                    </label>
+                    <button type="submit" class="reg-btn">Signup <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+{{--                    <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+{{--                    <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    $(document).ready(function(){
+        $("#myBtn").click(function(){
+            $("#myModal").hide();
+            $("#myModall").modal();
+        });
+    });
+</script>
+
+
+
+
+
+

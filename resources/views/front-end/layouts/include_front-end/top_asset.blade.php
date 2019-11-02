@@ -9,6 +9,9 @@
 <link href="{{asset('front-end-css/css/responsive.css')}}" rel="stylesheet">
 <link href="{{asset('front-end-css/css/icomoon.css')}}" rel="stylesheet">
 <link href="{{asset('front-end-css/css/animate.css')}}" rel="stylesheet">
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="{{ asset('package/css/swiper.min.css') }}">
+
 <!-- Css Files End -->
 {{--css menu---}}
 <style>.topmenu li a {
@@ -127,9 +130,9 @@
         height: auto;
         border-radius: 100%;
     }
-    .container .row .card {
-        padding: 30% 0 0 30%;
-    }
+    /*.container .row .card {*/
+    /*    padding: 30% 0 0 30%;*/
+    /*}*/
     .renMal_boy {
         padding: 10px;
     }
@@ -159,6 +162,57 @@
         text-decoration: none;
         color: #dd3e51;
         transition: .3s;
+    }
+    /* support*/
+    .block-area .image_support img {
+        width: 100%;
+        height: 100%;
+    }
+    .support-service{padding-top: 20px;}
+    .call-support .icon-support {
+        font-size: 29px;
+    }
+    .call-support .icon-support a{color:#000000}
+    .call-support {
+        position: fixed;
+        z-index: 99999;
+        background: #dd3e51;
+        left: 1%;
+        bottom: 40%;
+        /* font-size: 7rem; */
+        padding: 20px;
+        color: #000;
+        border-radius: 100%;
+    }
+    .slider-support {
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+    }
+    .title-service h3 {
+        font-size: 3.5rem;
+        padding: 20px;
+        font-weight: 900;
+    }
+    .title-service {
+        text-align: center;
+        color: #dd3e51;
+    }
+    .slide-brand {
+        width: 100%;
+        float: left;
+        padding: 52px 0;
+    }
+/*    modal box */
+    .modal-login .login-frm {
+        max-width: 100%;
+        padding: 40px 20px 100px 20px;
+    }
+    .modal-login h3 {text-align: center}
+    .form-register .modal-register .reg-frm {
+        max-width: 100%;
+        float: none;
+        padding: 40px 20px 100px 20px;
     }
 </style>
 

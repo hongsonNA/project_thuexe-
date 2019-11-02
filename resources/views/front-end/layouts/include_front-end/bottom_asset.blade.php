@@ -12,4 +12,8 @@
 <script src="{{asset('front-end-css/js/tweetie.js')}}"></script>
 <script src="{{asset('front-end-css/js/custom.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.common.dev.js"></script>
+<!-- Swiper JS -->
+<script src="{{asset('package/js/swiper.min.js')}}"></script>
+
+
 
