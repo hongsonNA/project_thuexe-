@@ -56,12 +56,12 @@
                                     <thead>
                                     <tr>
                                         <th width="50px">No</th>
-                                        <th>Tiêu Đề</th>
-                                        <th>Tin Văn Tắt</th>
-                                        <th>Hình Ảnh</th>
-                                        <th>Tác Giả</th>
-                                        <th>Trạng thái</th>
-                                        <th class="text-center">Action</th>
+                                        <th width="200px">Tiêu Đề</th>
+                                        <th width="220px">Tin Văn Tắt</th>
+                                        <th width="110px">Hình Ảnh</th>
+                                        <th width="90px">Tác Giả</th>
+                                        <th width="100px">Trạng thái</th>
+                                        <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
 
@@ -98,17 +98,39 @@
                     {data: 'id', name: 'id'},
                     {data: 'title', name: 'title'},
                     {data: 'summary', name: 'summary'},
-                    {data: 'image_posts', name: 'image_posts',
+                    {
+                        data: 'image_posts', name: 'image_posts',
                         render: function (data, type, full, meta) {
                             return "<img src=\"/image_upload/post/" + data + "\" width=\"100\"/>";
                         }
                     },
                     {data: 'user_id', name: 'user_id'},
-                    {data: 'status', name: 'status'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                    {
+                        data: 'status',
+                        render: function (status) {
+
+                            if (status === "1") {
+                                return '<button class=\"btn btn-behance button disabled btn-sm\" disabled>disable</button>';
+                            } else {
+                                return '<button class=\"btn btn-success button disabled btn-sm\" disabled>ennable</button>';
+                            }
+
+                        }
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false, className: "text-right"}
                 ],
+
             });
+
+
+            $('#datatables tr').each(function () {
+                console.log($(this).find('td:eq(0)').html());
+                var customerId = $(this).find("tr").eq(2).html();
+                console.log($(this).find("tr").html());
+            });
+
         });
+
 
     </script>
 @endsection

@@ -28,12 +28,12 @@
                                     <thead>
                                     <tr>
                                         <th style="width: 40px">id</th>
-                                        <th>Tên</th>
-                                        <th>Ảnh</th>
-                                        <th>Email</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Địa chỉ</th>
-                                        <th class="text-center">Action</th>
+                                        <th width="120px">Tên</th>
+                                        <th width="120px">Ảnh</th>
+                                        <th width="150px">Email</th>
+                                        <th width="140px">Số điện thoại</th>
+                                        <th width="200px">Địa chỉ</th>
+                                        <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
 
@@ -81,7 +81,7 @@
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
                     {data: 'address', name: 'address'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                    {data: 'action', name: 'action', orderable: false, searchable: false, className: "text-right"}
                 ],
             });
         });
