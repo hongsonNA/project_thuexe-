@@ -2,78 +2,64 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Post;
+use App\Repositories\VehicelRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
 {
-    public function post_list()
-    {
-        $post = Post::all();
 
-        return view('admin.post.post_list', compact('post'));
+    protected $PostRepository;
+
+    public function __construct(VehicelRepositoryInterface $PostRepository)
+    {
+        $this->PostRepository = $PostRepository;
     }
 
-    public function post_add()
+
+    public function index()
+    {
+        return view('admin.post.post_list');
+    }
+
+    public function AllDatatable()
+    {
+        $allDatatable = $this->PostRepository->AllDatatable();
+
+        return $allDatatable;
+    }
+
+    public function create()
     {
         return view('admin.post.add_post');
     }
 
-    public function post_create(Request $request)
+    public function store(Request $request)
     {
-        $post = New Post();
+        $post = $this->PostRepository->store($request);
 
-        if ($request->hasFile('image_posts')) {
-            $images_File = $request->file('image_posts');
-            $FileName = 'image_post' . '_' . time() . '.' . $images_File->extension();
-            $image_resize = Image::make($images_File->getRealPath())->resize(300, 300);
-            $image_resize->save(public_path('image_upload/post/' . $FileName));
-            $post->image_posts = $FileName;
-        } else {
-            $post->image_posts = "default.jpg";
-        }
-
-        $post->user_id = (Auth::user()->id);
-        $post->fill($request->all());
-
-        $post->save();
-
-        return redirect()->route('post_list', compact('post'));
+        return $post;
     }
 
-    public function post_edit($id)
+    public function edit($id)
     {
-        $post = Post::find($id);
+        $post = $this->PostRepository->edit($id);
 
-        if (empty($post)) {
-            return view('admin.post.post_list');
-        }
-
-        return view('admin.post.edit_post', compact('post'));
+        return $post;
     }
 
-    public function post_update(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $post = Post::find($id);
-        if (empty($post)) {
-            return view('admin.user.edit_user');
-        } else {
-            if ($request->hasFile('image_posts')) {
-                $images_File = $request->file('image_posts');
-                $FileName = 'image_post' . '_' . time() . '.' . $images_File->extension();
-                $image_resize = Image::make($images_File->getRealPath())->resize(300, 300);
-                $image_resize->save(public_path('image_upload/post/' . $FileName));
-                $post->image_posts = $FileName;
-            }
-            $post->fill($request->all());
+        $post = $this->PostRepository->update($request, $id);
 
-            $post->save();
-        }
+        return $post;
+    }
 
-        return redirect()->route('post_list', compact('post'));
+    public function destroy($id)
+    {
+        $post = $this->PostRepository->destroy($id);
+
+        return $post;
     }
 
 }

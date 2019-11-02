@@ -34,8 +34,8 @@ class UserAdminRequest extends FormRequest
             'identity_card' => 'required|numeric|min:9',
             'phone' => 'required|numeric|digits:10',
             'address' => 'required|max:60',
-//            'password' => 'required|min:8|confirmed',
-//            'password_confirmation' => 'required|min:8',
+            'password' => 'required|min:8|confirmed',
+            'password_confirmation' => 'required|min:8',
             'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
         ];
     }

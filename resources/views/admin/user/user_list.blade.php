@@ -24,50 +24,21 @@
                             </div>
                             <div class="material-datatables">
                                 <table id="datatables" class="table table-striped table-no-bordered table-hover"
-                                       cellspacing="0" width="100%" style="width:100%">
+                                       cellspacing="0" width="100%" >
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Tên</th>
-                                        <th>Ảnh</th>
-                                        <th>Email</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Địa chỉ</th>
+                                        <th style="width: 40px">id</th>
+                                        <th width="120px">Tên</th>
+                                        <th width="120px">Ảnh</th>
+                                        <th width="150px">Email</th>
+                                        <th width="140px">Số điện thoại</th>
+                                        <th width="200px">Địa chỉ</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
-                                    @foreach($user as $u)
-                                        <tr>
-                                            <td>{{ $u->id }}</td>
-                                            <td>{{ $u->name }}</td>
-                                            <td>
-                                                <img src="/image_upload/user/{{ $u->image }}" width="70px">
-                                            </td>
-                                            <td>{{ $u->email }}</td>
-                                            <td>{{ $u->phone }}</td>
-                                            <td>{{ $u->address }}</td>
-                                            <td class="text-right">
-                                                <a href="{{ route('user_edit', $u->id) }}">
-                                                    <button type="button" rel="tooltip"
-                                                            class="btn btn-info btn-link"
-                                                            data-original-title="" title="Sửa tài khoản">
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
-                                                </a>
 
-                                                <a href="{{ route('user_remove', $u->id) }}">
-                                                    <button type="button" rel="tooltip" class="btn btn-danger btn-link"
-                                                            data-original-title="" title="Xóa tài khoản">
-                                                        <i class="material-icons">close</i>
-                                                    </button>
-                                                </a>
-
-                                            </td>
-                                        </tr>
-
-                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -82,4 +53,38 @@
         </div>
     </div>
 
+
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#datatables').DataTable({
+
+                // "lengthMenu": true,
+                pageLength: 0,
+                lengthMenu: [5, 10, 20, 50],
+                order: [[0, 'desc']],
+                processing: true,
+                serverSide: true,
+                "autoWidth": true,
+                ajax: {
+                    url: '/dashboard/user/allUser',
+
+                },
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'image', name: 'image',
+                        render: function (data, type, full, meta) {
+                            return "<img src=\"/image_upload/user/" + data + "\" width=\"50\"/>";
+                        }
+                    },
+                    {data: 'email', name: 'email'},
+                    {data: 'phone', name: 'phone'},
+                    {data: 'address', name: 'address'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false, className: "text-right"}
+                ],
+            });
+        });
+
+    </script>
 @endsection
