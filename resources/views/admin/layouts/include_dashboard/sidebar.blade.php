@@ -21,12 +21,6 @@
                                 <span class="sidebar-normal"> My Profile </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> EP </span>
-                                <span class="sidebar-normal"> Edit Profile </span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>
