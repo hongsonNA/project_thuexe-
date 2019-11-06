@@ -15,7 +15,7 @@
                             </div>
                             <h4 class="card-title">Danh sách User</h4>
                             <a href="{{ route('user_add') }}"
-                               class="pull-right btn btn-success">Thêm mới tài khoản
+                               class="float-right pull-right btn btn-success">Thêm mới tài khoản
                                 <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>

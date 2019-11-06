@@ -42,7 +42,7 @@
                                 <i class="material-icons">category</i>
                             </div>
                             <h4 class="card-title">Danh sách danh mục</h4>
-                            <a href="{{ route('category_create') }}" class="pull-right btn btn-success">Thêm mới danh mục
+                            <a href="{{ route('category_create') }}" class="float-right pull-right btn btn-success">Thêm mới danh mục
                                 <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>

@@ -1,5 +1,5 @@
 @extends('admin.layouts.app_dashboard')
-@section('title', 'Thêm thành phố')
+@section('title', 'Thêm Quận huyện')
 
 @section('content')
     <div class="content">
@@ -16,13 +16,27 @@
                             <div class="card">
                                 <div class="card-header card-header-text card-header-success">
                                     <div class="card-text">
-                                        <h4 class="card-title">Thêm Thành Phố</h4>
+                                        <h4 class="card-title">Thêm Quận Huyện</h4>
                                     </div>
                                 </div>
 
-                                <div class="card-body ">
+                                <div class="card-body">
                                     <div class="row">
-                                        <label class="col-sm-3 col-form-label lg_em_pa">Tên Thành Phố</label>
+                                        <label class="col-sm-3 col-form-label lg_em_pa">Tên Thành phố</label>
+                                        <div class="col-sm-7">
+                                            <div class="form-group bmd-form-group">
+                                                <select class="selectpicker" name="city_id" data-style="select-with-transition" title="Chọn Thành Phố" data-size="7">
+                                                    <option disabled>Chưa xác định</option>
+                                                    @foreach($city as $c)
+                                                        <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="col-sm-3 col-form-label lg_em_pa">Tên Quận huyện</label>
                                         <div class="col-sm-7">
                                             <div class="form-group bmd-form-group">
                                                 <input type="text" name="name" value="{{ old('name') }}" class="form-control">

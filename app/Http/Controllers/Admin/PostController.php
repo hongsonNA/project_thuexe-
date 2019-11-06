@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\VehicelRepositoryInterface;
+use App\Model\Post;
+use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 
 class PostController extends Controller
 {
 
     protected $PostRepository;
 
-    public function __construct(VehicelRepositoryInterface $PostRepository)
+    public function __construct(PostRepository $PostRepository)
     {
         $this->PostRepository = $PostRepository;
     }
@@ -24,9 +26,7 @@ class PostController extends Controller
 
     public function AllDatatable()
     {
-        $allDatatable = $this->PostRepository->AllDatatable();
-
-        return $allDatatable;
+        return $this->PostRepository->AllDatatable();
     }
 
     public function create()
@@ -36,30 +36,22 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $post = $this->PostRepository->store($request);
-
-        return $post;
+        return $this->PostRepository->store($request);
     }
 
     public function edit($id)
     {
-        $post = $this->PostRepository->edit($id);
-
-        return $post;
+        return $this->PostRepository->edit($id);
     }
 
     public function update(Request $request, $id)
     {
-        $post = $this->PostRepository->update($request, $id);
-
-        return $post;
+        return $this->PostRepository->update($request, $id);
     }
 
     public function destroy($id)
     {
-        $post = $this->PostRepository->destroy($id);
-
-        return $post;
+        return $this->PostRepository->destroy($id);
     }
 
 }

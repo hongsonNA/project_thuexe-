@@ -10,7 +10,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-8 ml-auto mr-auto">
 
 
-                        <form method="post" action="{{ route('category_create') }}" novalidate="novalidate">
+                        <form method="post" action="{{ route('category_create') }}" novalidate="novalidate" id="chechForm" >
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
                             <div class="card">
@@ -34,6 +34,7 @@
                                     </div>
                                 </div>
 
+
                                 <div class="card-footer ml-auto mr-auto">
                                     <button type="submit" class="btn btn-success">Save</button>
                                 </div>
@@ -46,4 +47,5 @@
             </div>
         </div>
     </div>
+
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CategoryRequest;
+use App\Repositories\CategoryRepository;
 use App\Repositories\VehicelRepositoryInterface;
 use App\Http\Controllers\Controller;
 
@@ -11,7 +12,7 @@ class CategoryController extends Controller
 
     protected $CategoryRepository;
 
-    public function __construct(VehicelRepositoryInterface $CategoryRepository)
+    public function __construct(CategoryRepository $CategoryRepository)
     {
         $this->CategoryRepository = $CategoryRepository;
     }
@@ -23,9 +24,8 @@ class CategoryController extends Controller
 
     public function AllDatatable()
     {
-        $allCategory = $this->CategoryRepository->AllDatatable();
+        return $this->CategoryRepository->AllDatatable();
 
-        return $allCategory;
     }
 
     public function create()
@@ -35,28 +35,21 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        $categories = $this->CategoryRepository->store($request);
-        return $categories;
+        return $this->CategoryRepository->store($request);
     }
 
     public function edit($id)
     {
-        $cate = $this->CategoryRepository->edit($id);
-
-        return $cate;
+        return $this->CategoryRepository->edit($id);
     }
 
     public function update(CategoryRequest $request, $id)
     {
-        $cate = $this->CategoryRepository->update($request, $id);
-
-        return $cate;
+        return $this->CategoryRepository->update($request, $id);
     }
 
     public function destroy($id)
     {
-        $cate = $this->CategoryRepository->destroy($id);
-
-        return $cate;
+        return $this->CategoryRepository->destroy($id);
     }
 }

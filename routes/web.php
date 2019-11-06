@@ -4,15 +4,15 @@
 
 Route::get('/', 'HomeController@index')->name('index');
 
-Route::get('/about','HomeController@about')->name('about');
-Route::get('/contact','HomeController@contact')->name('contact');
-Route::get('/logout','\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-Route::get('/cate','HomeController@cate')->name('cate');
-Route::get('/news','HomeController@news')->name('news');
-Route::get('/profile','HomeController@profile')->name('profile');
-Route::get('/support','HomeController@support')->name('support');
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('/cate', 'HomeController@cate')->name('cate');
+Route::get('/news', 'HomeController@news')->name('news');
+Route::get('/profile', 'HomeController@profile')->name('profile');
+Route::get('/support', 'HomeController@support')->name('support');
 //update_account_user
-Route::post('/{id}/update_account','HomeController@update_account')->name('update_account');
+Route::post('/{id}/update_account', 'HomeController@update_account')->name('update_account');
 //end////
 
 //-----------------------End client-------------------------------
@@ -39,13 +39,28 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
 
     //city
     Route::group(['prefix' => 'city'], function () {
-        Route::get('/', 'Admin\CityController@city_list')->name('city_list');
+//        city
+        Route::get('/', 'Admin\CityController@city_list')->name('city_list');   //list city district
+
 //        Route::get('/allCategory', 'Admin\\CityController@allCategory'); //datatable ajax
         Route::get('/add-city', 'Admin\\CityController@city_add')->name('city_add');
         Route::post('/add-city', 'Admin\\CityController@city_create')->name('city_create');
         Route::get('/{id}/edit-city', 'Admin\\CityController@city_edit')->name('city_edit');
         Route::post('/{id}/edit-city', 'Admin\\CityController@city_update')->name('city_update');
         Route::get('/{id}/remote-city', 'Admin\\CityController@city_remove')->name('city_remove');
+
+//        district
+        Route::get('district/add-district', 'Admin\\DistrictController@create')->name('district_add');
+        Route::post('district/add-district', 'Admin\\DistrictController@store')->name('district_create');
+        Route::get('district/{id}/edit-district', 'Admin\\DistrictController@edit')->name('district_edit');
+        Route::post('district/{id}/edit-district', 'Admin\\DistrictController@update')->name('district_update');
+        Route::get('district/{id}/remote-district', 'Admin\\DistrictController@destroy')->name('district_remove');
+
+//      Ajax
+        Route::get('ajaxDistrict', 'Admin\\CityController@ajax')->name('ajaxGetDistrict');
+//      search
+        Route::get('/search-district', 'Admin\\CityController@search')->name('search_district');
+
     });
 
     //posts
