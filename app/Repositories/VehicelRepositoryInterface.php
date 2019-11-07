@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 interface VehicelRepositoryInterface {
-
     //datatable
     public function AllDatatable();
     //store 1 new resource

@@ -33,6 +33,7 @@ class CategoryRequest extends FormRequest
                 'min:4'
             ]
         ];
+        
     }
 
     public function messages()

@@ -42,7 +42,7 @@
                                 <i class="material-icons">panorama</i>
                             </div>
                             <h4 class="card-title">Danh sách bài viết</h4>
-                            <a href="{{ route('post_add') }}" class="pull-right btn btn-success">Thêm mới bài viết
+                            <a href="{{ route('post_add') }}" class="float-right pull-right btn btn-success">Thêm mới bài viết
                                 <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -101,7 +101,7 @@
                     {
                         data: 'image_posts', name: 'image_posts',
                         render: function (data, type, full, meta) {
-                            return "<img src=\"/image_upload/post/" + data + "\" width=\"100\"/>";
+                            return "<img src=\"/image_upload/post/" + data + "\" width=\"100\"/>";float-right
                         }
                     },
                     {data: 'user_id', name: 'user_id'},
