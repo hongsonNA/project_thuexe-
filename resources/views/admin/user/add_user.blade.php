@@ -123,21 +123,21 @@
                                     <div class="col-sm-9">
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="role" value="4">
+                                                <input type="radio" checked class="form-check-input" name="role" value="1">
                                                 Chưa xác định
                                             </label>
                                         </div>
 
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="role" value="2">
+                                                <input type="radio" class="form-check-input" name="role" value="9">
                                                 Admin
                                             </label>
                                         </div>
 
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="role" value="3">
+                                                <input type="radio" class="form-check-input" name="role" value="8">
                                                 Đăng bài viết
                                             </label>
                                         </div>

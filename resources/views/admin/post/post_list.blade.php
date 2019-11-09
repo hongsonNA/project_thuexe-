@@ -56,11 +56,11 @@
                                     <thead>
                                     <tr>
                                         <th width="50px">No</th>
-                                        <th width="200px">Tiêu Đề</th>
-                                        <th width="220px">Tin Văn Tắt</th>
-                                        <th width="110px">Hình Ảnh</th>
-                                        <th width="90px">Tác Giả</th>
-                                        <th width="100px">Trạng thái</th>
+                                        <th width="200px">Title</th>
+                                        <th width="220px">Summary</th>
+                                        <th width="110px">Image</th>
+                                        <th width="90px">Author</th>
+                                        <th width="100px">Status</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
@@ -101,10 +101,10 @@
                     {
                         data: 'image_posts', name: 'image_posts',
                         render: function (data, type, full, meta) {
-                            return "<img src=\"/image_upload/post/" + data + "\" width=\"100\"/>";float-right
+                            return "<img src=\"/image_upload/post/" + data + "\" width=\"100\" style=\"border-radius: 8px;\" />";
                         }
                     },
-                    {data: 'user_id', name: 'user_id'},
+                    {data: 'user_id', name: 'user_id',},
                     {
                         data: 'status',
                         render: function (status) {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UserAdminRequest;
 use App\Repositories\UserRepository;
-use App\Repositories\VehicelRepositoryInterface;
 use App\Http\Controllers\Controller;
 
 
