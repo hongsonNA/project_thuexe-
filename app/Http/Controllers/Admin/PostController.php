@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\PostRequest;
+use App\Model\Category;
 use App\Model\Post;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
@@ -12,12 +14,13 @@ class PostController extends Controller
 {
 
     protected $PostRepository;
+    public $cate;
 
     public function __construct(PostRepository $PostRepository)
     {
         $this->PostRepository = $PostRepository;
+        $this->cate = Category::all();
     }
-
 
     public function index()
     {
@@ -31,10 +34,12 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('admin.post.add_post');
+        $cate = $this->cate;
+
+        return view('admin.post.add_post', compact('cate'));
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         return $this->PostRepository->store($request);
     }
@@ -44,7 +49,7 @@ class PostController extends Controller
         return $this->PostRepository->edit($id);
     }
 
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
         return $this->PostRepository->update($request, $id);
     }

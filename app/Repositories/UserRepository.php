@@ -64,7 +64,7 @@ class UserRepository implements VehicelRepositoryInterface
         $user->password = Hash::make($request['password']);
 
         if ($user->save()) {
-            $mess_add = "Thêm mới tài khoản thành công thành công.";
+            $mess_add = "Thêm mới tài khoản thành công.";
         }
 
         return redirect()->route('user_list', compact('user'))->with('mess_add', $mess_add);
