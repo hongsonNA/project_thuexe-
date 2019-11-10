@@ -20,6 +20,22 @@
                                     </div>
                                 </div>
 
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-sm-5 col-form-label lg_em_pa">Danh mục bài viết</label>
+                                        <div class="col-sm-4">
+                                            <div class="form-group bmd-form-group">
+                                                <select class="selectpicker" name="cate_id" data-style="select-with-transition" data-size="7">
+                                                    @foreach($cate as $c)
+                                                        <option value="{{ $c->id }}" @if($c->id == $post->cate_id) selected @endif>{{ $c->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div class="card-body ">
                                     <div class="row">
                                         <label class="col-sm-1 col-form-label lg_em_pa">Tiêu đề</label>
@@ -28,6 +44,9 @@
                                                 <input type="text" name="title" value="{{ $post->title }}"
                                                        class="form-control">
                                             </div>
+                                            @if($errors->first('title'))
+                                                <br><span class="text-danger">{{$errors->first('title')}}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -40,6 +59,9 @@
                                                 <textarea name="summary" cols="30" rows="4"
                                                           class="form-control">{{ $post->summary }}</textarea>
                                             </div>
+                                            @if($errors->first('summary'))
+                                                <br><span class="text-danger">{{$errors->first('summary')}}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -62,6 +84,9 @@
                                         <div class="fileinput-new thumbnail">
                                             <img src="/image_upload/post/{{ $post->image_posts }}">
                                         </div>
+                                        @if($errors->first('image_posts'))
+                                            <br><span class="text-danger">{{$errors->first('image_posts')}}</span>
+                                        @endif
                                         <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                         <div>
                                         <span class="btn btn-default btn-round btn-file">

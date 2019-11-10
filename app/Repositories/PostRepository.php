@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Model\Category;
 use App\Model\Post;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -73,20 +74,23 @@ class PostRepository implements VehicelRepositoryInterface
         $post->user_id = (Auth::user()->id);
         $post->fill($request->all());
 
-        $post->save();
+        if ($post->save()) {
+            $mess_add = "Thêm mới bài viết thành công.";
+        }
 
-        return redirect()->route('post_list', compact('post'));
+        return redirect()->route('post_list', compact('post'))->with('mess_add', $mess_add);
     }
 
     public function edit($id)
     {
+        $cate = Category::all();
         $post = Post::find($id);
 
         if (empty($post)) {
             return view('admin.post.post_list');
         }
 
-        return view('admin.post.edit_post', compact('post'));
+        return view('admin.post.edit_post', compact('post', 'cate'));
     }
 
     public function update($request, $id)
@@ -103,11 +107,13 @@ class PostRepository implements VehicelRepositoryInterface
                 $post->image_posts = $FileName;
             }
             $post->fill($request->all());
-
-            $post->save();
+            $mess_update = "";
+            if ( $post->save()) {
+                $mess_update = "Sửa bài viết thành công";
+            }
         }
 
-        return redirect()->route('post_list', compact('post'));
+        return redirect()->route('post_list', compact('post'))->with('mess_update', $mess_update);
     }
 
     public function destroy($id)

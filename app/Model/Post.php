@@ -14,11 +14,17 @@ class Post extends Model
         'summary',
         'content',
         'status',
-        'image_news'
+        'image_news',
+        'cate_id'
     ];
 
     public function user()
     {
         return $this->belongsTo('App\Model\User', 'user_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Model\Category', 'cate_id');
     }
 }

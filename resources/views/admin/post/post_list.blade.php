@@ -5,34 +5,34 @@
     <div class="content">
         <div class="container-fluid">
 
-            {{--            @if(session('mess_add'))--}}
-            {{--                <script>--}}
-            {{--                    setTimeout(function () {--}}
-            {{--                        $('#success_cate').fadeOut(5000)--}}
-            {{--                    });--}}
-            {{--                </script>--}}
+            @if(session('mess_add'))
+                <script>
+                    setTimeout(function () {
+                        $('#success_cate').slideUp(5000)
+                    });
+                </script>
 
-            {{--                <div class="alert alert-success" id="success_cate">--}}
-            {{--                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
-            {{--                        <i class="material-icons">close</i>--}}
-            {{--                    </button>--}}
-            {{--                    <span>{{ session('mess_add') }}</span>--}}
-            {{--                </div>--}}
-            {{--            @endif--}}
-            {{--            @if(session('mess_update'))--}}
-            {{--                <script>--}}
-            {{--                    setTimeout(function () {--}}
-            {{--                        $('#success_cate').fadeOut(5000)--}}
-            {{--                    });--}}
-            {{--                </script>--}}
+                <div class="alert alert-success" id="success_cate">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <span>{{ session('mess_add') }}</span>
+                </div>
+            @endif
+            @if(session('mess_update'))
+                <script>
+                    setTimeout(function () {
+                        $('#success_cate').slideUp(5000)
+                    });
+                </script>
 
-            {{--                <div class="alert alert-success" id="success_cate">--}}
-            {{--                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
-            {{--                        <i class="material-icons">close</i>--}}
-            {{--                    </button>--}}
-            {{--                    <span>{{ session('mess_update') }}</span>--}}
-            {{--                </div>--}}
-            {{--            @endif--}}
+                <div class="alert alert-success" id="success_cate">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <span>{{ session('mess_update') }}</span>
+                </div>
+            @endif
 
             <div class="row">
                 <div class="col-md-12 ml-auto mr-auto">
@@ -42,7 +42,8 @@
                                 <i class="material-icons">panorama</i>
                             </div>
                             <h4 class="card-title">Danh sách bài viết</h4>
-                            <a href="{{ route('post_add') }}" class="float-right pull-right btn btn-success">Thêm mới bài viết
+                            <a href="{{ route('post_add') }}" class="float-right pull-right btn btn-success">Thêm mới
+                                bài viết
                                 <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -110,9 +111,10 @@
                         render: function (status) {
 
                             if (status === "1") {
-                                return '<button class=\"btn btn-behance button disabled btn-sm\" disabled>disable</button>';
-                            } else {
                                 return '<button class=\"btn btn-success button disabled btn-sm\" disabled>ennable</button>';
+                            } else {
+                                return '<button class=\"btn btn-behance button disabled btn-sm\" disabled>disable</button>';
+
                             }
 
                         }
