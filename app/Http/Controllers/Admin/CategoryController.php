@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CategoryRequest;
 use App\Repositories\CategoryRepository;
-use App\Repositories\VehicelRepositoryInterface;
 use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller

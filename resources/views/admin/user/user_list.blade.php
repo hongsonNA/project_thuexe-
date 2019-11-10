@@ -3,9 +3,36 @@
 
 @section('content')
 
-
     <div class="content">
         <div class="container-fluid">
+            @if(session('mess_add'))
+                <script>
+                    setTimeout(function () {
+                        $('#success_cate').slideUp(5000)
+                    });
+                </script>
+
+                <div class="alert alert-success" id="success_cate">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <span>{{ session('mess_add') }}</span>
+                </div>
+            @endif
+            @if(session('mess_update'))
+                <script>
+                    setTimeout(function () {
+                        $('#success_cate').slideUp(5000)
+                    });
+                </script>
+
+                <div class="alert alert-success" id="success_cate">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <span>{{ session('mess_update') }}</span>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -27,12 +54,12 @@
                                        cellspacing="0" width="100%" >
                                     <thead>
                                     <tr>
-                                        <th style="width: 40px">id</th>
-                                        <th width="120px">Tên</th>
-                                        <th width="120px">Ảnh</th>
+                                        <th width="40px">No</th>
+                                        <th width="120px">Full Name</th>
+                                        <th width="120px">Avatar</th>
                                         <th width="150px">Email</th>
-                                        <th width="140px">Số điện thoại</th>
-                                        <th width="200px">Địa chỉ</th>
+                                        <th width="140px">Phone</th>
+                                        <th width="200px">Address</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
@@ -75,7 +102,7 @@
                     {data: 'name', name: 'name'},
                     {data: 'image', name: 'image',
                         render: function (data, type, full, meta) {
-                            return "<img src=\"/image_upload/user/" + data + "\" width=\"50\"/>";
+                            return "<img src=\"/image_upload/user/" + data + "\" width=\"50\" style=\"border-radius: 50%;\" />";
                         }
                     },
                     {data: 'email', name: 'email'},

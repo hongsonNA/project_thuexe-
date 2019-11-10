@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-
 use App\Model\User;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -64,9 +63,11 @@ class UserRepository implements VehicelRepositoryInterface
         $user->fill($request->all());
         $user->password = Hash::make($request['password']);
 
-        $user->save();
+        if ($user->save()) {
+            $mess_add = "Thêm mới tài khoản thành công thành công.";
+        }
 
-        return redirect()->route('user_list', compact('user'));
+        return redirect()->route('user_list', compact('user'))->with('mess_add', $mess_add);
     }
 
     public function edit($id)
@@ -95,11 +96,13 @@ class UserRepository implements VehicelRepositoryInterface
                 $user->image = $FileName;
             }
             $user->fill($request->all());
-
-            $user->save();
+            $mess_update = "";
+            if ($user->save()) {
+                $mess_update = "Sửa danh mục thành công";
+            }
         }
 
-        return redirect()->route('user_list', compact('user'));
+        return redirect()->route('user_list', compact('user'))->with('mess_update', $mess_update);
     }
 
     public function destroy($id)

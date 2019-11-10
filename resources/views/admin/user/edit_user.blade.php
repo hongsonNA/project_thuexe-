@@ -104,20 +104,20 @@
                                     <div class="col-sm-9">
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="role" value="2">
+                                                <input type="radio" @if($user->role == 1) checked @endif class="form-check-input" name="role" value="1">
+                                                Chưa xác định
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline col-form-label">
+                                            <label class="form-check-label">
+                                                <input type="radio" @if($user->role == 9) checked @endif class="form-check-input" name="role" value="9">
                                                 Admin
                                             </label>
                                         </div>
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="role" value="3">
+                                                <input type="radio" @if($user->role == 8) checked @endif class="form-check-input" name="role" value="8">
                                                 Đăng bài viết
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline col-form-label">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="role" value="4">
-                                                Chưa xác định
                                             </label>
                                         </div>
                                     </div>
