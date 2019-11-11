@@ -11,6 +11,7 @@ Route::get('/cate', 'HomeController@cate')->name('cate');
 Route::get('/news', 'HomeController@news')->name('news');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 Route::get('/support', 'HomeController@support')->name('support');
+Route::get('/admin_us','HomeController@admin_us')->name('admin_us');
 //update_account_user
 Route::post('/{id}/update_account', 'HomeController@update_account')->name('update_account');
 //end////

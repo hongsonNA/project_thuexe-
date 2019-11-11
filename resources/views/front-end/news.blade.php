@@ -5,44 +5,45 @@
             <div class="col-md-8">
                 <!-- block start -->
                 <div class="block-area">
-                    <div class="border-bottom-last-0 first-pt-0">
-                        <!--post start-->
-                        @foreach($posts as $key => $id)
-                        <article class="card card-full hover-a py-4">
+                    <div class="row">
+                        <div class="gird_thumbgap-30 d-none d-md-block">
                             <div class="row">
-                                <div class="col-sm-6 col-md-12 col-lg-6">
-                                    <!--thumbnail-->
-                                    <div class="ratio_360-202 image-wrapper  posts_img">
-                                        <a href="#">
-                                            <img class="" src="{{ asset('image_upload/post/'.$id->image_posts)}}" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-12 col-lg-6">
-                                    <div class="card-body pt-3 pt-sm-0 pt-md-3 pt-lg-0">
-                                        <!--title-->
-                                        <h3 class="card-title h2 h3-sm h2-md">
-                                            <a href="#">{{ $id->title  }}</a>
-                                        </h3>
-                                        <!--author and date-->
-                                        <div class="card-text mb-2 text-muted small">
-                          <span class="d-none d-sm-inline mr-1">
-                            <a class="font-weight-bold" href="#">John Doe</a>
-                          </span>
-                                            <time datetime="2019-10-21">Oct 21, 2019</time>
+                                <div class="col-12">
+                                    <h2 class="block-title">
+                                        <span class="title-angle-shap"> Category :  Lifestyle </span>
+                                    </h2>
+                                </div><!-- col end -->
+                            </div><!-- row end -->
+                            <div class="row ts-gutter-10">
+                                @foreach($posts as $key => $id)
+                                <div class="col-md-6">
+                                    <div class="post-block-style">
+                                        <div class="post-thumb">
+                                            <a href="#">
+                                                <img class="img-fluid" src="{{ asset('image_upload/post/'.$id->image_posts)}}"  alt="">
+                                            </a>
+                                            <div class="grid-cat">
+                                                <a class="post-cat lifestyle" href="#">Lifestyle</a>
+                                            </div>
                                         </div>
-                                        <!--description-->
-                                        <p class="card-text">{{ $id->summary }}</p>
-                                        <!-- read more button -->
-                                        <a class="btn btn-outline-primary" href="#">Read more</a>
+
+                                        <div class="post-content">
+                                            <h2 class="post-title title-md">
+                                                <a href="#">{{ $id->title }}</a>
+                                            </h2>
+                                            <div class="post-meta mb-7">
+                                                <span class="post-author"><i class="fa fa-user"></i> John Doe</span>
+                                                <span class="post-date"><i class="fa fa-clock-o"></i> 29 July, 2020</span>
+                                            </div>
+                                            <p>{{ $id->summary }}</p>
+                                        </div><!-- Post content end -->
                                     </div>
-                                </div>
-                            </div>
-                        </article>
-                        @endforeach
+                                </div><!-- col end -->
+                               @endforeach
+                            </div><!-- row end -->
+                            <div class="gap-30 d-none d-md-block"></div>
 
-                        <!--post start-->
-
+                        </div>
                     </div>
                 </div>
                 {{ $posts->links() }}
@@ -192,6 +193,7 @@
                     <div class="gap-0"></div>
                 </aside>
                 </div>
+
             </div>
         </div>
     </div>
