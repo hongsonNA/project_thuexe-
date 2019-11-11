@@ -57,7 +57,6 @@
                                 <button type="submit" class="btn btn-primary">update</button>
                             </div>
 
-                    </div>
                 </div>
 {{--                <div class="col-md-4 col-sm-4">--}}
 {{--                    <div class="card" style="">--}}
@@ -69,6 +68,7 @@
 {{--                    </div>--}}
 {{--                </div>--}}
                 </form>
+                </div>
             </div>
 
         </div>
@@ -79,6 +79,9 @@
         @endif
     </section>
     <!--User Account Section End-->
+    <script>
+        $(".alert").fadeOut(5000);
+    </script>
     <script>
         function checkPhone() {
             var patemPhone = /((09|03|07|08|05)+([0-9]{8})\b)/g;

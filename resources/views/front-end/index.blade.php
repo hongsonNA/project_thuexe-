@@ -3,47 +3,98 @@
 @section('content')
     <!-- CONTENT AREA -->
     <!--Header Content End-->
-    <!--Header Banner Content Start-->
-    <style></style>
-    <section class="tj-banner-form">
-        <div class="container">
-            <div class="row">
-                <!--Header Banner Caption Content Start-->
-                <div class="col-md-8 col-sm-7">
-                    <div class="banner-caption">
-                        <div class="banner-inner bounceInLeft animated delay-2s">
-                            <strong>More recently with desktop publishing software ncluding versions</strong>
-                            <h2>Upto 25% off on first booking through your app</h2>
-                            <div class="banner-btns">
+    <style>
+        .swiper-container {
+            width: 100%;
+            height: 480px;
+            overflow: hidden;
 
-                            </div>
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .tj-cab-collection{
+            float:left;
+            width:100%;
+            padding:28rem 0 80px;
+        }
+    </style>
+    <div class="boxs-form" style="position: relative;margin-top: 17.5rem;">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="toogle-title">
+                       <div class="title-slider">
+                           <p>Nào Nào! cùng chọn xe đi phượt thôi A Ưi</p>
+                       </div>
+                        <div class="more_slider">
+                            <span><a href="#">Xem thêm</a></span>
                         </div>
                     </div>
+                    <img width="100%" src="https://cdn.shortpixel.ai/client/q_lossless,ret_img/https://themes.potenzaglobalsolutions.com/cardealer-wp/wp-content/uploads/revslider/cardealer-slider3/c83b2-ac5dd-02.jpg">
                 </div>
-                <!--Header Banner Caption Content End-->
-                <!--Header Banner Form Content Start-->
-                <div class="col-md-4 col-sm-5">
-                    <div class="trip-outer">
-                        <div class="trip-type-tabs">
-                            <ul class="nav nav-tabs" style="width: 95.4%;text-align: center">
-                                <li class="active" style="width: 100%" ><a href="#one-way" data-toggle="tab">One Way</a></li>
-{{--                                <li><a href="#two-way" data-toggle="tab">Two Way</a></li>--}}
-                            </ul>
+                <div class="swiper-slide">
+                    <div class="toogle-title">
+                        <div class="title-slider animated bouncelnLeft" style="animation-delay: .3s">
+                            <p>Nào Nào! cùng chọn xe đi phượt thôi A Ưi</p>
                         </div>
-                        <!--Banner Tab Content Start-->
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="one-way">
-                                <!--Banner Form Content Start-->
-                                <form method="POST" class="trip-type-frm">
+                        <div class="more_slider">
+                            <span><a href="#">Xem thêm</a></span>
+                        </div>
+                    </div>
+                    <img width="100%" src="https://files.porsche.com/microsite/boxster-spyder/assets/images/share/03.jpg">
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <!-- -->
+        </div>
+    {{-- form-book-car    --}}
+    <div class="container search-car">
+        <div class="row">
+            <div class="col-md-12 col-sm-5" style="padding-left: 50px;">
+                <div class="trip-outer form-car">
+{{--                    <div class="trip-type-tabs">--}}
+{{--                        <ul class="nav nav-tabs" style="width: 95.4%;text-align: center">--}}
+{{--                            <li class="active" style="width: 100%" ><a href="#one-way" data-toggle="tab">One Way</a></li>--}}
+{{--                            <li><a href="#two-way" data-toggle="tab">Two Way</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+                    <!--Banner Tab Content Start-->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="one-way">
+                            <!--Banner Form Content Start-->
+                            <form method="POST" class="trip-type-frm">
+                                <div class="form-row">
                                     <div class="field-outer">
                                         <span class="fas fa-search"></span >
-                                        <select name="filter_cate " class="form-control " style="margin-bottom: 10px" id="">
+                                        <select name="filter_cate col" class="form-control " style="margin-bottom: 10px" id="">
                                             <option value="">--Chọn danh mục--</option>
-                                            <option value="">1</option>
-                                            <option value="">2</option>
+                                            @foreach($category as $key => $id)
+                                                <option value="">{{ $id->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
-                                    <div class="field-outer">
+                                    <div class="field-outer col">
                                         <span class="fas fa-search"></span>
                                         <select name="filte_seat" class="form-control " style="margin-bottom: 10px" id="">
                                             <option value="">--Chọn chỗ--</option>
@@ -51,6 +102,8 @@
                                             <option value="">2</option>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="field-outer">
                                         <span class="fas fa-calendar-alt"></span>
                                         <select name="filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
@@ -67,6 +120,8 @@
                                             <option value="">2</option>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="field-outer">
                                         <span class="far fa-clock"></span>
                                         <input type="date" name="date_book" class="form-control" style="margin-bottom: 10px">
@@ -75,23 +130,119 @@
                                         <span class="far fa-clock"></span>
                                         <input type="date" name="date_drop" class="form-control" >
                                     </div>
-                                    <div class="field-outer">
-                                        <input type="checkbox" name="promo_code" id="promo_code">
-                                        <label for="promo_code">I Have Promotional Code</label>
-                                    </div>
-                                    <button type="submit" class="search-btn">Search Cabs <i
-                                            class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
-                                </form>
-                                <!--Banner Form Content End-->
-                            </div>
+                                </div>
+
+                                <button type="submit" class="search-btn">Search Cabs <i
+                                        class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+                            </form>
+                            <!--Banner Form Content End-->
                         </div>
-                        <!--Banner Tab Content End-->
                     </div>
+                    <!--Banner Tab Content End-->
                 </div>
-                <!--Header Banner Form Content End-->
             </div>
+            <!--Header Banner Form Content End-->
         </div>
-    </section>
+    </div>
+    </div>
+    {{-- end--}}
+    <!--Header Banner Content Start-->
+
+{{--    <section class="tj-banner-form">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row">--}}
+{{--                <!--Header Banner Caption Content Start-->--}}
+{{--                <div class="col-md-8 col-sm-7">--}}
+{{--                    <div class="banner-caption">--}}
+{{--                        <div class="banner-inner bounceInLeft animated delay-2s">--}}
+{{--                            <strong>More recently with desktop publishing software ncluding versions</strong>--}}
+{{--                            <h2>Upto 25% off on first booking through your app</h2>--}}
+{{--                            <div class="banner-btns">--}}
+
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!--Header Banner Caption Content End-->--}}
+{{--                <!--Header Banner Form Content Start-->--}}
+{{--                <div class="col-md-12 col-sm-5" style="padding-left: 50px;">--}}
+{{--                    <div class="trip-outer">--}}
+{{--                        <div class="trip-type-tabs">--}}
+{{--                            <ul class="nav nav-tabs" style="width: 95.4%;text-align: center">--}}
+{{--                                <li class="active" style="width: 100%" ><a href="#one-way" data-toggle="tab">One Way</a></li>--}}
+{{--                                <li><a href="#two-way" data-toggle="tab">Two Way</a></li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                        <!--Banner Tab Content Start-->--}}
+{{--                        <div class="tab-content">--}}
+{{--                            <div class="tab-pane active" id="one-way">--}}
+{{--                                <!--Banner Form Content Start-->--}}
+{{--                                <form method="POST" class="trip-type-frm">--}}
+{{--                                    <div class="form-row">--}}
+{{--                                        <div class="field-outer">--}}
+{{--                                            <span class="fas fa-search"></span >--}}
+{{--                                            <select name="filter_cate col" class="form-control " style="margin-bottom: 10px" id="">--}}
+{{--                                                <option value="">--Chọn danh mục--</option>--}}
+{{--                                                @foreach($category as $key => $id)--}}
+{{--                                                <option value="">{{ $id->name }}</option>--}}
+{{--                                                @endforeach--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="field-outer col">--}}
+{{--                                            <span class="fas fa-search"></span>--}}
+{{--                                            <select name="filte_seat" class="form-control " style="margin-bottom: 10px" id="">--}}
+{{--                                                <option value="">--Chọn chỗ--</option>--}}
+{{--                                                <option value="">1</option>--}}
+{{--                                                <option value="">2</option>--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-row">--}}
+{{--                                    <div class="field-outer">--}}
+{{--                                        <span class="fas fa-calendar-alt"></span>--}}
+{{--                                        <select name="filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">--}}
+{{--                                            <option value="">--Chọn thành phố--</option>--}}
+{{--                                            <option value="">1</option>--}}
+{{--                                            <option value="">2</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="field-outer">--}}
+{{--                                        <span class="far fa-clock"></span>--}}
+{{--                                        <select name="district" class="form-control pb-2" style="margin-bottom: 10px" id="">--}}
+{{--                                            <option value="">--chọn quận huyện --</option>--}}
+{{--                                            <option value="">1</option>--}}
+{{--                                            <option value="">2</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-row">--}}
+{{--                                    <div class="field-outer">--}}
+{{--                                        <span class="far fa-clock"></span>--}}
+{{--                                        <input type="date" name="date_book" class="form-control" style="margin-bottom: 10px">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="field-outer" >--}}
+{{--                                        <span class="far fa-clock"></span>--}}
+{{--                                        <input type="date" name="date_drop" class="form-control" >--}}
+{{--                                    </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="field-outer">--}}
+{{--                                        <input type="checkbox" name="promo_code" id="promo_code">--}}
+{{--                                        <label for="promo_code">I Have Promotional Code</label>--}}
+{{--                                    </div>--}}
+{{--                                    <button type="submit" class="search-btn">Search Cabs <i--}}
+{{--                                            class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+{{--                                </form>--}}
+{{--                                <!--Banner Form Content End-->--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!--Banner Tab Content End-->--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!--Header Banner Form Content End-->--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
+    <!-- end banner -->
     <!--Header Banner Content End-->
     <!--Offer Content Start-->
     <!--Offer Content End-->
@@ -125,7 +276,7 @@
                             <!--Fleet Grid Text Start-->
                             <div class="fleet-info-box">
                                 <div class="fleet-info">
-                                    <h3>2017 Chevrolet Pepe</h3>
+                                    <h3 data-toggle="tooltip" title="2017 Chevrolet Pepe" >2017 Chevrolet Pepe</h3>
                                     <span class="fas fa-star"></span>
                                     <span class="fas fa-star"></span>
                                     <span class="fas fa-star"></span>
@@ -162,7 +313,7 @@
                             <!--Fleet Grid Text Start-->
                             <div class="fleet-info-box">
                                 <div class="fleet-info">
-                                    <h3>Nissan Vela 201</h3>
+                                    <h3 title="Nissan Vela 201" data-toggle="tooltip" >Nissan Vela 201</h3>
                                     <span class="fas fa-star"></span>
                                     <span class="fas fa-star"></span>
                                     <span class="fas fa-star"></span>
@@ -187,7 +338,7 @@
                         <div class="fleet-grid-box">
                             <!--Fleet Grid Thumb Start-->
                             <figure class="fleet-thumb">
-                                <img src="{{ asset('front-end-css/images/car-fleet3.jpg')}}" alt="">
+                                <img src="{{ asset('front-end-css/images/car-fleet3.jpg')}}"  alt="">
                                 <figcaption class="fleet-caption">
                                     <div class="price-box">
                                         <strong>$185 <span>/ day</span></strong>
@@ -199,7 +350,7 @@
                             <!--Fleet Grid Text Start-->
                             <div class="fleet-info-box">
                                 <div class="fleet-info">
-                                    <h3>Mitshubishi Lander</h3>
+                                    <h3 data-toggle="tooltip" title="Mitshubishi Lander">Mitshubishi Lander</h3>
                                     <span class="fas fa-star"></span>
                                     <span class="fas fa-star"></span>
                                     <span class="fas fa-star"></span>
@@ -236,7 +387,7 @@
                             <!--Fleet Grid Text Start-->
                             <div class="fleet-info-box">
                                 <div class="fleet-info">
-                                    <h3>Renault Sedan</h3>
+                                    <h3 data-toggle="tooltip" title="Renault Sedan">Renault Sedan</h3>
                                     <span class="fas fa-star"></span>
                                     <span class="fas fa-star"></span>
                                     <span class="fas fa-star"></span>
@@ -546,77 +697,33 @@
     <!--Call To Action 2 Content Start-->
 
     <!--Call To Action 2 Content End-->
-    <!--Footer Content Start-->
-    <section class="tj-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="about-widget widget">
-                        <h3>About PrimeCab</h3>
-                        <p>Search for will uncover many web sites variables onto of passages of lorem ipsum available
-                            but the majority the words all predefined humour to met chunks recently with desktop.</p>
-                        <ul class="fsocial-links">
-                            <li><a href="http://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="http://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="http://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="http://www.pinterest.com/"><i class="fab fa-pinterest-p"></i></a></li>
-                            <li><a href="http://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="links-widget widget">
-                        <h3>Explore Links</h3>
-                        <ul class="flinks-list">
-                            <li><i class="far fa-folder"></i><a href="#">Coupons</a></li>
-                            <li><i class="far fa-folder"></i><a href="#">Sitemap</a></li>
-                            <li><i class="far fa-folder"></i><a href="#">Cancellation</a></li>
-                            <li><i class="far fa-folder"></i><a href="#">Terms</a></li>
-                            <li><i class="far fa-folder"></i><a href="#">Privacy Policy</a></li>
-                            <li><i class="far fa-folder"></i><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="recent-tweets widget">
-                        <h3>Recent Tweets</h3>
-                        <div class="tj-tweets"></div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="contact-info widget">
-                        <h3>Contact Info</h3>
-                        <ul class="contact-box">
-                            <li>
-                                <i class="fas fa-home" aria-hidden="true"></i> 10A, PrimeCab, San Andreno, United
-                                States.
-                            </li>
-                            <li>
-                                <i class="far fa-envelope-open"></i>
-                                <a href="mailto:primecab@booking.com">
-                                    primecab@booking.com</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-phone-square"></i>
-                                +1-333-444-555
-                            </li>
-                            <li>
-                                <i class="fas fa-globe-asia"></i>
-                                <a href="www.primecab.html">www.primecab.com</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Footer Content End-->
+
     <!--Footer Copyright Start-->
 
     <!--Footer Copyright End-->
     <!-- /CONTENT AREA -->
+    <script src="{{asset('package/js/swiper.min.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <a href="javascript:;"  class="back-top" id="back-to-top" title="Back to top"><i class="fas fa-arrow-circle-up"></i></a>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            spaceBetween: 30,
+            centeredSlides: true,
+            speed: 3000,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
     <script>
         $(window).scroll(function(){
             if ($(this).scrollTop() > 100) {
@@ -625,7 +732,22 @@
         });
         $("#back-to-top").click(function () {
             $("html, body").animate({scrollTop: 0}, 1000);
-        });
+        })
 
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+<!-- animation slider -->
+    <script>
+
+//        $(document).ready(function(){
+//            $('.title-slider').hide();
+//            if ($('.swiper-slide-active')){
+//                $('.title-slider').slideDown(1500);
+//            }
+//        });
     </script>
 @endsection

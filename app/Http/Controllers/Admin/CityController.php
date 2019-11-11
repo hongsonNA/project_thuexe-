@@ -8,6 +8,7 @@ use App\Model\District;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class CityController extends Controller
 {

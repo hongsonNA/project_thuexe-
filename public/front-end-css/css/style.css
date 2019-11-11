@@ -501,7 +501,7 @@ h1,h2,h3,h4,h5,h6{
 	border:none;
 }
 .trip-outer .tab-content{
-	width:95.4%;
+	width:100% !important;
 	background-color:#fff;
 	float:left;
 	padding:40px 30px;
@@ -1226,7 +1226,7 @@ h1,h2,h3,h4,h5,h6{
 .tj-cab-collection{
 	float:left;
 	width:100%;
-	padding:130px 0 80px;
+	padding:103px 0 80px;
 }
 .tj-cab-collection .cab-col-outer{
 	float:left;

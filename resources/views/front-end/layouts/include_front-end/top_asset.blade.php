@@ -9,6 +9,8 @@
 <link href="{{asset('front-end-css/css/responsive.css')}}" rel="stylesheet">
 <link href="{{asset('front-end-css/css/icomoon.css')}}" rel="stylesheet">
 <link href="{{asset('front-end-css/css/animate.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('js/jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
+<link rel="stylesheet" href="{{ asset('front-end-css/css/animate/animate.min.css') }}">
 <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="{{ asset('package/css/swiper.min.css') }}">
 
@@ -124,6 +126,91 @@
         -moz-box-shadow: -4px 3px 10px -4px rgba(0,0,0,0.75);
         box-shadow: -4px 3px 10px -4px rgba(0,0,0,0.75);
     }
+
+/*    */
+    .post-block-style .post-thumb {
+        border-radius: 5px;
+        max-width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    .grid-cat {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+    }
+    .grid-cat a:link, a:visited {
+        text-decoration: none;
+    }
+
+    .post-cat {
+        position: relative;
+        font-size: 10px;
+        padding: 0 10px;
+        background: #1c1c1c;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #fff;
+        height: 20px;
+        line-height: 20px;
+        display: inline-block;
+        border-radius: 5px;
+    }
+    .post-title.title-md {
+        font-size: 24px;
+        line-height: 28px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+    .post-title a {
+        color: #000;
+    }
+    .post-meta span {
+        font-size: 12px;
+        color: #a3a3a3;
+        margin-right: 8px;
+        padding-right: 10px;
+        line-height: 12px;
+        display: inline-block;
+    }
+    .lifestyle {
+        background: #ea8f00;
+    }
+    .post-thumb img {
+        width: 100%;
+        height: 231px;
+    }
+    .block-title {
+        letter-spacing: .64px;
+        color: #fc4a00;
+        line-height: 25px;
+        font-weight: 800;
+        font-size: 16px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+    .block-title .title-angle-shap {
+        display: inline-block;
+        padding: 0 0 0 15px;
+        position: relative;
+    }
+    .block-title .title-angle-shap {
+        display: inline-block;
+        padding: 0 0 0 15px;
+        position: relative;
+    }
+    .block-title .title-angle-shap::before {
+        width: 3px;
+        height: 12px;
+    }
+    .block-title .title-angle-shap::after, .block-title .title-angle-shap::before {
+        position: absolute;
+        top: 0;
+        content: '';
+        background: #fc4a00;
+        left: 0;
+    }
 /*    profile */
     .container .card .user_image {
         width: 15rem;
@@ -212,7 +299,79 @@
     .form-register .modal-register .reg-frm {
         max-width: 100%;
         float: none;
-        padding: 40px 20px 100px 20px;
+        padding: 40px 10px 100px 10px;;
+    }
+    .form-row{display: flex}
+    .form-row .field-outer {
+        padding: 0 5px;
+    }
+    .subcribe {
+        background: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+    .alert.alert-success {
+        position: fixed;
+        bottom: 1%;
+        right: 2%;
+    }
+    /*slide css*/
+    .toogle-title {
+        position: absolute;
+        z-index: 999999;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        left: 5%;
+    }
+    .toogle-title .title-slider {
+        white-space: nowrap;
+        font-size: 4.3rem;
+        line-height: 80px;
+        font-weight: 900;
+        font-family: Roboto;
+    }
+    .toogle-title .more_slider span {
+        background: #dd3e51;
+        padding: 5px 35px 5px 35px;
+        border-radius: 2px;
+    }
+
+    .toogle-title .more_slider span a {
+        color: #fff;
+        font-size: 1.8rem;
+        /* font-family: roboto; */
+    }
+    .title-slider2{	transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);}
+    .toogle-title .more_slider {
+        text-align: start;
+    }
+    .search-car{
+        position: absolute;
+        top: 90%;
+        left: 3%;
+    }
+    .form-car {
+        border: 1px solid #d4d2d2;
+    }
+/*cate*/
+    .box-combo {
+        display: flex;
+    }
+    .box-combo .field-outer {
+        width: 29rem;
+    }
+    .box-combo .field-outer .bt_search {
+        border: 1px solid #ccc;
+        padding: 7px;
+        border-radius: 5px;
+        width: 40%;
+        text-align: center;
+        background: #dd3e51;
+    }
+    .box-combo .field-outer .bt_search a {
+        color: #fff;
+        font-weight: 800;
     }
 </style>
 

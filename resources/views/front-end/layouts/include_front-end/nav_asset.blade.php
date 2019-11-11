@@ -42,7 +42,7 @@
                                 cho thuê </a></li>
                         <li class="account-login" data-toggle="modal" data-target="#myModal" ><a href="javascript:;"><i class="fa fa-sign-in"></i> Đăng nhập
                             </a></li>
-                        <li class="account-register"><a href="{{ route('register') }}"><i class="fa fa-key"></i> Đăng ký
+                        <li class="account-register"><a id="myBtn" href="javascript:;"><i class="fa fa-key"></i> Đăng ký
                             </a></li>
                     @endif
 
@@ -55,7 +55,7 @@
                         <div class="inner-toggle">
                             <ul class="login links">
                                 <li>
-                                    <a   href="/dang-ky.html"><i class="fa fa-sign-in"></i> Đăng ký</a>
+                                    <a    href="/dang-ky.html"><i class="fa fa-sign-in"></i> Đăng ký</a>
                                 </li>
                                 <li>
                                     <a  href="/dang-nhap.html"><i class="fa fa-key"></i> Đăng nhập</a>
@@ -81,7 +81,7 @@
         </div>
     </div>
 </section>
-<header class="tj-header">
+<header class="tj-header" style="z-index: 99999;">
     <!--Header Content Start-->
     <div class="container">
         <div class="row">
@@ -146,15 +146,12 @@
                             <ul class="nav navbar-nav">
                                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                                         role="button" aria-haspopup="true"
-                                                        aria-expanded="false">Home</a>
+                                                        aria-expanded="false">Trang chủ</a>
 
-                                </li>
-                                <li>
-                                    <a href="{{ route('about') }}">About</a>
                                 </li>
 
                                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                        role="button" aria-haspopup="true" aria-expanded="false">Category<i
+                                                        role="button" aria-haspopup="true" aria-expanded="false">Danh mục<i
                                             class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ route('cate') }}">Xe du lịch</a></li>
@@ -162,12 +159,20 @@
                                     </ul>
                                 </li>
 
-                                <li ><a href="{{ route('news') }}">News</a>
+                                <li ><a href="{{ route('news') }}">Tin Tức</a>
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('contact') }}">Contact</a>
+                                    <a href="{{ route('contact') }}">Phản hồi</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('support') }}">dịch vụ cứu hộ</a>
+
+                                </li>
+                                <li>
+                                    <a href="{{ route('about') }}">Giới thiệu</a>
+                                </li>
+
 
                             </ul>
                         </div>
@@ -197,11 +202,11 @@
         <div class="modal-content">
            <div class="modal-login">
                <h3>Đăng nhập thành viên </h3>
-               <form class="login-frm" method="POST" action="{{ route('login') }}" novalidate>
+               <form class="login-frm" method="POST" onsubmit="return checkLogin();" action="{{ route('login') }}" novalidate>
                    @csrf
                    <div class="field-holder">
                        <span class="far fa-envelope"></span>
-                       <input type="email" name="email" value="{{ old('email') }}"
+                       <input type="email" id="email" name="email" value="{{ old('email') }}"
                               placeholder="Email"  class="@error('email') is-invalid @enderror">
                    </div>
                    @error('email')
@@ -225,7 +230,7 @@
                        <a href="javascript:;"  id="myBtn" class="forget-pass">Đăng ký thành viên </a>
 {{--                       <button type="button" class="btn btn-info btn-lg" id="myBtn">Open Modal</button>--}}
                    </div>
-                   <button type="submit" class="reg-btn">Login <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+                   <button type="submit" id="login_submit" class="reg-btn">Login <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
 {{--                   <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
 {{--                   <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
                </form>
@@ -234,16 +239,16 @@
 
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <!-- form register -->
     <!-- Modal -->
     <div class="modal fade" id="myModall" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog subcribe">
             <!-- Modal content-->
             <h3>Đăng ký thành viên</h3>
             <div class="form-register">
                 <div class="modal-register" id="modal-register">
-                <form class="reg-frm" method="POST" action="{{ route('register') }}">
+                <form class="reg-frm" id="register_form" method="POST" action="{{ route('register') }}">
                     @csrf
 
                     <div class="field-holder">
@@ -285,7 +290,7 @@
                         <input type="checkbox" name="terms" id="terms">
                         I accept terms & conditions
                     </label>
-                    <button type="submit" class="reg-btn">Signup <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+                    <button type="submit" class="reg-btn">Đăng ký <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
 {{--                    <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
 {{--                    <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
                 </form>
@@ -293,7 +298,8 @@
             </div>
         </div>
     </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
 <script>
     $(document).ready(function(){
         $("#myBtn").click(function(){
@@ -302,7 +308,22 @@
         });
     });
 </script>
-
+<script>
+  $(document).ready(function (event) {
+      $('#register_form').validate({
+          rules:{
+              email:{
+                  required: true,
+                  email:true,
+              }
+          },
+          message:{
+              required:"Truong nay la bat buoc",
+              email: "Email co dinh dang name@domain.com",
+          }
+      })
+  });
+</script>
 
 
 

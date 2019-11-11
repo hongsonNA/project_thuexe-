@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Model\Post;
 use App\Model\User;
+use App\Model\Category;
+use mysql_xdevapi\Table;
 
 class HomeController extends Controller
 {
@@ -26,9 +28,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('front-end.index');
+        $category = category::All();
+        return view('front-end.index',compact('category'));
     }
 
     public  function about(){
@@ -61,5 +64,9 @@ class HomeController extends Controller
     //support
     public function support(){
         return view('front-end.support');
+    }
+
+    public function admin_us(){
+        return view('front-end.admin_user.admin_us');
     }
 }

@@ -322,6 +322,7 @@
             spaceBetween: 10,
             loop: true,
             // init: false,
+            speed: 3000,
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
