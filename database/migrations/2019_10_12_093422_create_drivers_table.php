@@ -17,7 +17,8 @@ class CreateDriversTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('phone');
-            $table->string('image');
+            $table->string('user_id');
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }

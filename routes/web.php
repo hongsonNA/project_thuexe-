@@ -15,7 +15,10 @@ Route::get('/admin_us','HomeController@admin_us')->name('admin_us');
 //update_account_user
 Route::post('/{id}/update_account', 'HomeController@update_account')->name('update_account');
 //end////
-
+//----booknow
+Route::get('city/{id}','HomeController@city')->name('city');
+Route::get('state/{id}','HomeController@state')->name('state');
+//end book now
 //-----------------------End client-------------------------------
 Auth::routes();
 

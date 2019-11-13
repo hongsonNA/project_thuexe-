@@ -46,8 +46,8 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="nc-icon nc-tile-56"></i>
                         Quản lý tin đăng</a>
-
                     <ul class="collapse list-unstyled" id="homeSubmenu">
+
                         <li>
                             <a href="#">Quản lý xe </a>
                         </li>
@@ -59,32 +59,12 @@
                         </li>
                     </ul>
                 </li>
-
-                <li>
-                    <a href="./notifications.html">
-                        <i class="nc-icon nc-bell-55"></i>
-                        <p>Quản lý tin đăng</p>
-                    </a>
-                </li>
                 <li>
                     <a href="./user.html">
                         <i class="nc-icon nc-single-02"></i>
                         <p>Hồ sơ cá nhân </p>
                     </a>
                 </li>
-{{--                <li>--}}
-{{--                    <a href="./tables.html">--}}
-{{--                        <i class="nc-icon nc-tile-56"></i>--}}
-{{--                        <p>Table List</p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-
-{{--                <li class="active-pro">--}}
-{{--                    <a href="./upgrade.html">--}}
-{{--                        <i class="nc-icon nc-spaceship"></i>--}}
-{{--                        <p>Upgrade to PRO</p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
             </ul>
         </div>
     </div>
@@ -160,112 +140,6 @@
 
   </div> -->
         <div class="content">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-globe text-warning"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category">Capacity</p>
-                                        <p class="card-title">150GB
-                                        <p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-refresh"></i> Update Now
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-money-coins text-success"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category">Revenue</p>
-                                        <p class="card-title">$ 1,345
-                                        <p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-calendar-o"></i> Last day
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-vector text-danger"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category">Errors</p>
-                                        <p class="card-title">23
-                                        <p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-clock-o"></i> In the last hour
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-favourite-28 text-primary"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category">Followers</p>
-                                        <p class="card-title">+45K
-                                        <p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-refresh"></i> Update now
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card ">

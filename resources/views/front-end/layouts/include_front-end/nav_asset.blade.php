@@ -38,8 +38,8 @@
                             </ul>
                         </li>
                     @else
-                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp
-                                cho thuê </a></li>
+{{--                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp--}}
+{{--                                cho thuê </a></li>--}}
                         <li class="account-login" data-toggle="modal" data-target="#myModal" ><a href="javascript:;"><i class="fa fa-sign-in"></i> Đăng nhập
                             </a></li>
                         <li class="account-register"><a id="myBtn" href="javascript:;"><i class="fa fa-key"></i> Đăng ký
@@ -180,7 +180,7 @@
                     </nav>
                     <!--Menu Holder End-->
                     <div class="book_btn">
-                        <a href="#">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+{{--                        <a href="#">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>--}}
                     </div>
                 </div><!--Nav Holder End-->
             </div>
