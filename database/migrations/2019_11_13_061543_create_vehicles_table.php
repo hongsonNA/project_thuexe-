@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVehicelsTable extends Migration
+class CreateVehiclesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,22 @@ class CreateVehicelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehicels', function (Blueprint $table) {
+        Schema::create('vehicles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name', 100);
             $table->integer('seat');
             $table->text('description');
             $table->integer('cate_id');
             $table->integer('price');
-            $table->integer('discount');
-            $table->text('model');
-            $table->text('owner');
-            $table->date('registration_date');
-            $table->integer('status');
+            $table->text('model_id');
             $table->integer('view');
             $table->text('address');
             $table->integer('city_id');
+            $table->integer('user_id');
             $table->integer('district_id');
-            $table->integer('image_id');
+            $table->string('image');
+            $table->integer('status');
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }
@@ -40,6 +40,6 @@ class CreateVehicelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicels');
+        Schema::dropIfExists('vehicles');
     }
 }

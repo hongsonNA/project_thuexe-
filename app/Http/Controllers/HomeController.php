@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Model\Post;
 use App\Model\User;
 use App\Model\Category;
+use App\Model\City;
 use mysql_xdevapi\Table;
 
 class HomeController extends Controller
@@ -30,8 +31,9 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
+        $city = city::All();
         $category = category::All();
-        return view('front-end.index',compact('category'));
+        return view('front-end.index',compact('category'),compact('city'));
     }
 
     public  function about(){
@@ -68,5 +70,14 @@ class HomeController extends Controller
 
     public function admin_us(){
         return view('front-end.admin_user.admin_us');
+    }
+// combobox home
+    public function state($id)
+    {
+        $states = DB::table('districts')
+                        ->where("city_id",$id)
+                        ->pluck("name");
+        return response()->json($states);
+
     }
 }

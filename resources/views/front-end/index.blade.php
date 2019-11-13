@@ -83,11 +83,11 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="one-way">
                             <!--Banner Form Content Start-->
-                            <form method="POST" class="trip-type-frm">
+                            <form method="GET" class="trip-type-frm">
                                 <div class="form-row">
                                     <div class="field-outer">
                                         <span class="fas fa-search"></span >
-                                        <select name="filter_cate col" class="form-control " style="margin-bottom: 10px" id="">
+                                        <select name="filter_cate col"  class="form-control " style="margin-bottom: 10px" id="">
                                             <option value="">--Chọn danh mục--</option>
                                             @foreach($category as $key => $id)
                                                 <option value="">{{ $id->name }}</option>
@@ -106,18 +106,18 @@
                                 <div class="form-row">
                                     <div class="field-outer">
                                         <span class="fas fa-calendar-alt"></span>
-                                        <select name="filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
+                                        <select name="filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="select_city">
                                             <option value="">--Chọn thành phố--</option>
-                                            <option value="">1</option>
-                                            <option value="">2</option>
+                                            @foreach($city as $key => $id)
+                                                    <option id="distri" value="{{ $id->id }}" >{{ $id->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="field-outer">
                                         <span class="far fa-clock"></span>
-                                        <select name="district" class="form-control pb-2" style="margin-bottom: 10px" id="">
+                                        <select name="district" class="form-control pb-2" style="margin-bottom: 10px" id="select_district">
                                             <option value="">--chọn quận huyện --</option>
-                                            <option value="">1</option>
-                                            <option value="">2</option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -494,9 +494,6 @@
         </div>
     </section>
     <!--Cab Services Section End-->
-    <!--Booking Deals Section Start-->
-
-    <!--Booking Deals Section End-->
     <!--Testimonials Section Start-->
     <section class="tj-reviews">
         <div class="container">
@@ -694,12 +691,6 @@
         </div>
     </section>
     <!--News Content End-->
-    <!--Call To Action 2 Content Start-->
-
-    <!--Call To Action 2 Content End-->
-
-    <!--Footer Copyright Start-->
-
     <!--Footer Copyright End-->
     <!-- /CONTENT AREA -->
     <script src="{{asset('package/js/swiper.min.js')}}"></script>
@@ -737,17 +728,28 @@
     </script>
     <script>
         $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
+            $( "#select_city" ).change(function () {
+                    var city_id = $(this).val();
+                    console.log(city_id);
+                    if(city_id){
+                        $.ajax({
+                            type:"get",
+                            url:'state/'+city_id,
+                            dataType: "json",
+                            success:function (res) {
+                                if (res){
+                                    $('#select_district').empty();
+                                    $.each(res,function(key,value){
+                                        $("#select_district").append('<option value="'+key+'">'+value+'</option>');
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
         });
-    </script>
-<!-- animation slider -->
-    <script>
 
-//        $(document).ready(function(){
-//            $('.title-slider').hide();
-//            if ($('.swiper-slide-active')){
-//                $('.title-slider').slideDown(1500);
-//            }
-//        });
     </script>
+
+
 @endsection

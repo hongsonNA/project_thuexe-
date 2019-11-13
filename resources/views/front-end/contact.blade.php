@@ -16,12 +16,7 @@
         </div>
     </div>
     <!--end breadcrumd -->
-    <!-- Map -->
-    <div id="tj-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14899.141320824117!2d105.79380725!3d21.001240550000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2s!4v1571141559960!5m2!1sfr!2s"
-                width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-    </div>
-    <!--End Map-->
+
     <!-- Conatact -->
     <section class="tj-contact-section">
         <div class="container">
@@ -105,6 +100,12 @@
         </div>
     </section>
     <!-- End contact -->
+    <!-- Map -->
+    <div id="tj-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14899.141320824117!2d105.79380725!3d21.001240550000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2s!4v1571141559960!5m2!1sfr!2s"
+                width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+    <!--End Map-->
     <script>
         function checkContact(){
 

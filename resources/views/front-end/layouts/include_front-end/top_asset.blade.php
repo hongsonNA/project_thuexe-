@@ -349,7 +349,7 @@
     .search-car{
         position: absolute;
         top: 90%;
-        left: 3%;
+        left: 8%;
     }
     .form-car {
         border: 1px solid #d4d2d2;
