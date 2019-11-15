@@ -79,7 +79,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
     });
 
     //user
-    Route::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'user', 'middleware' => 'CheckUrl'], function () {
         Route::get('/', 'Admin\\UserController@index')->name('user_list');
         Route::get('/allUser', 'Admin\\UserController@AllDatatable'); //datatable ajax
         Route::get('/add-user', 'Admin\\UserController@create')->name('user_add');
