@@ -143,30 +143,32 @@
 
 
             {{---------------------------------------User---------------------------------------}}
-            <li class="nav-item ">
-                <a class="nav-link collapsed" data-toggle="collapse" href="#user_list" aria-expanded="false">
-                    <i class="material-icons">perm_identity</i>
-                    <p> Tài khoản
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="user_list">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('user_list') }}">
-                                <span class="sidebar-mini"> U </span>
-                                <span class="sidebar-normal"> Danh Sách </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('user_create') }}">
-                                <span class="sidebar-mini"> U </span>
-                                <span class="sidebar-normal"> Thêm tài khoản </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            @if(!Auth::check() || Auth::user()->role == 10)
+                <li class="nav-item ">
+                    <a class="nav-link collapsed" data-toggle="collapse" href="#user_list" aria-expanded="false">
+                        <i class="material-icons">perm_identity</i>
+                        <p> Tài khoản
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="user_list">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ route('user_list') }}">
+                                    <span class="sidebar-mini"> U </span>
+                                    <span class="sidebar-normal"> Danh Sách </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ route('user_create') }}">
+                                    <span class="sidebar-mini"> U </span>
+                                    <span class="sidebar-normal"> Thêm tài khoản </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            @endif
             {{---------------------------------------user---------------------------------------}}
 
         </ul>
