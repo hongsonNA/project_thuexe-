@@ -10,13 +10,13 @@
                     <div class="col-lg-6 col-md-6 col-sm-8 ml-auto mr-auto">
 
 
-                        <form method="post" action="{{ route('district_create') }}" novalidate="novalidate">
+                        <form method="post" action="{{ route('district_update', $district->id) }}" novalidate="novalidate">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
                             <div class="card">
                                 <div class="card-header card-header-text card-header-success">
                                     <div class="card-text">
-                                        <h4 class="card-title">Thêm Quận Huyện</h4>
+                                        <h4 class="card-title">Chỉnh Sửa Quận Huyện</h4>
                                     </div>
                                 </div>
 
@@ -28,7 +28,7 @@
                                                 <select class="selectpicker" name="city_id" data-style="select-with-transition" title="Chọn Thành Phố" data-size="7">
                                                     <option disabled>Chưa xác định</option>
                                                     @foreach($city as $c)
-                                                        <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                                        <option value="{{ $c->id }}" @if($c->id == $district->city_id) selected @endif>{{ $c->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -39,7 +39,7 @@
                                         <label class="col-sm-3 col-form-label lg_em_pa">Tên Quận huyện</label>
                                         <div class="col-sm-7">
                                             <div class="form-group bmd-form-group">
-                                                <input type="text" name="name" value="{{ old('name') }}" class="form-control">
+                                                <input type="text" name="name" value="{{ $district->name }}" class="form-control">
                                                 @if($errors->first('name'))
                                                     <span class="text-danger">{{$errors->first('name')}}</span>
                                                 @endif

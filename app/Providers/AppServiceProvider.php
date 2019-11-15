@@ -28,6 +28,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\VehicelRepositoryInterface::class,
             \App\Repositories\UserRepository::class
         );
+
+        $this->app->singleton(
+            \App\Repositories\VehicelRepositoryInterface::class,
+            \App\Repositories\CityRepository::class
+        );
     }
 
     /**
