@@ -5,15 +5,23 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\CityRequest;
 use App\Model\City;
 use App\Model\District;
+use App\Repositories\CityRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 class CityController extends Controller
 {
-    public function city_list()
-    {
 
+    protected $CityRepository;
+
+    public function __construct(CityRepository $CityRepository)
+    {
+        $this->CityRepository = $CityRepository;
+    }
+
+    public function index()
+    {
         $city = City::all();
         $districts = District::paginate(5);
 
@@ -31,25 +39,58 @@ class CityController extends Controller
     {
         if ($request->ajax()) {
             $output = "";
-            $district = District::where('name', 'LIKE', '%' . $request->search . '%')->get();
+
+            $district = DB::table('districts')
+                ->join('citys', 'citys.id', '=', 'districts.city_id')
+                ->select('citys.id', 'citys.name', 'districts.id', 'districts.name')
+                ->where('citys.name', 'LIKE', '%' . $request->search . '%')
+                ->orWhere('districts.name', 'LIKE', '%' . $request->search . '%')
+                ->get();
+
             if ($district) {
                 foreach ($district as $key => $d) {
                     $output .= '<tr>' .
                         '<td>' . $d->id . '</td>' .
                         '<td class="text-center">' . $d->name . '</td>' .
                         '<td class="text-right">' .
-                        "<a href=\"\">
-                               <button type=\"button\" rel=\"tooltip\" class=\"btn btn-info btn-link\" data-original-title=\"\" title=\"Sửa tài khoản\">
-                                                        <i class=\"material-icons\">edit</i>
-                                                    </button>
+                        "<a href=" . route('district_edit', $d->id) . " class=\"btn btn-link btn-info btn-just-icon edit\">
+                             <i class=\"material-icons\">edit</i>
+                             <div class=\"ripple-container\"></div>
+                        </a>
+
+                                                <a class=\"btn btn-link btn-danger btn-just-icon remove\"
+                                                   data-toggle=\"modal\" data-target=\"#removeDistrict\">
+                                                    <i class=\"material-icons\">close</i>
+                                                    <div class=\"ripple-container\"></div>
                                                 </a>
 
-                                                <a href=\"\">
-                                                    <button type=\"button\" rel=\"tooltip\" class=\"btn btn-danger btn-link\"
-                                                            data-original-title=\"\" title=\"Xóa tài khoản\">
-                                                        <i class=\"material-icons\">close</i>
-                                                    </button>
-                                                </a>" .
+                        <div class=\"modal fade\" id=\"removeDistrict\" tabindex=\"-1\" role=\"dialog\"
+                                                     aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">
+                                                    <div class=\"modal-dialog\" role=\"document\">
+                                                        <div class=\"modal-content\">
+                                                            <div class=\"modal-header\">
+                                                                <h5 class=\"modal-title text-center\"
+                                                                    id=\"exampleModalLabel\">Xóa danh mục</h5>
+                                                                <button type=\"button\" class=\"close\" data-dismiss=\"modal\"
+                                                                        aria-label=\"Close\">
+                                                                    <span aria-hidden=\"true\">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class=\"modal-body text-center\"
+                                                                 style=\"color: red; font-weight: bolder\">
+                                                                Bạn có chắc chắn muốn xóa quận huyện này không?
+                                                            </div>
+                                                            <div class=\"modal-footer\">
+                                                                <button type=\"button\" class=\"btn btn-secondary\"
+                                                                        data-dismiss=\"modal\">Hủy
+                                                                </button>
+                                                                <a href=" . route('district_remove', $d->id) . "
+                                                                   class=\"btn btn-danger\">Xóa</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        " .
                         '</td>' .
                         '</tr>';
                 }
@@ -59,51 +100,28 @@ class CityController extends Controller
         }
     }
 
-    public function city_add()
+    public function create()
     {
         return view('admin.city.add_city');
     }
 
-    public function city_create(CityRequest $request)
+    public function store(CityRequest $request)
     {
-        $city = new City();
-        $city->name = $request->get('name');
-        $city->save();
-
-        return redirect()->route('city_list', compact('city'));
+        return $this->CityRepository->store($request);
     }
 
-    public function city_edit($id)
+    public function edit($id)
     {
-        $city = City::find($id);
-        if (empty($city)) {
-            return view('admin.city.city_list');
-        }
-
-        return view('admin.city.edit_city', compact('city'));
+        return $this->CityRepository->edit($id);
     }
 
-    public function city_update(CityRequest $request, $id)
+    public function update(CityRequest $request, $id)
     {
-        $city = City::find($id);
-        if (empty($city)) {
-            return view('admin.city.edit_city');
-        } else {
-            $city->name = $request->get('name');
-//            $mess_update = "";
-//            if ($city->save()) {
-//                $mess_update = "Sửa danh mục thành công";
-//            }
-            $city->save();
-        }
-
-        return redirect()->route('city_list', compact('city'));
+        return $this->CityRepository->update($request, $id);
     }
 
-    public function city_remove($id)
+    public function destroy($id)
     {
-        $city = City::destroy($id);
-
-        return redirect()->route('city_list', compact('city'));
+        return $this->CityRepository->destroy($id);
     }
 }

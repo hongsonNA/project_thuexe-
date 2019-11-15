@@ -120,6 +120,28 @@
             </li>
             {{---------------------------------------post---------------------------------------}}
 
+            {{---------------------------------------Post---------------------------------------}}
+            <li class="nav-item ">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#contact" aria-expanded="false">
+                    <i class="material-icons">contact_mail</i>
+                    <p> Liên Hệ
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="contact">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="">
+                                <span class="sidebar-mini"> L </span>
+                                <span class="sidebar-normal"> Danh Sách Liên Hệ </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{---------------------------------------post---------------------------------------}}
+
+
             {{---------------------------------------User---------------------------------------}}
             <li class="nav-item ">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#user_list" aria-expanded="false">

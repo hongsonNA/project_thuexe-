@@ -12,4 +12,9 @@ class DashboardController extends Controller
     {
         return view('admin.home_dashboard');
     }
+
+    public function index_contact()
+    {
+        return view('admin.home_dashboard');
+    }
 }

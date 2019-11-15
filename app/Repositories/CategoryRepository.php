@@ -44,7 +44,6 @@ class CategoryRepository implements VehicelRepositoryInterface {
             ->make(true);
     }
 
-
     public function store($request)
     {
         $categories = new Category();
