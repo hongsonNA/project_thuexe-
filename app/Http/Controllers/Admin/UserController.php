@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UserAdminRequest;
+use App\Model\User;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -19,16 +20,14 @@ class UserController extends Controller
 
     public function index()
     {
-//        if (!Auth::check() || Auth::user()->role == 10){
-            return view('admin.user.user_list');
-//        }
-//        return redirect()->route('dashboard');
+        $test = User::all();
+        return view('admin.user.user_list', compact('test'));
     }
 
-    public function AllDatatable()
-    {
-        return $this->UserRepository->AllDatatable();
-    }
+//    public function AllDatatable()
+//    {
+//        return $this->UserRepository->AllDatatable();
+//    }
 
     public function create()
     {
