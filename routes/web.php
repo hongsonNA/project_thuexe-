@@ -12,9 +12,27 @@ Route::get('/news', 'HomeController@news')->name('news');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 Route::get('/support', 'HomeController@support')->name('support');
 Route::get('/admin_us','HomeController@admin_us')->name('admin_us');
+Route::get('{id}/detail','HomeController@detail')->name('detail');
 //update_account_user
 Route::post('/{id}/update_account', 'HomeController@update_account')->name('update_account');
 //end////
+
+//-------------manager_user-----------------
+
+
+Route::group(['prefix'=> 'vehicles'], function (){
+    Route::get('/', 'ManagerUsController@manage')->name('manage_list');
+    Route::get('add_vehicles','ManagerUsController@add')->name('add_vehicles');
+    Route::post('create-vehicles','ManagerUsController@create')->name('create-vehicles');
+    Route::get('{id}/edit_vehicles','ManagerUsController@edit_vehicles')->name('edit_vehicles');
+    Route::post('{id}/update_vehicles','ManagerUsController@update_vehicles')->name('update_vehicles');
+    Route::get('/{id}/remote', 'ManagerUsController@remote')->name('remote');
+    //get district
+    Route::get('states/{id}','ManagerUsController@states')->name('states');
+    Route::get('states_update/{id}','ManagerUsController@states_update')->name('states_update');
+});
+
+//
 //----booknow
 Route::get('city/{id}','HomeController@city')->name('city');
 Route::get('state/{id}','HomeController@state')->name('state');

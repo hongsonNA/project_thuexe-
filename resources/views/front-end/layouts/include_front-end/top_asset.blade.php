@@ -349,7 +349,7 @@
     .search-car{
         position: absolute;
         top: 90%;
-        left: 8%;
+
     }
     .form-car {
         border: 1px solid #d4d2d2;
@@ -372,6 +372,105 @@
     .box-combo .field-outer .bt_search a {
         color: #fff;
         font-weight: 800;
+    }
+    /*detail*/
+    .content-detail .detail-image img {
+        width: 100%;
+        height: auto;
+    }
+    .p-lg {
+        padding: 20px !important;
+    }
+    .mb-xlg {
+        margin-bottom: 30px !important;
+    }
+    .content-detail .start_car {
+        color: #F8C422;
+        font-size: 2.2rem;
+    }
+
+    .tit3 {
+        color: #e04857;
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: left;
+        margin-bottom: 13px;
+    }
+     .shadow {
+        -webkit-box-shadow: 0px 2px 14.7px 1.3px rgba(0, 0, 0, 0.16);
+        box-shadow: 0 0px 10px 0 rgba(31, 28, 38, 0.35);
+        border-radius: 5px;
+        margin-bottom: 15px;
+        background: #fff;
+        overflow: hidden;
+        border-radius: 8px;
+    }
+    .model .info div {
+        font-size: 16px;
+        margin-bottom: 12px;
+        text-align: left;
+        width: 50%;
+        float: left;
+    }
+    .mb-md {
+        margin-bottom: 15px !important;
+    }
+    .mt-xlg {
+        margin-top: 30px !important;
+    }
+    .form-group {
+        padding: 0!important;
+        margin-bottom: 12px;
+    }
+    form.cap label, .b-tit {
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+    .sum {
+        border-top: 2px solid #dedede;
+        padding-top: 10px;
+    }
+    .caculator .total {
+        display: flex;
+        justify-content: space-between;
+    }
+    .caculator .total {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #d6d6d6;
+        padding-top: 10px;
+        font-size: 2rem;
+    }
+    .button-sub button {
+        width: 100%;
+        margin: 12px 0 15px 0;
+    }
+    .container-detail {
+        padding-top: 6rem;
+    }
+    .info.mb-none {
+        padding-top: 20px;
+    }
+    .info.mb-none {
+        padding-top: 20px;
+    }
+    .info.mb-none i {
+        font-size: 2rem;
+        color: #1c2b39;
+        padding-right: 10px;
+    }
+    .fc-car i {
+        font-size: 2rem;
+        color: #1c2b39;
+        padding-right: 10px;
+    }
+    .detail-car {
+        padding-top: 10rem;
     }
 </style>
 

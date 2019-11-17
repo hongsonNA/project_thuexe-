@@ -3129,10 +3129,10 @@ h1,h2,h3,h4,h5,h6{
     width: 100%;
     height: auto;
 }
-.fleet-grid-box .price-box{
-	position:absolute;
-	top:15px;
-	right:20px;
+.fleet-grid-box .price-box {
+    position: absolute;
+    top: 15px;
+    right: 20px;
 }
 .fleet-grid-box .price-box strong,
 .fleet-list-box .fleet-text .price-box strong{
@@ -3140,11 +3140,12 @@ h1,h2,h3,h4,h5,h6{
 	font-weight:600;
 	display:block;
 	font-size:28px;
+    color:#fff !important;
 }
 .fleet-grid-box .price-box strong span,
 .fleet-list-box .price-box strong span{
 	font-size:14px;
-	color:#444444;
+	/*color:#444444;*/
 }
 .fleet-grid-box .rated{
 	position:absolute;
