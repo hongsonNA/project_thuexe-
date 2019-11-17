@@ -120,31 +120,55 @@
             </li>
             {{---------------------------------------post---------------------------------------}}
 
-            {{---------------------------------------User---------------------------------------}}
+            {{---------------------------------------Post---------------------------------------}}
             <li class="nav-item ">
-                <a class="nav-link collapsed" data-toggle="collapse" href="#user_list" aria-expanded="false">
-                    <i class="material-icons">perm_identity</i>
-                    <p> Tài khoản
+                <a class="nav-link collapsed" data-toggle="collapse" href="#contact" aria-expanded="false">
+                    <i class="material-icons">contact_mail</i>
+                    <p> Liên Hệ
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="user_list">
+                <div class="collapse" id="contact">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('user_list') }}">
-                                <span class="sidebar-mini"> U </span>
-                                <span class="sidebar-normal"> Danh Sách </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('user_create') }}">
-                                <span class="sidebar-mini"> U </span>
-                                <span class="sidebar-normal"> Thêm tài khoản </span>
+                            <a class="nav-link" href="">
+                                <span class="sidebar-mini"> L </span>
+                                <span class="sidebar-normal"> Danh Sách Liên Hệ </span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
+            {{---------------------------------------post---------------------------------------}}
+
+
+            {{---------------------------------------User---------------------------------------}}
+            @if(!Auth::check() || Auth::user()->role == 10)
+                <li class="nav-item ">
+                    <a class="nav-link collapsed" data-toggle="collapse" href="#user_list" aria-expanded="false">
+                        <i class="material-icons">perm_identity</i>
+                        <p> Tài khoản
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="user_list">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ route('user_list') }}">
+                                    <span class="sidebar-mini"> U </span>
+                                    <span class="sidebar-normal"> Danh Sách </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ route('user_create') }}">
+                                    <span class="sidebar-mini"> U </span>
+                                    <span class="sidebar-normal"> Thêm tài khoản </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            @endif
             {{---------------------------------------user---------------------------------------}}
 
         </ul>

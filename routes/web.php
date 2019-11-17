@@ -62,14 +62,14 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
     //city
     Route::group(['prefix' => 'city'], function () {
 //        city
-        Route::get('/', 'Admin\CityController@city_list')->name('city_list');   //list city district
+        Route::get('/', 'Admin\CityController@index')->name('city_list');   //list city district
 
 //        Route::get('/allCategory', 'Admin\\CityController@allCategory'); //datatable ajax
-        Route::get('/add-city', 'Admin\\CityController@city_add')->name('city_add');
-        Route::post('/add-city', 'Admin\\CityController@city_create')->name('city_create');
-        Route::get('/{id}/edit-city', 'Admin\\CityController@city_edit')->name('city_edit');
-        Route::post('/{id}/edit-city', 'Admin\\CityController@city_update')->name('city_update');
-        Route::get('/{id}/remote-city', 'Admin\\CityController@city_remove')->name('city_remove');
+        Route::get('/add-city', 'Admin\\CityController@create')->name('city_add');
+        Route::post('/add-city', 'Admin\\CityController@store')->name('city_create');
+        Route::get('/{id}/edit-city', 'Admin\\CityController@edit')->name('city_edit');
+        Route::post('/{id}/edit-city', 'Admin\\CityController@update')->name('city_update');
+        Route::get('/{id}/remote-city', 'Admin\\CityController@destroy')->name('city_remove');
 
 //        district
         Route::get('district/add-district', 'Admin\\DistrictController@create')->name('district_add');
@@ -97,7 +97,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
     });
 
     //user
-    Route::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'user', 'middleware' => 'CheckUrl'], function () {
         Route::get('/', 'Admin\\UserController@index')->name('user_list');
         Route::get('/allUser', 'Admin\\UserController@AllDatatable'); //datatable ajax
         Route::get('/add-user', 'Admin\\UserController@create')->name('user_add');

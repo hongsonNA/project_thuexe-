@@ -42,19 +42,44 @@
                                                 </a>
                                             </td>
                                             <td class="text-right">
-                                                <a href="{{ route('city_edit', $c->id) }}">
-                                                    <button type="button" rel="tooltip" class="btn btn-info btn-link"
-                                                            data-original-title="" title="Sửa tài khoản">
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
+                                                <a href="{{ route('city_edit', $c->id) }}"
+                                                   class="btn btn-link btn-info btn-just-icon edit">
+                                                    <i class="material-icons">edit</i>
+                                                    <div class="ripple-container"></div>
                                                 </a>
 
-                                                <a href="{{ route('city_remove', $c->id) }}">
-                                                    <button type="button" rel="tooltip" class="btn btn-danger btn-link"
-                                                            data-original-title="" title="Xóa tài khoản">
-                                                        <i class="material-icons">close</i>
-                                                    </button>
+                                                <a class="btn btn-link btn-danger btn-just-icon remove"
+                                                   data-toggle="modal" data-target="#removeCity">
+                                                    <i class="material-icons">close</i>
+                                                    <div class="ripple-container"></div>
                                                 </a>
+
+                                                <div class="modal fade" id="removeCity" tabindex="-1" role="dialog"
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-center"
+                                                                    id="exampleModalLabel">Xóa danh mục</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body text-center"
+                                                                 style="color: red; font-weight: bolder">
+                                                                Bạn có chắc chắn muốn xóa thành phố này không?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Hủy
+                                                                </button>
+                                                                <a href="{{ route('city_remove', $c->id) }}"
+                                                                   class="btn btn-danger">Xóa</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </td>
                                         </tr>
@@ -63,9 +88,8 @@
                                     </tbody>
                                 </table>
                             </div>
-{{--                            <div class="justify-content-center pagination pg-blue col-md-12">--}}
-{{--                                {{ $city->links() }}--}}
-{{--                            </div>--}}
+
+
                         </div>
                         <!-- end content-->
                     </div>
@@ -105,20 +129,44 @@
                                             <td>{{ $d->id }}</td>
                                             <td class="text-center">{{ $d->name }}</td>
                                             <td class="text-right">
-                                                <a href="">
-                                                    <button type="button" rel="tooltip" class="btn btn-info btn-link"
-                                                            data-original-title="" title="Sửa tài khoản">
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
+                                                <a href="{{ route('district_edit',$d->id) }}"
+                                                   class="btn btn-link btn-info btn-just-icon edit">
+                                                    <i class="material-icons">edit</i>
+                                                    <div class="ripple-container"></div>
                                                 </a>
 
-                                                <a href="">
-                                                    <button type="button" rel="tooltip" class="btn btn-danger btn-link"
-                                                            data-original-title="" title="Xóa tài khoản">
-                                                        <i class="material-icons">close</i>
-                                                    </button>
+                                                <a class="btn btn-link btn-danger btn-just-icon remove"
+                                                   data-toggle="modal" data-target="#removeDistrict">
+                                                    <i class="material-icons">close</i>
+                                                    <div class="ripple-container"></div>
                                                 </a>
 
+                                                <div class="modal fade" id="removeDistrict" tabindex="-1" role="dialog"
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-center"
+                                                                    id="exampleModalLabel">Xóa danh mục</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body text-center"
+                                                                 style="color: red; font-weight: bolder">
+                                                                Bạn có chắc chắn muốn xóa quận huyện này không?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Hủy
+                                                                </button>
+                                                                <a href="{{ route('district_remove', $d->id) }}"
+                                                                   class="btn btn-danger">Xóa</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
 
@@ -161,7 +209,7 @@
         })
 
 
-        $('#search').on('keyup',function(){
+        $('#search').on('keyup', function () {
             $value = $(this).val();
             $.ajax({
                 type: 'get',
@@ -169,11 +217,11 @@
                 data: {
                     'search': $value
                 },
-                success:function(data){
+                success: function (data) {
                     $('#search_district').html(data);
                 }
             });
         })
-        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+        $.ajaxSetup({headers: {'csrftoken': '{{ csrf_token() }}'}});
     </script>
 @endsection
