@@ -10,6 +10,8 @@ use App\Model\User;
 use App\Model\Category;
 use App\Model\City;
 use mysql_xdevapi\Table;
+use App\Model\managerList;
+
 
 class HomeController extends Controller
 {
@@ -43,7 +45,8 @@ class HomeController extends Controller
         return view('front-end.contact');
     }
     public function  cate(){
-        return view('front-end.category');
+        $list_cate = DB::table('vehicles')->paginate(10);
+        return view('front-end.category',compact('list_cate'));
     }
     public function news(){
         $posts = DB::table('posts')->paginate(5);
@@ -79,5 +82,11 @@ class HomeController extends Controller
                         ->pluck("name");
         return response()->json($states);
 
+    }
+
+    public function detail($id)
+    {
+        $vechcles = managerList::find($id);
+       return view('front-end.detail',compact('vechcles'));
     }
 }

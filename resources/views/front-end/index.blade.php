@@ -69,9 +69,9 @@
             <!-- -->
         </div>
     {{-- form-book-car    --}}
-    <div class="container search-car">
+    <div class="col-md-10 col-md-offset-1 search-car">
         <div class="row">
-            <div class="col-md-12 col-sm-5" style="padding-left: 50px;">
+            <div class="col-md-12 col-sm-5" style="">
                 <div class="trip-outer form-car">
 {{--                    <div class="trip-type-tabs">--}}
 {{--                        <ul class="nav nav-tabs" style="width: 95.4%;text-align: center">--}}
