@@ -10,7 +10,7 @@
                         <li class="order-check">
                             <a href="#">
                                 <i class="fa fa-pencil-square-o"></i>
-                                Đăng ký cho thuê xe
+{{--                                Đăng ký cho thuê xe--}}
                             </a>
                         </li>
                         <li class="nav-item">
@@ -144,19 +144,20 @@
                         <!-- Navigation Content Start -->
                         <div class="collapse navbar-collapse" id="tj-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                <li class="dropdown"><a href="/" class="dropdown-toggle" data-toggle="dropdown"
                                                         role="button" aria-haspopup="true"
                                                         aria-expanded="false">Trang chủ</a>
 
                                 </li>
 
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                                         role="button" aria-haspopup="true" aria-expanded="false">Danh mục<i
                                             class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ route('cate') }}">Xe du lịch</a></li>
-                                        <li><a href="services.html">Xe cưới </a></li>
-                                    </ul>
+{{--                                    <ul class="dropdown-menu">--}}
+{{--                                        <li><a href="{{ route('cate') }}">Xe du lịch</a></li>--}}
+{{--                                        <li><a href="services.html">Xe cưới </a></li>--}}
+{{--                                    </ul>--}}
                                 </li>
 
                                 <li ><a href="{{ route('news') }}">Tin Tức</a>
