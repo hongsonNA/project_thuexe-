@@ -2,7 +2,7 @@
 @section('content')
     <style>.default-image img {height: 100%;width: 100%;}.default-image {width: 100%;height: 262px;}</style>
     <script src="{{ asset('editor/ckeditor/ckeditor.js') }}"></script>
-    <div class="content">
+    <div class="content" style="margin-top: 30px">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
