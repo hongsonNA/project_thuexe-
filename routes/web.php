@@ -32,7 +32,8 @@ Route::group(['prefix'=> 'vehicles'], function (){
     Route::get('states_update/{id}','ManagerUsController@states_update')->name('states_update');
 });
 
-//
+//---search
+Route::post('/search_car','HomeController@search_car')->name('search_car');
 //----booknow
 Route::get('city/{id}','HomeController@city')->name('city');
 Route::get('state/{id}','HomeController@state')->name('state');

@@ -89,4 +89,21 @@ class HomeController extends Controller
         $vechcles = managerList::find($id);
        return view('front-end.detail',compact('vechcles'));
     }
+    //search form
+    public function search_car(Request $request)
+    {
+
+        $cate_id = $request->get('cate_id');
+
+//        $seat = $request->get('seat');
+        $city_id = $request->get('city_id');
+        $district_id = $request->get('district_id');
+
+        $searchQuery = managerList::where('cate_id','like',"%$cate_id%")
+//                                    ->orWhere('seat','like',"%$seat%")
+                                    ->orWhere('city_id','like',"%$city_id%")
+                                    ->orWhere('district_id','like',"%$district_id%");
+
+        return view('front-end.search',compact('searchQuery'));
+    }
 }

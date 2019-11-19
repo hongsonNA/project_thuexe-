@@ -43,9 +43,9 @@
                        <div class="title-slider">
                            <p>Nào Nào! cùng chọn xe đi phượt thôi A Ưi</p>
                        </div>
-                        <div class="more_slider">
-                            <span><a href="#">Xem thêm</a></span>
-                        </div>
+{{--                        <div class="more_slider">--}}
+{{--                            <span><a href="#">Xem thêm</a></span>--}}
+{{--                        </div>--}}
                     </div>
                     <img width="100%" src="https://cdn.shortpixel.ai/client/q_lossless,ret_img/https://themes.potenzaglobalsolutions.com/cardealer-wp/wp-content/uploads/revslider/cardealer-slider3/c83b2-ac5dd-02.jpg">
                 </div>
@@ -83,30 +83,31 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="one-way">
                             <!--Banner Form Content Start-->
-                            <form method="GET" class="trip-type-frm">
+                            <form method="POST" action="{{ route('search_car') }}" class="trip-type-frm" role="search">
+                               @csrf
                                 <div class="form-row">
                                     <div class="field-outer">
                                         <span class="fas fa-search"></span >
-                                        <select name="filter_cate col"  class="form-control " style="margin-bottom: 10px" id="">
-                                            <option value="">--Chọn danh mục--</option>
+                                        <select name="cate_id"  class="form-control " style="margin-bottom: 10px" id="">
+                                            <option  value="">--Chọn danh mục--</option>
                                             @foreach($category as $key => $id)
-                                                <option value="">{{ $id->name }}</option>
+                                                <option value="{{ $id->id }}">{{ $id->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="field-outer col">
                                         <span class="fas fa-search"></span>
-                                        <select name="filte_seat" class="form-control " style="margin-bottom: 10px" id="">
+                                        <select name="seat" class="form-control " style="margin-bottom: 10px" id="">
                                             <option value="">--Chọn chỗ--</option>
-                                            <option value="">1</option>
-                                            <option value="">2</option>
+                                            <option value="1">1</option>
+                                            <option value="4">4</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="field-outer">
                                         <span class="fas fa-calendar-alt"></span>
-                                        <select name="filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="select_city">
+                                        <select name="city_id" class="form-control pb-2" style="margin-bottom: 10px" id="select_city">
                                             <option value="">--Chọn thành phố--</option>
                                             @foreach($city as $key => $id)
                                                     <option id="distri" value="{{ $id->id }}" >{{ $id->name }}</option>
@@ -115,23 +116,12 @@
                                     </div>
                                     <div class="field-outer">
                                         <span class="far fa-clock"></span>
-                                        <select name="district" class="form-control pb-2" style="margin-bottom: 10px" id="select_district">
+                                        <select name="district_id" class="form-control pb-2" style="margin-bottom: 10px" id="select_district">
                                             <option value="">--chọn quận huyện --</option>
 
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <div class="field-outer">
-                                        <span class="far fa-clock"></span>
-                                        <input type="date" name="date_book" class="form-control" style="margin-bottom: 10px">
-                                    </div>
-                                    <div class="field-outer" >
-                                        <span class="far fa-clock"></span>
-                                        <input type="date" name="date_drop" class="form-control" >
-                                    </div>
-                                </div>
-
                                 <button type="submit" class="search-btn">Search Cabs <i
                                         class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
                             </form>
