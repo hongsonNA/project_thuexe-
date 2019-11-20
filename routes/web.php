@@ -13,6 +13,9 @@ Route::get('/profile', 'HomeController@profile')->name('profile');
 Route::get('/support', 'HomeController@support')->name('support');
 Route::get('/admin_us','HomeController@admin_us')->name('admin_us');
 Route::get('{id}/detail','HomeController@detail')->name('detail');
+//detailNews
+Route::get('{id}/detail_news','HomeController@detail_news')->name('detail_news');
+Route::post('post_comment','HomeController@post_comment')->name('post_comment');
 //update_account_user
 Route::post('/{id}/update_account', 'HomeController@update_account')->name('update_account');
 //end////

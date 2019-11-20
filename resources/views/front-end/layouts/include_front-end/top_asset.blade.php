@@ -472,6 +472,89 @@
     .detail-car {
         padding-top: 10rem;
     }
+    /*detail post*/
+    .container{
+        color:#000000;
+        font-family: 'Noto Serif',serif;
+        margin: auto;
+    }
+    .container .title-contet .title-post {
+        font-size: 4rem;
+        color: #000;
+        font-weight: bold;
+        width: 600px;
+        margin: auto;
+        line-height: 1.2;
+        letter-spacing: -1px;
+        padding-top: 3rem;
+    }
+    .container .bec {
+        width: 600px;
+        font-size: 18px;
+        padding: 20px 0 0 0;
+        margin: auto;
+    }
+    .container .content {
+        width: 800px;
+        text-align: center;
+        font-size: 20px;
+        margin: auto;
+        line-height: 1.6;
+    }
+    .container .summary {
+        font-size: 1.8rem;
+        font-weight: bold;
+        line-height: 1.6;
+        width: 600px;
+        margin: auto;
+        text-align: center;
+        padding: 20px 02px;
+    }
+    .topic_cate {
+        width: 800px;
+        margin: auto;
+        padding: 10px;
+        border-top: 1px solid #d6d4d4;
+        color: #000;
+    }
+    .topic-iamge {
+        width: 90%;
+        height: 170px;
+    }
+    .topic-iamge .image_t {
+        width: 100%;
+        height: 100%;
+    }
+    .title-topic .acticel-title {
+        margin: 0;
+        padding-bottom: 16px;
+    }
+    .title-topic .acticel-title a {
+        text-decoration: none;
+        color: #000;
+        font-weight: 600;
+        font-family: 'Noto Serif',serif;
+    }
+    .area-comment {
+        background: #2335441a;
+        padding: 15px;
+        width: 90%;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+    .show-comment .image-comment {
+        padding: 0;
+        text-align: right;
+    }
+    .show-comment .author-name {
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .show-comment {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #808080;
+    }
 </style>
 
 
