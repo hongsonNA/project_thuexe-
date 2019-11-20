@@ -11,7 +11,7 @@ use App\Model\Category;
 use App\Model\City;
 use mysql_xdevapi\Table;
 use App\Model\managerList;
-
+use App\Model\Comments;
 
 class HomeController extends Controller
 {
@@ -88,5 +88,37 @@ class HomeController extends Controller
     {
         $vechcles = managerList::find($id);
        return view('front-end.detail',compact('vechcles'));
+    }
+    public function detail_news($id)
+    {
+        $post = Post::find($id);
+        $comment = Comments::all();
+        return view('front-end.detail_news',compact('post'),compact('comment'));
+    }
+    public function post_comment(Request $request){
+            $data = $request->except('_token');
+
+            $comment_post=[$data];
+            dd($comment_post);
+            Comments::insert($comment_post);
+
+return back();
+    }
+    //search form
+    public function search_car(Request $request)
+    {
+
+        $cate_id = $request->get('cate_id');
+
+//        $seat = $request->get('seat');
+        $city_id = $request->get('city_id');
+        $district_id = $request->get('district_id');
+
+        $searchQuery = managerList::where('cate_id','like',"%$cate_id%")
+//                                    ->orWhere('seat','like',"%$seat%")
+                                    ->orWhere('city_id','like',"%$city_id%")
+                                    ->orWhere('district_id','like',"%$district_id%");
+
+        return view('front-end.search',compact('searchQuery'));
     }
 }

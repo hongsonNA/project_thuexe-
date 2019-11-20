@@ -19,7 +19,7 @@
                                 <div class="col-md-6">
                                     <div class="post-block-style">
                                         <div class="post-thumb">
-                                            <a href="#">
+                                            <a href="{{ route('detail_news', $id->id ) }}" data-toggle="tooltip" title="{{ $id->title }}">
                                                 <img class="img-fluid" src="{{ asset('image_upload/post/'.$id->image_posts)}}"  alt="">
                                             </a>
                                             <div class="grid-cat">
@@ -28,8 +28,8 @@
                                         </div>
 
                                         <div class="post-content">
-                                            <h2 class="post-title title-md">
-                                                <a href="#">{{ $id->title }}</a>
+                                            <h2 class="post-title title-md  " data-toggle="tooltip" title="{{ $id->title }}">
+                                                <a  href="{{ route('detail_news', $id->id ) }}">{{ $id->title }}</a>
                                             </h2>
                                             <div class="post-meta mb-7">
                                                 <span class="post-author"><i class="fa fa-user"></i> John Doe</span>
