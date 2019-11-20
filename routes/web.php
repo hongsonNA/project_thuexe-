@@ -96,6 +96,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
         Route::get('/{id}/remote-post', 'Admin\\PostController@destroy')->name('post_remove');
     });
 
+    //posts
+    Route::group(['prefix' => 'contacts'], function () {
+        Route::get('/', 'Member\\ContactController@index')->name('contact_list');
+        Route::post('/add-contact', 'Member\\ContactController@store')->name('contact_create');
+    });
+
     //user
     Route::group(['prefix' => 'user', 'middleware' => 'CheckUrl'], function () {
         Route::get('/', 'Admin\\UserController@index')->name('user_list');

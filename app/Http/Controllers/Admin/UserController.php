@@ -20,14 +20,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $test = User::all();
-        return view('admin.user.user_list', compact('test'));
+        $users = User::paginate(6);
+        return view('admin.user.user_list', compact('users'));
     }
-
-//    public function AllDatatable()
-//    {
-//        return $this->UserRepository->AllDatatable();
-//    }
 
     public function create()
     {
