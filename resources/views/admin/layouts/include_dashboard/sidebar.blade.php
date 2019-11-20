@@ -131,7 +131,7 @@
                 <div class="collapse" id="contact">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('contact_list') }}">
                                 <span class="sidebar-mini"> L </span>
                                 <span class="sidebar-normal"> Danh Sách Liên Hệ </span>
                             </a>
