@@ -121,7 +121,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
         Route::post('/{id}/edit-user', 'Admin\\UserController@update')->name('user_update');
         Route::get('/{id}/remote-user', 'Admin\\UserController@destroy')->name('user_remove');
     });
-
+    Route::group(['prefix'=>'comments'], function(){
+        Route::get('/','Admin\\CommentController@comment')->name('comment_list');
+        Route::get('/{id}/remote_comment','Admin\\CommentController@remote_comment')->name('remote_comment');
+    });
 });
+
 
 //-----------------------END DASHBOARD-----------------------

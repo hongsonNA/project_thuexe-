@@ -63,7 +63,9 @@
                         <div class="fleet-grid-box">
                             <!--Fleet Grid Thumb Start-->
                             <figure class="fleet-thumb">
+                                <a href="{{ route('detail', $id->id)  }}">
                                 <img src="{{ asset('image_upload/img_vehicle/'.$id->image )}}" alt="">
+                                </a>
                                 <figcaption class="fleet-caption">
                                     <div class="price-box">
                                         <strong>{{ $id->price }} <span>/ day</span></strong>

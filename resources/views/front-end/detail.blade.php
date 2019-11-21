@@ -8,7 +8,7 @@
                     <div class="shadow p-lg mb-xlg">
                         <div class="model row content-detail ">
                             <div class="col-sm-6 detail-image ">
-                                <a> <img src="{{ asset('image_upload/img_vehicle/'.$vechcles->image )}}" alt=""></a>
+                                <a href="">  <img src="{{ asset('image_upload/img_vehicle/'.$vechcles->image )}}" alt=""></a>
                             </div>
                             <div class="col-sm-6">
                                 <div class="tit3 mt-md mb-xs">{{ $vechcles->name }}</div>
@@ -54,7 +54,7 @@
                                 <div class="mb-md">
                                     <div class="b-tit">Chi tiet xe </div>
                                     <div>
-                                        {{ $vechcles->description }}
+                                        {!! $vechcles->description !!}
                                     </div>
                                 </div>
 

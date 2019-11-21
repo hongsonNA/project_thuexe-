@@ -71,28 +71,47 @@
             </div>
             <!--end -->
             <div class="show-comment">
-                @foreach($comment as $key => $comment_id)
-                <div class="row">
-                    <div class="col-sm-1 image-comment">
-                        <img src="{{ asset('image_upload/post/image_post_1574214572.jpeg') }}" width="50" alt="">
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="name_comment">
+                <ul class="nav comments">
+                    @foreach($comment as $key => $comment_id)
+                    <li class="comment_list">
+                        <div class="comment-meta image-comment">
+                            <img class="avatar" src="{{ asset('image_upload/post/image_post_1574214572.jpeg') }}" width="50" alt="">
                             <p class="author-name"><span class="">Hong son</span></p>
-                            <p class="comment-list">
-                               {{ $comment_id->content }}
+                            <p class="comment-content">
+                                {{ $comment_id->content }}
+                            </p>
+                            <p class="comment-actions">
+                                <a data-id="{{ $comment_id->id }}" id="reply" href="javascript:;">Tra loi</a>
+                                <span></span>
+                                <a id="report" href="javascript:;">Report</a>
                             </p>
                         </div>
-                    </div>
-                </div>
-                @endforeach
+                        <div class="show-reply">
+                            <form action="">
+                                <textarea class="form-control" id="" name="" id="content" rows="3" placeholder="Bạn có đồng ý với Hong Son"></textarea>
+                                <br>
+                                <button  type="submit" class="btn btn-info">Gui binh luan</button>
+                                <a id="close" class="btn">Dong</a>
+                            </form>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
             </div>
+
         </div>
         </div>
                <!-- end -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>--}}
     <script>
+        $(".show-reply").hide();
+        $('#reply').click(function () {
+            $(".show-reply").show();
+        });
+        $('#close').click(function () {
+            $(".show-reply").hide();
+        });
         $(document).ready(function(){
             $("#myBtn").click(function(){
                 $("#myModal").hide();

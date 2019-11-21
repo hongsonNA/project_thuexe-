@@ -535,16 +535,37 @@
         font-weight: 600;
         font-family: 'Noto Serif',serif;
     }
-    .area-comment {
-        background: #2335441a;
-        padding: 15px;
-        width: 90%;
-        margin: auto;
-        margin-bottom: 10px;
+    /*.area-comment {*/
+    /*    background: #2335441a;*/
+    /*    padding: 15px;*/
+    /*    width: 90%;*/
+    /*    margin: auto;*/
+    /*    margin-bottom: 10px;*/
+    /*}*/
+    .comment-meta {
+        font-family: sans-serif;
+        font-size: 14px;
+        color: #141823;
+        line-height: 20px;
+        width: 100%;
+        float: left;
+        margin-bottom: 5px;
+        margin-left: 19px;
     }
-    .show-comment .image-comment {
-        padding: 0;
-        text-align: right;
+    .avatar {
+        position: absolute;
+        top: 21px;
+        left: 0;
+    }
+    .show-comment .author-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: #000;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 19px;
+        display: inline-block;
+        margin-bottom: 0;
     }
     .show-comment .author-name {
         font-size: 16px;
@@ -554,6 +575,40 @@
         margin-top: 10px;
         padding-top: 10px;
         border-top: 1px solid #808080;
+    }
+    .comment-content {
+        width: 100%;
+        font-size: 14px;
+        line-height: 1.43;
+    }
+    .comment_list {
+        float: left;
+        width: 100%;
+        padding: 18px 0 18px;
+        padding-left: 40px;
+        position: relative;
+        border-bottom: 1px solid #eee;
+    }
+    .comment-actions {
+        float: left;
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        margin-top: 2px;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 1.67;
+        position: relative;
+    }
+    .comment-actions span {
+        padding: 0 10px 0 13px;
     }
 </style>
 
