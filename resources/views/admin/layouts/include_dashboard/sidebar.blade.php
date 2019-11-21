@@ -170,6 +170,27 @@
                 </li>
             @endif
             {{---------------------------------------user---------------------------------------}}
+            {{---------------------------------------comment---------------------------------------}}
+            <li class="nav-item ">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#comment" aria-expanded="false">
+                    <i class="material-icons">contact_mail</i>
+                    <p> Bình luận
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="comment">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('comment_list') }}">
+                                <span class="sidebar-mini"> CM </span>
+                                <span class="sidebar-normal"> Danh sách bình luận</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{---------------------------------------comment---------------------------------------}}
+
 
         </ul>
     </div>
