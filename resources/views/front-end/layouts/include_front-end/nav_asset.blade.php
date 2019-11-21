@@ -170,13 +170,8 @@
 
                                 </li>
 
-                                <li class="dropdown">
-                                    <a href="#" class="" data-toggle="dropdown"
-                                                        role="button" aria-haspopup="true" aria-expanded="false">Danh mục</a>
-{{--                                    <ul class="dropdown-menu">--}}
-{{--                                        <li><a href="{{ route('cate') }}">Xe du lịch</a></li>--}}
-{{--                                        <li><a href="services.html">Xe cưới </a></li>--}}
-{{--                                    </ul>--}}
+                                <li>
+                                    <a href="{{ route('cate') }}" class="" aria-haspopup="true" aria-expanded="false">Danh mục</a>
                                 </li>
 
                                 <li><a href="{{ route('news') }}">Tin Tức</a>

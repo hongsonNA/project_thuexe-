@@ -97,27 +97,25 @@ class HomeController extends Controller
     }
     public function post_comment(Request $request){
             $data = $request->except('_token');
-
             $comment_post=[$data];
             dd($comment_post);
             Comments::insert($comment_post);
 
-return back();
+            return back();
     }
     //search form
     public function search_car(Request $request)
     {
-
         $cate_id = $request->get('cate_id');
 
-//        $seat = $request->get('seat');
+       $seat = $request->get('seat');
         $city_id = $request->get('city_id');
         $district_id = $request->get('district_id');
 
         $searchQuery = managerList::where('cate_id','like',"%$cate_id%")
-//                                    ->orWhere('seat','like',"%$seat%")
-                                    ->orWhere('city_id','like',"%$city_id%")
-                                    ->orWhere('district_id','like',"%$district_id%");
+                                    ->where('seat','like',"%$seat%")
+                                    ->where('city_id','like',"%$city_id%")
+                                    ->where('district_id','like',"%$district_id%")->get();
 
         return view('front-end.search',compact('searchQuery'));
     }
