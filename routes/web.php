@@ -106,6 +106,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
         Route::post('/add-contact', 'Member\\ContactController@store')->name('contact_create');
     });
 
+    //profile
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/', 'Admin\\ProfileController@index')->name('dashboard_profile');
+    });
+
     //user
     Route::group(['prefix' => 'user', 'middleware' => 'CheckUrl'], function () {
         Route::get('/', 'Admin\\UserController@index')->name('user_list');
