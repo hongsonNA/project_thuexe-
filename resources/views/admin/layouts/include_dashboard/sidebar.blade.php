@@ -16,7 +16,7 @@
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('dashboard_profile') }}">
                                 <span class="sidebar-mini"> MP </span>
                                 <span class="sidebar-normal"> My Profile </span>
                             </a>
@@ -120,7 +120,10 @@
             </li>
             {{---------------------------------------post---------------------------------------}}
 
-            {{---------------------------------------Post---------------------------------------}}
+
+
+
+            {{---------------------------------------contact---------------------------------------}}
             <li class="nav-item ">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#contact" aria-expanded="false">
                     <i class="material-icons">contact_mail</i>
@@ -139,8 +142,7 @@
                     </ul>
                 </div>
             </li>
-            {{---------------------------------------post---------------------------------------}}
-
+            {{---------------------------------------contact---------------------------------------}}
 
             {{---------------------------------------User---------------------------------------}}
             @if(!Auth::check() || Auth::user()->role == 10)
