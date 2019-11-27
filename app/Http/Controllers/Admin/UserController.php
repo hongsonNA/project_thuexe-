@@ -20,8 +20,11 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::paginate(6);
-        return view('admin.user.user_list', compact('users'));
+        $users_list = User::all();
+        $users_admin = User::where('role', 9)->get();
+        $user = User::whereIn('role', [1, 2])->get();
+
+        return view('admin.user.user_list', compact('users_list', 'users_admin', 'user'));
     }
 
     public function create()

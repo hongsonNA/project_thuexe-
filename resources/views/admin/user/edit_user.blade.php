@@ -99,25 +99,19 @@
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label lg_em_pa">
-                                        Quyền user <strong style="color: red">*</strong>
+                                        Quyền user
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
                                                 <input type="radio" @if($user->role == 1) checked @endif class="form-check-input" name="role" value="1">
-                                                Chưa xác định
+                                                User
                                             </label>
                                         </div>
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
                                                 <input type="radio" @if($user->role == 9) checked @endif class="form-check-input" name="role" value="9">
                                                 Admin
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline col-form-label">
-                                            <label class="form-check-label">
-                                                <input type="radio" @if($user->role == 8) checked @endif class="form-check-input" name="role" value="8">
-                                                Đăng bài viết
                                             </label>
                                         </div>
                                     </div>

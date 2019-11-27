@@ -11,7 +11,7 @@
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
-                    <span>{{ Auth::user()->name }}<b class="caret"></b></span>
+                    <span class="text-capitalize">{{ Auth::user()->name }}<b class="caret"></b></span>
                 </a>
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
@@ -29,69 +29,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="">
                     <i class="material-icons">dashboard</i>
-                    <p> Dashboard </p>
+                    <p> Thống kê chung </p>
                 </a>
             </li>
-
-            {{---------------------------------------category---------------------------------------}}
-            <li class="nav-item ">
-                <a class="nav-link collapsed" data-toggle="collapse" href="#tablesExamples" aria-expanded="false">
-                    <i class="material-icons">category</i>
-                    <p> Danh mục
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="tablesExamples" style="">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('category_list') }}">
-                                <span class="sidebar-mini"> DM </span>
-                                <span class="sidebar-normal"> Danh Sách </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('category_add') }}">
-                                <span class="sidebar-mini"> DM </span>
-                                <span class="sidebar-normal"> Thêm Danh Mục </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            {{---------------------------------------category---------------------------------------}}
-
-            {{---------------------------------------City---------------------------------------}}
-            <li class="nav-item ">
-                <a class="nav-link collapsed" data-toggle="collapse" href="#city" aria-expanded="false">
-                    <i class="material-icons">location_city</i>
-                    <p> Thành phố
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="city">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('city_list') }}">
-                                <span class="sidebar-mini"> C </span>
-                                <span class="sidebar-normal"> Danh Sách </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="">
-                                <span class="sidebar-mini"> C </span>
-                                <span class="sidebar-normal"> Thêm thành phố </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="">
-                                <span class="sidebar-mini"> C </span>
-                                <span class="sidebar-normal"> Thêm quận, huyện </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            {{---------------------------------------City---------------------------------------}}
 
             {{---------------------------------------Post---------------------------------------}}
             <li class="nav-item ">
@@ -119,8 +59,6 @@
                 </div>
             </li>
             {{---------------------------------------post---------------------------------------}}
-
-
 
 
             {{---------------------------------------contact---------------------------------------}}
@@ -172,11 +110,12 @@
                 </li>
             @endif
             {{---------------------------------------user---------------------------------------}}
+
             {{---------------------------------------comment---------------------------------------}}
             <li class="nav-item ">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#comment" aria-expanded="false">
-                    <i class="material-icons">contact_mail</i>
-                    <p> Bình luận
+                    <i class="material-icons">comments</i>
+                    <p> Bình luận Report
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -193,6 +132,34 @@
             </li>
             {{---------------------------------------comment---------------------------------------}}
 
+
+            {{---------------------------------------Setting All---------------------------------------}}
+            <li class="nav-item ">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#setting_all" aria-expanded="false">
+                    <i class="material-icons">settings_applications</i>
+                    <p> Cài đặt chung
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="setting_all">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('category_list') }}">
+                                <span class="sidebar-mini"> DM </span>
+                                <span class="sidebar-normal"> Danh Sách Danh Mục </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('city_list') }}">
+                                <span class="sidebar-mini"> TP </span>
+                                <span class="sidebar-normal"> Danh Sách Thành Phố</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{---------------------------------------Setting All---------------------------------------}}
 
         </ul>
     </div>

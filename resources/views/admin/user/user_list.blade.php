@@ -84,7 +84,7 @@
                                                     </thead>
 
                                                     <tbody>
-                                                        @foreach($users as $list_user)
+                                                        @foreach($users_list as $list_user)
                                                             @if($list_user->role == 10)
                                                             @else
                                                                 <tr>
@@ -151,9 +151,7 @@
                                                     </thead>
 
                                                     <tbody>
-                                                    @foreach($users as $admin)
-                                                        @if($admin->role == 10 || $admin->role == 2 || $admin->role == 1)
-                                                        @else
+                                                    @foreach($users_admin as $admin)
                                                             <tr>
                                                                 <td class="text-center">{{ $admin->id }}</td>
                                                                 <td>{{ $admin->name }}</td>
@@ -195,7 +193,7 @@
                                                                     </div>
                                                                 </td>
                                                             </tr>
-                                                        @endif
+{{--                                                        @endif--}}
                                                     @endforeach
                                                     </tbody>
                                                 </table>
@@ -218,7 +216,7 @@
                                                     </thead>
 
                                                     <tbody>
-                                                    @foreach($users as $member)
+                                                    @foreach($user as $member)
                                                         @if($member->role == 10 || $member->role == 9)
                                                         @else
                                                             <tr>
@@ -281,4 +279,9 @@
             <!-- end row -->
         </div>
     </div>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script>
+
+
+    </script>
 @endsection
