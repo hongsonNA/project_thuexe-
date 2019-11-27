@@ -174,9 +174,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="justify-content-center pagination pg-blue col-md-12">
-                                {{ $districts->links() }}
-                            </div>
 
                         </div>
                         <!-- end content-->

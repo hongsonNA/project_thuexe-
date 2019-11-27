@@ -14,8 +14,9 @@
                             <h4 class="card-title ">Danh sách liện hệ</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table">
+                            <div class="material-datatables">
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                       style="width:100%">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
@@ -26,15 +27,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($contacts as $c)
-                                        <tr>
-                                            <td>{{ $c->id }}</td>
-                                            <td>{{ $c->name }}</td>
-                                            <td>{{ $c->email }}</td>
-                                            <td>{{ $c->phone }}</td>
-                                            <td>{{ $c->content }}</td>
-                                        </tr>
-                                    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -44,5 +37,32 @@
             </div>
         </div>
     </div>
+
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#datatables').DataTable({
+
+                // "lengthMenu": true,
+                pageLength: 0,
+                lengthMenu: [10, 20, 50],
+                order: [[0, 'desc']],
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/dashboard/contacts/allContact',
+
+                },
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'name', name: 'email'},
+                    {data: 'name', name: 'phone'},
+                    {data: 'name', name: 'content'}
+                ]
+            });
+        });
+
+    </script>
 @endsection
 

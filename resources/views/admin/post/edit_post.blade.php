@@ -106,7 +106,8 @@
                                             <div class="card-footer text-right">
                                                 <div class="form-check">
                                                     <label class="form-check-label">
-                                                        <input class="form-check-input" name="status" type="checkbox" value="1" @if($post->status)checked @endif>
+{{--                                                        @if($post->status == 1)checked @endif--}}
+                                                        <input class="form-check-input" name="status" type="checkbox" checked="{{ $post->status == 1 }}">
                                                         Đăng bài viết
                                                         <span class="form-check-sign">
                                                             <span class="check"></span>
