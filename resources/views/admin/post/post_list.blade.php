@@ -56,13 +56,13 @@
                                        style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th width="50px">No</th>
-                                        <th width="200px">Title</th>
-                                        <th width="220px">Summary</th>
-                                        <th width="110px">Image</th>
-                                        <th width="90px">Author</th>
-                                        <th width="100px">Status</th>
-                                        <th class="text-right">Action</th>
+                                        <th width="50px">STT</th>
+                                        <th width="200px">Tiêu đề</th>
+                                        <th width="220px">Tin vắn tắt</th>
+                                        <th width="110px">Ảnh</th>
+                                        <th width="90px">Tác giả</th>
+                                        <th width="100px">Trạng thái</th>
+                                        <th class="text-right">Hành động</th>
                                     </tr>
                                     </thead>
 
@@ -105,13 +105,13 @@
                             return "<img src=\"/image_upload/post/" + data + "\" width=\"100\" style=\"border-radius: 8px;\" />";
                         }
                     },
-                    {data: 'user_id', name: 'user_id',},
+                    {data: 'user_id', name: 'user_id', className: "text-capitalize"},
                     {
                         data: 'status',
                         render: function (status) {
 
                             if (status === "1") {
-                                return '<button class=\"btn btn-success button disabled btn-sm\" disabled>ennable</button>';
+                                return '<button class=\"btn btn-success button disabled btn-sm\" disabled>enable</button>';
                             } else {
                                 return '<button class=\"btn btn-behance button disabled btn-sm\" disabled>disable</button>';
 
@@ -124,15 +124,6 @@
 
             });
 
-
-            $('#datatables tr').each(function () {
-                console.log($(this).find('td:eq(0)').html());
-                var customerId = $(this).find("tr").eq(2).html();
-                console.log($(this).find("tr").html());
-            });
-
         });
-
-
     </script>
 @endsection

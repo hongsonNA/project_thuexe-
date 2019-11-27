@@ -103,6 +103,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
     //posts
     Route::group(['prefix' => 'contacts'], function () {
         Route::get('/', 'Member\\ContactController@index')->name('contact_list');
+        Route::get('/allContact', 'Member\\ContactController@AllDatatable'); //datatable ajax
         Route::post('/add-contact', 'Member\\ContactController@store')->name('contact_create');
     });
 

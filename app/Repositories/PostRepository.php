@@ -95,6 +95,7 @@ class PostRepository implements VehicelRepositoryInterface
 
     public function update($request, $id)
     {
+        $request->status = $request->status && $request->status == 'on' ? 1 : 0;
         $post = Post::find($id);
         if (empty($post)) {
             return view('admin.user.edit_user');
@@ -107,6 +108,7 @@ class PostRepository implements VehicelRepositoryInterface
                 $post->image_posts = $FileName;
             }
             $post->fill($request->all());
+
             $mess_update = "";
             if ( $post->save()) {
                 $mess_update = "Sửa bài viết thành công";
