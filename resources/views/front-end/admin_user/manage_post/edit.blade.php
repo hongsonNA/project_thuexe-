@@ -9,20 +9,10 @@
                     <div class="card-header">
                         <h4 class="card-title"> Thêm mới xe </h4>
                     </div>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div><br />
-                    @endif
                     <div class="card-body col-lg-12">
                         <div class="table-responsive">
                             <form action="{{ route('update_vehicles', $magaEdit->id) }}" method="POST" enctype="multipart/form-data" novalidate>
                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <input type="hidden" name="user_id" value="{{ auth::user()->name }}">
                                 <input type="hidden" name="status" value="1">
                                 <div class="row" style="padding-bottom: 20px;">
                                     <div class="col-lg-7">
@@ -83,7 +73,7 @@
                                             <div class="default-image">
 
                                                 @if($magaEdit->image)
-                                                    <img src="{{ asset('image_upload/img_vehicle/'.$magaEdit->image) }}" alt="" width="100">
+                                                    <img name="image_save" src="{{ asset('image_upload/img_vehicle/'.$magaEdit->image) }}" alt="" width="100">
                                                     @endif
                                             </div>
                                         </div>

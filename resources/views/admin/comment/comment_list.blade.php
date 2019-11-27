@@ -13,6 +13,8 @@
                             </div>
                             <h4 class="card-title">Danh sách Report</h4>
                         </div>
+                        <form action="" method="">
+                            @csrf
                         <div class="card-body">
                             <div class="toolbar">
                             </div>
@@ -31,12 +33,15 @@
                                     </thead>
 
                                     <tbody>
-                                    @foreach($comment as $key => $id)
+                                    @foreach($comments as $key => $id)
                                         <tr>
+                                            <input type="hidden" name="status" value="1">
                                             <td>{{ $id->id }}</td>
                                             <td>{{ $id->user_id }}</td>
-                                            <td>{{ $id->content }}</td>
-                                            <td>
+                                            <td>{{ $id->report_content }}</td>
+                                            <td class="text-right">
+                                                <a href="#" id="show_comment">xem binh luan</a>
+                                                <a onclick="return confirm('Xac nhan comment ok')" href="{{ route('update_cm',$id->id) }}"><i class="material-icons">edit</i></a>
                                                 <a onclick="return confirm('Loai bo binh luan nay')" href="{{ route('remote_comment',$id->id) }}"><i class="material-icons">close</i></a>
                                             </td>
                                         </tr>
@@ -46,6 +51,7 @@
                                 </table>
                             </div>
                         </div>
+                        </form>
                         <!-- end content-->
                     </div>
                     <!--  end card  -->

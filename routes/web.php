@@ -14,8 +14,11 @@ Route::get('/support', 'HomeController@support')->name('support');
 Route::get('/admin_us','HomeController@admin_us')->name('admin_us');
 Route::get('{id}/detail','HomeController@detail')->name('detail');
 //detailNews
+Route::post('report_comment','HomeController@report_comment')->name('report_comment');
 Route::get('{id}/detail_news','HomeController@detail_news')->name('detail_news');
 Route::post('post_comment','HomeController@post_comment')->name('post_comment');
+//=======Dang ky thong tin xe=======
+Route::post('booking_car','HomeController@booking_car')->name('booking_car');
 //update_account_user
 Route::post('/{id}/update_account', 'HomeController@update_account')->name('update_account');
 //end////
@@ -37,6 +40,7 @@ Route::group(['prefix'=> 'vehicles'], function (){
 
 //---search
 Route::post('/search_car','HomeController@search_car')->name('search_car');
+Route::post('/search_cate','HomeController@search_cate')->name('search_cate');
 //----booknow
 Route::get('city/{id}','HomeController@city')->name('city');
 Route::get('state/{id}','HomeController@state')->name('state');
@@ -124,6 +128,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
     Route::group(['prefix'=>'comments'], function(){
         Route::get('/','Admin\\CommentController@comment')->name('comment_list');
         Route::get('/{id}/remote_comment','Admin\\CommentController@remote_comment')->name('remote_comment');
+        Route::post('/{id}/update_cm', 'Admin\\CommentController@update_cm')->name('update_cm');
     });
 });
 

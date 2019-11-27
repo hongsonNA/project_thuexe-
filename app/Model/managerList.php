@@ -10,6 +10,7 @@ class managerList extends Model
 
     protected $fillable=[
         'name',
+        'user_id',
         'seat',
         'description',
         'cate_id',

@@ -83,7 +83,9 @@
                             <p class="comment-actions">
                                 <a data-id="{{ $comment_id->id }}" id="reply" href="javascript:;">Tra loi</a>
                                 <span></span>
+                                @if($comment_id->user_id != Auth::user()->id)
                                 <a id="report" href="javascript:;">Report</a>
+                                @endif
                             </p>
                         </div>
                         <div class="show-reply">
@@ -100,9 +102,38 @@
             </div>
 
         </div>
+        <!-- Modal-report -->
+        <div class="modal fade" id="modal-report" role="dialog">
+            <div class="modal-dialog subcribe" style="top: 20%;width: 355px;border-radius: 5px;">
+                <!-- Modal content-->
+                <h3>Báo cáo hành động tiêu cực</h3>
+                <div class="form-register">
+                    <div class="modal-register" id="modal-register">
+                        <form class="reg-frm" method="POST" action="{{ route('report_comment') }}">
+                            @csrf
+                            <input type="hidden" name="report_uID" value="{{ $comment_id->id }}">
+                            <input type="hidden" name="status" value="2">
+                            <div class="field-holder">
+                                <span class="fas fa-report"></span>
+                                <input type="text" name="report_content" placeholder="Noi dung bao cao" class="">
+                            </div>
+                            <button type="submit" class="btn btn-danger">Bao cao sai pham</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if(session()->has('message'))
+            <div id="suces" class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+    @endif
+        <!-- end -->
         </div>
                <!-- end -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>--}}
     <script>
         $(".show-reply").hide();
@@ -118,11 +149,15 @@
                 $("#myModall").modal();
             });
         });
+        $('#suces').fadeOut(1000);
+
+
     </script>
     <script>
         $(document).ready(function (event) {
-            $('#chekc-comment').click(function (){
-
+            $('#report').click(function () {
+               $('#modal-report').modal();
+            });
         });
     </script>
     @endsection

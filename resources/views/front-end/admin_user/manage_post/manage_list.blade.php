@@ -4,6 +4,7 @@
         <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
                 <div class="card">
+                    @if($manage != '')
                     <div class="card-header">
                         <h4 class="card-title"> Simple Table</h4>
                         <a href="{{ route('add_vehicles') }}"
@@ -38,13 +39,13 @@
                                             <span>đang chờ...</span>
                                         @endif
                                     </td>
-                                    <td class="text-right">€ 99,225</td>
+                                    <td class="text-right">{{ number_format($m->price) }}</td>
                                     <td class="text-right">
                                         <a href="{{ route('edit_vehicles', $m->id) }}" class="btn btn-success btn-icon btn-sm "
                                            data-original-title="" title="">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a href="{{ route('remote', $m->id) }}" class="btn btn-danger btn-icon btn-sm "
+                                        <a onclick="return confirm('Bạn có chắc muốn xóa không ')" href="{{ route('remote', $m->id) }}" class="btn btn-danger btn-icon btn-sm "
                                            data-original-title="" title="">
                                             <i class="fa fa-times"></i>
                                         </a>
@@ -55,6 +56,20 @@
                         </table>
                     </div>
                 </div>
+                @else
+                    <div class="">
+                        <div class="card-header">
+                            <h4 class="card-title">Hãy tạo chiếc xe đầu tiền nào</h4>
+                        </div>
+                        <div clss="news_Car">
+                            <a href="http://localhost/vehicles/add_vehicles" class="float-right pull-right btn btn-success">
+                                Thêm mới xe
+                                <i class="fa fa-arrow-circle-right"></i>
+                                <div class="ripple-container"></div>
+                            </a>
+                        </div>
+                    </div>
+                @endif
             </div>
 
         </div>
