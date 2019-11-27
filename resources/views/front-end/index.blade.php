@@ -244,17 +244,20 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="tj-heading-style">
-                        <h3>Cab Collections</h3>
-                        <p>Lorem Ipsum passages, and more recently with desktop publishing software like aldus pageMaker including versions.</p>
+                        <h3>Xe Nổi Bật</h3>
+                        <h4>Những mẫu xe đang được ưa chuộng nhất năm nay</h4>
                     </div>
                 </div>
                 <div class="cab-col-outer">
                     <!--Fleet Grid Box Start-->
+                    @foreach($car as $key => $id)
                     <div class="col-md-6 col-sm-6">
                         <div class="fleet-grid-box">
                             <!--Fleet Grid Thumb Start-->
+                            <a href="{{ route('detail', $id->id) }}">
                             <figure class="fleet-thumb">
-                                <img src="{{ asset('front-end-css/images/car-fleet1.jpg')}}" alt="">
+                                <img src="{{ asset('image_upload/img_vehicle/'.$id->image )}}" height="313" alt="">
+
                                 <figcaption class="fleet-caption">
                                     <div class="price-box">
                                         <strong>$190 <span>/ day</span></strong>
@@ -262,11 +265,12 @@
                                     <span class="rated">Top Rated</span>
                                 </figcaption>
                             </figure>
+                            </a>
                             <!--Fleet Grid Thumb End-->
                             <!--Fleet Grid Text Start-->
                             <div class="fleet-info-box">
                                 <div class="fleet-info">
-                                    <h3 data-toggle="tooltip" title="2017 Chevrolet Pepe" >2017 Chevrolet Pepe</h3>
+                                    <h3 data-toggle="tooltip" title="2017 Chevrolet Pepe" >{{ $id->name }}</h3>
                                     <span class="fas fa-star"></span>
                                     <span class="fas fa-star"></span>
                                     <span class="fas fa-star"></span>
@@ -275,8 +279,8 @@
 
                                     <ul class="fleet-meta">
                                         <li><i class="fas fa-taxi"></i>Luxery</li>
-                                        <li><i class="fas fa-user-circle"></i>2 Passengers</li>
-                                        <li><i class="fas fa-tachometer-alt"></i>5.6/100 MPG</li>
+                                        <li><i class="fas fa-user-circle"></i>{{ $id->seat }} hành khách</li>
+{{--                                        <li><i class="fas fa-tachometer-alt"></i>5.6/100 MPG</li>--}}
                                     </ul>
                                 </div>
                                 <a href="fleet-grid.html" class="tj-btn2">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
@@ -284,131 +288,25 @@
                             <!--Fleet Grid Text End-->
                         </div>
                     </div>
+                    @endforeach
                     <!--Fleet Grid Box End-->
-
-                    <!--Fleet Grid Box Start-->
-                    <div class="col-md-6 col-sm-6">
-                        <div class="fleet-grid-box">
-                            <!--Fleet Grid Thumb Start-->
-                            <figure class="fleet-thumb">
-                                <img src="{{ asset('front-end-css/images/car-fleet2.jpg')}}" alt="">
-                                <figcaption class="fleet-caption">
-                                    <div class="price-box">
-                                        <strong>$240 <span>/ day</span></strong>
-                                    </div>
-                                    <span class="rated">Top Rated</span>
-                                </figcaption>
-                            </figure>
-                            <!--Fleet Grid Thumb End-->
-                            <!--Fleet Grid Text Start-->
-                            <div class="fleet-info-box">
-                                <div class="fleet-info">
-                                    <h3 title="Nissan Vela 201" data-toggle="tooltip" >Nissan Vela 201</h3>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-
-                                    <ul class="fleet-meta">
-                                        <li><i class="fas fa-taxi"></i>Luxery</li>
-                                        <li><i class="fas fa-user-circle"></i>5 Passengers</li>
-                                        <li><i class="fas fa-tachometer-alt"></i>5.6/100 MPG</li>
-                                    </ul>
-                                </div>
-                                <a href="fleet-grid.html" class="tj-btn2">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-                            </div>
-                            <!--Fleet Grid Text End-->
-                        </div>
-                    </div>
-                    <!--Fleet Grid Box End-->
-
-                    <!--Fleet Grid Box Start-->
-                    <div class="col-md-6 col-sm-6">
-                        <div class="fleet-grid-box">
-                            <!--Fleet Grid Thumb Start-->
-                            <figure class="fleet-thumb">
-                                <img src="{{ asset('front-end-css/images/car-fleet3.jpg')}}"  alt="">
-                                <figcaption class="fleet-caption">
-                                    <div class="price-box">
-                                        <strong>$185 <span>/ day</span></strong>
-                                    </div>
-                                    <span class="rated">Top Rated</span>
-                                </figcaption>
-                            </figure>
-                            <!--Fleet Grid Thumb End-->
-                            <!--Fleet Grid Text Start-->
-                            <div class="fleet-info-box">
-                                <div class="fleet-info">
-                                    <h3 data-toggle="tooltip" title="Mitshubishi Lander">Mitshubishi Lander</h3>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-
-                                    <ul class="fleet-meta">
-                                        <li><i class="fas fa-taxi"></i>Luxery</li>
-                                        <li><i class="fas fa-user-circle"></i>6 Passengers</li>
-                                        <li><i class="fas fa-tachometer-alt"></i>5.6/100 MPG</li>
-                                    </ul>
-                                </div>
-                                <a href="fleet-grid.html" class="tj-btn2">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-                            </div>
-                            <!--Fleet Grid Text End-->
-                        </div>
-                    </div>
-                    <!--Fleet Grid Box End-->
-
-                    <!--Fleet Grid Box Start-->
-                    <div class="col-md-6 col-sm-6">
-                        <div class="fleet-grid-box">
-                            <!--Fleet Grid Thumb Start-->
-                            <figure class="fleet-thumb">
-                                <img src="{{ asset('front-end-css/images/car-fleet7.jpg')}}" alt="">
-                                <figcaption class="fleet-caption">
-                                    <div class="price-box">
-                                        <strong>$210 <span>/ day</span></strong>
-                                    </div>
-                                    <span class="rated">Top Rated</span>
-                                </figcaption>
-                            </figure>
-                            <!--Fleet Grid Thumb End-->
-                            <!--Fleet Grid Text Start-->
-                            <div class="fleet-info-box">
-                                <div class="fleet-info">
-                                    <h3 data-toggle="tooltip" title="Renault Sedan">Renault Sedan</h3>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-
-                                    <ul class="fleet-meta">
-                                        <li><i class="fas fa-taxi"></i>Luxery</li>
-                                        <li><i class="fas fa-user-circle"></i>5 Passengers</li>
-                                        <li><i class="fas fa-tachometer-alt"></i>5.6/100 MPG</li>
-                                    </ul>
-                                </div>
-                                <a href="fleet-grid.html" class="tj-btn2">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-                            </div>
-                            <!--Fleet Grid Text End-->
-                        </div>
-                    </div>
-                    <!--Fleet Grid Box End-->
-
                 </div>
             </div>
         </div>
     </section>
     <!-- comment service-->
-    <section class="tj-promo-offer">
+    <section class="tj-promo-offer" style="background-attachment: fixed;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="promo-box">
-                        <h3>Explore more for less &amp; Use coupon code: <span>Prime34</span> to get 15% offer</h3>
-                        <a href="register.html">Get More Coupon <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                        <div class="offer">
+                        <h3 id="content-offer">Đăng ký nhận thông tin ưu đãi từ <span>PrimeCar</span> lên tới 50%</h3>
+                        </div>
+                        <div class="reEmail" style="animation-delay: .3s">
+                            <h3 id="">Đăng ký nhận thông tin ưu đãi từ <span>PrimeCar</span> lên tới 60%</h3>
+                        </div>
+                        <a href="javascript:;" id="regiterEmail">Đăng ký nhận thông tin  <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -485,193 +383,136 @@
     </section>
     <!--Cab Services Section End-->
     <!--Testimonials Section Start-->
-    <section class="tj-reviews">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tj-heading-style">
-                        <h3>Testimonials</h3>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-12">
-                    <!--Testimonials Slider Content Start-->
-                    <div id="testimonial-slider" class="reviews-slider">
-                        <!--Review Item Start-->
-                        <div class="review-item">
-                            <figure class="img-box">
-                                <img src="{{asset('front-end-css/images/testimonial-img1.png')}}" alt=""/>
-                            </figure>
-                            <div class="review-info">
-                                <strong>James Peter</strong>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon"></span>
-                                <div class="review-quote">
-                                    <p>Lorem Ipsum passages, and more recently with desktop publish soft like aldus
-                                        pageMaker including versions</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Review Item End-->
-                        <!--Review Item Start-->
-                        <div class="review-item">
-                            <figure class="img-box">
-                                <img src="{{asset('front-end-css/images/testimonial-img2.png')}}" alt=""/>
-                            </figure>
-                            <div class="review-info">
-                                <strong>Stefy Grafi</strong>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon"></span>
-                                <div class="review-quote">
-                                    <p>Lorem Ipsum passages, and more recently with desktop publish soft like aldus
-                                        pageMaker including versions</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Review Item End-->
-                        <!--Review Item Start-->
-                        <div class="class"></div>
-                        <div class="review-item">
-                            <figure class="img-box">
-                                <img src="{{asset('front-end-css/images/testimonial-img1.png')}}" alt=""/>
-                            </figure>
-                            <div class="review-info">
-                                <strong>James Peter</strong>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon rating"></span>
-                                <span class="icon-star-empty icomoon"></span>
-                                <div class="review-quote">
-                                    <p>Lorem Ipsum passages, and more recently with desktop publish soft like aldus
-                                        pageMaker including versions</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Review Item End-->
-                    </div>
-                    <!--Testimonials Slider Content End-->
-                </div>
-            </div>
-        </div>
-    </section>
+{{--    <section class="tj-reviews">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row">--}}
+{{--               1--}}
+
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
     <!--Testimonials Section End-->
-    <section class="tj-cal-to-action2">
+{{--    <section class="tj-cal-to-action2">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-9 col-sm-9">--}}
+{{--                    <div class="cta-tagline">--}}
+{{--                        <h2>Incredible Destinations at Incredible Deals</h2>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                <div class="col-md-3 col-sm-3">--}}
+{{--                    <div class="cta-btn">--}}
+{{--                        <a href="booking-form.html">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
+    <!--News Content Start-->
+    <section class="tj-news" style="padding:0">
         <div class="container">
             <div class="row">
-                <div class="col-md-9 col-sm-9">
-                    <div class="cta-tagline">
-                        <h2>Incredible Destinations at Incredible Deals</h2>
+                <div class="col-md-12 col-sm-12">
+                    <div class="tj-heading-style" >
+                        <h3>Tin nổi bật</h3>
+                        <p>Chúng tôi đem đến cho bạn những thông tin  mới nhất về xe.<br> Cập nhật tin tức 24/7 những vấn đề nóng hổi</p>
+                    </div>
+                </div>
+                <!--Newsbox Content Start-->
+                @foreach($show_news as $key => $news_id)@unset($show_news[$key])
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="news-box">
+                        <!--Newsbox Thumb Start-->
+                        <a href="{{ route('detail_news',$news_id->id) }}">
+                        <figure>
+                            <img src="{{    asset('image_upload/post/'.$news_id->image_posts)}}" height="245" width="360" alt=""/>
+                        </figure>
+                        </a>
+                        <!--Newsbox Thumb End-->
+                        <!--News Detail Content Start-->
+                        <div class="news-detail">
+                            <a href="{{ route('detail_news',$news_id->id) }}">
+                            <h4>{{ $news_id->title }}</h4>
+                            </a>
+                            <p>{{ $news_id->summary }}</p>
+                            <ul>
+                                <li><i class="far fa-clock"></i> Sep 19, 2018</li>
+                                <li><i class="far fa-comments"></i> 29</li>
+                            </ul>
+                        </div>
+                        <!--News Detail Content End-->
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-3">
-                    <div class="cta-btn">
-                        <a href="booking-form.html">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--News Content Start-->
-    <section class="tj-news">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="tj-heading-style">
-                        <h3>Latest News</h3>
-                        <p>Lorem Ipsum passages, and more recently with desktop publishing software like aldus pageMaker
-                            including versions.</p>
-                    </div>
-                </div>
-                <!--Newsbox Content Start-->
-                <div class="col-md-4 col-sm-6">
-                    <div class="news-box">
-                        <!--Newsbox Thumb Start-->
-                        <figure>
-                            <img src="{{asset('front-end-css/images/news_img1.jpg')}}" alt=""/>
-                        </figure>
-                        <!--Newsbox Thumb End-->
-                        <!--News Detail Content Start-->
-                        <div class="news-detail">
-                            <h4>Repeat predefined chunks</h4>
-                            <p>A more recently with desktop softy like aldo page maker repeat predefined.</p>
-                            <ul>
-                                <li><i class="far fa-clock"></i> Sep 19, 2018</li>
-                                <li><i class="far fa-comments"></i> 29</li>
-                            </ul>
-                        </div>
-                        <!--News Detail Content End-->
-                    </div>
-                </div>
+                @break($key==1)
+            @endforeach
                 <!--Newsbox Content End-->
                 <!--Newsbox Content Start-->
-                <div class="col-md-4 col-sm-6">
-                    <div class="news-box">
-                        <!--Newsbox Thumb Start-->
-                        <figure>
-                            <img src="{{asset('front-end-css/images/news_img2.jpg')}}" alt=""/>
-                        </figure>
-                        <!--Newsbox Thumb End-->
-                        <!--News Detail Content Start-->
-                        <div class="news-detail">
-                            <h4>Making it look readable</h4>
-                            <p>A more recently with desktop softy like aldo page maker repeat predefined.</p>
-                            <ul>
-                                <li><i class="far fa-clock"></i> Sep 19, 2018</li>
-                                <li><i class="far fa-comments"></i> 29</li>
-                            </ul>
-                        </div>
-                        <!--News Detail Content End-->
-                    </div>
-                </div>
+{{--                <div class="col-md-4 col-sm-6">--}}
+{{--                    <div class="news-box">--}}
+{{--                        <figure>--}}
+{{--                            <img src="{{asset('front-end-css/images/news_img2.jpg')}}" alt=""/>--}}
+{{--                        </figure>--}}
+{{--                        <div class="news-detail">--}}
+{{--                            <h4>Making it look readable</h4>--}}
+{{--                            <p>A more recently with desktop softy like aldo page maker repeat predefined.</p>--}}
+{{--                            <ul>--}}
+{{--                                <li><i class="far fa-clock"></i> Sep 19, 2018</li>--}}
+{{--                                <li><i class="far fa-comments"></i> 29</li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <!--Newsbox Content End-->
                 <!--News List Content Start-->
                 <div class="col-md-4 col-sm-12">
                     <div class="news-list">
                         <!--News Outer Content Start-->
                         <ul class="news-outer">
+                            @foreach($show_news as $key => $id_news)
                             <li>
-                                <figure>
-                                    <img src="{{asset('front-end-css/images/news_img3.jpg')}}" alt=""/>
-                                </figure>
+                                <a href="{{ route('detail_news',$id_news->id) }}">
+                                    <figure>
+                                        <img src="{{    asset('image_upload/post/'.$id_news->image_posts)}}" height="90" width="90" alt=""/>
+                                    </figure>
+                                </a>
                                 <div class="news-info">
-                                    <h4>Various versions have evole over the years</h4>
-                                    <ul class="news-meta">
-                                        <li><i class="far fa-clock"></i> Sep 19, 2018</li>
-                                        <li><i class="far fa-comments"></i> 29</li>
-                                    </ul>
-                                </div>tj-cab-collection
-                            </li>
-                            <li>
-                                <figure>
-                                    <img src="{{asset('front-end-css/images/news_img4.jpg')}}" alt=""/>
-                                </figure>
-                                <div class="news-info">
-                                    <h4>A galley of type and scrambe it to make a type</h4>
+                                    <a href="{{ route('detail_news',$id_news->id) }}">
+                                    <h4>{{ $id_news->title }}</h4>
+                                        <a href="{{ route('detail_news',$id_news->id) }}">
                                     <ul class="news-meta">
                                         <li><i class="far fa-clock"></i> Sep 19, 2018</li>
                                         <li><i class="far fa-comments"></i> 29</li>
                                     </ul>
                                 </div>
                             </li>
-                            <li>
-                                <figure>
-                                    <img src="{{asset('front-end-css/images/news_img5.jpg')}}" alt=""/>
-                                </figure>
-                                <div class="news-info">
-                                    <h4>Treatise on the theory of ethics very popular</h4>
-                                    <ul class="news-meta">
-                                        <li><i class="far fa-clock"></i> Sep 19, 2018</li>
-                                        <li><i class="far fa-comments"></i> 29</li>
-                                    </ul>
-                                </div>
-                            </li>
+                            @endforeach
+{{--                            <li>--}}
+{{--                                <figure>--}}
+{{--                                    <img src="{{asset('front-end-css/images/news_img4.jpg')}}" alt=""/>--}}
+{{--                                </figure>--}}
+{{--                                <div class="news-info">--}}
+{{--                                    <h4>A galley of type and scrambe it to make a type</h4>--}}
+{{--                                    <ul class="news-meta">--}}
+{{--                                        <li><i class="far fa-clock"></i> Sep 19, 2018</li>--}}
+{{--                                        <li><i class="far fa-comments"></i> 29</li>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <figure>--}}
+{{--                                    <img src="{{asset('front-end-css/images/news_img5.jpg')}}" alt=""/>--}}
+{{--                                </figure>--}}
+{{--                                <div class="news-info">--}}
+{{--                                    <h4>Treatise on the theory of ethics very popular</h4>--}}
+{{--                                    <ul class="news-meta">--}}
+{{--                                        <li><i class="far fa-clock"></i> Sep 19, 2018</li>--}}
+{{--                                        <li><i class="far fa-comments"></i> 29</li>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                            </li>--}}
                         </ul>
                         <!--News Outer Content End-->
                     </div>
@@ -714,7 +555,12 @@
         $("#back-to-top").click(function () {
             $("html, body").animate({scrollTop: 0}, 1000);
         })
-
+    //    animation
+        $(".reEmail").hide();
+        $('#regiterEmail').click(function () {
+            $('#content-offer').slideUp(1000);
+            $(".reEmail").show().slideDown(5000);
+        })
     </script>
     <script>
         $(document).ready(function(){

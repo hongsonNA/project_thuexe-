@@ -265,7 +265,7 @@
         <h3>Đăng ký thành viên</h3>
         <div class="form-register">
             <div class="modal-register" id="modal-register">
-                <form class="reg-frm" id="register_form" method="POST" action="{{ route('register') }}">
+                <form class="reg-frm" id="" method="POST" action="{{ route('register') }}">
                     @csrf
 
                     <div class="field-holder">
@@ -316,29 +316,8 @@
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>--}}
 <script>
-    $(document).ready(function () {
-        $("#myBtn").click(function () {
-            $("#myModal").hide();
-            $("#myModall").modal();
-        });
-    });
-</script>
-<script>
-    $(document).ready(function (event) {
-        $('#register_form').validate({
-            rules: {
-                email: {
-                    required: true,
-                    email: true,
-                }
-            },
-            message: {
-                required: "Truong nay la bat buoc",
-                email: "Email co dinh dang name@domain.com",
-            }
-        })
-    });
 </script>

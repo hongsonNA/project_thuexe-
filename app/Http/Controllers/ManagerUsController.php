@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Category;
 use App\Model\City;
 use Illuminate\Http\Request;
+use App\Http\Requests\ManagerRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Model\managerList;
@@ -15,7 +16,8 @@ class ManagerUsController extends Controller
 {
     public function manage()
     {
-        $manage = managerList::All();
+        $user_id = (Auth::user()->id);
+        $manage= DB::table('vehicles')->where('user_id','=',$user_id)->get();
         return view('front-end.admin_user.manage_post.manage_list',compact('manage'));
     }
     public function add()
@@ -47,13 +49,6 @@ class ManagerUsController extends Controller
     public function create(Request $request)
     {
         $listMul = new managerList();
-//        if ($request->hasFile('image')){
-//            $image_vechi = $request->file('image');
-//            $name_image =time().'.'.$image_vechi->getClientOriginalName();
-//            $path_image  = public_path('image_upload/img_vehicle/'.$name_image);
-//            $image_vechi->move($path_image, $name_image);
-//            $this->save();
-//        }
         $listMul->cate_id=$request->get('cate_id');
         $listMul->city_id = $request->get('city_id');
         $listMul->district_id = $request->get('district_id');
@@ -64,13 +59,14 @@ class ManagerUsController extends Controller
         if ($request->hasFile('image')) {
             $images_File = $request->file('image');
             $FileName = 'image' . '_' . time() . '.' . $images_File->extension();
-            $image_resize = Image::make($images_File->getRealPath())->resize(300, 300);
+            $image_resize = Image::make($images_File->getRealPath())->resize(300, 310);
             $image_resize->save(public_path('image_upload/img_vehicle/' . $FileName));
             $listMul->image = $FileName;
         } else {
             $listMul->image = "default_car.jpg";
         }
         $listMul->fill($request->all());
+
         $listMul->save();
         return redirect()->route('manage_list', compact('listMul'));
 
@@ -90,13 +86,6 @@ class ManagerUsController extends Controller
     {
         $listMul = new managerList();
         $listMul = managerList::find($id);
-//        if ($request->hasFile('image')){
-//            $image_vechi = $request->file('image');
-//            $name_image =time().'.'.$image_vechi->getClientOriginalName();
-//            $path_image  = public_path('image_upload/img_vehicle/'.$name_image);
-//            $image_vechi->move($path_image, $name_image);
-//            $this->save();
-//        }
         $listMul->cate_id=$request->get('cate_id');
         $listMul->city_id = $request->get('city_id');
         $listMul->district_id = $request->get('district_id');
@@ -107,11 +96,9 @@ class ManagerUsController extends Controller
         if ($request->hasFile('image')) {
             $images_File = $request->file('image');
             $FileName = 'image' . '_' . time() . '.' . $images_File->extension();
-            $image_resize = Image::make($images_File->getRealPath())->resize(300, 300);
+            $image_resize = Image::make($images_File->getRealPath())->resize(300, 310);
             $image_resize->save(public_path('image_upload/img_vehicle/' . $FileName));
             $listMul->image = $FileName;
-        } else {
-            $listMul->image = "default_car.jpg";
         }
         $listMul->fill($request->all());
 

@@ -9,19 +9,21 @@
           padding: 3px;
       }
       .fleet-grid-box .price-box strong{color:#fff;}
+      .fleet-thumb{height: 310px}
   </style>
     <section class="tj-cab-collection" style="padding: 4rem 0 80px;">
         <div class="container">
             <!-- search cate -->
             <div class="search-cate">
-                <form action="">
+                <form action="{{ route('search_cate') }}">
+                    @csrf
                     <div class="box-combo">
                         <div class="field-outer">
-                        <select name="filter_cate col" class="form-control " style="margin-bottom: 10px" id="">
+                        <select name="cate_id filter_cate col"  class="form-control " style="margin-bottom: 10px" id="">
                             <option value="">--Chọn danh mục--</option>
-                            <option value="">shopcayphongthuy.ml</option>
-                            <option value="">hongson2</option>
-                            <option value="">eqweqweqew</option>
+                            @foreach($category as $key => $id)
+                                <option value="{{ $id->id }}">{{ $id->name }}</option>
+                            @endforeach
                         </select>
                         </div>
                         <div class="field-outer">
@@ -34,16 +36,19 @@
                         </div>
                         <div class="field-outer">
 
-                            <select name="filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
+                            <select name="city_id filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
                                 <option value="">--Chọn thành phố--</option>
-                                <option value="">1</option>
-                                <option value="">2</option>
+                                @foreach($city as $key => $id)
+                                    <option id="distri" value="{{ $id->id }}" >{{ $id->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="field-outer">
-                            <div class="bt_search">
-                                <a href="#">Tìm kiếm</a>
-                            </div>
+                            <button type="submit" class="btn btn-danger">Tim kiem</button>
+{{--                            <div class="bt_search">--}}
+{{--                                <button type="submit" class="btn">Tim kiem</button>--}}
+{{--                                <a href="#" type="submit">Tìm kiếm</a>--}}
+{{--                            </div>--}}
                         </div>
                 </form>
             </div>

@@ -17,22 +17,11 @@
                     <div class="card-header">
                         <h4 class="card-title"> Thêm mới xe </h4>
                     </div>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div><br/>
-                    @endif
                     <div class="card-body col-lg-12">
                         <div class="table-responsive">
                             <form action="{{ route('create-vehicles') }}" method="POST" enctype="multipart/form-data"
                                   novalidate>
-
                                 @csrf
-                                <input type="hidden" name="user_id" value="{{ auth::user()->name }}">
                                 <input type="hidden" name="status" value="1">
                                 <div class="row" style="padding-bottom: 20px;">
                                     <div class="col-lg-7">
@@ -40,22 +29,34 @@
                                             <label for="formGroupExampleInput">Tên Xe </label>
                                             <input type="text" class="form-control" name="name" id=""
                                                    placeholder="Lamboghini">
+                                            @if($errors->first('name'))
+                                                <br><span class="text-danger">{{$errors->first('name')}}</span>
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <label for="">Gia cho thue</label>
                                             <input type="number" name="price" class="form-control" id=""
                                                    placeholder="500.000">
+                                            @if($errors->first('price'))
+                                                <br><span class="text-danger">{{$errors->first('price')}}</span>
+                                            @endif
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="">So cho </label>
                                                 <input type="number" name="seat" class="form-control" id=""
                                                        placeholder="VD: xe 4 cho" value="">
+                                                @if($errors->first('seat'))
+                                                    <br><span class="text-danger">{{$errors->first('seat')}}</span>
+                                                @endif
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="">Model </label>
                                                 <input type="number" name="model_id" class="form-control" id=""
                                                        placeholder="" value="">
+                                                @if($errors->first('model_id'))
+                                                    <br><span class="text-danger">{{$errors->first('model_id')}}</span>
+                                                @endif
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="">Danh muc</label>
@@ -65,6 +66,9 @@
                                                                 value="{{ $cate->id }}">{{ $cate->name }}</option>
                                                     @endforeach
                                                 </select>
+                                                @if($errors->first('cate_id'))
+                                                    <br><span class="text-danger">{{$errors->first('cate_id')}}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -76,6 +80,9 @@
                                                         <option id="" value="{{ $id->id }}">{{ $id->name }}</option>
                                                     @endforeach
                                                 </select>
+                                                @if($errors->first('city_id'))
+                                                    <br><span class="text-danger">{{$errors->first('city_id')}}</span>
+                                                @endif
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="">Quan huyen</label>
@@ -88,6 +95,9 @@
                                             <label for="">Dia chia chi tiet</label>
                                             <input type="text" name="address" class="form-control" id=""
                                                    placeholder="500.000">
+                                            @if($errors->first('address'))
+                                                <br><span class="text-danger">{{$errors->first('address')}}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-lg-5">
@@ -100,10 +110,16 @@
                                         <div>
                                             <input type="file" name="image" class="" id="imgInp">
                                         </div>
+                                        @if($errors->first('image'))
+                                            <br><span class="text-danger">{{$errors->first('image')}}</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <textarea name="description" id="editor1" style="margin-top: 5px"></textarea>
                                 <script>CKEDITOR.replace('editor1');</script>
+                                @if($errors->first('description'))
+                                    <br><span class="text-danger">{{$errors->first('description')}}</span>
+                            @endif
                                 <!-- check -->
                                 <div>
                                     <button type="submit" class="btn btn-info">Them Moi</button>

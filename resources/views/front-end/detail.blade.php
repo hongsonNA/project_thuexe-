@@ -12,7 +12,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="tit3 mt-md mb-xs">{{ $vechcles->name }}</div>
-                                <div style="font-weight: 500;">HOẶC TƯƠNG ĐƯƠNG</div>
+{{--                                <div style="font-weight: 500;">HOẶC TƯƠNG ĐƯƠNG</div>--}}
                                 <div class="start_car">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -68,47 +68,45 @@
                 <div class="right-info ">
                     <div class="shadow mb-xlg p-lg">
                         <div class="pr text-center">GIÁ VÀ THỦ TỤC</div>
-                        <form class="cap" id="detail-datetime">
-{{--                            <div class="form-group position-relative form-group">--}}
-{{--                                <label class=" text-sm-right pt-2">HÌNH THỨC NHẬN XE</label>--}}
-{{--                                <div class="input-form select-box ">--}}
-{{--                                    <div>--}}
-{{--                                        <select name="cruise-line">--}}
-{{--                                            <option value="dealer">Nhận xe tại đại lý</option>--}}
-{{--                                            <option value="home">Nhận xe tại nhà</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                        <form method="post" action="{{ route('booking_car') }}" class="cap" id="detail-datetime">
+                            @csrf
+                            <input type="hidden" name="vehicle_id" value="{{ $vechcles->id }}">
+                            <input type="hidden" name="city_id" value="{{ $vechcles->city_id }}">
+                            <input type="hidden" name="district_id" value="{{ $vechcles->district_id }}">
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="status" value="1">
+                            <input type="hidden" name="order_id" value="1">
                             <div class="form-group position-relative form-group">
                                 <label class=" pt-2">Thời gian nhận xe</label>
                                 <div class="box-date ">
-                                    <input class="input flatpickr-input form-control" type="text" id="rental-datetime3" name="rental-datetime3" placeholder="Ngày nhận xe" style="background: url(&quot;assets/images/icon/calendar.png&quot;) right center / 37px no-repeat;" readonly="readonly">
+                                    <input class="input flatpickr-input form-control" type="text" id="start_date" name="start_date" placeholder="Ngày nhận xe" style="" readonly="readonly">
                                 </div>
                             </div>
                             <div class="form-group position-relative form-group">
-                                <label class=" pt-2">Thời gian trả xe</label>
+                                <label class="pt-2">Thời gian trả xe</label>
                                 <div class="box-date ">
-                                    <input class="input flatpickr-input form-control" type="text" id="return-datetime3" name="return-datetime3" placeholder="Ngày trả xe" style="background: url(&quot;assets/images/icon/calendar.png&quot;) right center / 37px no-repeat;" readonly="readonly">
+                                    <input class="input flatpickr-input form-control" type="text" id="end_date" name="end_date" placeholder="Ngày trả xe" style="" readonly="readonly">
                                 </div>
                             </div>
                             <div class="form-group mb-none position-relative form-group">
                                 <label class="pt-2">CHI TIẾT GIÁ</label>
                                 <p class="form-control-static p-none">Đơn giá ngày: <span>{{ number_format($vechcles->price) }} VND</span></p>
-{{--                                <p class="form-control-static pt-none">Ngày <span>0 ngày</span></p>--}}
+                                <input type="hidden" id="peice_vehicles" value="{{$vechcles->price}}">
+{{--                                <p class="form-control-static pt-none" id="">Ngày <span>0 ngày</span></p>--}}
+                                <input type="hidden" class="calculated">
                             </div>
                             <div class="caculator">
                                 <div class="total">
                                     <div class="tong">Tong: </div>
-                                    <div class="total-price">700.000 VND</div>
+                                    <div class="total-price"></div><span>VND</span>
                                 </div>
                             </div>
                             <div class="button-sub">
-                                <button type="submit" class="btn btn-danger">Danger</button>
+                                <button type="submit" class="btn btn-info">Đăng ký</button>
                             </div>
 
                             <p class="text-center mt-lg">
-                                <a class="link" href="/">Quay lại</a>
+                                <a class="link" id="testLinkURL" href="/">Quay lại</a>
                             </p>
                         </form>
                     </div>
@@ -135,4 +133,14 @@
 {{--            </form>--}}
 {{--        </div>--}}
     </div>
+    <a href="#" id="carbooking">click</a>
+    <div id="booking-sucsess">
+        <button>ok</button>
+    </div>
+
+    @if(session()->has('alert'))
+        <div class="alert alert-success">
+            {{ session()->get('alert') }}
+        </div>
+    @endif
     @endsection

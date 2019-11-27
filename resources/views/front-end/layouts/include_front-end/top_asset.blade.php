@@ -1,5 +1,18 @@
 
 <!-- Css Files Start -->
+{{--<link href="{{asset("front-end-css/css/bootstrap.css")}}" rel="stylesheet">--}}
+{{--<link href="{{asset('front-end-css/css/style.css')}}" rel="stylesheet">--}}
+{{--<link rel="stylesheet" href="{{asset("front-end-css/css/fontawesome-all.min.css")}}">--}}
+{{--<link id="switcher" href="{{asset('front-end-css/css/color.css')}}" rel="stylesheet">--}}
+{{--<link href="{{asset('front-end-css/css/color-switcher.css')}}" rel="stylesheet">--}}
+{{--<link href="{{asset('front-end-css/css/owl.carousel.css')}}" rel="stylesheet">--}}
+{{--<link href="{{asset('front-end-css/css/responsive.css')}}" rel="stylesheet">--}}
+{{--<link href="{{asset('front-end-css/css/icomoon.css')}}" rel="stylesheet">--}}
+{{--<link href="{{asset('front-end-css/css/animate.css')}}" rel="stylesheet">--}}
+{{--<link rel="stylesheet" href="{{ asset('front-end-css/css/animate/animate.min.css') }}">--}}
+
+<!-- Link Swiper's CSS -->
+
 <link href="{{asset("front-end-css/css/bootstrap.css")}}" rel="stylesheet">
 <link href="{{asset('front-end-css/css/style.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="{{asset("front-end-css/css/fontawesome-all.min.css")}}">
@@ -10,10 +23,7 @@
 <link href="{{asset('front-end-css/css/icomoon.css')}}" rel="stylesheet">
 <link href="{{asset('front-end-css/css/animate.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('js/jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
-<link rel="stylesheet" href="{{ asset('front-end-css/css/animate/animate.min.css') }}">
-<!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="{{ asset('package/css/swiper.min.css') }}">
-
 <!-- Css Files End -->
 {{--css menu---}}
 <style>.topmenu li a {
@@ -21,6 +31,10 @@
         color: #656667;
         font-size: 14px;
     }
+    .fleet-grid-box .fleet-thumb img {
+        height: 100%;
+    }
+    .fleet-grid-box .fleet-thumb{height: 313px}
     .dropbtn {
         background-color: #4CAF50;
         color: white;

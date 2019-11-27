@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cassandra\Date;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +13,7 @@ use App\Model\City;
 use mysql_xdevapi\Table;
 use App\Model\managerList;
 use App\Model\Comments;
-
+use App\Model\CarBooking;
 class HomeController extends Controller
 {
     /**
@@ -36,7 +37,13 @@ class HomeController extends Controller
     {
         $city = city::All();
         $category = category::All();
-        return view('front-end.index', compact('category'), compact('city'));
+        $car = DB::table('vehicles')
+            ->offset(1)
+            ->take(4)
+            ->get();
+        //news
+        $show_news = Post::All();
+        return view('front-end.index', compact('category'), compact('city','car','show_news'));
     }
 
     public function about()
@@ -51,8 +58,10 @@ class HomeController extends Controller
 
     public function cate()
     {
+        $city = city::All();
+        $category = category::All();
         $list_cate = DB::table('vehicles')->paginate(10);
-        return view('front-end.category', compact('list_cate'));
+        return view('front-end.category', compact('list_cate'),compact('category','city'));
     }
 
     public function news()
@@ -117,7 +126,6 @@ class HomeController extends Controller
     {
         $data = $request->except('_token');
         $comment_post = [$data];
-        dd($comment_post);
         Comments::insert($comment_post);
 
         return back();
@@ -136,7 +144,58 @@ class HomeController extends Controller
             ->where('seat', 'like', "%$seat%")
             ->where('city_id', 'like', "%$city_id%")
             ->where('district_id', 'like', "%$district_id%")->get();
+//dd($searchQuery);
+        return view('front-end.search', compact('searchQuery'));
+    }
+    public function search_cate(Request $request)
+    {
+        $cate_id = $request->get('cate_id');
+        $seat = $request->get('seat');
+        $city_id = $request->get('city_id');
+        $searchQuery = managerList::where('cate_id', 'like', "%$cate_id%")
+            ->where('seat', 'like', "%$seat%")
+            ->where('city_id', 'like', "%$city_id%")->get();
 
         return view('front-end.search', compact('searchQuery'));
     }
+
+//    report-comment
+    public function report_comment(Request $request)
+    {
+        $report_uID = $request->get('report_uID');
+
+        $data = $request->except('_token', $report_uID);
+        $report_cm = Comments::find($report_uID);
+        $message = '';
+//        $send_port = DB::table('comments')->where('report_content','=',$report_content)
+//                                                ->where('user_id','=',$report_uID)
+//                                                ->where('status','=',$status);
+        if ($report_cm->update($data)) {
+            $message = 'Đã báo cáo vi pham ';
+        }
+
+        return redirect()->back()->with('message', $message);
+    }
+    //======booking-car=======
+    public function booking_car(Request $request)
+    {
+//        $vechicle_id = $request->get('vechicle_id');
+//        $user_id = $request->get(Auth::user()->id);
+//        $status = $request->get('status');
+//        $city_id = $request->get('city_id');
+//        $start_date = $request->get('start_date');
+//        $end_date = $request->get('end_date');
+        $data = $request->except('_token');
+        $save_res = [$data];
+
+        $alert = '';
+        if ( CarBooking::insert($save_res)){
+            $alert = "Đăng ký thông tin thành công";
+        }
+        return back()->with('alert',$alert);
+    }
+//    show news home
+
+
+
 }
