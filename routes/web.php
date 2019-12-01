@@ -12,13 +12,13 @@ Route::get('/news', 'HomeController@news')->name('news');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 Route::get('/support', 'HomeController@support')->name('support');
 Route::get('/admin_us','HomeController@admin_us')->name('admin_us');
-Route::get('{id}/detail','HomeController@detail')->name('detail');
+Route::get('detail/{id}','HomeController@detail')->name('detail');
 //detailNews
 Route::post('report_comment','HomeController@report_comment')->name('report_comment');
 Route::get('{id}/detail_news','HomeController@detail_news')->name('detail_news');
-Route::post('post_comment','HomeController@post_comment')->name('post_comment');
+Route::post('/{id}/post_comment','HomeController@post_comment')->name('post_comment');
 //=======Dang ky thong tin xe=======
-Route::post('booking_car','HomeController@booking_car')->name('booking_car');
+Route::post('/{id}/booking_car','HomeController@booking_car')->name('booking_car');
 //update_account_user
 Route::post('/{id}/update_account', 'HomeController@update_account')->name('update_account');
 //end////
@@ -36,6 +36,9 @@ Route::group(['prefix'=> 'vehicles'], function (){
     //get district
     Route::get('states/{id}','ManagerUsController@states')->name('states');
     Route::get('states_update/{id}','ManagerUsController@states_update')->name('states_update');
+    //waiting car and carBooking
+    Route::get('waiting','ManagerUsController@waiting_car')->name('waiting');
+    Route::get('booking','ManagerUsController@carBooking')->name('booking');
 });
 
 //---search

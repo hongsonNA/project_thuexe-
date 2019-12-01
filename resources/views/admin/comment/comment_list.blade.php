@@ -33,11 +33,13 @@
                                     </thead>
 
                                     <tbody>
+
                                     @foreach($comments as $key => $id)
+{{--                                        @dd($id)--}}
                                         <tr>
                                             <input type="hidden" name="status" value="1">
                                             <td>{{ $id->id }}</td>
-                                            <td>{{ $id->user_id }}</td>
+                                            <td>{{ $id['user']['name'] }}</td>
                                             <td>{{ $id->report_content }}</td>
                                             <td class="text-right">
                                                 <a href="#" id="show_comment">xem binh luan</a>
@@ -46,7 +48,7 @@
                                             </td>
                                         </tr>
                                         @endforeach
-                                    {{ $comment->links() }}
+{{--                                    {{ $comment->links() }}--}}
                                     </tbody>
                                 </table>
                             </div>

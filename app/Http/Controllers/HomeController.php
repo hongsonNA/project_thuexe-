@@ -111,8 +111,9 @@ class HomeController extends Controller
 
     public function detail($id)
     {
+        $comment = Comments::all();
         $vechcles = managerList::find($id);
-        return view('front-end.detail', compact('vechcles'));
+        return view('front-end.detail', compact('vechcles','comment'));
     }
 
     public function detail_news($id)
@@ -122,11 +123,18 @@ class HomeController extends Controller
         return view('front-end.detail_news', compact('post'), compact('comment'));
     }
 
-    public function post_comment(Request $request)
+    public function post_comment(Request $request, $id)
     {
-        $data = $request->except('_token');
-        $comment_post = [$data];
-        Comments::insert($comment_post);
+
+        $posts = new Comments();
+        $com_post = Post::find($id);
+        $posts->post_id = $id;
+        $posts->user_id = (Auth::user()->id);
+        $posts->status = $request->get('status','1');
+        $posts->content = $request->get('content');
+        dd($posts);
+        //        $data = $request->except('_token');
+        $posts->fill($request->all());
 
         return back();
     }
@@ -155,13 +163,13 @@ class HomeController extends Controller
         $searchQuery = managerList::where('cate_id', 'like', "%$cate_id%")
             ->where('seat', 'like', "%$seat%")
             ->where('city_id', 'like', "%$city_id%")->get();
-
         return view('front-end.search', compact('searchQuery'));
     }
 
 //    report-comment
     public function report_comment(Request $request)
     {
+
         $report_uID = $request->get('report_uID');
 
         $data = $request->except('_token', $report_uID);
@@ -174,25 +182,36 @@ class HomeController extends Controller
             $message = 'Đã báo cáo vi pham ';
         }
 
-        return redirect()->back()->with('message', $message);
+        return redirect()->back()->with('message[', $message);
     }
     //======booking-car=======
-    public function booking_car(Request $request)
+    public function booking_car(Request $request, $id)
     {
-//        $vechicle_id = $request->get('vechicle_id');
-//        $user_id = $request->get(Auth::user()->id);
-//        $status = $request->get('status');
-//        $city_id = $request->get('city_id');
-//        $start_date = $request->get('start_date');
-//        $end_date = $request->get('end_date');
-        $data = $request->except('_token');
-        $save_res = [$data];
+
+        $getList = new CarBooking();
+        $book = managerList::find($id);
+
+        $all = [
+            $getList->vehicle_id   =   $book->id,
+            $getList->city_id       =   $book->city_id,
+            $getList->district_id   =   $book->district_id
+        ];
+        $getList->vehicle_id = $id;
+        $getList->user_id = (Auth::user()->id);
+        $getList->status = $request->get('status','1');
+        $getList->order_id = $request->get('order_id','1');
+        $getList->start_date = $request->get('start_date');
+        $getList->end_date = $request->get('end_date');
+        $getList->fill($request->all());
 
         $alert = '';
-        if ( CarBooking::insert($save_res)){
+        if ($getList->save()){
             $alert = "Đăng ký thông tin thành công";
         }
         return back()->with('alert',$alert);
+
+
+
     }
 //    show news home
 

@@ -43,10 +43,9 @@
 
         <div class="area-comment">
             <div>
-            <form method="post" action="{{ route('post_comment') }}" id="comment">
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                <input type="hidden" name="post_id" value="{{ $post->id }}">
-                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+            <form method="post" action="{{ route('post_comment', $post->id) }}" id="comment">
+{{--                <input type="hidden" name="post_id" value="{{ $post->id }}">--}}
+{{--                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">--}}
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Để lại ý kiến của bạn</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" name="content" id="content" rows="4"></textarea>
@@ -56,7 +55,7 @@
                     <div class="request-login">
                         <p>
                             bình luận bài viết:{{ $post->title }}
-                            (Lưu ý: bình luận của bạn sẽ được quản trị xác thực trước khi hiện thị )
+{{--                            (Lưu ý: bình luận của bạn sẽ được quản trị xác thực trước khi hiện thị )--}}
                         </p>
                     </div>
                 @else

@@ -28,7 +28,6 @@ class CreateVehiclesTable extends Migration
             $table->integer('district_id');
             $table->string('image');
             $table->integer('status');
-            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }
