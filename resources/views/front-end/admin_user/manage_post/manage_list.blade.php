@@ -6,24 +6,27 @@
                 <div class="card">
                     @if($manage != '')
                     <div class="card-header">
-                        <h4 class="card-title"> Simple Table</h4>
+                        <h4 class="card-title">Quản lý xe</h4>
+                        <div class="box-search">
                         <a href="{{ route('add_vehicles') }}"
                            class="float-right pull-right btn btn-success">
                             Thêm mới xe
                             <i class="fa fa-arrow-circle-right"></i>
                             <div class="ripple-container"></div>
                         </a>
+                            
+                        </div>
                     </div>
                     <div class="card-body">
                         <table class="table">
                             <thead class="text-primary">
                             <tr>
                                 <th class="text-center">#</th>
-                                <th>Name</th>
-                                <th>Image</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-right">Salary</th>
-                                <th class="text-right">Actions</th>
+                                <th>Tên Xe</th>
+                                <th>Hình ảnh</th>
+                                <th class="text-center">Trạng thái</th>
+                                <th class="text-right">Giá tiền</th>
+                                <th class="text-right">Thao tác</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -36,7 +39,7 @@
                                     </td>
                                     <td class="text-center">
                                         @if($m->status == 1)
-                                            <span>đang chờ...</span>
+                                            <span>Chưa đặt</span>
                                         @endif
                                     </td>
                                     <td class="text-right">{{ number_format($m->price) }}</td>
