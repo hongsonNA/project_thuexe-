@@ -7,12 +7,6 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm">
                     @if(isset(Auth::user()->email))
-                        {{--                        <li class="order-check">--}}
-                        {{--                            <a href="#">--}}
-                        {{--                                <i class="fa fa-pencil-square-o"></i>--}}
-                        {{--                                Đăng ký cho thuê xe--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
                         <li class="nav-item">
                             <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                                class="nav-link dropdown-toggle">
@@ -59,44 +53,19 @@
                     @else
                         {{--                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp--}}
                         {{--                                cho thuê </a></li>--}}
-                        <li class="account-login" data-toggle="modal" data-target="#myModal"><a href="javascript:;"><i
+                        <li class="account-login" data-toggle="modal" data-target="#login">
+                            <a href="javascript:;"><i
                                     class="fa fa-sign-in"></i> Đăng nhập
-                            </a></li>
-                        <li class="account-register"><a id="myBtn" href="javascript:;"><i class="fa fa-key"></i> Đăng ký
-                            </a></li>
+                            </a>
+                        </li>
+                        <li class="account-register" data-toggle="modal" data-target="#register">
+                            <a href="javascript:;">
+                                <i class="fa fa-key"></i> Đăng ký
+                            </a>
+                        </li>
                     @endif
 
                 </ul>
-                <div class="show-mobile hidden-lg hidden-md">
-                    <div class="quick-user">
-                        <div class="quickaccess-toggle">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <div class="inner-toggle">
-                            <ul class="login links">
-                                <li>
-                                    <a href="/dang-ky.html"><i class="fa fa-sign-in"></i> Đăng ký</a>
-                                </li>
-                                <li>
-                                    <a href="/dang-nhap.html"><i class="fa fa-key"></i> Đăng nhập</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="quick-access">
-                        <div class="quickaccess-toggle">
-                            <i class="fa fa-list"></i>
-                        </div>
-                        <div class="inner-toggle">
-                            <ul class="links">
-                                <li><a id="mobile-wishlist-total" href="/kiem-tra-don-hang.html" class="wishlist"><i
-                                            class="fa fa-pencil-square-o"></i> Kiểm tra đơn hàng</a></li>
-                                <li><a href="/gio-hang.html" class="shoppingcart"><i class="fa fa-shopping-cart"></i>
-                                        Giỏ hàng</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -171,7 +140,8 @@
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('cate') }}" class="" aria-haspopup="true" aria-expanded="false">Danh mục</a>
+                                    <a href="{{ route('cate') }}" class="" aria-haspopup="true" aria-expanded="false">Danh
+                                        mục</a>
                                 </li>
 
                                 <li><a href="{{ route('news') }}">Tin Tức</a>
@@ -203,15 +173,10 @@
     </div>
 </header>
 
-{{--<div class="modall">--}}
-{{--    <div class="col-md-6 col-sm-6">--}}
-{{--      --}}
-{{--    </div>--}}
-{{--</div>--}}
 
 <!-- /HEADER -->
 <!-- FORM LOGIN -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="login" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -233,7 +198,7 @@
                     <div class="field-holder">
                         <span class="fas fa-lock"></span>
                         <input type="password" name="password"
-                               placeholder="password" class="@error('password') is-invalid @enderror">
+                               placeholder="Mật khẩu" class="@error('password') is-invalid @enderror">
                     </div>
                     @error('password')
                     <label class="error_login">
@@ -241,15 +206,9 @@
                     </label>
                     @enderror
 
-                    <div style="display: flex;justify-content: space-between">
-                        <a href="#" class="forget-pass">Quên mật khẩu?</a>
-                        <a href="javascript:;" id="myBtn" class="forget-pass">Đăng ký thành viên </a>
-                        {{--                       <button type="button" class="btn btn-info btn-lg" id="myBtn">Open Modal</button>--}}
-                    </div>
-                    <button type="submit" id="login_submit" class="reg-btn">Login <i class="fa fa-arrow-circle-right"
-                                                                                     aria-hidden="true"></i></button>
-                    {{--                   <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
-                    {{--                   <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+                    <button type="submit" id="login_submit" class="reg-btn">Login
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                    </button>
                 </form>
             </div>
         </div>
@@ -259,7 +218,7 @@
 
 <!-- form register -->
 <!-- Modal -->
-<div class="modal fade" id="myModall" role="dialog">
+<div class="modal fade" id="register" role="dialog">
     <div class="modal-dialog subcribe">
         <!-- Modal content-->
         <h3>Đăng ký thành viên</h3>
@@ -271,7 +230,7 @@
                     <div class="field-holder">
                         <span class="far fa-user"></span>
                         <input type="text" name="name" value="{{ old('name') }}"
-                               placeholder="User_name" class="@error('name') is-invalid @enderror">
+                               placeholder="Họ và Tên" class="@error('name') is-invalid @enderror">
                     </div>
                     @error('name')
                     <label class="error_login">
@@ -291,7 +250,7 @@
                     <div class="field-holder">
                         <span class="fas fa-lock"></span>
                         <input type="password" name="password"
-                               placeholder="password" class="@error('password') is-invalid @enderror">
+                               placeholder="Mật khẩu" class="@error('password') is-invalid @enderror">
                     </div>
                     @error('password')
                     <label class="error_login">
@@ -301,23 +260,13 @@
                     <div class="field-holder">
                         <span class="fas fa-lock"></span>
                         <input type="password" name="password_confirmation"
-                               placeholder="password confirmation">
+                               placeholder="Nhập lại mật khẩu">
                     </div>
-                    <label for="terms">
-                        <input type="checkbox" name="terms" id="terms">
-                        I accept terms & conditions
-                    </label>
-                    <button type="submit" class="reg-btn">Đăng ký <i class="fa fa-arrow-circle-right"
-                                                                     aria-hidden="true"></i></button>
-                    {{--                    <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
-                    {{--                    <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+                    <button type="submit" class="reg-btn">Đăng ký
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>--}}
-<script>
-</script>
