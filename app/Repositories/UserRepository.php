@@ -55,7 +55,7 @@ class UserRepository implements VehicelRepositoryInterface
             $images_File = $request->file('image');
             $FileName = 'image_user' . '_' . time() . '.' . $images_File->extension();
             $image_resize = Image::make($images_File->getRealPath())->resize(300, 300);
-            $image_resize->save(public_path('image_upload/user/' . $FileName));
+            $image_resize->save('image_upload/user/' . $FileName);
             $user->image = $FileName;
         } else {
             $user->image = "default.jpg";
@@ -92,7 +92,7 @@ class UserRepository implements VehicelRepositoryInterface
                 $images_File = $request->file('image');
                 $FileName = 'image_user' . '_' . time() . '.' . $images_File->extension();
                 $image_resize = Image::make($images_File->getRealPath())->resize(300, 300);
-                $image_resize->save(public_path('image_upload/user/' . $FileName));
+                $image_resize->save('image_upload/user/' . $FileName);
                 $user->image = $FileName;
             }
             $user->fill($request->all());
