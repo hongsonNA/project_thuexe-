@@ -8,7 +8,7 @@
             @if(session('mess_add'))
                 <script>
                     setTimeout(function () {
-                        $('#success_cate').fadeOut(5000)
+                        $('#success_cate').slideUp(5000)
                     });
                 </script>
 
@@ -22,7 +22,7 @@
             @if(session('mess_update'))
                 <script>
                     setTimeout(function () {
-                        $('#success_cate').fadeOut(5000)
+                        $('#success_cate').slideUp(5000)
                     });
                 </script>
 
@@ -42,7 +42,7 @@
                                 <i class="material-icons">category</i>
                             </div>
                             <h4 class="card-title">Danh sách danh mục</h4>
-                            <a href="{{ route('category_create') }}" class="pull-right btn btn-success">Thêm mới danh mục
+                            <a href="{{ route('category_create') }}" class="float-right pull-right btn btn-success">Thêm mới danh mục
                                 <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -59,7 +59,7 @@
                                         <th>Name</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
 
@@ -100,7 +100,7 @@
                     {data: 'name', name: 'name'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'updated_at', name: 'updated_at'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                    {data: 'action', name: 'action', orderable: false, searchable: false, className: "text-right"}
                 ]
             });
         });

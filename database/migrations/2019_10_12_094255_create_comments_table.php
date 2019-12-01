@@ -17,7 +17,10 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->text('content');
             $table->integer('user_id');
-            $table->integer('vehicel_id');
+            $table->integer('post_id')->nullable();
+            $table->integer('vehicle_id')->nullable();
+            $table->string('report_content')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

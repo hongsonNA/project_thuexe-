@@ -15,17 +15,9 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
-            $table->integer('vehicel_id');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->integer('drive_id');
-            $table->float('total', 8, 2);
-            $table->integer('city_id');
-            $table->integer('district_id');
-            $table->text('note');
+            $table->float('total');
+            $table->text('rate')->nullable();
             $table->integer('status');
-            $table->integer('check_driver');
             $table->timestamps();
         });
     }

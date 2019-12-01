@@ -11,14 +11,20 @@ class Post extends Model
 
     protected $fillable = [
         'title',
-        'brief_news',
+        'summary',
         'content',
         'status',
-        'image_news'
+        'image_news',
+        'cate_id'
     ];
 
     public function user()
     {
         return $this->belongsTo('App\Model\User', 'user_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Model\Category', 'cate_id');
     }
 }

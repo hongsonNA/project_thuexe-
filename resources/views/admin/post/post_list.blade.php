@@ -5,34 +5,34 @@
     <div class="content">
         <div class="container-fluid">
 
-            {{--            @if(session('mess_add'))--}}
-            {{--                <script>--}}
-            {{--                    setTimeout(function () {--}}
-            {{--                        $('#success_cate').fadeOut(5000)--}}
-            {{--                    });--}}
-            {{--                </script>--}}
+            @if(session('mess_add'))
+                <script>
+                    setTimeout(function () {
+                        $('#success_cate').slideUp(5000)
+                    });
+                </script>
 
-            {{--                <div class="alert alert-success" id="success_cate">--}}
-            {{--                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
-            {{--                        <i class="material-icons">close</i>--}}
-            {{--                    </button>--}}
-            {{--                    <span>{{ session('mess_add') }}</span>--}}
-            {{--                </div>--}}
-            {{--            @endif--}}
-            {{--            @if(session('mess_update'))--}}
-            {{--                <script>--}}
-            {{--                    setTimeout(function () {--}}
-            {{--                        $('#success_cate').fadeOut(5000)--}}
-            {{--                    });--}}
-            {{--                </script>--}}
+                <div class="alert alert-success" id="success_cate">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <span>{{ session('mess_add') }}</span>
+                </div>
+            @endif
+            @if(session('mess_update'))
+                <script>
+                    setTimeout(function () {
+                        $('#success_cate').slideUp(5000)
+                    });
+                </script>
 
-            {{--                <div class="alert alert-success" id="success_cate">--}}
-            {{--                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
-            {{--                        <i class="material-icons">close</i>--}}
-            {{--                    </button>--}}
-            {{--                    <span>{{ session('mess_update') }}</span>--}}
-            {{--                </div>--}}
-            {{--            @endif--}}
+                <div class="alert alert-success" id="success_cate">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <span>{{ session('mess_update') }}</span>
+                </div>
+            @endif
 
             <div class="row">
                 <div class="col-md-12 ml-auto mr-auto">
@@ -42,7 +42,8 @@
                                 <i class="material-icons">panorama</i>
                             </div>
                             <h4 class="card-title">Danh sách bài viết</h4>
-                            <a href="{{ route('post_add') }}" class="pull-right btn btn-success">Thêm mới bài viết
+                            <a href="{{ route('post_add') }}" class="float-right pull-right btn btn-success">Thêm mới
+                                bài viết
                                 <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -55,33 +56,17 @@
                                        style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th width="50px">No</th>
-                                        <th>Tiêu Đề</th>
-                                        <th>Tin Văn Tắt</th>
-                                        <th>Hình Ảnh</th>
-                                        <th>Tác Giả</th>
-                                        <th>Trạng thái</th>
-                                        <th>Ngày Đăng</th>
-                                        <th>Ngày Sửa</th>
-                                        <th class="text-center">Action</th>
+                                        <th width="50px">STT</th>
+                                        <th width="200px">Tiêu đề</th>
+                                        <th width="220px">Tin vắn tắt</th>
+                                        <th width="110px">Ảnh</th>
+                                        <th width="90px">Tác giả</th>
+                                        <th width="100px">Trạng thái</th>
+                                        <th class="text-right">Hành động</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
-
-                                        @foreach($post as $p)
-                                        <tr>
-                                            <td>{{$p->id}}</td>
-                                            <td>{{$p->title}}</td>
-                                            <td>{{$p->brief_news}}</td>
-                                            <td>{{$p->image_news}}</td>
-                                            <td>{{ $p['user']['name'] }}</td>
-                                            <td>{{$p->status}}</td>
-                                            <td>{{$p->create_at}}</td>
-                                            <td>{{$p->update_at}}</td>
-                                        </tr>
-                                        @endforeach
-
 
                                     </tbody>
                                 </table>
@@ -94,30 +79,51 @@
     </div>
 
 
-    {{--    <script src="//code.jquery.com/jquery.js"></script>--}}
-    {{--    <script>--}}
-    {{--        $(document).ready(function () {--}}
-    {{--            $('#datatables').DataTable({--}}
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#datatables').DataTable({
 
-    {{--                // "lengthMenu": true,--}}
-    {{--                pageLength: 0,--}}
-    {{--                lengthMenu: [5, 10, 20, 50],--}}
-    {{--                order: [[0, 'desc']],--}}
-    {{--                processing: true,--}}
-    {{--                serverSide: true,--}}
-    {{--                ajax: {--}}
-    {{--                    url: '/dashboard/category/allCategory',--}}
+                // "lengthMenu": true,
+                pageLength: 0,
+                lengthMenu: [5, 10, 20, 50],
+                order: [[0, 'desc']],
+                processing: true,
+                serverSide: true,
+                "autoWidth": true,
+                ajax: {
+                    url: '/dashboard/posts/allPost',
 
-    {{--                },--}}
-    {{--                columns: [--}}
-    {{--                    {data: 'id', name: 'id'},--}}
-    {{--                    {data: 'name', name: 'name'},--}}
-    {{--                    {data: 'created_at', name: 'created_at'},--}}
-    {{--                    {data: 'updated_at', name: 'updated_at'},--}}
-    {{--                    {data: 'action', name: 'action', orderable: false, searchable: false}--}}
-    {{--                ]--}}
-    {{--            });--}}
-    {{--        });--}}
+                },
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'title', name: 'title'},
+                    {data: 'summary', name: 'summary'},
+                    {
+                        data: 'image_posts', name: 'image_posts',
+                        render: function (data, type, full, meta) {
+                            return "<img src=\"/image_upload/post/" + data + "\" width=\"100\" style=\"border-radius: 8px;\" />";
+                        }
+                    },
+                    {data: 'user_id', name: 'user_id', className: "text-capitalize"},
+                    {
+                        data: 'status',
+                        render: function (status) {
 
-    {{--    </script>--}}
+                            if (status === "1") {
+                                return '<button class=\"btn btn-success button disabled btn-sm\" disabled>enable</button>';
+                            } else {
+                                return '<button class=\"btn btn-behance button disabled btn-sm\" disabled>disable</button>';
+
+                            }
+
+                        }
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false, className: "text-right"}
+                ],
+
+            });
+
+        });
+    </script>
 @endsection

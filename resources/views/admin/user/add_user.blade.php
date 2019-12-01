@@ -2,119 +2,180 @@
 @section('title', 'Thêm mới tài khoản')
 
 @section('content')
+
     <div class="content">
 
-        <div class="container-fluid">
-
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header card-header-icon card-header-success">
-                            <div class="card-icon">
-                                <i class="material-icons">perm_identity</i>
+        <div class="container-fluid" id="v_user">
+            <form action="{{ route('user_create') }}" method="post" enctype="multipart/form-data" novalidate>
+                @csrf
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header card-header-icon card-header-success">
+                                <div class="card-icon">
+                                    <i class="material-icons">perm_identity</i>
+                                </div>
+                                <h4 class="card-title"> Thêm mới tài khoản </h4>
                             </div>
-                            <h4 class="card-title"> Thêm mới tài khoản </h4>
-                        </div>
-                        <div class="card-body">
-                            <form>
+                            <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <label class="col-sm-2 col-form-label lg_em_pa">
+                                        Họ và tên <strong style="color: red">*</strong>
+                                    </label>
+                                    <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Company (disabled)</label>
-                                            <input type="text" class="form-control" disabled="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Username</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Email address</label>
-                                            <input type="email" class="form-control">
+                                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                            @if($errors->first('name'))
+                                                <span class="text-danger">{{$errors->first('name')}}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Fist Name</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Last Name</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Adress</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">City</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Country</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Postal Code</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>About Me</label>
-                                            <div class="form-group bmd-form-group">
-                                                <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so
-                                                    thirsty, I'm in that two seat Lambo.</label>
-                                                <textarea class="form-control" rows="5"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-success pull-right">Update Profile</button>
-                                <div class="clearfix"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-profile">
-                        <div class="card-avatar">
-                            <img class="img" src="../../assets/img/faces/marc.jpg">
-                        </div>
-                        <div class="card-body">
-                            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-                            <h4 class="card-title">Alec Thompson</h4>
-                            <p class="card-description">
-                                Don't be scared of the truth because we need to restart the human foundation in truth
-                                And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label lg_em_pa">
+                                        Email <strong style="color: red">*</strong>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <div class="form-group bmd-form-group">
+                                            <input type="text" class="form-control" name="email" value="{{ old('email') }}">
+                                            @if($errors->first('email'))
+                                                <span class="text-danger">{{$errors->first('email')}}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label lg_em_pa">
+                                        Số CMND <strong style="color: red">*</strong>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <div class="form-group bmd-form-group">
+                                            <input type="text" class="form-control" name="identity_card" value="{{ old('identity_card') }}">
+                                            @if($errors->first('identity_card'))
+                                                <span class="text-danger">{{$errors->first('identity_card')}}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label lg_em_pa">
+                                        Số điện thoại <strong style="color: red">*</strong>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <div class="form-group bmd-form-group">
+                                            <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+                                            @if($errors->first('phone'))
+                                                <span class="text-danger">{{$errors->first('phone')}}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label lg_em_pa">
+                                        Địa chỉ <strong style="color: red">*</strong>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <div class="form-group bmd-form-group">
+                                            <input type="text" class="form-control" name="address" value="{{ old('address') }}">
+                                            @if($errors->first('address'))
+                                                <span class="text-danger">{{$errors->first('address')}}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label lg_em_pa">
+                                        Mật khẩu <strong style="color: red">*</strong>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <div class="form-group bmd-form-group">
+                                            <input type="password" class="form-control" name="password" value="{{ old('password') }}">
+                                            @if($errors->first('password'))
+                                                <span class="text-danger">{{$errors->first('password')}}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label lg_em_pa">
+                                        Xác nhận mật khẩu <strong style="color: red">*</strong>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <div class="form-group bmd-form-group">
+                                            <input type="password" class="form-control" name="password_confirmation">
+                                            @if($errors->first('password_confirmation'))
+                                                <span class="text-danger">{{$errors->first('password_confirmation')}}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label lg_em_pa">
+                                        Quyền user
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <div class="form-check-inline col-form-label">
+                                            <label class="form-check-label">
+                                                <input type="radio" checked class="form-check-input" name="role" value="1">
+                                                User
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check-inline col-form-label">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="role" value="9">
+                                                Admin
+                                            </label>
+                                        </div>
+
+                                        @if($errors->first('status'))
+                                            <br><span class="text-danger">{{$errors->first('status')}}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-success pull-right">Thêm Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="margin-top: 140px">
+                        <div class="card card-profile">
+                            <div class="fileinput fileinput-new text-center fileinput_user" data-provides="fileinput"
+                                 style="margin-top: 20px;">
+                                <h5 style="font-weight: bold"> IMAGE PROFILE </h5>
+                                <div class="fileinput-new thumbnail">
+                                    <img src="/image_upload/user/{{ Auth::user()->image }}" width="250px"
+                                         height="145px">
+                                </div>
+                                @if($errors->first('image'))
+                                    <div class="text-danger col-md-12">{{$errors->first('image')}}</div>
+                                @endif
+                                <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                <div>
+                          <span class="btn btn-success btn-sm btn-round btn-file">
+                            <span class="fileinput-new">Select image</span>
+                            <span class="fileinput-exists">Change</span>
+                            <input type="hidden"><input type="file" name="image" value="{{ old('image') }}">
+                          <div class="ripple-container"></div></span>
+                                    <a href="#pablo" class="btn btn-danger btn-sm btn-round fileinput-exists"
+                                       data-dismiss="fileinput">
+                                        <i class="fa fa-times"></i> Remove
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-    </div>
 
+    </div>
 @endsection

@@ -7,42 +7,62 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm">
                     @if(isset(Auth::user()->email))
-                        <li class="order-check">
-                            <a href="#">
-                                <i class="fa fa-pencil-square-o"></i>
-                                Đăng ký cho thuê xe
-                            </a>
-                        </li>
+                        {{--                        <li class="order-check">--}}
+                        {{--                            <a href="#">--}}
+                        {{--                                <i class="fa fa-pencil-square-o"></i>--}}
+                        {{--                                Đăng ký cho thuê xe--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
                         <li class="nav-item">
-                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                <img src="https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png" class="Profile">&nbsp;
+                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                               class="nav-link dropdown-toggle">
+                                <img src="https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png"
+                                     class="Profile">&nbsp;
                                 <span class="admin-name">{{Auth::user()->name}}</span>
                                 <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                             </a>
                             <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-
+                                @if(!Auth::check() || Auth::user()->role == '1' || Auth::user()->role == '2')
+                                    <li>
+                                        <a href="{{ route('manage_list') }}">
+                                            <span class="edu-icon edu-user-rounded author-log-ic"></span>
+                                            Quản lý xe
+                                        </a>
+                                    </li>
+                                @elseif(!Auth::check() || Auth::user()->role == '9' || Auth::user()->role == '10')
+                                    <li>
+                                        <a href="{{ route('dashboard') }}">
+                                            <span class="edu-icon edu-user-rounded author-log-ic"></span>
+                                            Dashboard
+                                        </a>
+                                    </li>
+                                @endif
                                 <li>
                                     <a href="{{ route('profile') }}">
                                         <span class="edu-icon edu-user-rounded author-log-ic"></span>
                                         My Profile
                                     </a>
+                                </li>
                                 <li>
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <span class="edu-icon edu-locked author-log-ic"></span>
                                         Log Out
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
                                         @csrf
                                     </form>
                                 </li>
                             </ul>
                         </li>
                     @else
-                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp
-                                cho thuê </a></li>
-                        <li class="account-login"><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Đăng nhập
+                        {{--                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp--}}
+                        {{--                                cho thuê </a></li>--}}
+                        <li class="account-login" data-toggle="modal" data-target="#myModal"><a href="javascript:;"><i
+                                    class="fa fa-sign-in"></i> Đăng nhập
                             </a></li>
-                        <li class="account-register"><a href="{{ route('register') }}"><i class="fa fa-key"></i> Đăng ký
+                        <li class="account-register"><a id="myBtn" href="javascript:;"><i class="fa fa-key"></i> Đăng ký
                             </a></li>
                     @endif
 
@@ -81,7 +101,7 @@
         </div>
     </div>
 </section>
-<header class="tj-header">
+<header class="tj-header" style="z-index: 99999;">
     <!--Header Content Start-->
     <div class="container">
         <div class="row">
@@ -144,30 +164,30 @@
                         <!-- Navigation Content Start -->
                         <div class="collapse navbar-collapse" id="tj-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                <li class="dropdown"><a href="/" class="dropdown-toggle" data-toggle="dropdown"
                                                         role="button" aria-haspopup="true"
-                                                        aria-expanded="false">Home</a>
+                                                        aria-expanded="false">Trang chủ</a>
 
-                                </li>
-                                <li>
-                                    <a href="{{ route('about') }}">About</a>
-                                </li>
-
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                        role="button" aria-haspopup="true" aria-expanded="false">Category<i
-                                            class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ route('cate') }}">Xe du lịch</a></li>
-                                        <li><a href="services.html">Xe cưới </a></li>
-                                    </ul>
-                                </li>
-
-                                <li ><a href="{{ route('news') }}">News</a>
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('contact') }}">Contact</a>
+                                    <a href="{{ route('cate') }}" class="" aria-haspopup="true" aria-expanded="false">Danh mục</a>
                                 </li>
+
+                                <li><a href="{{ route('news') }}">Tin Tức</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('contact') }}">Phản hồi</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('support') }}">dịch vụ cứu hộ</a>
+
+                                </li>
+                                <li>
+                                    <a href="{{ route('about') }}">Giới thiệu</a>
+                                </li>
+
 
                             </ul>
                         </div>
@@ -175,11 +195,129 @@
                     </nav>
                     <!--Menu Holder End-->
                     <div class="book_btn">
-                        <a href="#">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                        {{--                        <a href="#">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>--}}
                     </div>
                 </div><!--Nav Holder End-->
             </div>
         </div>
     </div>
 </header>
+
+{{--<div class="modall">--}}
+{{--    <div class="col-md-6 col-sm-6">--}}
+{{--      --}}
+{{--    </div>--}}
+{{--</div>--}}
+
 <!-- /HEADER -->
+<!-- FORM LOGIN -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-login">
+                <h3>Đăng nhập thành viên </h3>
+                <form class="login-frm" method="POST" onsubmit="return checkLogin();" action="{{ route('login') }}"
+                      novalidate>
+                    @csrf
+                    <div class="field-holder">
+                        <span class="far fa-envelope"></span>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}"
+                               placeholder="Email" class="@error('email') is-invalid @enderror">
+                    </div>
+                    @error('email')
+                    <label class="error_login">
+                        <strong>{{ $message }}</strong>
+                    </label>
+                    @enderror
+                    <div class="field-holder">
+                        <span class="fas fa-lock"></span>
+                        <input type="password" name="password"
+                               placeholder="password" class="@error('password') is-invalid @enderror">
+                    </div>
+                    @error('password')
+                    <label class="error_login">
+                        <strong>{{ $message }}</strong>
+                    </label>
+                    @enderror
+
+                    <div style="display: flex;justify-content: space-between">
+                        <a href="#" class="forget-pass">Quên mật khẩu?</a>
+                        <a href="javascript:;" id="myBtn" class="forget-pass">Đăng ký thành viên </a>
+                        {{--                       <button type="button" class="btn btn-info btn-lg" id="myBtn">Open Modal</button>--}}
+                    </div>
+                    <button type="submit" id="login_submit" class="reg-btn">Login <i class="fa fa-arrow-circle-right"
+                                                                                     aria-hidden="true"></i></button>
+                    {{--                   <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+                    {{--                   <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- form register -->
+<!-- Modal -->
+<div class="modal fade" id="myModall" role="dialog">
+    <div class="modal-dialog subcribe">
+        <!-- Modal content-->
+        <h3>Đăng ký thành viên</h3>
+        <div class="form-register">
+            <div class="modal-register" id="modal-register">
+                <form class="reg-frm" id="" method="POST" action="{{ route('register') }}">
+                    @csrf
+
+                    <div class="field-holder">
+                        <span class="far fa-user"></span>
+                        <input type="text" name="name" value="{{ old('name') }}"
+                               placeholder="User_name" class="@error('name') is-invalid @enderror">
+                    </div>
+                    @error('name')
+                    <label class="error_login">
+                        <strong>{{ $message }}</strong>
+                    </label>
+                    @enderror
+                    <div class="field-holder">
+                        <span class="far fa-envelope"></span>
+                        <input type="email" name="email" value="{{ old('email') }}"
+                               placeholder="Email" class="@error('email') is-invalid @enderror">
+                    </div>
+                    @error('email')
+                    <label class="error_login">
+                        <strong>{{ $message }}</strong>
+                    </label>
+                    @enderror
+                    <div class="field-holder">
+                        <span class="fas fa-lock"></span>
+                        <input type="password" name="password"
+                               placeholder="password" class="@error('password') is-invalid @enderror">
+                    </div>
+                    @error('password')
+                    <label class="error_login">
+                        <strong>{{ $message }}</strong>
+                    </label>
+                    @enderror
+                    <div class="field-holder">
+                        <span class="fas fa-lock"></span>
+                        <input type="password" name="password_confirmation"
+                               placeholder="password confirmation">
+                    </div>
+                    <label for="terms">
+                        <input type="checkbox" name="terms" id="terms">
+                        I accept terms & conditions
+                    </label>
+                    <button type="submit" class="reg-btn">Đăng ký <i class="fa fa-arrow-circle-right"
+                                                                     aria-hidden="true"></i></button>
+                    {{--                    <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+                    {{--                    <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>--}}
+<script>
+</script>
