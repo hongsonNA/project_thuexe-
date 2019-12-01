@@ -4,15 +4,14 @@
 
 Route::get('/', 'HomeController@index')->name('index');
 
-Route::get('/about', 'HomeController@about')->name('about');
-Route::get('/contact', 'HomeController@contact')->name('contact');
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('/gioi-thieu', 'HomeController@about')->name('about');
+Route::get('/lien-he', 'HomeController@contact')->name('contact');
 Route::get('/cate', 'HomeController@cate')->name('cate');
-Route::get('/news', 'HomeController@news')->name('news');
-Route::get('/profile', 'HomeController@profile')->name('profile');
-Route::get('/support', 'HomeController@support')->name('support');
+Route::get('/bai-viet', 'HomeController@news')->name('news');
+Route::get('/thong-tin-ca-nhan', 'HomeController@profile')->name('profile');
+Route::get('/dich-vu-cuu-ho', 'HomeController@support')->name('support');
 Route::get('/admin_us','HomeController@admin_us')->name('admin_us');
-Route::get('detail/{id}','HomeController@detail')->name('detail');
+Route::get('chi-tiet/{id}','HomeController@detail')->name('detail');
 //detailNews
 Route::post('report_comment','HomeController@report_comment')->name('report_comment');
 Route::get('{id}/detail_news','HomeController@detail_news')->name('detail_news');
