@@ -15,7 +15,7 @@
         <div class="container">
             <!-- search cate -->
             <div class="search-cate">
-                <form action="{{ route('search_cate') }}">
+                <form action="{{ route('search_cate') }}" method="post">
                     @csrf
                     <div class="box-combo">
                         <div class="field-outer">

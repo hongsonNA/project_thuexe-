@@ -18,7 +18,6 @@ class CreateOrdersTable extends Migration
             $table->float('total');
             $table->text('rate')->nullable();
             $table->integer('status');
-            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }

@@ -63,19 +63,12 @@
                     </div>
                     </div>
                 </div>
-
             <div class="col-lg-4 col-md-4">
                 <div class="right-info ">
                     <div class="shadow mb-xlg p-lg">
                         <div class="pr text-center">GIÁ VÀ THỦ TỤC</div>
-                        <form method="post" action="{{ route('booking_car') }}" class="cap" id="detail-datetime">
+                        <form method="post" action="{{ route('booking_car', $vechcles->id ) }}" class="cap" id="detail-datetime">
                             @csrf
-                            <input type="hidden" name="vehicle_id" value="{{ $vechcles->id }}">
-                            <input type="hidden" name="city_id" value="{{ $vechcles->city_id }}">
-                            <input type="hidden" name="district_id" value="{{ $vechcles->district_id }}">
-                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                            <input type="hidden" name="status" value="1">
-                            <input type="hidden" name="order_id" value="1">
                             <div class="form-group position-relative form-group">
                                 <label class=" pt-2">Thời gian nhận xe</label>
                                 <div class="box-date ">
@@ -125,22 +118,80 @@
 {{--                    <label for="exampleFormControlSelect1">Example select</label>--}}
 {{--                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">--}}
 {{--                </div>--}}
-{{--               --}}
+
 {{--                <div class="form-group">--}}
 {{--                    <label for="exampleFormControlTextarea1">Example textarea</label>--}}
 {{--                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>--}}
 {{--                </div>--}}
 {{--            </form>--}}
 {{--        </div>--}}
-    </div>
-    <a href="#" id="carbooking">click</a>
-    <div id="booking-sucsess">
-        <button>ok</button>
-    </div>
+        <div class="area-comment">
+            <div>
+                <form method="post" action="{{ route('post_comment') }}" id="comment">
 
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Để lại ý kiến của bạn</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="content" id="content" rows="4"></textarea>
+                        <span id="alert"></span>
+                    </div>
+                    @if(isset(Auth::user()->email))
+                        <div class="request-login">
+                            <p>
+                                bình luận bài viết:{{ $post->title }}
+                                (Lưu ý: bình luận của bạn sẽ được quản trị xác thực trước khi hiện thị )
+                            </p>
+                        </div>
+                    @else
+                        <div class="request-login">
+                            <p>
+                                Hãy <a href="#" class="account-login" data-toggle="modal" data-target="#myModal">đăng nhập</a> để gủi bình luận (Lưu ý: bình luận của bạn sẽ được quản trị xác thực trước khi hiện thị )
+                            </p>
+                        </div>
+                    @endif
+                    <button type="submit" id="chekc-comment" class="btn btn-info">Bình luận</button>
+                </form>
+            </div>
+            <!--end -->
+            <div class="show-comment">
+                <ul class="nav comments">
+                    @foreach($comment as $key => $comment_id)
+                        <li class="comment_list">
+                            <div class="comment-meta image-comment">
+                                <img class="avatar" src="{{ asset('image_upload/post/image_post_1574214572.jpeg') }}" width="50" alt="">
+                                <p class="author-name"><span class="">Hong son</span></p>
+                                <p class="comment-content">
+                                    {{ $comment_id->content }}
+                                </p>
+                                <p class="comment-actions">
+                                    <a data-id="{{ $comment_id->id }}" id="reply" href="javascript:;">Tra loi</a>
+                                    <span></span>
+                                    @if($comment_id->user_id != Auth::user()->id)
+                                        <a id="report" href="javascript:;">Report</a>
+                                    @endif
+                                </p>
+                            </div>
+                            <div class="show-reply">
+                                <form action="">
+                                    <textarea class="form-control" id="" name="" id="content" rows="3" placeholder="Bạn có đồng ý với Hong Son"></textarea>
+                                    <br>
+                                    <button  type="submit" class="btn btn-info">Gui binh luan</button>
+                                    <a id="close" class="btn">Dong</a>
+                                </form>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+        </div>
+        <!--end comment -->
+    </div>
     @if(session()->has('alert'))
-        <div class="alert alert-success">
+        <div id="alert_Booking_success" class="alert alert-success">
             {{ session()->get('alert') }}
         </div>
+        <script>
+
+        </script>
     @endif
     @endsection

@@ -5,8 +5,8 @@
                 <img src="{{ asset('front-end-css/assets/img/logo-small.png')}}">
             </div>
         </a>
-        <a href="#demo" class="simple-text logo-normal">
-            Creative Tim
+        <a href="/" class="simple-text logo-normal">
+            Prime Car
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -21,19 +21,20 @@
             <li class="nav-item active">
                 <a href="{{ route('manage_list') }}">
                     <i class="nc-icon nc-tile-56"></i>
-                    Quản lý tin đăng
+                    Quản lý xe
                 </a>
             </li>
             <li class="nav-item active">
-                <a href="#demo">
+                <a href="{{ route('waiting') }}">
                     <i class="nc-icon nc-tile-56"></i>
-                    Xe đang chờ
+                    Lịch sử đặt xe
                 </a>
             </li>
+
             <li class="nav-item active">
-                <a href="">
+                <a href="{{ route('booking') }}">
                     <i class="nc-icon nc-tile-56"></i>
-                    Xe đã đặt
+                    Quản lý bình luận
                 </a>
             </li>
             <li>

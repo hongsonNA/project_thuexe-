@@ -112,6 +112,15 @@ class ManagerUsController extends Controller
         $managerList = managerList::destroy($id);
         return redirect()->route('manage_list', compact('managerList'));
     }
-
+//==========car waiting==========
+    public function waiting_car(){
+        $waiting = DB::table('car_bookings')->where('status','=','1')->get();
+        return view('front-end.admin_user.manage_post.waiting',compact('waiting'));
+    }
+//==========car_booking==========
+    public function carBooking(){
+        $booking = DB::table('car_bookings')->where('status','=','2')->get();
+        return view('front-end.admin_user.manage_post.carBooking',compact('booking'));
+    }
 
 }
