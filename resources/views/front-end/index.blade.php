@@ -8,7 +8,6 @@
             width: 100%;
             height: 480px;
             overflow: hidden;
-
         }
         .swiper-slide {
             text-align: center;
@@ -54,9 +53,9 @@
                         <div class="title-slider animated bouncelnLeft" style="animation-delay: .3s">
                             <p>Nào Nào! cùng chọn xe đi phượt thôi A Ưi</p>
                         </div>
-                        <div class="more_slider">
-                            <span><a href="#">Xem thêm</a></span>
-                        </div>
+{{--                        <div class="more_slider">--}}
+{{--                            <span><a href="#">Xem thêm</a></span>--}}
+{{--                        </div>--}}
                     </div>
                     <img width="100%" src="https://files.porsche.com/microsite/boxster-spyder/assets/images/share/03.jpg">
                 </div>
@@ -64,7 +63,8 @@
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
             <!-- Add Arrows -->
-            <div class="swiper-button-next"></div>
+            <div class="swiper-button-next "></div>
+{{--            <div class="button-slide"><span class="swiper-button-next"></span></div>--}}
             <div class="swiper-button-prev"></div>
             <!-- -->
         </div>
@@ -97,10 +97,11 @@
                                     </div>
                                     <div class="field-outer col">
                                         <span class="fas fa-search"></span>
-                                        <select name="seat" class="form-control " style="margin-bottom: 10px" id="">
-                                            <option value="">--Chọn chỗ--</option>
-                                            <option value="1">1</option>
-                                            <option value="4">4</option>
+                                        <select name="model_id" class="form-control " style="margin-bottom: 10px" id="">
+                                            <option  value="0" selected disabled>--Chọn hãng xe --</option>
+                                            @foreach($model_car as $model_id)
+                                                <option value="{{ $model_id->id }}">{{ $model_id->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -136,108 +137,6 @@
     </div>
     </div>
     {{-- end--}}
-    <!--Header Banner Content Start-->
-
-{{--    <section class="tj-banner-form">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                <!--Header Banner Caption Content Start-->--}}
-{{--                <div class="col-md-8 col-sm-7">--}}
-{{--                    <div class="banner-caption">--}}
-{{--                        <div class="banner-inner bounceInLeft animated delay-2s">--}}
-{{--                            <strong>More recently with desktop publishing software ncluding versions</strong>--}}
-{{--                            <h2>Upto 25% off on first booking through your app</h2>--}}
-{{--                            <div class="banner-btns">--}}
-
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <!--Header Banner Caption Content End-->--}}
-{{--                <!--Header Banner Form Content Start-->--}}
-{{--                <div class="col-md-12 col-sm-5" style="padding-left: 50px;">--}}
-{{--                    <div class="trip-outer">--}}
-{{--                        <div class="trip-type-tabs">--}}
-{{--                            <ul class="nav nav-tabs" style="width: 95.4%;text-align: center">--}}
-{{--                                <li class="active" style="width: 100%" ><a href="#one-way" data-toggle="tab">One Way</a></li>--}}
-{{--                                <li><a href="#two-way" data-toggle="tab">Two Way</a></li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                        <!--Banner Tab Content Start-->--}}
-{{--                        <div class="tab-content">--}}
-{{--                            <div class="tab-pane active" id="one-way">--}}
-{{--                                <!--Banner Form Content Start-->--}}
-{{--                                <form method="POST" class="trip-type-frm">--}}
-{{--                                    <div class="form-row">--}}
-{{--                                        <div class="field-outer">--}}
-{{--                                            <span class="fas fa-search"></span >--}}
-{{--                                            <select name="filter_cate col" class="form-control " style="margin-bottom: 10px" id="">--}}
-{{--                                                <option value="">--Chọn danh mục--</option>--}}
-{{--                                                @foreach($category as $key => $id)--}}
-{{--                                                <option value="">{{ $id->name }}</option>--}}
-{{--                                                @endforeach--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="field-outer col">--}}
-{{--                                            <span class="fas fa-search"></span>--}}
-{{--                                            <select name="filte_seat" class="form-control " style="margin-bottom: 10px" id="">--}}
-{{--                                                <option value="">--Chọn chỗ--</option>--}}
-{{--                                                <option value="">1</option>--}}
-{{--                                                <option value="">2</option>--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-row">--}}
-{{--                                    <div class="field-outer">--}}
-{{--                                        <span class="fas fa-calendar-alt"></span>--}}
-{{--                                        <select name="filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">--}}
-{{--                                            <option value="">--Chọn thành phố--</option>--}}
-{{--                                            <option value="">1</option>--}}
-{{--                                            <option value="">2</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="field-outer">--}}
-{{--                                        <span class="far fa-clock"></span>--}}
-{{--                                        <select name="district" class="form-control pb-2" style="margin-bottom: 10px" id="">--}}
-{{--                                            <option value="">--chọn quận huyện --</option>--}}
-{{--                                            <option value="">1</option>--}}
-{{--                                            <option value="">2</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-row">--}}
-{{--                                    <div class="field-outer">--}}
-{{--                                        <span class="far fa-clock"></span>--}}
-{{--                                        <input type="date" name="date_book" class="form-control" style="margin-bottom: 10px">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="field-outer" >--}}
-{{--                                        <span class="far fa-clock"></span>--}}
-{{--                                        <input type="date" name="date_drop" class="form-control" >--}}
-{{--                                    </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="field-outer">--}}
-{{--                                        <input type="checkbox" name="promo_code" id="promo_code">--}}
-{{--                                        <label for="promo_code">I Have Promotional Code</label>--}}
-{{--                                    </div>--}}
-{{--                                    <button type="submit" class="search-btn">Search Cabs <i--}}
-{{--                                            class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
-{{--                                </form>--}}
-{{--                                <!--Banner Form Content End-->--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <!--Banner Tab Content End-->--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <!--Header Banner Form Content End-->--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </section>--}}
-    <!-- end banner -->
-    <!--Header Banner Content End-->
-    <!--Offer Content Start-->
-    <!--Offer Content End-->
-    <!--Welcome Section Content Start-->
-
     <!--Welcome Section Content End-->
     <section class="tj-cab-collection">
         <div class="container">
@@ -283,7 +182,7 @@
 {{--                                        <li><i class="fas fa-tachometer-alt"></i>5.6/100 MPG</li>--}}
                                     </ul>
                                 </div>
-                                <a href="fleet-grid.html" class="tj-btn2">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                                <a href="{{ route('detail', $id->id) }}" class="tj-btn2">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                             </div>
                             <!--Fleet Grid Text End-->
                         </div>
@@ -382,34 +281,6 @@
         </div>
     </section>
     <!--Cab Services Section End-->
-    <!--Testimonials Section Start-->
-{{--    <section class="tj-reviews">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--               1--}}
-
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </section>--}}
-    <!--Testimonials Section End-->
-{{--    <section class="tj-cal-to-action2">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-md-9 col-sm-9">--}}
-{{--                    <div class="cta-tagline">--}}
-{{--                        <h2>Incredible Destinations at Incredible Deals</h2>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--                <div class="col-md-3 col-sm-3">--}}
-{{--                    <div class="cta-btn">--}}
-{{--                        <a href="booking-form.html">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </section>--}}
-    <!--News Content Start-->
     <section class="tj-news" style="padding:0">
         <div class="container">
             <div class="row">
@@ -445,27 +316,8 @@
                         <!--News Detail Content End-->
                     </div>
                 </div>
-
                 @break($key==1)
             @endforeach
-                <!--Newsbox Content End-->
-                <!--Newsbox Content Start-->
-{{--                <div class="col-md-4 col-sm-6">--}}
-{{--                    <div class="news-box">--}}
-{{--                        <figure>--}}
-{{--                            <img src="{{asset('front-end-css/images/news_img2.jpg')}}" alt=""/>--}}
-{{--                        </figure>--}}
-{{--                        <div class="news-detail">--}}
-{{--                            <h4>Making it look readable</h4>--}}
-{{--                            <p>A more recently with desktop softy like aldo page maker repeat predefined.</p>--}}
-{{--                            <ul>--}}
-{{--                                <li><i class="far fa-clock"></i> Sep 19, 2018</li>--}}
-{{--                                <li><i class="far fa-comments"></i> 29</li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-                <!--Newsbox Content End-->
                 <!--News List Content Start-->
                 <div class="col-md-4 col-sm-12">
                     <div class="news-list">
@@ -489,35 +341,12 @@
                                 </div>
                             </li>
                             @endforeach
-{{--                            <li>--}}
-{{--                                <figure>--}}
-{{--                                    <img src="{{asset('front-end-css/images/news_img4.jpg')}}" alt=""/>--}}
-{{--                                </figure>--}}
-{{--                                <div class="news-info">--}}
-{{--                                    <h4>A galley of type and scrambe it to make a type</h4>--}}
-{{--                                    <ul class="news-meta">--}}
-{{--                                        <li><i class="far fa-clock"></i> Sep 19, 2018</li>--}}
-{{--                                        <li><i class="far fa-comments"></i> 29</li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <figure>--}}
-{{--                                    <img src="{{asset('front-end-css/images/news_img5.jpg')}}" alt=""/>--}}
-{{--                                </figure>--}}
-{{--                                <div class="news-info">--}}
-{{--                                    <h4>Treatise on the theory of ethics very popular</h4>--}}
-{{--                                    <ul class="news-meta">--}}
-{{--                                        <li><i class="far fa-clock"></i> Sep 19, 2018</li>--}}
-{{--                                        <li><i class="far fa-comments"></i> 29</li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
                         </ul>
                         <!--News Outer Content End-->
                     </div>
                 </div>
                 <!--News List Content End-->
+
             </div>
         </div>
     </section>
@@ -532,6 +361,7 @@
             spaceBetween: 30,
             centeredSlides: true,
             speed: 3000,
+            loop:true,
             autoplay: {
                 delay: 2500,
                 disableOnInteraction: false,
@@ -562,6 +392,7 @@
             $(".reEmail").show().slideDown(5000);
         })
     </script>
+
     <script>
         $(document).ready(function(){
             $( "#select_city" ).change(function () {

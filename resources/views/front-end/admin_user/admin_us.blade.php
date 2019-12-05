@@ -1,5 +1,4 @@
 @extends('front-end.admin_user.layout_user.main')
-
 @section('content')
     <div class="content">
         <div class="row">

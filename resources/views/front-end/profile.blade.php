@@ -10,9 +10,8 @@
                         <ul class="nav">
                             <li><label for="">Hồ sơ cá nhân</label>
                                 <ul>
-                                    <li><a href="javascript:;">Đổi mật khẩu</a></li>
-                                    <li><a href="{{ route('manage_list') }}">Quản lý tin đăng</a></li>
-                                    <li><a href="javascript:;">Đăng ký doanh nghiệp cho thuê xe </a></li>
+{{--                                    <li><a href="javascript:;">Đổi mật khẩu</a></li>--}}
+                                    <li><a href="{{ route('manage_list') }}">Quản lý</a></li>
                                 </ul>
                             </li>
                         </ul>
