@@ -18,7 +18,7 @@
                         <h4 class="card-title"> Thêm mới xe </h4>
                     </div>
                     <div class="card-body col-lg-12">
-                        <div class="table-responsive">
+                        <div class="">
                             <form action="{{ route('create-vehicles') }}" method="POST" enctype="multipart/form-data"
                                   novalidate>
                                 @csrf
@@ -51,9 +51,13 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="">Model </label>
-                                                <input type="number" name="model_id" class="form-control" id=""
-                                                       placeholder="" value="">
+                                                <label for="">Hãng xe </label>
+                                                <select name="model_id" class="form-control " style="margin-bottom: 10px" id="">
+                                                    <option  value="0" selected disabled>--Chọn hãng xe --</option>
+                                                    @foreach($model_car as $model_id)
+                                                        <option value="{{ $model_id->id }}">{{ $model_id->name }}</option>
+                                                    @endforeach
+                                                </select>
                                                 @if($errors->first('model_id'))
                                                     <br><span class="text-danger">{{$errors->first('model_id')}}</span>
                                                 @endif

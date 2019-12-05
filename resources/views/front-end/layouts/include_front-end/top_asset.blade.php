@@ -328,6 +328,11 @@
         position: fixed;
         bottom: 1%;
         right: 2%;
+        color: #ffffff;
+        background-color: #e04857;
+        border-color: #d6e9c6;
+        font-weight: 700;
+
     }
     /*slide css*/
     .toogle-title {

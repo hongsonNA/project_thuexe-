@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Comment;
 use Cassandra\Date;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ use mysql_xdevapi\Table;
 use App\Model\managerList;
 use App\Model\Comments;
 use App\Model\CarBooking;
+use App\Model\ModelCar;
 class HomeController extends Controller
 {
     /**
@@ -43,7 +45,9 @@ class HomeController extends Controller
             ->get();
         //news
         $show_news = Post::All();
-        return view('front-end.index', compact('category'), compact('city','car','show_news'));
+        $model_car = ModelCar::All();
+
+        return view('front-end.index', compact('category','model_car'), compact('city','car','show_news'));
     }
 
     public function about()
@@ -102,40 +106,54 @@ class HomeController extends Controller
 // combobox home
     public function state($id)
     {
+
         $states = DB::table('districts')
             ->where("city_id", $id)
             ->pluck("name");
         return response()->json($states);
+//        return ' <select name="city_id" class="form-control pb-2" style="margin-bottom: 10px" id="select_city">
+//                                            <option value="">--Chọn thành phố--</option>
+//                                           foreach($states as $key => $id){
+//                                                    <option id="distri" value="{{ $id->id }}" >{{ $id->name }}</option>
+//                                            }
+//                                        </select>';
 
     }
 
     public function detail($id)
     {
-        $comment = Comments::all();
+        $comment = Comments::all()->where('vehicle_id','=',$id);
+
         $vechcles = managerList::find($id);
         return view('front-end.detail', compact('vechcles','comment'));
     }
 
     public function detail_news($id)
     {
+        // tin lien quan
+        $topic = DB::table('posts')->where('id','!=',$id)
+                            ->orderByDesc('id')
+                            ->take(1)
+                            ->get();
         $post = Post::find($id);
-        $comment = Comments::all();
-        return view('front-end.detail_news', compact('post'), compact('comment'));
+
+        $comment = Comments::all()->where('post_id','=',$id);
+        return view('front-end.detail_news', compact('post'), compact('comment','topic'));
     }
 
     public function post_comment(Request $request, $id)
     {
-
+//        $id_us = (Auth::user()->id);
         $posts = new Comments();
         $com_post = Post::find($id);
         $posts->post_id = $id;
+        $posts->vehicle_id = $id;
         $posts->user_id = (Auth::user()->id);
         $posts->status = $request->get('status','1');
         $posts->content = $request->get('content');
-        dd($posts);
         //        $data = $request->except('_token');
         $posts->fill($request->all());
-
+        $posts->save();
         return back();
     }
 
@@ -143,16 +161,16 @@ class HomeController extends Controller
     public function search_car(Request $request)
     {
         $cate_id = $request->get('cate_id');
-
-        $seat = $request->get('seat');
+        $model_id = $request->get('model_id');
         $city_id = $request->get('city_id');
         $district_id = $request->get('district_id');
 
         $searchQuery = managerList::where('cate_id', 'like', "%$cate_id%")
-            ->where('seat', 'like', "%$seat%")
+            ->where('model_id', 'like', "%$model_id%")
             ->where('city_id', 'like', "%$city_id%")
             ->where('district_id', 'like', "%$district_id%")->get();
-//dd($searchQuery);
+
+
         return view('front-end.search', compact('searchQuery'));
     }
     public function search_cate(Request $request)
@@ -167,22 +185,16 @@ class HomeController extends Controller
     }
 
 //    report-comment
-    public function report_comment(Request $request)
+    public function report_comment(Request $request, $id)
     {
-
-        $report_uID = $request->get('report_uID');
-
-        $data = $request->except('_token', $report_uID);
-        $report_cm = Comments::find($report_uID);
+        $report_uID = Comments::find($id);
+        $report_uID->report_content = $request->get('report_content');
+        $report_uID->status = $request->get('status','2');
         $message = '';
-//        $send_port = DB::table('comments')->where('report_content','=',$report_content)
-//                                                ->where('user_id','=',$report_uID)
-//                                                ->where('status','=',$status);
-        if ($report_cm->update($data)) {
+        if ($report_uID->save()) {
             $message = 'Đã báo cáo vi pham ';
         }
-
-        return redirect()->back()->with('message[', $message);
+        return redirect()->back()->with('message', $message);
     }
     //======booking-car=======
     public function booking_car(Request $request, $id)

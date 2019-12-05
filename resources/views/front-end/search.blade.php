@@ -43,15 +43,16 @@
             <!-- end -->
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    @if($searchQuery != '')
-                    <div class="tj-heading-style">
-                        <h3>Kêt quả tim kiem </h3>
-                    </div>
-                        @else
+
+                    @if(isset($searchQuery))
                         <div class="tj-heading-style">
                             <h3>Không tìm thấy kêt quả</h3>
                         </div>
-                            @endif
+                    @else
+                        <div class="tj-heading-style">
+                            <h3>Kêt quả tim kiem </h3>
+                        </div>
+                    @endif
                 </div>
                 <div class="cab-col-outer">
                     <!--Fleet Grid Box Start-->

@@ -10,7 +10,7 @@
                         <h4 class="card-title"> Thêm mới xe </h4>
                     </div>
                     <div class="card-body col-lg-12">
-                        <div class="table-responsive">
+                        <div class="">
                             <form action="{{ route('update_vehicles', $magaEdit->id) }}" method="POST" enctype="multipart/form-data" novalidate>
                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                 <input type="hidden" name="status" value="1">
