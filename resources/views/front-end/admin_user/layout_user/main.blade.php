@@ -6,9 +6,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('front-end-css/assets/img/apple-icon.png')}}">
     <link rel="icon" type="image/png" href="{{ asset('front-end-css/assets/img/favicon.png')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>
-        Paper Dashboard 2 by Creative Tim
-    </title>
+    <title>Quản lý xe</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
     @include('front-end.admin_user.layout_user.top_asset')
@@ -18,11 +16,8 @@
 {{--start--}}
 <div class="wrapper ">
     @include('front-end.admin_user.layout_user.sidebar')
-
     <div class="main-panel">
-
         @yield('content')
-
         <footer class="footer footer-black  footer-white ">
             <div class="container-fluid">
                 <div class="row">
@@ -52,6 +47,7 @@
         </footer>
     </div>
 </div>
+
 {{--end--}}
 @include('front-end.admin_user.layout_user.bottom_asset')
 </body>

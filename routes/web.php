@@ -13,7 +13,7 @@ Route::get('/dich-vu-cuu-ho', 'HomeController@support')->name('support');
 Route::get('/admin_us','HomeController@admin_us')->name('admin_us');
 Route::get('chi-tiet/{id}','HomeController@detail')->name('detail');
 //detailNews
-Route::post('report_comment','HomeController@report_comment')->name('report_comment');
+Route::post('/{id}/report_comment','HomeController@report_comment')->name('report_comment');
 Route::get('{id}/detail_news','HomeController@detail_news')->name('detail_news');
 Route::post('/{id}/post_comment','HomeController@post_comment')->name('post_comment');
 //=======Dang ky thong tin xe=======
@@ -38,6 +38,8 @@ Route::group(['prefix'=> 'vehicles'], function (){
     //waiting car and carBooking
     Route::get('waiting','ManagerUsController@waiting_car')->name('waiting');
     Route::get('booking','ManagerUsController@carBooking')->name('booking');
+    //Profile member
+    Route::get('profile_member','ManagerUsController@profile_member')->name('profile_member');
 });
 
 //---search

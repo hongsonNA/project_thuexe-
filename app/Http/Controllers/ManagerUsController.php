@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Category;
 use App\Model\City;
+use App\Model\ModelCar;
 use Illuminate\Http\Request;
 use App\Http\Requests\ManagerRequest;
 use Illuminate\Support\Facades\Auth;
@@ -23,8 +24,9 @@ class ManagerUsController extends Controller
     public function add()
     {
         $city = city::All();
+        $model_car = ModelCar::all();
         $category = category::All();
-        return view('front-end.admin_user.manage_post.edit_add',compact('city'),compact('category'));
+        return view('front-end.admin_user.manage_post.edit_add',compact('city','model_car'),compact('category'));
     }
     public function states($id)
     {
@@ -51,11 +53,11 @@ class ManagerUsController extends Controller
         $listMul = new managerList();
         $listMul->cate_id=$request->get('cate_id');
         $listMul->city_id = $request->get('city_id');
+        $listMul->model_id = $request->get('model_id');
         $listMul->district_id = $request->get('district_id');
         $listMul->address= $request->get('address');
         $listMul->user_id = (Auth::user()->id);
         $listMul->status = $request->get('status');
-
         if ($request->hasFile('image')) {
             $images_File = $request->file('image');
             $FileName = 'image' . '_' . time() . '.' . $images_File->extension();
@@ -66,9 +68,11 @@ class ManagerUsController extends Controller
             $listMul->image = "default_car.jpg";
         }
         $listMul->fill($request->all());
-
-        $listMul->save();
-        return redirect()->route('manage_list', compact('listMul'));
+        $mess = 'Thêm thành công ';
+        if ($listMul->save()){
+            $mess = 'Thêm thành công ';
+        }
+        return redirect()->route('manage_list', compact('listMul'))->with('mess',$mess);
 
     }
     public function edit_vehicles($id)
@@ -122,5 +126,10 @@ class ManagerUsController extends Controller
         $booking = DB::table('car_bookings')->where('status','=','2')->get();
         return view('front-end.admin_user.manage_post.carBooking',compact('booking'));
     }
+//===========profile_member============
+public function profile_member()
+{
+    return view('front-end.admin_user.profile_member');
+}
 
 }

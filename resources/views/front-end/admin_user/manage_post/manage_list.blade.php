@@ -14,9 +14,17 @@
                             <i class="fa fa-arrow-circle-right"></i>
                             <div class="ripple-container"></div>
                         </a>
-                            
+
                         </div>
                     </div>
+                        @if(session()->has('mess'))
+                            <script src="text/javascript">
+                                $(".alert").hide(3000);
+                            </script>
+                            <div class="alert alert-success">
+                                {{ session()->get('mess') }}
+                            </div>
+                        @endif
                     <div class="card-body">
                         <table class="table">
                             <thead class="text-primary">
@@ -62,10 +70,10 @@
                 @else
                     <div class="">
                         <div class="card-header">
-                            <h4 class="card-title">Hãy tạo chiếc xe đầu tiền nào</h4>
-                        </div>
+                            <h4 class="card-title">Thêm mới </h4>
+                       </div>
                         <div clss="news_Car">
-                            <a href="http://localhost/vehicles/add_vehicles" class="float-right pull-right btn btn-success">
+                            <a href="{{ route('add_vehicles') }}" class="float-right pull-right btn btn-success">
                                 Thêm mới xe
                                 <i class="fa fa-arrow-circle-right"></i>
                                 <div class="ripple-container"></div>
@@ -77,5 +85,6 @@
 
         </div>
     </div>
+
 @endsection
 

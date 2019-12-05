@@ -1,75 +1,75 @@
-<section class="top-link clearfix">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="nav navbar-nav topmenu-contact pull-left">
-                    <li style="padding-top:15px;"></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm">
-                    @if(isset(Auth::user()->email))
-                        <li class="nav-item">
-                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
-                               class="nav-link dropdown-toggle">
-                                <img src="https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png"
-                                     class="Profile">&nbsp;
-                                <span class="admin-name">{{Auth::user()->name}}</span>
-                                <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                            </a>
-                            <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                @if(!Auth::check() || Auth::user()->role == '1' || Auth::user()->role == '2')
-                                    <li>
-                                        <a href="{{ route('manage_list') }}">
-                                            <span class="edu-icon edu-user-rounded author-log-ic"></span>
-                                            Quản lý xe
-                                        </a>
-                                    </li>
-                                @elseif(!Auth::check() || Auth::user()->role == '9' || Auth::user()->role == '10')
-                                    <li>
-                                        <a href="{{ route('dashboard') }}">
-                                            <span class="edu-icon edu-user-rounded author-log-ic"></span>
-                                            Dashboard
-                                        </a>
-                                    </li>
-                                @endif
-                                <li>
-                                    <a href="{{ route('profile') }}">
-                                        <span class="edu-icon edu-user-rounded author-log-ic"></span>
-                                        My Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <span class="edu-icon edu-locked author-log-ic"></span>
-                                        Log Out
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @else
-                        {{--                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp--}}
-                        {{--                                cho thuê </a></li>--}}
-                        <li class="account-login" data-toggle="modal" data-target="#login">
-                            <a href="javascript:;"><i
-                                    class="fa fa-sign-in"></i> Đăng nhập
-                            </a>
-                        </li>
-                        <li class="account-register" data-toggle="modal" data-target="#register">
-                            <a href="javascript:;">
-                                <i class="fa fa-key"></i> Đăng ký
-                            </a>
-                        </li>
-                    @endif
+{{--<section class="top-link clearfix">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-md-12">--}}
+{{--                <ul class="nav navbar-nav topmenu-contact pull-left">--}}
+{{--                    <li style="padding-top:15px;"></li>--}}
+{{--                </ul>--}}
+{{--                <ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm">--}}
+{{--                    @if(isset(Auth::user()->email))--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"--}}
+{{--                               class="nav-link dropdown-toggle">--}}
+{{--                                <img src="https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png"--}}
+{{--                                     class="Profile">&nbsp;--}}
+{{--                                <span class="admin-name">{{Auth::user()->name}}</span>--}}
+{{--                                <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>--}}
+{{--                            </a>--}}
+{{--                            <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">--}}
+{{--                                @if(!Auth::check() || Auth::user()->role == '1' || Auth::user()->role == '2')--}}
+{{--                                    <li>--}}
+{{--                                        <a href="{{ route('manage_list') }}">--}}
+{{--                                            <span class="edu-icon edu-user-rounded author-log-ic"></span>--}}
+{{--                                            Quản lý xe--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
+{{--                                @elseif(!Auth::check() || Auth::user()->role == '9' || Auth::user()->role == '10')--}}
+{{--                                    <li>--}}
+{{--                                        <a href="{{ route('dashboard') }}">--}}
+{{--                                            <span class="edu-icon edu-user-rounded author-log-ic"></span>--}}
+{{--                                            Dashboard--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
+{{--                                @endif--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('profile') }}">--}}
+{{--                                        <span class="edu-icon edu-user-rounded author-log-ic"></span>--}}
+{{--                                        My Profile--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('logout') }}"--}}
+{{--                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">--}}
+{{--                                        <span class="edu-icon edu-locked author-log-ic"></span>--}}
+{{--                                        Log Out--}}
+{{--                                    </a>--}}
+{{--                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"--}}
+{{--                                          style="display: none;">--}}
+{{--                                        @csrf--}}
+{{--                                    </form>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
+{{--                    @else--}}
+{{--                        --}}{{--                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp--}}
+{{--                        --}}{{--                                cho thuê </a></li>--}}
+{{--                        <li class="account-login" data-toggle="modal" data-target="#login">--}}
+{{--                            <a href="javascript:;"><i--}}
+{{--                                    class="fa fa-sign-in"></i> Đăng nhập--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="account-register" data-toggle="modal" data-target="#register">--}}
+{{--                            <a href="javascript:;">--}}
+{{--                                <i class="fa fa-key"></i> Đăng ký--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    @endif--}}
 
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 <header class="tj-header" style="z-index: 99999;">
     <!--Header Content Start-->
     <div class="container">
@@ -86,8 +86,8 @@
                 <div class="info_box">
                     <i class="fa fa-home"></i>
                     <div class="info_text">
-                        <span class="info_title">Address</span>
-                        <span>Primecab, United States</span>
+                        <span class="info_title">Địa chỉ</span>
+                        <span>15 Cầu Giấy, Hà Nội</span>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                 <div class="info_box">
                     <i class="fa fa-envelope"></i>
                     <div class="info_text">
-                        <span class="info_title">Email Us</span>
+                        <span class="info_title">Email</span>
                         <span><a href="mailto:primecab@booking.com">primecab@booking.com</a></span>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                 <!--Nav Holder Start-->
                 <div class="tj-nav-holder">
                     <!--Menu Holder Start-->
-                    <nav class="navbar navbar-default">
+                    <nav class="navbar navbar-default" style="width: 100%;">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                                     data-target="#tj-navbar-collapse" aria-expanded="false">
@@ -131,11 +131,9 @@
                             </button>
                         </div>
                         <!-- Navigation Content Start -->
-                        <div class="collapse navbar-collapse" id="tj-navbar-collapse">
+                        <div class="" id="tj-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li class="dropdown"><a href="/" class="dropdown-toggle" data-toggle="dropdown"
-                                                        role="button" aria-haspopup="true"
-                                                        aria-expanded="false">Trang chủ</a>
+                                <li><a href="/" class="">Trang chủ</a>
 
                                 </li>
 
@@ -157,7 +155,66 @@
                                 <li>
                                     <a href="{{ route('about') }}">Giới thiệu</a>
                                 </li>
-
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm">
+                                @if(isset(Auth::user()->email))
+                                    <li class="nav-item">
+                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                                           class="nav-link dropdown-toggle">
+                                            <img src="https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png"
+                                                 class="Profile">&nbsp;
+                                            <span class="admin-name">{{Auth::user()->name}}</span>
+                                            <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                                        </a>
+                                        <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                            @if(!Auth::check() || Auth::user()->role == '1' || Auth::user()->role == '2')
+                                                <li>
+                                                    <a href="{{ route('manage_list') }}">
+                                                        <span class="edu-icon edu-user-rounded author-log-ic"></span>
+                                                        Quản lý xe
+                                                    </a>
+                                                </li>
+                                            @elseif(!Auth::check() || Auth::user()->role == '9' || Auth::user()->role == '10')
+                                                <li>
+                                                    <a href="{{ route('dashboard') }}">
+                                                        <span class="edu-icon edu-user-rounded author-log-ic"></span>
+                                                        Dashboard
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            <li>
+                                                <a href="{{ route('profile') }}">
+                                                    <span class="edu-icon edu-user-rounded author-log-ic"></span>
+                                                    My Profile
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                    <span class="edu-icon edu-locked author-log-ic"></span>
+                                                    Log Out
+                                                </a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                      style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @else
+                                    {{--                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp--}}
+                                    {{--                                cho thuê </a></li>--}}
+                                    <li class="account-login" data-toggle="modal" data-target="#login">
+                                        <a href="javascript:;"><i
+                                                class="fa fa-sign-in"></i> Đăng nhập
+                                        </a>
+                                    </li>
+                                    <li class="account-register" data-toggle="modal" data-target="#register">
+                                        <a href="javascript:;">
+                                            <i class="fa fa-key"></i> Đăng ký
+                                        </a>
+                                    </li>
+                                @endif
 
                             </ul>
                         </div>

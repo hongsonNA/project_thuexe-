@@ -107,28 +107,10 @@
             </div>
             </div>
         </div>
-{{--        comment  --}}
-{{--        <div class="comment-user">--}}
-{{--            <form>--}}
-{{--                <div class="form-group">--}}
-{{--                    <label for="exampleFormControlInput1">Email address</label>--}}
-{{--                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">--}}
-{{--                </div>--}}
-{{--                <div class="form-group">--}}
-{{--                    <label for="exampleFormControlSelect1">Example select</label>--}}
-{{--                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">--}}
-{{--                </div>--}}
-
-{{--                <div class="form-group">--}}
-{{--                    <label for="exampleFormControlTextarea1">Example textarea</label>--}}
-{{--                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>--}}
-{{--                </div>--}}
-{{--            </form>--}}
-{{--        </div>--}}
         <div class="area-comment">
             <div>
-                <form method="post" action="{{ route('post_comment') }}" id="comment">
-
+                <form method="post" action="{{ route('post_comment', $vechcles->id ) }}" id="comment">
+                    @csrf
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Để lại ý kiến của bạn</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" name="content" id="content" rows="4"></textarea>
@@ -136,10 +118,7 @@
                     </div>
                     @if(isset(Auth::user()->email))
                         <div class="request-login">
-                            <p>
-                                bình luận bài viết:{{ $post->title }}
-                                (Lưu ý: bình luận của bạn sẽ được quản trị xác thực trước khi hiện thị )
-                            </p>
+
                         </div>
                     @else
                         <div class="request-login">
@@ -154,10 +133,10 @@
             <!--end -->
             <div class="show-comment">
                 <ul class="nav comments">
-                    @foreach($comment as $key => $comment_id)
+                    @foreach($comment as $comment_id)
                         <li class="comment_list">
                             <div class="comment-meta image-comment">
-                                <img class="avatar" src="{{ asset('image_upload/post/image_post_1574214572.jpeg') }}" width="50" alt="">
+                                <img class="avatar" src="{{ asset('image_upload/user/default_avata.png') }}" width="50" alt="">
                                 <p class="author-name"><span class="">Hong son</span></p>
                                 <p class="comment-content">
                                     {{ $comment_id->content }}
@@ -165,7 +144,8 @@
                                 <p class="comment-actions">
                                     <a data-id="{{ $comment_id->id }}" id="reply" href="javascript:;">Tra loi</a>
                                     <span></span>
-                                    @if($comment_id->user_id != Auth::user()->id)
+{{--                                    @if($comment_id->user_id != Auth::user()->id)--}}
+                                    @if(isset(Auth::user()->id) != $comment_id->user_id )
                                         <a id="report" href="javascript:;">Report</a>
                                     @endif
                                 </p>
@@ -194,4 +174,34 @@
 
         </script>
     @endif
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>--}}
+    <script type="text/javascript">
+        $(".show-reply").hide();
+        $('#reply').click(function () {
+            $(".show-reply").show();
+        });
+        $('#close').click(function () {
+            $(".show-reply").hide();
+
+        });
+        $(document).ready(function(){
+            $("#myBtn").click(function(){
+                $("#myModal").hide();
+                $("#myModall").modal();
+            });
+        });
+        $('#suces').fadeOut(1000);
+
+
+    </script>
+    <script>
+        $(document).ready(function (event) {
+            $('#report').click(function () {
+                $('#modal-report').modal();
+            });
+            $('#alert_Booking_success').animate({"right":"-260px"}, 3000)
+        });
+    </script>
     @endsection

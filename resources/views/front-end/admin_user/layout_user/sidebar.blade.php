@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li>
-                <a href="#demo">
+                <a href="{{ route('profile_member') }}">
                     <i class="nc-icon nc-single-02"></i>
                     Hồ sơ cá nhân
                 </a>

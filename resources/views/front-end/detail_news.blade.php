@@ -19,33 +19,33 @@
         </div>
                 <!--        tien lien quan  -->>
         <div class="topic_cate">
+            @foreach($topic as $id_topic)
             <div class="row">
                 <div class="col-sm-5">
                     <div class="topic-iamge">
                         <a href="#" >
-                            <img class="image_t" src="{{ asset('image_upload/post/image_post_1574214572.jpeg') }}" width="100%" alt="">
+                            <img class="image_t" src="{{ asset('image_upload/post/'.$id_topic->image_posts) }}" width="100%" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="col-sm-7" style="margin-left: -34px;
-">
-                    <div class="title-topic">
-                        <h3 class="acticel-title">
-                            <a href="">Hé Lộ Công nông cành cạch mới ở thôn quê</a>
-                        </h3>
-                        <p class="acticel-image">
-                          Mẫu mới hoàn toàn được thiết kế bởi Robert Chan và được giới đánh giá xe đánh giá tốt.
-                        </p>
+                    <div class="col-sm-7" style="margin-left: -34px;">
+                        <div class="title-topic">
+                            <h3 class="acticel-title">
+                                <a href="{{ route('detail', $id_topic->id ) }}">{{ $id_topic->title }}</a>
+                            </h3>
+                            <p class="acticel-image">
+                              {{ $id_topic->summary }}
+                            </p>
+                        </div>
                     </div>
-                </div>
             </div>
+            @endforeach
         </div>
 
         <div class="area-comment">
             <div>
             <form method="post" action="{{ route('post_comment', $post->id) }}" id="comment">
-{{--                <input type="hidden" name="post_id" value="{{ $post->id }}">--}}
-{{--                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">--}}
+                        @csrf
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Để lại ý kiến của bạn</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" name="content" id="content" rows="4"></textarea>
@@ -82,16 +82,16 @@
                             <p class="comment-actions">
                                 <a data-id="{{ $comment_id->id }}" id="reply" href="javascript:;">Tra loi</a>
                                 <span></span>
-                                @if($comment_id->user_id != Auth::user()->id)
+{{--                                @if($comment_id->user_id != Auth::user()->id )--}}
                                 <a id="report" href="javascript:;">Report</a>
-                                @endif
+{{--                                @endif--}}
                             </p>
                         </div>
                         <div class="show-reply">
                             <form action="">
                                 <textarea class="form-control" id="" name="" id="content" rows="3" placeholder="Bạn có đồng ý với Hong Son"></textarea>
                                 <br>
-                                <button  type="submit" class="btn btn-info">Gui binh luan</button>
+                                <button type="submit"  class="btn btn-info">Gui binh luan</button>
                                 <a id="close" class="btn">Dong</a>
                             </form>
                         </div>
@@ -108,16 +108,15 @@
                 <h3>Báo cáo hành động tiêu cực</h3>
                 <div class="form-register">
                     <div class="modal-register" id="modal-register">
-                        <form class="reg-frm" method="POST" action="{{ route('report_comment') }}">
+                        <form class="reg-frm" method="POST" action="{{ route('report_comment', $comment_id->id) }}">
                             @csrf
-                            <input type="hidden" name="report_uID" value="{{ $comment_id->id }}">
+{{--                            <input type="hidden" name="report_uID" value="{{ $comment_id->id }}">--}}
                             <input type="hidden" name="status" value="2">
                             <div class="field-holder">
                                 <span class="fas fa-report"></span>
                                 <input type="text" name="report_content" placeholder="Noi dung bao cao" class="">
                             </div>
                             <button type="submit" class="btn btn-danger">Bao cao sai pham</button>
-
                         </form>
                     </div>
                 </div>
@@ -134,13 +133,14 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>--}}
-    <script>
+    <script type="text/javascript">
         $(".show-reply").hide();
         $('#reply').click(function () {
             $(".show-reply").show();
         });
         $('#close').click(function () {
             $(".show-reply").hide();
+
         });
         $(document).ready(function(){
             $("#myBtn").click(function(){
@@ -148,7 +148,7 @@
                 $("#myModall").modal();
             });
         });
-        $('#suces').fadeOut(1000);
+        $('#suces').fadeOut(5000);
 
 
     </script>
