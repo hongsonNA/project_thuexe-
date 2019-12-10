@@ -25,7 +25,7 @@ Route::post('/{id}/update_account', 'HomeController@update_account')->name('upda
 //-------------manager_user-----------------
 
 
-Route::group(['prefix'=> 'vehicles'], function (){
+Route::group(['prefix'=> 'vehicles', 'middleware' => 'CheckUser'], function (){
     Route::get('/', 'ManagerUsController@manage')->name('manage_list');
     Route::get('add_vehicles','ManagerUsController@add')->name('add_vehicles');
     Route::post('create-vehicles','ManagerUsController@create')->name('create-vehicles');

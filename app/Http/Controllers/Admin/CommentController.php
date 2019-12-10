@@ -34,7 +34,6 @@ class CommentController extends Controller
         $acep = Comments::find($id);
         $acep->update($status);
 
-
     }
 
 

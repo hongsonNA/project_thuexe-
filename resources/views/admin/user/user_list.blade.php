@@ -41,6 +41,16 @@
                                 <i class="material-icons">perm_identity</i>
                             </div>
                             <h4 class="card-title">Danh sách User</h4>
+
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                </div>
+                            </div>
                             <a href="{{ route('user_add') }}"
                                class="float-right pull-right btn btn-success">Thêm mới tài khoản
                                 <i class="fa fa-arrow-circle-right"></i>
