@@ -155,7 +155,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('contact') }}">Phản hồi</a>
+                                    <a href="{{ route('contact') }}">Liên hệ</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('support') }}">dịch vụ cứu hộ</a>

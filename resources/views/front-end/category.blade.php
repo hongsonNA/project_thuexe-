@@ -90,9 +90,12 @@
                                     <span class="fas fa-star"></span>
 
                                     <ul class="fleet-meta">
-                                        <li><i class="fas fa-taxi"></i>Luxery</li>
+
+                                        <li><i class="fas fa-taxi"></i>{{ $id['modelCar']['name'] }}</li>
                                         <li><i class="fas fa-user-circle"></i>{{ $id->seat }} chỗ</li>
-{{--                                        <li><i class="fas fa-tachometer-alt"></i>5.6/100 MPG</li>--}}
+                                        <li><i class="fas fa-tachometer-alt"></i>
+                                          {{ $id->user_id }} chu xe
+                                        </li>
                                     </ul>
                                 </div>
                                 <a href="{{ route('detail', $id->id )  }}" class="tj-btn2">Xem chi tiết<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>

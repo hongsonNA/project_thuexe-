@@ -1,16 +1,3 @@
-<!-- Css Files Start -->
-{{--<link href="{{asset("front-end-css/css/bootstrap.css")}}" rel="stylesheet">--}}
-{{--<link href="{{asset('front-end-css/css/style.css')}}" rel="stylesheet">--}}
-{{--<link rel="stylesheet" href="{{asset("front-end-css/css/fontawesome-all.min.css")}}">--}}
-{{--<link id="switcher" href="{{asset('front-end-css/css/color.css')}}" rel="stylesheet">--}}
-{{--<link href="{{asset('front-end-css/css/color-switcher.css')}}" rel="stylesheet">--}}
-{{--<link href="{{asset('front-end-css/css/owl.carousel.css')}}" rel="stylesheet">--}}
-{{--<link href="{{asset('front-end-css/css/responsive.css')}}" rel="stylesheet">--}}
-{{--<link href="{{asset('front-end-css/css/icomoon.css')}}" rel="stylesheet">--}}
-{{--<link href="{{asset('front-end-css/css/animate.css')}}" rel="stylesheet">--}}
-{{--<link rel="stylesheet" href="{{ asset('front-end-css/css/animate/animate.min.css') }}">--}}
-
-<!-- Link Swiper's CSS -->
 
 <link href="{{asset("front-end-css/css/bootstrap.css")}}" rel="stylesheet">
 <link href="{{asset('front-end-css/css/style.css')}}" rel="stylesheet">
@@ -23,6 +10,9 @@
 <link href="{{asset('front-end-css/css/animate.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('js/jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
 <link rel="stylesheet" href="{{ asset('package/css/swiper.min.css') }}">
+<link rel="stylesheet" href="{{ asset('front-end-css/css/animatePhone.css') }}">
+
+
 <!-- Css Files End -->
 {{--css menu---}}
 <style>
@@ -55,7 +45,7 @@
 
     .Profile {
         width: 29px;
-        background: pink;
+        background: #cdd3d8;
         border-radius: 100%;
 
     }
@@ -758,6 +748,13 @@
     .comment-actions span {
         padding: 0 10px 0 13px;
     }
+    .right-info  .pr {
+        font-size: 2rem;
+        font-weight: bold;
+        padding: 0 0 30px;
+    }
+/*xe lien quan */
+    .topics_car{padding: 1rem;}
 </style>
 
 

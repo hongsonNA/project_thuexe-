@@ -118,12 +118,12 @@
                                     <div class="field-outer">
                                         <span class="far fa-clock"></span>
                                         <select name="district_id" class="form-control pb-2" style="margin-bottom: 10px" id="select_district">
-                                            <option value="">--chọn quận huyện --</option>
+                                            <option value="">--Chọn quận huyện --</option>
 
                                         </select>
                                     </div>
                                 </div>
-                                <button type="submit" class="search-btn">Search Cabs <i
+                                <button type="submit" class="search-btn">Tìm Xe <i
                                         class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
                             </form>
                             <!--Banner Form Content End-->
@@ -247,7 +247,7 @@
                                 <p>A more recently with desktop softy too aldus page maker and more recently desk publishing software.</p>
                             </div>
                         </div>
-                        <!--Service Item End-->
+                        <!--Service Item End-->$posts
                         <!--Service Item Start-->
                         <div class="service-item">
                             <img src="{{ asset('front-end-css/images/service_icon4.png')}}" alt="">
@@ -268,7 +268,7 @@
                             <div class="ad-info">
                                 <h4>Get Benifits worth</h4>
                                 <strong class="price">$250</strong>
-                                <h5>on booking Prime Cab</h5>
+                                <h5>on booking Prime Car</h5>
                                 <div class="book_fleet">
                                     <a href="contact.html">Grab Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                                 </div>
@@ -376,23 +376,6 @@
             },
         });
     </script>
-    <script>
-        $(window).scroll(function(){
-            if ($(this).scrollTop() > 100) {
-                $(".back-top").css("display","block");
-            }else{$(".back-top").css("display","none");}
-        });
-        $("#back-to-top").click(function () {
-            $("html, body").animate({scrollTop: 0}, 1000);
-        })
-    //    animation
-        $(".reEmail").hide();
-        $('#regiterEmail').click(function () {
-            $('#content-offer').slideUp(1000);
-            $(".reEmail").show().slideDown(5000);
-        })
-    </script>
-
     <script>
         $(document).ready(function(){
             $( "#select_city" ).change(function () {

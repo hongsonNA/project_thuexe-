@@ -64,15 +64,22 @@ class HomeController extends Controller
     {
         $city = city::All();
         $category = category::All();
-        $list_cate = DB::table('vehicles')->paginate(10);
+        $list_cate = managerList::with([
+            'modelCar'=>function($query){
+                $query->select(['id','name']);
+            }])->get();
+//dd($list_cate);
+//        $list_cate = DB::table('vehicles')->paginate(10);
         return view('front-end.category', compact('list_cate'),compact('category','city'));
     }
 
     public function news()
     {
         $posts = DB::table('posts')->paginate(5);
+        //hot_view
+        $allNews = Post::all()->take(4);
         //dd($posts->toArray());
-        return view('front-end.news', ['posts' => $posts]);
+        return view('front-end.news', ['posts' => $posts], compact('allNews'));
     }
 
     public function profile()
@@ -123,9 +130,13 @@ class HomeController extends Controller
     public function detail($id)
     {
         $comment = Comments::all()->where('vehicle_id','=',$id);
-
+        $list_cate = managerList::with([
+            'car_Booking'=>function($query){
+                $query->where('vehicle_id');
+            }])->get();
         $vechcles = managerList::find($id);
-        return view('front-end.detail', compact('vechcles','comment'));
+
+        return view('front-end.detail', compact('vechcles','comment'),compact('list_cate'));
     }
 
     public function detail_news($id)
@@ -226,7 +237,64 @@ class HomeController extends Controller
 
     }
 //    show news home
+//loar more News
+ public function loarmore(Request $request)
+ {
+    if ($request->ajax())
+    {
+        if ($request>0){
+            $data = DB::table('posts')
+                ->where('id','<',$request->id)
+                ->orderByDesc('id')
+                ->limit(5)->get();
+        }else{
+            $data = DB::table('posts')
+                ->orderByDesc('id')
+                ->limit(5)
+                ->get();
+        }
+        $ouput ='';
+        $last_id = '';
+        if (!$data->isEmpty())
+        {
+            foreach ($data as $id){
+                $ouput .='<div class="col-md-6">
+                                    <div class="post-block-style">
+                                        <div class="post-thumb">
+                                            <a href="" data-toggle="tooltip" title="'.$id->title .'">
+                                                @if($id->image_posts)
+                                                    <img class="img-fluid" src="'.asset('image_upload/post/'.$id->image_posts).'"  alt="">
+                                                @else
+                                                    <img class="img-fluid" src="'.asset('image_upload/default-car.jpg').'"  alt="">
+                                                @endif
+                                            </a>
+                                            <div class="grid-cat">
+                                                <a class="post-cat lifestyle" href="#">Lifestyle</a>
+                                            </div>
+                                        </div>
 
+                                        <div class="post-content">
+                                            <h2 class="post-title title-md  " data-toggle="tooltip" title="{{ $id->title }}">
+                                                <a  href="">'.$id->title.'</a>
+                                            </h2>
+                                            <div class="post-meta mb-7">
+                                                <span class="post-author"><i class="fa fa-user"></i> John Doe</span>
+                                                <span class="post-date"><i class="fa fa-clock-o"></i> 29 July, 2020</span>
+                                            </div>
+                                            <p>'.$id->summary.'</p>
+                                        </div><!-- Post content end -->
+                                    </div>
+                                </div>';
+                $last_id = $id->id;
+            }
+            $ouput .= ' <div class="clearfix my-4  text-center mb-3" style="margin-bottom: 10px;">
+                    <a data-id="'.$id->id.'" href="javascript:;" id="load_more" class="btn btn-success">Xem thêm</a>
+                </div>';
+        }else{
+            $ouput .='het du lieu';
+        }
+    }
+ }
 
 
 }

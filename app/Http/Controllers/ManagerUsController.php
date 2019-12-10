@@ -18,96 +18,99 @@ class ManagerUsController extends Controller
     public function manage()
     {
         $user_id = (Auth::user()->id);
-        $manage= DB::table('vehicles')->where('user_id','=',$user_id)->get();
-        return view('front-end.admin_user.manage_post.manage_list',compact('manage'));
+        $manage = DB::table('vehicles')->where('user_id', '=', $user_id)->get();
+        return view('front-end.admin_user.manage_post.manage_list', compact('manage'));
     }
+
     public function add()
     {
-        $city = city::All();
+        $citys = City::all();
         $model_car = ModelCar::all();
-        $category = category::All();
-        return view('front-end.admin_user.manage_post.edit_add',compact('city','model_car'),compact('category'));
+        $category = Category::all();
+
+        return view('front-end.admin_user.manage_post.edit_add', compact('citys', 'model_car', 'category'));
     }
+
     public function states($id)
     {
         $states = DB::table('districts')
-            ->where("city_id",$id)
+            ->where("city_id", $id)
             ->pluck("name");
         return response()->json($states);
     }
+
     public function stateU($id)
     {
         $states = DB::table('districts')
-            ->where("city_id",$id)
+            ->where("city_id", $id)
             ->pluck("name");
         return response()->json($states);
     }
+
     public function edit(managerList $managerList)
     {
 
-        return view('front-end.admin_user.manage_post.edit_add',compact('managerList'));
+        return view('front-end.admin_user.manage_post.edit_add', compact('managerList'));
     }
 
-    public function create(Request $request)
+    public function create(ManagerRequest $request)
     {
-        $listMul = new managerList();
-        $listMul->cate_id=$request->get('cate_id');
-        $listMul->city_id = $request->get('city_id');
-        $listMul->model_id = $request->get('model_id');
-        $listMul->district_id = $request->get('district_id');
-        $listMul->address= $request->get('address');
-        $listMul->user_id = (Auth::user()->id);
-        $listMul->status = $request->get('status');
+        $listmul = new managerList();
+        $listmul->fill($request->all());
+        $listmul->user_id = (Auth::user()->id);
         if ($request->hasFile('image')) {
             $images_File = $request->file('image');
             $FileName = 'image' . '_' . time() . '.' . $images_File->extension();
             $image_resize = Image::make($images_File->getRealPath())->resize(300, 310);
             $image_resize->save(public_path('image_upload/img_vehicle/' . $FileName));
-            $listMul->image = $FileName;
+            $listmul->image = $FileName;
         } else {
-            $listMul->image = "default_car.jpg";
+            $listmul->image = "default_car.jpg";
         }
-        $listMul->fill($request->all());
+
         $mess = 'Thêm thành công ';
-        if ($listMul->save()){
+        if ($listmul->save()) {
             $mess = 'Thêm thành công ';
         }
-        return redirect()->route('manage_list', compact('listMul'))->with('mess',$mess);
+        return redirect()->route('manage_list', compact('listmul'))->with('mess', $mess);
 
     }
+
     public function edit_vehicles($id)
     {
-        $city = city::All();
-        $category = category::All();
-        $magaEdit = managerList::find($id);
-        if (empty($magaEdit)) {
+        $citys = City::all();
+        $model_car = ModelCar::all();
+        $category = Category::all();
+        $maga_edit = managerList::find($id);
+        if (empty($maga_edit)) {
             return view('front-end.admin_user.manage_post.manage_list');
         }
 
-        return view('front-end.admin_user.manage_post.edit', compact('magaEdit', 'category'),compact('city'));
+        return view('front-end.admin_user.manage_post.edit', compact('maga_edit','citys', 'model_car', 'category'));
     }
-    public function update_vehicles(Request $request ,$id)
+
+    public function update_vehicles(Request $request, $id)
     {
-        $listMul = new managerList();
-        $listMul = managerList::find($id);
-        $listMul->cate_id=$request->get('cate_id');
-        $listMul->city_id = $request->get('city_id');
-        $listMul->district_id = $request->get('district_id');
-        $listMul->address= $request->get('address');
-        $listMul->user_id = (Auth::user()->id);
-        $listMul->status = $request->get('status');
+        $listmul = new managerList();
+        $listmul = managerList::find($id);
+//        $listMul->cate_id = $request->get('cate_id');
+//        $listMul->city_id = $request->get('city_id');
+//        $listMul->district_id = $request->get('district_id');
+//        $listMul->address = $request->get('address');
+//        $listMul->user_id = (Auth::user()->id);
+//        $listMul->status = $request->get('status');
 
         if ($request->hasFile('image')) {
             $images_File = $request->file('image');
             $FileName = 'image' . '_' . time() . '.' . $images_File->extension();
             $image_resize = Image::make($images_File->getRealPath())->resize(300, 310);
             $image_resize->save(public_path('image_upload/img_vehicle/' . $FileName));
-            $listMul->image = $FileName;
+            $listmul->image = $FileName;
         }
-        $listMul->fill($request->all());
+        $listmul->fill($request->all());
 
-        $listMul->save();
-        return redirect()->route('manage_list', compact('listMul'));
+        $listmul->save();
+        return redirect()->route('manage_list', compact('listmul'));
 
     }
 
@@ -116,20 +119,25 @@ class ManagerUsController extends Controller
         $managerList = managerList::destroy($id);
         return redirect()->route('manage_list', compact('managerList'));
     }
+
 //==========car waiting==========
-    public function waiting_car(){
-        $waiting = DB::table('car_bookings')->where('status','=','1')->get();
-        return view('front-end.admin_user.manage_post.waiting',compact('waiting'));
+    public function waiting_car()
+    {
+        $waiting = DB::table('car_bookings')->where('status', '=', '1')->get();
+        return view('front-end.admin_user.manage_post.waiting', compact('waiting'));
     }
+
 //==========car_booking==========
-    public function carBooking(){
-        $booking = DB::table('car_bookings')->where('status','=','2')->get();
-        return view('front-end.admin_user.manage_post.carBooking',compact('booking'));
+    public function carBooking()
+    {
+        $booking = DB::table('car_bookings')->where('status', '=', '2')->get();
+        return view('front-end.admin_user.manage_post.carBooking', compact('booking'));
     }
+
 //===========profile_member============
-public function profile_member()
-{
-    return view('front-end.admin_user.profile_member');
-}
+    public function profile_member()
+    {
+        return view('front-end.admin_user.profile_member');
+    }
 
 }
