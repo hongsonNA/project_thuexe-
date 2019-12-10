@@ -16,18 +16,18 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title"> Thêm mới xe </h4>
+
                     </div>
                     <div class="card-body col-lg-12">
                         <div class="">
-                            <form action="{{ route('create-vehicles') }}" method="POST" enctype="multipart/form-data"
-                                  novalidate>
+                            <form action="{{ route('create-vehicles') }}" method="POST" enctype="multipart/form-data" novalidate>
                                 @csrf
                                 <input type="hidden" name="status" value="1">
                                 <div class="row" style="padding-bottom: 20px;">
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <label for="formGroupExampleInput">Tên Xe </label>
-                                            <input type="text" class="form-control" name="name" id=""
+                                            <input type="text" class="form-control" name="name" value="{{ old('name') }}"
                                                    placeholder="Lamboghini">
                                             @if($errors->first('name'))
                                                 <br><span class="text-danger">{{$errors->first('name')}}</span>
@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Gia cho thue</label>
-                                            <input type="number" name="price" class="form-control" id=""
+                                            <input type="number" name="price" class="form-control" value="{{ old('price') }}"
                                                    placeholder="500.000">
                                             @if($errors->first('price'))
                                                 <br><span class="text-danger">{{$errors->first('price')}}</span>
@@ -44,7 +44,7 @@
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="">So cho </label>
-                                                <input type="number" name="seat" class="form-control" id=""
+                                                <input type="number" name="seat" class="form-control" value="{{ old('seat') }}"
                                                        placeholder="VD: xe 4 cho" value="">
                                                 @if($errors->first('seat'))
                                                     <br><span class="text-danger">{{$errors->first('seat')}}</span>
@@ -52,7 +52,7 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="">Hãng xe </label>
-                                                <select name="model_id" class="form-control " style="margin-bottom: 10px" id="">
+                                                <select name="model_id" class="form-control " style="margin-bottom: 10px" value="{{ old('model_id') }}">
                                                     <option  value="0" selected disabled>--Chọn hãng xe --</option>
                                                     @foreach($model_car as $model_id)
                                                         <option value="{{ $model_id->id }}">{{ $model_id->name }}</option>
@@ -64,7 +64,7 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="">Danh muc</label>
-                                                <select class="form-control" name="cate_id">
+                                                <select class="form-control" name="cate_id" value="{{ old('cate_id') }}">
                                                     @foreach($category as $key => $cate)
                                                         <option name=""
                                                                 value="{{ $cate->id }}">{{ $cate->name }}</option>
@@ -78,9 +78,9 @@
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="">Thanh pho</label>
-                                                <select class="form-control" id="select_city" name="city_id">
+                                                <select class="form-control" id="select_city" name="city_id" value="{{ old('city_id') }}">
                                                     <option value="">--Chon thanh pho--</option>
-                                                    @foreach($city as $key => $id)
+                                                    @foreach($citys as $key => $id)
                                                         <option id="" value="{{ $id->id }}">{{ $id->name }}</option>
                                                     @endforeach
                                                 </select>
@@ -90,14 +90,14 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="">Quan huyen</label>
-                                                <select class="form-control" id="select_district" name="district_id">
+                                                <select class="form-control" id="select_district" name="district_id" value="{{ old('district_id') }}">
                                                     <option value="">--chọn quận huyện --</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Dia chia chi tiet</label>
-                                            <input type="text" name="address" class="form-control" id=""
+                                            <input type="text" name="address" class="form-control" value="{{ old('address') }}"
                                                    placeholder="500.000">
                                             @if($errors->first('address'))
                                                 <br><span class="text-danger">{{$errors->first('address')}}</span>
@@ -119,7 +119,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <textarea name="description" id="editor1" style="margin-top: 5px"></textarea>
+                                <textarea name="description" id="editor1" style="margin-top: 5px">{{ old('description') }}</textarea>
                                 <script>CKEDITOR.replace('editor1');</script>
                                 @if($errors->first('description'))
                                     <br><span class="text-danger">{{$errors->first('description')}}</span>

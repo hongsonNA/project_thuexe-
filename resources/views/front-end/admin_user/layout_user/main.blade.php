@@ -17,6 +17,7 @@
 <div class="wrapper ">
     @include('front-end.admin_user.layout_user.sidebar')
     <div class="main-panel">
+        <div><a class="btn btn-danger" href="{{ route('index') }}">Quay lại trang chủ</a></div>
         @yield('content')
         <footer class="footer footer-black  footer-white ">
             <div class="container-fluid">

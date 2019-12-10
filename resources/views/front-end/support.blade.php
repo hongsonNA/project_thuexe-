@@ -82,10 +82,10 @@
                 <div class="image_support">
                     <img src="http://cuuhodanang.com/wp-content/gallery/hinh-anh-hoat-dong/layer-135%402x.png" alt="">
                 </div>
-                <div class="call-support">
+                <div class="">
                     <div class="icon-support">
-                        <a href="tel:0384075729">
-                        <span><i class="fas fa-headset"></i></span>
+                        <a href="tel:0398075729" class="fancybox">
+                            <div class="coccoc-alo-phone coccoc-alo-green coccoc-alo-show" id="coccoc-alo-phoneIcon" style="left:0; top: 70%;"><div class="coccoc-alo-ph-circle"></div><div class="coccoc-alo-ph-circle-fill"></div><div class="coccoc-alo-ph-img-circle"></div></div>
                         </a>
                     </div>
                     <div class="phone-nb">
