@@ -13,6 +13,8 @@ Route::get('/dich-vu-cuu-ho', 'HomeController@support')->name('support');
 Route::get('/admin_us','HomeController@admin_us')->name('admin_us');
 Route::get('chi-tiet/{id}','HomeController@detail')->name('detail');
 //detailNews
+Route::post('loarmore','HomeController@loarmore')->name('loarmore');
+//load more
 Route::post('/{id}/report_comment','HomeController@report_comment')->name('report_comment');
 Route::get('{id}/detail_news','HomeController@detail_news')->name('detail_news');
 Route::post('/{id}/post_comment','HomeController@post_comment')->name('post_comment');
@@ -25,7 +27,7 @@ Route::post('/{id}/update_account', 'HomeController@update_account')->name('upda
 //-------------manager_user-----------------
 
 
-Route::group(['prefix'=> 'vehicles'], function (){
+Route::group(['prefix'=> 'vehicles', 'middleware' => 'CheckUser'], function (){
     Route::get('/', 'ManagerUsController@manage')->name('manage_list');
     Route::get('add_vehicles','ManagerUsController@add')->name('add_vehicles');
     Route::post('create-vehicles','ManagerUsController@create')->name('create-vehicles');

@@ -7,31 +7,52 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"> Thêm mới xe </h4>
+                        <h4 class="card-title"> Cập nhật xe </h4>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                     <div class="card-body col-lg-12">
                         <div class="">
-                            <form action="{{ route('update_vehicles', $magaEdit->id) }}" method="POST" enctype="multipart/form-data" novalidate>
-                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                            <form action="{{ route('update_vehicles', $maga_edit->id) }}" method="POST" enctype="multipart/form-data" novalidate>
+                                @csrf
                                 <input type="hidden" name="status" value="1">
                                 <div class="row" style="padding-bottom: 20px;">
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <label for="formGroupExampleInput">Tên Xe </label>
-                                            <input value="{{ $magaEdit->name }}" type="text" class="form-control" name="name" id="" placeholder="Lamboghini">
+                                            <input type="text" class="form-control" name="name" value="{{ $maga_edit->name }}"
+                                                   placeholder="Lamboghini">
+                                            @if($errors->first('name'))
+                                                <br><span class="text-danger">{{$errors->first('name')}}</span>
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <label for="">Gia cho thue</label>
-                                            <input  value="{{ $magaEdit->price }}" type="number" name="price" class="form-control" id="" placeholder="500.000">
+                                            <input  value="{{ $maga_edit->price }}" type="number" name="price" class="form-control" id="" placeholder="500.000">
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="">So cho </label>
-                                                <input  value="{{ $magaEdit->seat }}" type="number" name="seat" class="form-control" id="" placeholder="VD: xe 4 cho" value="" >
+                                                <input  value="{{ $maga_edit->seat }}" type="number" name="seat" class="form-control" id="" placeholder="VD: xe 4 cho" value="" >
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="">Model </label>
-                                                <input  value="{{ $magaEdit->model_id }}" type="number" name="model_id" class="form-control" id="" placeholder="" value="" >
+                                                <label for="">Hãng xe </label>
+                                                <select name="model_id" class="form-control " style="margin-bottom: 10px" value="{{ old('model_id') }}">
+                                                    <option  value="0" selected disabled>--Chọn hãng xe --</option>
+                                                    @foreach($model_car as $model_id)
+                                                        <option value="{{ $model_id->id }}">{{ $model_id->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @if($errors->first('model_id'))
+                                                    <br><span class="text-danger">{{$errors->first('model_id')}}</span>
+                                                @endif
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="">Danh muc</label>
@@ -39,7 +60,7 @@
 
                                                 <select  class="form-control" name="cate_id">
                                                     @foreach($category as $key => $cate)
-                                                        <option name="" @if($cate->id == $magaEdit->cate_id) selected @endif  value="{{ $cate->id }}">{{ $cate->name }}</option>
+                                                        <option name="" @if($cate->id == $maga_edit->cate_id) selected @endif  value="{{ $cate->id }}">{{ $cate->name }}</option>
                                                     @endforeach
                                                 </select>
 
@@ -50,8 +71,8 @@
                                                 <label for="">Thanh pho</label>
                                                 <select class="form-control" id="select_city" name="city_id">
                                                     <option value="">--Chon thanh pho--</option>
-                                                    @foreach($city as $key => $id)
-                                                        <option id="" value="{{ $id->id }}" @if($id->id == $magaEdit->city_id) selected @endif >{{ $id->name }}</option>
+                                                    @foreach($citys as $key => $id)
+                                                        <option id="" value="{{ $id->id }}" @if($id->id == $maga_edit->city_id) selected @endif >{{ $id->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -64,7 +85,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Dia chia chi tiet</label>
-                                            <input value="{{ $magaEdit->address }}" type="text" name="address" class="form-control" id="" placeholder="500.000">
+                                            <input value="{{ $maga_edit->address }}" type="text" name="address" class="form-control" id="" placeholder="500.000">
                                         </div>
                                     </div>
                                     <div class="col-lg-5">
@@ -72,8 +93,8 @@
                                             <label for="exampleFormControlFile1">Anh dai dien</label>
                                             <div class="default-image">
 
-                                                @if($magaEdit->image)
-                                                    <img name="image_save" src="{{ asset('image_upload/img_vehicle/'.$magaEdit->image) }}" alt="" width="100">
+                                                @if($maga_edit->image)
+                                                    <img name="image_save" src="{{ asset('image_upload/img_vehicle/'.$maga_edit->image) }}" alt="" width="100">
                                                     @endif
                                             </div>
                                         </div>
@@ -83,7 +104,7 @@
                                     </div>
                                 </div>
                                 <textarea name="description" id="editor1" style="margin-top: 5px" >
-                                    {{ $magaEdit->description }}
+                                    {{ $maga_edit->description }}
                                 </textarea>
                                 <script>CKEDITOR.replace('editor1');</script>
                                 <!-- check -->

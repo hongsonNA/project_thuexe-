@@ -27,28 +27,37 @@ class ManagerRequest extends FormRequest
         return [
             'name' => 'required|string|min:5',
             'seat' => 'required',
-            'price'=>'required|string|min:5|numeric',
+            'price' => 'required|string|min:5|numeric',
+<<<<<<< HEAD
+            'model_id' => 'required',
+=======
             'model' => 'required',
-            'cate_id'=>'required',
-            'city_id'=>'required',
-            'address'=>'min:5',
-            'image'=>'required',
+>>>>>>> ba26d21f93d8336471cfda3ae4debddb802b172c
+            'cate_id' => 'required',
+            'city_id' => 'required',
+            'address' => 'min:5',
+            'image' => 'required',
         ];
 
     }
+
     public function messages()
     {
-       return [
-            'name.required'=>'Yêu cầu nhập tên cho Xe',
-            'name.min'=>'Tên quá ngắn',
-            'seat.required'=>'thiếu chỗ của xe',
-            'price.required'=>'Yêu cập nhập giá xe',
-           'price.numeric'=>'phải là số',
-           'model.requied'=>'chon model xe',
-           'cate_id.required'=>'Bạn chưa chọn danh mục xe',
-           'city_id.required'=>'Bạn chưa chọn thành phố',
-           'address.min'=>'Địa chỉ ít quá',
-           'image.required'=>'Bạn chưa chọn Ảnh đại diện',
-       ];
+        return [
+            'name.required' => 'Yêu cầu nhập tên cho Xe',
+            'name.min' => 'Tên quá ngắn',
+            'seat.required' => 'thiếu chỗ của xe',
+            'price.required' => 'Yêu cập nhập giá xe',
+            'price.numeric' => 'phải là số',
+<<<<<<< HEAD
+            'model_id.required' => 'chon model xe',
+=======
+            'model.requied' => 'chon model xe',
+>>>>>>> ba26d21f93d8336471cfda3ae4debddb802b172c
+            'cate_id.required' => 'Bạn chưa chọn danh mục xe',
+            'city_id.required' => 'Bạn chưa chọn thành phố',
+            'address.min' => 'Địa chỉ ít quá',
+            'image.required' => 'Bạn chưa chọn Ảnh đại diện',
+        ];
     }
 }
