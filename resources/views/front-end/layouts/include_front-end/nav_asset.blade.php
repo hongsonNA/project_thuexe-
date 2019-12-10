@@ -178,7 +178,7 @@
                                         </a>
                                         <ul role="menu"
                                             class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                            @if(!Auth::check() || Auth::user()->role == '1' || Auth::user()->role == '2')
+                                            @if(!Auth::check() || Auth::user()->role == '2')
                                                 <li>
                                                     <a href="{{ route('manage_list') }}">
                                                         <span class="edu-icon edu-user-rounded author-log-ic"></span>
@@ -296,55 +296,64 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-md-7">
-                                <div class="field-holder">
-                                    <span class="far fa-user"></span>
-                                    <input type="text" name="name" value="{{ old('name') }}"
-                                           placeholder="Họ và Tên" class="@error('name') is-invalid @enderror">
+
+                                <div class="role_member_1">
+                                    <div class="field-holder">
+                                        <span class="far fa-user"></span>
+                                        <input type="text" name="name" value="{{ old('name') }}"
+                                               placeholder="Họ và Tên" class="@error('name') is-invalid @enderror">
+                                    </div>
+                                    @error('name')
+                                    <label class="error_login">
+                                        <strong>{{ $message }}</strong>
+                                    </label>
+                                    @enderror
+                                    <div class="field-holder">
+                                        <span class="far fa-envelope"></span>
+                                        <input type="email" name="email" value="{{ old('email') }}"
+                                               placeholder="Email" class="@error('email') is-invalid @enderror">
+                                    </div>
+                                    @error('email')
+                                    <label class="error_login">
+                                        <strong>{{ $message }}</strong>
+                                    </label>
+                                    @enderror
+                                    <div class="field-holder">
+                                        <span class="fas fa-lock"></span>
+                                        <input type="password" name="password"
+                                               placeholder="Mật khẩu" class="@error('password') is-invalid @enderror">
+                                    </div>
+                                    @error('password')
+                                    <label class="error_login">
+                                        <strong>{{ $message }}</strong>
+                                    </label>
+                                    @enderror
+                                    <div class="field-holder">
+                                        <span class="fas fa-lock"></span>
+                                        <input type="password" name="password_confirmation"
+                                               placeholder="Nhập lại mật khẩu">
+                                    </div>
                                 </div>
-                                @error('name')
-                                <label class="error_login">
-                                    <strong>{{ $message }}</strong>
-                                </label>
-                                @enderror
-                                <div class="field-holder">
-                                    <span class="far fa-envelope"></span>
-                                    <input type="email" name="email" value="{{ old('email') }}"
-                                           placeholder="Email" class="@error('email') is-invalid @enderror">
+
+                                <div class="role_user_1" style="display: none">
+                                    <input type="text" name="" id="" placeholder="abc">
                                 </div>
-                                @error('email')
-                                <label class="error_login">
-                                    <strong>{{ $message }}</strong>
-                                </label>
-                                @enderror
-                                <div class="field-holder">
-                                    <span class="fas fa-lock"></span>
-                                    <input type="password" name="password"
-                                           placeholder="Mật khẩu" class="@error('password') is-invalid @enderror">
-                                </div>
-                                @error('password')
-                                <label class="error_login">
-                                    <strong>{{ $message }}</strong>
-                                </label>
-                                @enderror
-                                <div class="field-holder">
-                                    <span class="fas fa-lock"></span>
-                                    <input type="password" name="password_confirmation"
-                                           placeholder="Nhập lại mật khẩu">
-                                </div>
+
                             </div>
 
+                            {{--button radio--}}
                             <div class="col-md-5">
                                 <div class="frb frb-danger">
-                                    <input type="radio" id="radio-button-1" name="role" value="1">
-                                    <label for="radio-button-1">
+                                    <input type="radio" id="radio-button-1" class="role_member" name="role" value="1">
+                                    <label for="radio-button-1" class="role_member">
                                         <span class="frb-title">Dành cho người đi thuê xe</span>
                                         <span class="frb-description">LƯU Ý: Ở đây!! Bạn chỉ được đi thuê các loại xe mà những chủ xe đã đăng lên!!!.</span>
-                                    </label>
+                                    </label >
                                 </div>
 
                                 <div class="frb frb-danger">
-                                    <input type="radio" id="radio-button-2" name="role" value="2">
-                                    <label for="radio-button-2">
+                                    <input type="radio" id="radio-button-2" class="role_user" name="role" value="2">
+                                    <label for="radio-button-2" class="role_user">
                                         <span class="frb-title">Dành cho người cho thuê xe</span>
                                         <span class="frb-description">LƯU Ý: Ở đây!! Bạn có thể đăng xe cho những người đi thuê xe!!!</span>
                                     </label>
@@ -361,3 +370,24 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $("input[name='role']").click(function() {
+            if ($(".role_member").is(":checked")) {
+                $("#role_member_1").show();
+            } else {
+                $("#role_member_1").hide();
+            }
+            if ($(".role_user").is(":checked")) {
+                $("#role_member_1").show();
+                $("#role_user_1").show();
+            } else {
+                $("#role_user_1").hide();
+            }
+        });
+    });
+</script>
+
