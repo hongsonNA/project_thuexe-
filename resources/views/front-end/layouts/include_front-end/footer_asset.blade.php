@@ -30,6 +30,30 @@
                     </ul>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="recent-tweets widget">
+                    <h3>Recent Tweets</h3>
+                    <div class="tj-tweets">
+                        <ul>
+                            <li><i class="fab fa-twitter"></i>
+                                <div class="tweet_text">RT <a href="https://twitter.com/WordPress" target="_blank"
+                                                              title="WordPress on Twitter">@WordPress</a>: WordPress 5.0
+                                    Beta&nbsp;2 <a href="https://t.co/Bn5QRqAwLN" target="_blank"
+                                                   title="Visit this link">https://t.co/Bn5QRqAwLN</a>}
+                                    <div class="date">Nov, 1, 2018</div>
+                                </div>
+                            </li>
+                            <li><i class="fab fa-twitter"></i>
+                                <div class="tweet_text">Just setting up my Twitter. <a
+                                        href="https://twitter.com/search?q=%23myfirstTweet&amp;src=hash" target="_blank"
+                                        title="Search for #myfirstTweet">#myfirstTweet</a>}
+                                    <div class="date">Nov, 28, 2017</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
             <div class="col-md-3">
                 <div class="contact-info widget">

@@ -25,35 +25,56 @@
                     <div class="tj-heading-style">
                         <h3>Liên hệ với chúng tôi</h3>
                         <p>Hãy cho chúng tôi biết về vấn đề của bạn hoặc bạn có thể góp ý để Website của chúng tôi có thể hoàn thiện hơn.</p>
+{{--                        @if ($errors->any())--}}
+{{--                            <div class="alert alert-danger">--}}
+{{--                                <ul>--}}
+{{--                                    @foreach ($errors->all() as $error)--}}
+{{--                                        <li>{{ $error }}</li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
                     </div>
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <div class="form-holder">
-                        <form method="post"  action="{{ route('contact_create') }}" onsubmit="return checkContact()" class="tj-contact-form" id="contact-form">
+                        <form method="post"  action="{{ route('contact_create') }}" class="tj-contact-form" id="contact-form" novalidate>
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="inner-holder">
                                         <label>Họ và tên</label>
-                                        <input placeholder="VD: Nguyễn Văn A" name="name" type="text">
+                                        <input placeholder="VD: Nguyễn Văn A" name="name" type="text" value="{{ old('name') }}">
+                                        @if($errors->first('name'))
+                                            <span class="text-danger">{{$errors->first('name')}}</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="inner-holder">
                                         <label>Email</label>
-                                        <input placeholder="VD: nguyenvana@gmail.com" name="email" type="email">
+                                        <input placeholder="VD: nguyenvana@gmail.com" name="email" type="email" value="{{ old('email') }}">
+                                        @if($errors->first('name'))
+                                            <span class="text-danger">{{$errors->first('name')}}</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="inner-holder">
                                         <label>Số điện thoại</label>
-                                        <input placeholder="VD: 0868280899" name="phone" type="text">
+                                        <input placeholder="VD: 0868280899" name="phone" type="text" value="{{ old('phone') }}">
+                                        @if($errors->first('name'))
+                                            <span class="text-danger">{{$errors->first('name')}}</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="inner-holder">
                                         <label>Nội dung</label>
-                                        <textarea name="content" placeholder="VD: Tôi cần hợp tác, hãy liên hệ cho chúng tôi"></textarea>
+                                        <textarea name="content" placeholder="VD: Tôi cần hợp tác, hãy liên hệ cho chúng tôi">{{ old('content') }}</textarea>
+                                        @if($errors->first('name'))
+                                            <span class="text-danger">{{$errors->first('name')}}</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
@@ -100,16 +121,5 @@
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14899.141320824117!2d105.79380725!3d21.001240550000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2s!4v1571141559960!5m2!1sfr!2s"
             width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
     </div>
-    <!--End Map-->
-    <script>
-        function checkContact() {
-
-            var name = document.getElementById('name');
-
-            if (name.value == "") {
-                $('#error-name').html('nhapp ten');
-            }
-        }
-
-    </script>
+{{--    <!--End Map-->--}}
 @endsection

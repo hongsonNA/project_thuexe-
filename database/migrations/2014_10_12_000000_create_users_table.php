@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->text('address')->nullable();
             $table->string('image')->default('default_avata.png');
             $table->string('password');
-            $table->tinyInteger('role')->default('1');
+            $table->tinyInteger('role');
             $table->rememberToken();
             $table->timestamps();
         });

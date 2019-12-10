@@ -1,8 +1,8 @@
 <div class="sidebar" data-color="rose" data-background-color="black"
      data-image="{{ asset('image_upload/sidebar.jpg') }}">
     <div class="logo">
-        <a href="{{ route('dashboard') }}" class="simple-text logo-mini">VB</a>
-        <a href="{{ route('dashboard') }}" class="simple-text logo-normal">Vehicel Booking</a>
+        <a href="{{ route('dashboard') }}" class="simple-text logo-mini">PC</a>
+        <a href="{{ route('dashboard') }}" class="simple-text logo-normal">Prime Cab</a>
     </div>
     <div class="sidebar-wrapper">
         <div class="user">
@@ -10,28 +10,36 @@
                 <img src="/image_upload/user/{{ Auth::user()->image }}"/>
             </div>
             <div class="user-info">
-                <a data-toggle="collapse" href="#collapseExample" class="username">
-                    <span class="text-capitalize">{{ Auth::user()->name }}<b class="caret"></b></span>
+                <a class="username">
+                    <span class="text-capitalize">{{ Auth::user()->name }}</span>
                 </a>
-                <div class="collapse" id="collapseExample">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dashboard_profile') }}">
-                                <span class="sidebar-mini"> MP </span>
-                                <span class="sidebar-normal"> My Profile </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="material-icons">dashboard</i>
                     <p> Thống kê chung </p>
                 </a>
             </li>
+
+            {{---------------------------------------comment---------------------------------------}}
+            <li class="nav-item ">
+                <a class="nav-link collapsed" href="{{ route('comment_list') }}">
+                    <i class="material-icons">comments</i>
+                    <p> Bình luận Report</p>
+                </a>
+            </li>
+            {{---------------------------------------comment---------------------------------------}}
+
+            {{---------------------------------------contact---------------------------------------}}
+            <li class="nav-item ">
+                <a class="nav-link collapsed" href="{{ route('contact_list') }}">
+                    <i class="material-icons">contact_mail</i>
+                    <p> Liên Hệ </p>
+                </a>
+            </li>
+            {{---------------------------------------contact---------------------------------------}}
 
             {{---------------------------------------Post---------------------------------------}}
             <li class="nav-item ">
@@ -59,28 +67,6 @@
                 </div>
             </li>
             {{---------------------------------------post---------------------------------------}}
-
-
-            {{---------------------------------------contact---------------------------------------}}
-            <li class="nav-item ">
-                <a class="nav-link collapsed" data-toggle="collapse" href="#contact" aria-expanded="false">
-                    <i class="material-icons">contact_mail</i>
-                    <p> Liên Hệ
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="contact">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('contact_list') }}">
-                                <span class="sidebar-mini"> L </span>
-                                <span class="sidebar-normal"> Danh Sách Liên Hệ </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            {{---------------------------------------contact---------------------------------------}}
 
             {{---------------------------------------User---------------------------------------}}
             @if(!Auth::check() || Auth::user()->role == 10)
@@ -110,28 +96,6 @@
                 </li>
             @endif
             {{---------------------------------------user---------------------------------------}}
-
-            {{---------------------------------------comment---------------------------------------}}
-            <li class="nav-item ">
-                <a class="nav-link collapsed" data-toggle="collapse" href="#comment" aria-expanded="false">
-                    <i class="material-icons">comments</i>
-                    <p> Bình luận Report
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="comment">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('comment_list') }}">
-                                <span class="sidebar-mini"> CM </span>
-                                <span class="sidebar-normal"> Danh sách bình luận</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            {{---------------------------------------comment---------------------------------------}}
-
 
             {{---------------------------------------Setting All---------------------------------------}}
             <li class="nav-item ">
