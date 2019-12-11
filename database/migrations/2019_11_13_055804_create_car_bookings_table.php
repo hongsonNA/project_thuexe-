@@ -20,7 +20,6 @@ class CreateCarBookingsTable extends Migration
             $table->integer('vehicle_id');
             $table->date('start_date');
             $table->date('end_date');
-            $table->integer('drive_id');
             $table->integer('city_id');
             $table->integer('district_id');
             $table->integer('status')->default(1);
