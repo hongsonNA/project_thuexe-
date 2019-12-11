@@ -17,7 +17,6 @@ Route::post('loarmore','HomeController@loarmore')->name('loarmore');
 //load more
 Route::post('/{id}/report_comment','HomeController@report_comment')->name('report_comment');
 Route::get('{id}/detail_news','HomeController@detail_news')->name('detail_news');
-
 Route::post('/{id}/post_comment','HomeController@post_comment')->name('post_comment');
 //=======Dang ky thong tin xe=======
 Route::post('/{id}/booking_car','HomeController@booking_car')->name('booking_car');
