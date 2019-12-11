@@ -16,6 +16,7 @@ use App\Model\managerList;
 use App\Model\Comments;
 use App\Model\CarBooking;
 use App\Model\ModelCar;
+use App\Model\District;
 class HomeController extends Controller
 {
     /**
@@ -64,13 +65,14 @@ class HomeController extends Controller
     {
         $city = city::All();
         $category = category::All();
+        $model_car = ModelCar::All();
         $list_cate = managerList::with([
             'modelCar'=>function($query){
                 $query->select(['id','name']);
             }])->get();
 //dd($list_cate);
 //        $list_cate = DB::table('vehicles')->paginate(10);
-        return view('front-end.category', compact('list_cate'),compact('category','city'));
+        return view('front-end.category', compact('list_cate'),compact('category','city','model_car'));
     }
 
     public function news()
@@ -149,7 +151,13 @@ class HomeController extends Controller
         $post = Post::find($id);
 
         $comment = Comments::all()->where('post_id','=',$id);
-        return view('front-end.detail_news', compact('post'), compact('comment','topic'));
+
+        $comments = Comments::with([
+            'user' => function($comments){
+                $comments->where('id','name');
+            }
+        ])->get();
+        return view('front-end.detail_news', compact('post'), compact('comment','topic','comments'));
     }
 
     public function post_comment(Request $request, $id)
