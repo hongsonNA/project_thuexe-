@@ -453,6 +453,7 @@
     /*cate*/
     .box-combo {
         display: flex;
+        justify-content: space-evenly;
     }
 
     .box-combo .field-outer {
