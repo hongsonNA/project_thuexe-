@@ -27,7 +27,7 @@ class ContactRequest extends FormRequest
             'name' => ['required', 'min:4', 'max:40'],
             'email' => ['required', 'email'],
             'phone' => 'required|numeric|digits:10',
-            'contact' => 'required',
+            'content' => 'required',
         ];
     }
 
@@ -45,7 +45,7 @@ class ContactRequest extends FormRequest
             'phone.numeric' => 'Trường Số Điện Thoại phải là một số.',
             'phone.digits' => 'Trường Số Điện Thoại phải 10 số.',
 
-            'contact.required'=> 'Trường Nội dung không được bỏ trống.'
+            'content.required'=> 'Trường Nội dung không được bỏ trống.'
         ];
     }
 

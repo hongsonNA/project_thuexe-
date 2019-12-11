@@ -4,6 +4,21 @@
 @section('content')
     <div class="content">
         <div class="container-fluid">
+
+            @if(session('mess_update'))
+                <script>
+                    setTimeout(function () {
+                        $('#success_cate').slideUp(5000)
+                    });
+                </script>
+
+                <div class="alert alert-success" id="success_cate">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <span>{{ session('mess_update') }}</span>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -24,6 +39,8 @@
                                         <th>Email</th>
                                         <th>Số điện thoại</th>
                                         <th>Nội dung</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -54,9 +71,21 @@
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
-                    {data: 'name', name: 'email'},
-                    {data: 'name', name: 'phone'},
-                    {data: 'name', name: 'content'}
+                    {data: 'email', name: 'email'},
+                    {data: 'phone', name: 'phone'},
+                    {data: 'content', name: 'content'},
+                    {
+                        data: 'status',
+                        render: function (status) {
+
+                            if (status === "1") {
+                                return 'Chưa liên hệ lại';
+                            } else {
+                                return 'Đã liên hệ lại';
+                            }
+                        }
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false, className: "text-right"}
                 ]
             });
         });

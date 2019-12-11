@@ -17,6 +17,7 @@ Route::post('loarmore','HomeController@loarmore')->name('loarmore');
 //load more
 Route::post('/{id}/report_comment','HomeController@report_comment')->name('report_comment');
 Route::get('{id}/detail_news','HomeController@detail_news')->name('detail_news');
+
 Route::post('/{id}/post_comment','HomeController@post_comment')->name('post_comment');
 //=======Dang ky thong tin xe=======
 Route::post('/{id}/booking_car','HomeController@booking_car')->name('booking_car');
@@ -27,7 +28,7 @@ Route::post('/{id}/update_account', 'HomeController@update_account')->name('upda
 //-------------manager_user-----------------
 
 
-Route::group(['prefix'=> 'vehicles', 'middleware' => 'CheckUser'], function (){
+Route::group(['prefix'=> 'vehicles'], function (){
     Route::get('/', 'ManagerUsController@manage')->name('manage_list');
     Route::get('add_vehicles','ManagerUsController@add')->name('add_vehicles');
     Route::post('create-vehicles','ManagerUsController@create')->name('create-vehicles');
@@ -115,6 +116,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
         Route::get('/', 'Member\\ContactController@index')->name('contact_list');
         Route::get('/allContact', 'Member\\ContactController@AllDatatable'); //datatable ajax
         Route::post('/add-contact', 'Member\\ContactController@store')->name('contact_create');
+        Route::get('/{id}/edit-contact', 'Member\\ContactController@edit')->name('contact_edit');
+        Route::post('/{id}/edit-contact', 'Member\\ContactController@update')->name('contact_update');
     });
 
     //profile
