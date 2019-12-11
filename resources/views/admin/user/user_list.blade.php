@@ -290,8 +290,4 @@
         </div>
     </div>
     <script src="//code.jquery.com/jquery.js"></script>
-    <script>
-
-
-    </script>
 @endsection

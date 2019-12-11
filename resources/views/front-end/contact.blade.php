@@ -25,15 +25,6 @@
                     <div class="tj-heading-style">
                         <h3>Liên hệ với chúng tôi</h3>
                         <p>Hãy cho chúng tôi biết về vấn đề của bạn hoặc bạn có thể góp ý để Website của chúng tôi có thể hoàn thiện hơn.</p>
-{{--                        @if ($errors->any())--}}
-{{--                            <div class="alert alert-danger">--}}
-{{--                                <ul>--}}
-{{--                                    @foreach ($errors->all() as $error)--}}
-{{--                                        <li>{{ $error }}</li>--}}
-{{--                                    @endforeach--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
                     </div>
                 </div>
                 <div class="col-md-8 col-sm-8">
@@ -46,7 +37,7 @@
                                         <label>Họ và tên</label>
                                         <input placeholder="VD: Nguyễn Văn A" name="name" type="text" value="{{ old('name') }}">
                                         @if($errors->first('name'))
-                                            <span class="text-danger">{{$errors->first('name')}}</span>
+                                            <span class="text-danger" id="error_mg">{{$errors->first('name')}}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -54,8 +45,8 @@
                                     <div class="inner-holder">
                                         <label>Email</label>
                                         <input placeholder="VD: nguyenvana@gmail.com" name="email" type="email" value="{{ old('email') }}">
-                                        @if($errors->first('name'))
-                                            <span class="text-danger">{{$errors->first('name')}}</span>
+                                        @if($errors->first('email'))
+                                            <span class="text-danger" id="error_mg">{{$errors->first('email')}}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -63,8 +54,8 @@
                                     <div class="inner-holder">
                                         <label>Số điện thoại</label>
                                         <input placeholder="VD: 0868280899" name="phone" type="text" value="{{ old('phone') }}">
-                                        @if($errors->first('name'))
-                                            <span class="text-danger">{{$errors->first('name')}}</span>
+                                        @if($errors->first('phone'))
+                                            <span class="text-danger" id="error_mg">{{$errors->first('phone')}}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -72,8 +63,8 @@
                                     <div class="inner-holder">
                                         <label>Nội dung</label>
                                         <textarea name="content" placeholder="VD: Tôi cần hợp tác, hãy liên hệ cho chúng tôi">{{ old('content') }}</textarea>
-                                        @if($errors->first('name'))
-                                            <span class="text-danger">{{$errors->first('name')}}</span>
+                                        @if($errors->first('content'))
+                                            <span class="text-danger" id="error_mg">{{$errors->first('content')}}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -123,3 +114,10 @@
     </div>
 {{--    <!--End Map-->--}}
 @endsection
+
+<style>
+    #error_mg {
+margin-left: 10px;
+    }
+
+</style>

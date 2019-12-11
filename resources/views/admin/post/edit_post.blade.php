@@ -131,8 +131,9 @@
                                     </div>
                                 </div>
 
-                                <div class="card-footer ">
-                                    <button type="submit" class="btn btn-success">Lưu bài viết</button>
+                                <div class="card-footer ml-auto mr-auto">
+                                    <button type="submit" class="btn btn-success" style="margin-right: 15px">Lưu bài viết</button>
+                                    <a href="{{ route('post_list') }}" role="button" class="btn btn-default">Huỷ</a>
                                 </div>
                             </div>
                         </form>

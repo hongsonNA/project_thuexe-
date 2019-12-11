@@ -118,6 +118,7 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-success pull-right">Sửa Profile</button>
+                                <a href="{{ route('user_list') }}" role="button" class="btn btn-default"> Huỷ</a>
                             </div>
                         </div>
                     </div>

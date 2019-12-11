@@ -35,7 +35,8 @@
                             </div>
 
                             <div class="card-footer ml-auto mr-auto">
-                                <button type="submit" class="btn btn-success">Save</button>
+                                <button type="submit" class="btn btn-success" style="margin-right: 15px">Save</button>
+                                <a href="{{ route('city_list') }}" role="button" class="btn btn-default">Huỷ</a>
                             </div>
                         </div>
                     </form>

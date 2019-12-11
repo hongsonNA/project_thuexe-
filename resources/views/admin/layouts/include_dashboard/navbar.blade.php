@@ -17,6 +17,14 @@
             <span class="navbar-toggler-icon icon-bar"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <a href="{{ route('index') }}" target="_blank"
+                   class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                    <i class="fa fa-home fa-sm text-white-70"></i> Quay về trang chủ
+                </a>
+            </div>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown"
