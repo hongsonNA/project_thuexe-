@@ -148,7 +148,6 @@ class HomeController extends Controller
 
     public function detail_news($id)
     {
-        // tin lien quan
         $topic = DB::table('posts')->where('id','!=',$id)
                             ->orderByDesc('id')
                             ->take(1)
