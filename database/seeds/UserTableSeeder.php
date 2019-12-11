@@ -44,6 +44,14 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt(123456789),
                 'role' => 1,
             ],
+            [
+                'id' => 5,
+                'name' => 'User',
+                'email'=>'user@gmail.com',
+                'image' => 'default_avata.png',
+                'password' => bcrypt(123456789),
+                'role' => 1,
+            ],
         ]);
     }
 }
