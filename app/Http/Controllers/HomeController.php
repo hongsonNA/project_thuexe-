@@ -136,9 +136,14 @@ class HomeController extends Controller
             'car_Booking'=>function($query){
                 $query->where('vehicle_id');
             }])->get();
+        //topics car
+        $topic = DB::table('vehicles')->where ('id', '!=', $id)
+                            ->orderByDesc('id')
+                            ->take(3)
+                            ->get();
         $vechcles = managerList::find($id);
 
-        return view('front-end.detail', compact('vechcles','comment'),compact('list_cate'));
+        return view('front-end.detail', compact('vechcles','comment','topic'),compact('list_cate'));
     }
 
     public function detail_news($id)
