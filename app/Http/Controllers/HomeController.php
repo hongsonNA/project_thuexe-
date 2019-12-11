@@ -154,9 +154,7 @@ class HomeController extends Controller
                             ->take(1)
                             ->get();
         $post = Post::find($id);
-
         $comment = Comments::all()->where('post_id','=',$id);
-
         $comments = Comments::with([
             'user' => function($comments){
                 $comments->where('id','name');
