@@ -24,7 +24,8 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                            <input type="text" class="form-control" name="name"
+                                                   value="{{ old('name') }}">
                                             @if($errors->first('name'))
                                                 <span class="text-danger">{{$errors->first('name')}}</span>
                                             @endif
@@ -38,7 +39,8 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="text" class="form-control" name="email" value="{{ old('email') }}">
+                                            <input type="text" class="form-control" name="email"
+                                                   value="{{ old('email') }}">
                                             @if($errors->first('email'))
                                                 <span class="text-danger">{{$errors->first('email')}}</span>
                                             @endif
@@ -52,7 +54,8 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="text" class="form-control" name="identity_card" value="{{ old('identity_card') }}">
+                                            <input type="text" class="form-control" name="identity_card"
+                                                   value="{{ old('identity_card') }}">
                                             @if($errors->first('identity_card'))
                                                 <span class="text-danger">{{$errors->first('identity_card')}}</span>
                                             @endif
@@ -66,7 +69,8 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+                                            <input type="text" class="form-control" name="phone"
+                                                   value="{{ old('phone') }}">
                                             @if($errors->first('phone'))
                                                 <span class="text-danger">{{$errors->first('phone')}}</span>
                                             @endif
@@ -80,7 +84,8 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="text" class="form-control" name="address" value="{{ old('address') }}">
+                                            <input type="text" class="form-control" name="address"
+                                                   value="{{ old('address') }}">
                                             @if($errors->first('address'))
                                                 <span class="text-danger">{{$errors->first('address')}}</span>
                                             @endif
@@ -94,7 +99,8 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-group bmd-form-group">
-                                            <input type="password" class="form-control" name="password" value="{{ old('password') }}">
+                                            <input type="password" class="form-control" name="password"
+                                                   value="{{ old('password') }}">
                                             @if($errors->first('password'))
                                                 <span class="text-danger">{{$errors->first('password')}}</span>
                                             @endif
@@ -110,7 +116,8 @@
                                         <div class="form-group bmd-form-group">
                                             <input type="password" class="form-control" name="password_confirmation">
                                             @if($errors->first('password_confirmation'))
-                                                <span class="text-danger">{{$errors->first('password_confirmation')}}</span>
+                                                <span
+                                                    class="text-danger">{{$errors->first('password_confirmation')}}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -123,7 +130,8 @@
                                     <div class="col-sm-9">
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
-                                                <input type="radio" checked class="form-check-input" name="role" value="1">
+                                                <input type="radio" checked class="form-check-input" name="role"
+                                                       value="1">
                                                 User
                                             </label>
                                         </div>
@@ -142,6 +150,7 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-success pull-right">Thêm Profile</button>
+                                <a href="{{ route('user_list') }}" role="button" class="btn btn-default"> Huỷ</a>
                             </div>
                         </div>
                     </div>

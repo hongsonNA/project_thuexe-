@@ -75,7 +75,7 @@
                     <li class="comment_list">
                         <div class="comment-meta image-comment">
                             <img class="avatar" src="{{ asset('image_upload/post/image_post_1574214572.jpeg') }}" width="50" alt="">
-                            <p class="author-name"><span class="">Hong son</span></p>
+                            <p class="author-name"><span class="">{{ $comment_id['user']['name'] }}</span></p>
                             <p class="comment-content">
                                 {{ $comment_id->content }}
                             </p>
@@ -108,9 +108,9 @@
                 <h3>Báo cáo hành động tiêu cực</h3>
                 <div class="form-register">
                     <div class="modal-register" id="modal-register">
+
                         <form class="reg-frm" method="POST" action="{{ route('report_comment', $comment_id->id) }}">
                             @csrf
-{{--                            <input type="hidden" name="report_uID" value="{{ $comment_id->id }}">--}}
                             <input type="hidden" name="status" value="2">
                             <div class="field-holder">
                                 <span class="fas fa-report"></span>
@@ -118,6 +118,7 @@
                             </div>
                             <button type="submit" class="btn btn-danger">Bao cao sai pham</button>
                         </form>
+
                     </div>
                 </div>
             </div>

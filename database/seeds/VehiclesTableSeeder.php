@@ -27,7 +27,7 @@ class VehiclesTableSeeder extends Seeder
                 'city_id' => 4,
                 'user_id' => 3,
                 'district_id' => 3,
-                'image' => 'https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/model/URUS/restyle/Sabbia/Cover_Urus_.jpg',
+                'image' => 'anhmau.jpeg',
                 'status' => 4,
             ],
             [
@@ -44,7 +44,7 @@ class VehiclesTableSeeder extends Seeder
                 'city_id' => 4,
                 'user_id' => 3,
                 'district_id' => 3,
-                'image' => 'https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/model/URUS/restyle/Sabbia/Cover_Urus_.jpg',
+                'image' => 'anhmau.jpeg',
                 'status' => 4,
             ],
             [
@@ -61,7 +61,7 @@ class VehiclesTableSeeder extends Seeder
                 'city_id' => 4,
                 'user_id' => 3,
                 'district_id' => 3,
-                'image' => 'https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/model/URUS/restyle/Sabbia/Cover_Urus_.jpg',
+                'image' => 'anhmau.jpeg',
                 'status' => 4,
             ],
             [
@@ -78,7 +78,7 @@ class VehiclesTableSeeder extends Seeder
                 'city_id' => 4,
                 'user_id' => 3,
                 'district_id' => 3,
-                'image' => 'https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/model/URUS/restyle/Sabbia/Cover_Urus_.jpg',
+                'image' => 'anhmau.jpeg',
                 'status' => 4,
             ],
             [
@@ -95,7 +95,7 @@ class VehiclesTableSeeder extends Seeder
                 'city_id' => 4,
                 'user_id' => 3,
                 'district_id' => 3,
-                'image' => 'https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/model/URUS/restyle/Sabbia/Cover_Urus_.jpg',
+                'image' => 'anhmau.jpeg',
                 'status' => 4,
             ],
         ]);

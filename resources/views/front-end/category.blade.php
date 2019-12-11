@@ -18,33 +18,52 @@
                 <form action="{{ route('search_cate') }}" method="post">
                     @csrf
                     <div class="box-combo">
-                        <div class="field-outer">
-                        <select name="cate_id filter_cate col"  class="form-control " style="margin-bottom: 10px" id="">
+                        <div class="field-outer row">
+                        <select name="cate_id filter_cate col" id="filter_cate" class="form-control " style="margin-bottom: 10px" id="">
                             <option value="">--Chọn danh mục--</option>
                             @foreach($category as $key => $id)
                                 <option value="{{ $id->id }}">{{ $id->name }}</option>
                             @endforeach
                         </select>
-                        </div>
-                        <div class="field-outer">
+                            <div class="field-outer">
+                                <select name="city_id filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
+                                    <option value="">--Chọn thành phố--</option>
+                                    @foreach($city as $key => $id)
+                                        <option id="distri" value="{{ $id->id }}" >{{ $id->name }}</option>
+                                    @endforeach
+                                </select>
 
-                            <select name="filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
-                                <option value="">--Chọn chỗ--</option>
-                                <option value="">1</option>
-                                <option value="">2</option>
-                            </select>
+                            </div>
                         </div>
-                        <div class="field-outer">
+                        <div class="row">
+                            <div class="field-outer">
+                                <select name="city_id filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
+                                    <option value="">--Chọn hãng xe --</option>
+                                    @foreach($model_car as $key => $id)
+                                        <option id="distri" value="{{ $id->id }}" >{{ $id->name }}</option>
+                                    @endforeach
+                                </select>
 
-                            <select name="city_id filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
-                                <option value="">--Chọn thành phố--</option>
-                                @foreach($city as $key => $id)
-                                    <option id="distri" value="{{ $id->id }}" >{{ $id->name }}</option>
-                                @endforeach
-                            </select>
+                            </div>
+                            <div class="field-outer">
+                                <select name="district filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
+                                    <option value="">--Chọn quận huyện--</option>
+                                        <option id="distri" value="" ></option>
+                                </select>
+
+                            </div>
                         </div>
                         <div class="field-outer">
-                            <button type="submit" class="btn btn-danger">Tim kiem</button>
+                            <div class="field-outer">
+                                <select name="filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
+                                    <option value="">--Chọn chỗ--</option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                </select>
+                            </div>
+                          <div class="field-outer">
+                              <button style="width: 100%" type="submit" class="btn btn-danger">Tim kiem</button>
+                          </div>
 {{--                            <div class="bt_search">--}}
 {{--                                <button type="submit" class="btn">Tim kiem</button>--}}
 {{--                                <a href="#" type="submit">Tìm kiếm</a>--}}
@@ -57,7 +76,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="tj-heading-style">
                         <h3>Cab Collections</h3>
-                        <p>Lorem Ipsum passages, and more recently with desktop publishing software like aldus pageMaker including versions.</p>
+                        <p></p>
                     </div>
                 </div>
 
@@ -110,4 +129,11 @@
             </div>
         </div>
     </section>
+  <script>
+     $(document).ready(function () {
+            $('#document').change(function () {
+                    alert('12');
+            })
+     });
+  </script>
 @endsection
