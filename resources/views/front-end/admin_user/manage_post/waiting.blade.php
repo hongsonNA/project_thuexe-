@@ -15,7 +15,15 @@
                             </a>
                         </div>
                         <div class="card-body">
+                            <div class="form-group">
+                                <label for="status">Trạng thái</label>
+                                <select class="form-control" id="" name="see_status">
+                                    <option value="1" >Đang chờ</option>
+                                    <option value="2" >Đã xác nhận</option>
+                                </select>
+                            </div>
                             <table class="table">
+                                @csrf
                                 <thead class="text-primary">
                                 <tr>
                                     <th class="text-center">#</th>
@@ -26,23 +34,23 @@
                                     <th class="text-right">Actions</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                @foreach( $waiting as $m)
 
-                                    <tr>
-                                        <td class="text-center">{{ $m->id }}</td>
-                                        <td>{{ $m->user_id }}</td>
-                                        <td>{{ $m->vehicle_id }}</td>
-                                        <td class="text-right">{{ \Carbon\Carbon::parse($m->start_date)->format('d/m/Y')}}</td>
-                                        <td class="text-center">{{ \Carbon\Carbon::parse($m->end_date)->format('d/m/Y')}}</td>
-                                        <td class="text-center">
-                                            <a href="{{ route('edit_vehicles', $m->id) }}" class="btn btn-success"
-                                               data-original-title="" title="">
-                                                <i class="fa fa-edit">Xác nhận </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                <tbody>
+                                    @foreach( $waiting as $m)
+                                        <tr>
+                                            <td class="text-center">{{ $m->id }}</td>
+                                            <td>{{ $m->user_id }}</td>
+                                            <td>{{ $m->vehicle_id }}</td>
+                                            <td class="text-center">{{ \Carbon\Carbon::parse($m->start_date)->format('d/m/Y')}}</td>
+                                            <td class="text-center">{{ \Carbon\Carbon::parse($m->end_date)->format('d/m/Y')}}</td>
+                                            <td class="text-right">
+                                                <a href="javascript:;" data-id="{{ $m->id }}"  class="changeStatus btn btn-success"
+                                                   data-original-title="" title="">
+                                                    <i class="fa fa-edit">Xác nhận </i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -65,5 +73,8 @@
 
         </div>
     </div>
+    <script>
+
+    </script>
 @endsection
 

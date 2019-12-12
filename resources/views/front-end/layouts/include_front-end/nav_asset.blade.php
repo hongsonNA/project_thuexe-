@@ -36,7 +36,7 @@
                         <i class="fas fa-phone-volume animated_ro"></i>
                     </div>
                     <div class="phone_text">
-                        <span><a href="tel:1-234-000-2345">+1-234-000-2345</a></span>
+                        <span><a href="tel:19001009">19001009</a></span>
                     </div>
                 </div>
             </div>

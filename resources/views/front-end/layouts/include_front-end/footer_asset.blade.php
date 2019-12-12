@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="about-widget widget">
-                    <h3>Giới thiệu Prime Car</h3>
+                    <h3>Giới thiệu Prime Cab</h3>
                     <p>Primer Car mang đến nền tảng đặt xe công nghệ trong lĩnh vực gia đình, sự kiện, du lịch. Thủ tục nhanh chóng mang đến cảm giác thoải mái cho khách hàng.</p>
                     <ul class="fsocial-links">
                         <li><a href="http://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
@@ -20,7 +20,7 @@
                     <ul class="flinks-list">
                         <li><a href="">Hướng dẫn thuê xe </a></li>
                         <li><a href="{{ route('cate') }}">Danh sách xe</a></li>
-                        <li><a href="javascript:;">PrimerCar Blog</a></li>
+                        <li><a href="javascript:;">Prime Cab Blog</a></li>
 
 {{--                        <li><i class="far fa-folder"></i><a href="">Sitemap</a></li>--}}
 {{--                        <li><i class="far fa-folder"></i><a href="">Cancellation</a></li>--}}
@@ -80,7 +80,7 @@
             </div>
             <div class="col-md-3">
                 <div class="recent-tweets widget">
-                    <h3>Theo dõi Prime Car</h3>
+                    <h3>Theo dõi Prime Cab</h3>
                     <div class="tj-tweets"><ul><li><i class="fab fa-twitter"></i><div class="tweet_text">RT <a href="https://twitter.com/WordPress" target="_blank" title="WordPress on Twitter">@WordPress</a>: WordPress 5.0 Beta&nbsp;2 <a href="https://t.co/Bn5QRqAwLN" target="_blank" title="Visit this link">https://t.co/Bn5QRqAwLN</a>} <div class="date">Nov, 1, 2018</div></div></li><li><i class="fab fa-twitter"></i><div class="tweet_text">Just setting up my Twitter. <a href="https://twitter.com/search?q=%23myfirstTweet&amp;src=hash" target="_blank" title="Search for #myfirstTweet">#myfirstTweet</a>} <div class="date">Nov, 28, 2017</div></div></li></ul></div>
                 </div>
             </div>
@@ -88,6 +88,7 @@
     </div>
 </section>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 <a href="javascript:;"  class="back-top" id="back-to-top" title="Back to top"><i class="fas fa-arrow-circle-up"></i></a>
 <script>
     $(window).scroll(function(){
@@ -104,4 +105,40 @@
         $('#content-offer').slideUp(1000);
         $(".reEmail").show().slideDown(5000);
     })
+
+</script>
+<script>
+    // var trackPage = 1;
+    // var loading = false;
+    // $('#load_more').click(function () {
+    //     trackPage ++;
+    //     load_contents(trackPage);
+    //     return false;
+    // })
+    //
+
+    var _token = $('input[name="_token"]').val();
+    load_data('', _token);
+
+    $('#load_more').click(function () {
+        var id = $(this).data('id');
+        // $('#load_more_button').html('<b>Loading...</b>');
+        load_data(id, _token);
+    })
+
+    function load_data(id="", _token)
+    {
+        $.ajax({
+            url:"{{ route('loarmore') }}",
+            type:"POST",
+            data:{id:id, _token:_token},
+            success:function(data)
+            {
+                // $('#load_more_button').remove();
+                $('#post_data').append(data);
+            }
+        })
+    }
+
+
 </script>

@@ -128,10 +128,22 @@ class HomeController extends Controller
 //                                        </select>';
 
     }
+//    cate
+    public function state_cate($id)
+    {
 
+        $states = DB::table('districts')
+            ->where("city_id", $id)->get();
+        $output='';
+           foreach ($states as $dis_id){
+               $output .='<option id="distri" value="'.$dis_id->id.'" >'.$dis_id->name.'</option>';
+            }
+           return $output;
+    }
     public function detail($id)
     {
         $comment = Comments::all()->where('vehicle_id','=',$id);
+
         $list_cate = managerList::with([
             'car_Booking'=>function($query){
                 $query->where('vehicle_id');
@@ -198,11 +210,16 @@ class HomeController extends Controller
     {
         $cate_id = $request->get('cate_id');
         $seat = $request->get('seat');
+        $model_id = $request->get('model_id');
+        $district_id = $request->get('district_id');
         $city_id = $request->get('city_id');
         $searchQuery = managerList::where('cate_id', 'like', "%$cate_id%")
+            ->where('district_id', 'like', "%$district_id%")
             ->where('seat', 'like', "%$seat%")
+            ->where('model_id', 'like', "%$model_id%")
             ->where('city_id', 'like', "%$city_id%")->get();
         return view('front-end.search', compact('searchQuery'));
+        dd($searchQuery);
     }
 
 //    report-comment
@@ -252,40 +269,33 @@ class HomeController extends Controller
  {
     if ($request->ajax())
     {
-        if ($request>0){
+        if ($request->id > 0){
             $data = DB::table('posts')
                 ->where('id','<',$request->id)
                 ->orderByDesc('id')
-                ->limit(5)->get();
+                ->limit(1)->get();
         }else{
             $data = DB::table('posts')
                 ->orderByDesc('id')
-                ->limit(5)
+                ->limit(1)
                 ->get();
         }
-        $ouput ='';
-        $last_id = '';
-        if (!$data->isEmpty())
-        {
+//        dd($data);
+        if (!$data->isEmpty()){
             foreach ($data as $id){
-                $ouput .='<div class="col-md-6">
+                return '<div class="col-md-6">
                                     <div class="post-block-style">
                                         <div class="post-thumb">
                                             <a href="" data-toggle="tooltip" title="'.$id->title .'">
-                                                @if($id->image_posts)
                                                     <img class="img-fluid" src="'.asset('image_upload/post/'.$id->image_posts).'"  alt="">
-                                                @else
-                                                    <img class="img-fluid" src="'.asset('image_upload/default-car.jpg').'"  alt="">
-                                                @endif
                                             </a>
                                             <div class="grid-cat">
                                                 <a class="post-cat lifestyle" href="#">Lifestyle</a>
                                             </div>
                                         </div>
-
                                         <div class="post-content">
                                             <h2 class="post-title title-md  " data-toggle="tooltip" title="{{ $id->title }}">
-                                                <a  href="">'.$id->title.'</a>
+                                                <a  href="'.route('detail_news', $id->id).'">'.$id->title.'</a>
                                             </h2>
                                             <div class="post-meta mb-7">
                                                 <span class="post-author"><i class="fa fa-user"></i> John Doe</span>
@@ -295,13 +305,7 @@ class HomeController extends Controller
                                         </div><!-- Post content end -->
                                     </div>
                                 </div>';
-                $last_id = $id->id;
             }
-            $ouput .= ' <div class="clearfix my-4  text-center mb-3" style="margin-bottom: 10px;">
-                    <a data-id="'.$id->id.'" href="javascript:;" id="load_more" class="btn btn-success">Xem thêm</a>
-                </div>';
-        }else{
-            $ouput .='het du lieu';
         }
     }
  }

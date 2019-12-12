@@ -16,7 +16,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title"> Thêm mới xe </h4>
-
                     </div>
                     <div class="card-body col-lg-12">
                         <div class="">
@@ -33,13 +32,27 @@
                                                 <br><span class="text-danger">{{$errors->first('name')}}</span>
                                             @endif
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-md-6 mb-3">
                                             <label for="">Gia cho thue</label>
                                             <input type="number" name="price" class="form-control" value="{{ old('price') }}"
                                                    placeholder="500.000">
                                             @if($errors->first('price'))
                                                 <br><span class="text-danger">{{$errors->first('price')}}</span>
                                             @endif
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="">Danh muc</label>
+                                                <select class="form-control" name="cate_id" value="{{ old('cate_id') }}">
+                                                    @foreach($category as $key => $cate)
+                                                        <option name=""
+                                                                value="{{ $cate->id }}">{{ $cate->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @if($errors->first('cate_id'))
+                                                    <br><span class="text-danger">{{$errors->first('cate_id')}}</span>
+                                                @endif
+                                            </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">
@@ -62,18 +75,7 @@
                                                     <br><span class="text-danger">{{$errors->first('model_id')}}</span>
                                                 @endif
                                             </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="">Danh muc</label>
-                                                <select class="form-control" name="cate_id" value="{{ old('cate_id') }}">
-                                                    @foreach($category as $key => $cate)
-                                                        <option name=""
-                                                                value="{{ $cate->id }}">{{ $cate->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                @if($errors->first('cate_id'))
-                                                    <br><span class="text-danger">{{$errors->first('cate_id')}}</span>
-                                                @endif
-                                            </div>
+
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">

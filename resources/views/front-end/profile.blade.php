@@ -63,6 +63,7 @@
                             </div>
 
                     </div>
+
                     {{--                <div class="col-md-4 col-sm-4">--}}
                     {{--                    <div class="card" style="">--}}
                     {{--                        <img  src="https://bilutv.org/Theme/images/no-avatar.png" name="image" class="card-img-top img-fluid user_image" alt="...">--}}

@@ -23,6 +23,7 @@
                             </script>
                             <div class="alert alert-success">
                                 {{ session()->get('mess') }}
+                                <span>X</span>
                             </div>
                         @endif
                     <div class="card-body">
