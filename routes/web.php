@@ -40,8 +40,11 @@ Route::group(['prefix'=> 'vehicles'], function (){
     //waiting car and carBooking
     Route::get('waiting','ManagerUsController@waiting_car')->name('waiting');
     Route::get('booking','ManagerUsController@carBooking')->name('booking');
+    // update status booking
+    Route::post('change/{id}','ManagerUsController@change')->name('change');
     //Profile member
     Route::get('profile_member','ManagerUsController@profile_member')->name('profile_member');
+
 });
 
 //---search
@@ -50,6 +53,7 @@ Route::post('/search_cate','HomeController@search_cate')->name('search_cate');
 //----booknow
 Route::get('city/{id}','HomeController@city')->name('city');
 Route::get('state/{id}','HomeController@state')->name('state');
+Route::get('state_cate/{id}','HomeController@state_cate')->name('state_cate');
 //end book now
 //-----------------------End client-------------------------------
 Auth::routes();
