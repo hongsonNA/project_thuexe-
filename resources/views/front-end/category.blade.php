@@ -11,7 +11,18 @@
       .fleet-grid-box .price-box strong{color:#fff;}
       .fleet-thumb{height: 310px}
   </style>
+  <!-- breadcrumb -->
+  <div class="tj-breadcrumb">
+      <div class="container">
+          <ul class="breadcrumb-list">
+              <li><a href="/">Home</a></li>
+              <li class="javascript:;">Danh muc</li>
+          </ul>
+      </div>
+  </div>
+  <!--end breadcrumd -->
     <section class="tj-cab-collection" style="padding: 4rem 0 80px;">
+
         <div class="container">
             <!-- search cate -->
             <div class="search-cate">
@@ -19,17 +30,17 @@
                     @csrf
                     <div class="box-combo">
                         <div class="field-outer row">
-                        <select name="cate_id filter_cate col" id="filter_cate" class="form-control " style="margin-bottom: 10px" id="">
+                        <select name="cate_id" id="filter_cate" class="form-control " style="margin-bottom: 10px" id="">
                             <option value="">--Chọn danh mục--</option>
                             @foreach($category as $key => $id)
                                 <option value="{{ $id->id }}">{{ $id->name }}</option>
                             @endforeach
                         </select>
                             <div class="field-outer">
-                                <select name="city_id filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
+                                <select name="city_id" class="form-control pb-2" style="margin-bottom: 10px" id="filte_city">
                                     <option value="">--Chọn thành phố--</option>
                                     @foreach($city as $key => $id)
-                                        <option id="distri" value="{{ $id->id }}" >{{ $id->name }}</option>
+                                        <option id="city" value="{{ $id->id }}" >{{ $id->name }}</option>
                                     @endforeach
                                 </select>
 
@@ -37,28 +48,28 @@
                         </div>
                         <div class="row">
                             <div class="field-outer">
-                                <select name="city_id filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
+                                <select name="model_id" class="form-control pb-2" style="margin-bottom: 10px" id="">
                                     <option value="">--Chọn hãng xe --</option>
                                     @foreach($model_car as $key => $id)
-                                        <option id="distri" value="{{ $id->id }}" >{{ $id->name }}</option>
+                                        <option id="model" value="{{ $id->id }}" >{{ $id->name }}</option>
                                     @endforeach
                                 </select>
 
                             </div>
-                            <div class="field-outer">
-                                <select name="district filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
-                                    <option value="">--Chọn quận huyện--</option>
-                                        <option id="distri" value="" ></option>
+                            <div class="field-outer" >
+                                <select name="district_id" class="form-control pb-2" style="margin-bottom: 10px" id="select_district" >
+                                    <option value="0" >--Chọn quận huyện--</option>
+{{--                                        <option id="distri" value="0" ></option>--}}
                                 </select>
 
                             </div>
                         </div>
                         <div class="field-outer">
                             <div class="field-outer">
-                                <select name="filte_city" class="form-control pb-2" style="margin-bottom: 10px" id="">
-                                    <option value="">--Chọn chỗ--</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
+                                <select name="seat" class="form-control pb-2" style="margin-bottom: 10px" id="">
+                                    <option value="0" >--Chọn chỗ--</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
                                 </select>
                             </div>
                           <div class="field-outer">
@@ -70,6 +81,7 @@
 {{--                            </div>--}}
                         </div>
                 </form>
+
             </div>
             <!-- end -->
             <div class="row">
@@ -129,11 +141,26 @@
             </div>
         </div>
     </section>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script>
-     $(document).ready(function () {
-            $('#document').change(function () {
-                    alert('12');
-            })
-     });
+      $(document).ready(function () {
+          $('#filte_city').change(function () {
+              var id = $(this).val();
+              console.log(id);
+              if (id){
+                  $.ajax({
+                      type:"get",
+                      url:'state_cate/'+id,
+                      dataType: "html",
+                      success:function (res) {
+                          if (res){
+                              $("#select_district").append(res);
+                          }
+                      }
+                  });
+              }
+          })
+      });
   </script>
 @endsection

@@ -10,6 +10,7 @@ use App\Http\Requests\ManagerRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Model\managerList;
+use App\Model\CarBooking;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
@@ -18,7 +19,9 @@ class ManagerUsController extends Controller
     public function manage()
     {
         $user_id = (Auth::user()->id);
-        $manage = DB::table('vehicles')->where('user_id', '=', $user_id)->get();
+        $manage = DB::table('vehicles')
+            ->where('user_id', '=', $user_id)->get();
+
         return view('front-end.admin_user.manage_post.manage_list', compact('manage'));
     }
 
@@ -55,8 +58,10 @@ class ManagerUsController extends Controller
 
     public function create(ManagerRequest $request)
     {
+
         $listmul = new managerList();
-        $listmul->fill($request->all());
+        $listmul->view = $request->get('view','0');
+     $listmul->fill($request->all());
         $listmul->user_id = (Auth::user()->id);
         if ($request->hasFile('image')) {
             $images_File = $request->file('image');
@@ -93,13 +98,6 @@ class ManagerUsController extends Controller
     {
         $listmul = new managerList();
         $listmul = managerList::find($id);
-//        $listMul->cate_id = $request->get('cate_id');
-//        $listMul->city_id = $request->get('city_id');
-//        $listMul->district_id = $request->get('district_id');
-//        $listMul->address = $request->get('address');
-//        $listMul->user_id = (Auth::user()->id);
-//        $listMul->status = $request->get('status');
-
         if ($request->hasFile('image')) {
             $images_File = $request->file('image');
             $FileName = 'image' . '_' . time() . '.' . $images_File->extension();
@@ -123,7 +121,7 @@ class ManagerUsController extends Controller
 //==========car waiting==========
     public function waiting_car()
     {
-        $waiting = DB::table('car_bookings')->where('status', '=', '1')->get();
+        $waiting = DB::table('car_bookings')->where('status','1')->get();
         return view('front-end.admin_user.manage_post.waiting', compact('waiting'));
     }
 
@@ -132,6 +130,18 @@ class ManagerUsController extends Controller
     {
         $booking = DB::table('car_bookings')->where('status', '=', '2')->get();
         return view('front-end.admin_user.manage_post.carBooking', compact('booking'));
+    }
+//    update status booking
+    public function change(Request $request ,$id)
+    {
+//        dd($id);
+//        $data = $request->except('_token', $id);
+        $booking = new CarBooking();
+        $booking = CarBooking::find($id);
+        $booking->status = $request->get('status','2');
+        $booking->fill($request->all());
+        $booking->save();
+        return $booking;
     }
 
 //===========profile_member============

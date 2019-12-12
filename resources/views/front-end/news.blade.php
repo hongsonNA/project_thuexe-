@@ -197,44 +197,8 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+{{--    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>--}}
 
-    <script>
-            // var trackPage = 1;
-            // var loading = false;
-            // $('#load_more').click(function () {
-            //     trackPage ++;
-            //     load_contents(trackPage);
-            //     return false;
-            // })
-        //
-        $(document).ready(function(){
-        var _token = $('input[name="_token"]').val();
-            load_data('', _token);
 
-            function load_data(id="", _token)
-            {
-                $.ajax({
-                    url:"{{ route('loarmore') }}",
-                    type:"POST",
-                    data:{id:id, _token:_token},
-                    success:function(data)
-                    {
-                        // $('#load_more_button').remove();
-                        $('#post_data').append(data);
-                    }
-                })
-            }
-        });
-            $(document).ready(function(){
-                $('#load_more').click(function () {
-                    var id = $(this).data('id');
-                    // $('#load_more_button').html('<b>Loading...</b>');
-                    load_data(id, _token);
-                })
-
-            });
-
-    </script>
 
     @endsection
