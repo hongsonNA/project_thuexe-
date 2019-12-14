@@ -28,7 +28,6 @@ class CityTableSeeder extends Seeder
             ['name'=>'Cao Bằng '],
             ['name'=>'Hồ Chí Minh '],
             ['name'=>'Cẩm Phả '],
-            ['name'=>'Quảng Bình'],
             ['name'=>'Cam Ranh '],
 
 
