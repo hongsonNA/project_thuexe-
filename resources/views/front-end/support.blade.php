@@ -185,31 +185,43 @@
         <!-- end serice-->
         <!-- brand -->
         <div class=" slide-brand">
-            <div class="swiper-container" id="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">
-                    </div>
+{{--            <div class="swiper-container" id="swiper-container">--}}
+{{--                <div class="swiper-wrapper">--}}
+{{--                    <div class="swiper-slide">--}}
+{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
+{{--                    </div>--}}
+{{--                    <div class="swiper-slide">--}}
+{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
+{{--                    </div>--}}
+{{--                    <div class="swiper-slide">--}}
+{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
+{{--                    </div>--}}
+{{--                    <div class="swiper-slide">--}}
+{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
+{{--                    </div>--}}
+{{--                    <div class="swiper-slide">--}}
+{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
+{{--                    </div>--}}
+{{--                    <div class="swiper-slide">--}}
+{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
+{{--                    </div>--}}
 
 
-                </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
+{{--                </div>--}}
+{{--                <!-- Add Pagination -->--}}
+{{--                <div class="swiper-pagination"></div>--}}
+{{--            </div>--}}
+            <div id="owl-suport">
+
+                <div class="item"><img src="{{ asset('front-end-css/images/cuuho1.png') }}" alt="Owl Image"></div>
+                <div class="item"><img src="{{ asset('front-end-css/images/cuuho2.png') }}" alt="Owl Image"></div>
+                <div class="item"><img src="{{ asset('front-end-css/images/cuuho3.png') }}" alt="Owl Image"></div>
+                <div class="item"><img src="{{ asset('front-end-css/images/cuuho4.jpg') }}" alt="Owl Image"></div>
+                <div class="item"><img src="{{ asset('front-end-css/images/cuuho5.png') }}" alt="Owl Image"></div>
+{{--                <div class="item"><img src="{{ asset('front-end-css/images/cuuho1.png') }}" alt="Owl Image"></div>--}}
+{{--                <div class="item"><img src="{{ asset('front-end-css/images/cuuho1.png') }}" alt="Owl Image"></div>--}}
+{{--                <div class="item"><img src="{{ asset('front-end-css/images/cuuho1.png') }}" alt="Owl Image"></div>--}}
+
             </div>
         </div>
     <!-- end -->

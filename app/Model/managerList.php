@@ -21,9 +21,9 @@ class managerList extends Model
         'status'
     ];
 
-    public function car_Booking()
+    public function CarBooking()
     {
-        return $this->belongsTo('App\Model\CarBooking', 'id', 'vehicle_id');
+        return $this->hasMany('App\Model\CarBooking', 'id', 'vehicle_id');
     }
 
     public function modelCar()

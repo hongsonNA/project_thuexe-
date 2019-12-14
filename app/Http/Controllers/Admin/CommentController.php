@@ -21,7 +21,7 @@ class CommentController extends Controller
         return view('admin.comment.comment_list', compact( 'comments'));
     }
 
-    public function remote_comment($id)
+    public function removeCM($id)
     {
         $remote = Comments::destroy($id);
         return back();

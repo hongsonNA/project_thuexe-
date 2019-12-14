@@ -6,20 +6,20 @@
             </div>
         </a>
         <a href="/" class="simple-text logo-normal">
-            Prime Car
+            Prime Cab
         </a>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item">
-                <a href="#demo">
+                <a href="{{ route('Admin') }}">
                     <i class="nc-icon nc-bank"></i>
                     Thống kê
                 </a>
             </li>
 
             <li class="nav-item active">
-                <a href="{{ route('manage_list') }}">
+                <a href="{{ route('manage') }}">
                     <i class="nc-icon nc-tile-56"></i>
                     Quản lý xe
                 </a>
@@ -37,12 +37,7 @@
                     Quản lý bình luận
                 </a>
             </li>
-            <li>
-                <a href="{{ route('profile_member') }}">
-                    <i class="nc-icon nc-single-02"></i>
-                    Hồ sơ cá nhân
-                </a>
-            </li>
+
         </ul>
     </div>
 </div>

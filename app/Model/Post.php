@@ -27,4 +27,9 @@ class Post extends Model
     {
         return $this->belongsTo('App\Model\Category', 'cate_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Model\Comment', 'post_id');
+    }
 }

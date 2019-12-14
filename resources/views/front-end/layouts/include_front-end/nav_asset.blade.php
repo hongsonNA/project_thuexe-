@@ -1,5 +1,23 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<style>
 
+    .modal {
+        text-align: center;
+    }
+
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+
+    .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+</style>
 <header class="tj-header" style="z-index: 99999;">
     <!--Header Content Start-->
     <div class="container">
@@ -36,7 +54,7 @@
                         <i class="fas fa-phone-volume animated_ro"></i>
                     </div>
                     <div class="phone_text">
-                        <span><a href="tel:1-234-000-2345">+1-234-000-2345</a></span>
+                        <span><a href="tel:19001009">19001009</a></span>
                     </div>
                 </div>
             </div>
@@ -50,7 +68,7 @@
                 <!--Nav Holder Start-->
                 <div class="tj-nav-holder">
                     <!--Menu Holder Start-->
-                    <nav class="navbar navbar-default" style="width: 100%;">
+                    <nav class="navbar navbar-default" style="width: 100%;height: 53px;">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                                     data-target="#tj-navbar-collapse" aria-expanded="false">
@@ -69,7 +87,7 @@
 
                                 <li>
                                     <a href="{{ route('cate') }}" class="" aria-haspopup="true" aria-expanded="false">Danh
-                                        mục</a>
+                                        Sách xe</a>
                                 </li>
 
                                 <li><a href="{{ route('news') }}">Tin Tức</a>
@@ -86,22 +104,20 @@
                                     <a href="{{ route('about') }}">Giới thiệu</a>
                                 </li>
                             </ul>
-                            <ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm">
-                                @if(isset(Auth::user()->email))
-                                    <li class="nav-item">
-                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
-                                           class="nav-link dropdown-toggle">
+
+                            @if(isset(Auth::user()->email))
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                           aria-haspopup="true" aria-expanded="false">
                                             <img
                                                 src="https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png"
-                                                class="Profile">&nbsp;
-                                            <span class="admin-name">{{Auth::user()->name}}</span>
-                                            <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                                                class="Profile"> {{Auth::user()->name}} <b class="caret"></b>
                                         </a>
-                                        <ul role="menu"
-                                            class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                        <ul class="dropdown-menu" style="margin-top: -10px;">
                                             @if(!Auth::check() || Auth::user()->role == '1' || Auth::user()->role == '2')
                                                 <li>
-                                                    <a href="{{ route('manage_list') }}">
+                                                    <a href="{{ route('Admin') }}">
                                                         <span class="edu-icon edu-user-rounded author-log-ic"></span>
                                                         Quản lý xe
                                                     </a>
@@ -110,14 +126,20 @@
                                                 <li>
                                                     <a href="{{ route('dashboard') }}">
                                                         <span class="edu-icon edu-user-rounded author-log-ic"></span>
-                                                        Dashboard
+                                                        Trang quản trị
                                                     </a>
                                                 </li>
                                             @endif
                                             <li>
                                                 <a href="{{ route('profile') }}">
                                                     <span class="edu-icon edu-user-rounded author-log-ic"></span>
-                                                    My Profile
+                                                    Thông tin cá nhân
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('history') }}">
+                                                    <span class="edu-icon edu-user-rounded author-log-ic"></span>
+                                                    Lịch sử đặt xe
                                                 </a>
                                             </li>
                                             <li>
@@ -133,22 +155,23 @@
                                             </li>
                                         </ul>
                                     </li>
-                                @else
-                                    {{--                        <li class="order-check"><a href="javascrip:;"><i class="fa fa-pencil-square-o"></i> Doanh nghiệp--}}
-                                    {{--                                cho thuê </a></li>--}}
+                                </ul>
+
+                            @else
+                                <ul class="nav navbar-nav navbar-right">
                                     <li class="account-login" data-toggle="modal" data-target="#login">
-                                        <a href="javascript:;"><i
-                                                class="fa fa-sign-in"></i> Đăng nhập
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-user"></span> Đăng nhập
                                         </a>
                                     </li>
                                     <li class="account-register" data-toggle="modal" data-target="#register">
                                         <a href="javascript:;">
-                                            <i class="fa fa-key"></i> Đăng ký
+                                            <span class="glyphicon glyphicon-log-in"></span> Đăng ký
                                         </a>
                                     </li>
-                                @endif
+                                </ul>
+                            @endif
 
-                            </ul>
                         </div>
                         <!-- Navigation Content Start -->
                     </nav>
@@ -207,7 +230,7 @@
 <!-- form register -->
 <!-- Modal -->
 <div class="modal fade" id="register" role="dialog">
-    <div class="modal-dialog subcribe">
+    <div class="modal-dialog subcribe " style="border-radius: 5px;">
         <!-- Modal content-->
         <h3>Đăng ký thành viên</h3>
         <div class="form-register">
@@ -258,4 +281,5 @@
             </div>
         </div>
     </div>
+
 </div>

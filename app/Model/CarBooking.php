@@ -17,4 +17,12 @@ class CarBooking extends Model
         'end_date',
         'vehicle_id',
         ];
+    public function user()
+    {
+        return $this->belongsTo('App\Model\User', 'id');
+    }
+    public function managerList()
+    {
+        return $this->belongsTo('App\Model\managerList', 'id');
+    }
 }

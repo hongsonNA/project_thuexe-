@@ -2,7 +2,7 @@
 @section('content')
     <div class="tj-inner-banner">
         <div class="container">
-            <h2>About</h2>
+            <h2>Giới Thiệu</h2>
         </div>
     </div>
     <!-- banner -->
@@ -10,8 +10,8 @@
     <div class="tj-breadcrumb">
         <div class="container">
             <ul class="breadcrumb-list">
-                <li><a href="home-1.html">Home</a></li>
-                <li class="active">About</li>
+                <li><a href="/">Trang chủ</a></li>
+                <li class="javascript:;">Giới thiệu</li>
             </ul>
         </div>
     </div>
@@ -23,10 +23,16 @@
                 <div class="col-md-6 col-sm-7">
                     <div class="about-info bounceInLeft animated delay-2s">
                         <div class="tj-heading-style">
-                            <h3>Who We Are</h3>
+                            <h3></h3>
                         </div>
-                        <p>Lorem Ipsum passages, and more recently with desktop publishing software like aldus pageMaker including versions of all the Lorem Ipsum generators on thet Internet tends to repeat predefined chunks as necessary, making this an web evolved over the years, sometimes by accident.</p>
-                        <a href="https://themesjungle.net/html/prime-cab/fleet-list.html">See all Vehicles<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                        <p>Hiện nay, ở Việt Nam chưa có một nền tảng trực tuyến cho thuê và chia sẻ xe máy, ô tô tự lái.
+
+                            Khách thuê xe gặp rất nhiều khó khăn để thuê được một chiếc xe tự lái như ý trong khi cá nhân có xe nhàn rỗi hoặc các đơn vị cho thuê xe tự lái chưa có một công nghệ đủ tốt để quản lý, tối ưu tài sản của mình.
+
+                            Với sự bùng nổ của xu hướng công nghệ 4.0 thì các tiện ích của việc đặt dịch vụ vận chuyển qua kênh online/ mobile cũng như công nghệ chia sẻ xe đang ngày càng phát triển và phổ biến.
+
+                            Chia sẻ phương tiện đang dần trở thành xu hướng chính trên thế giới thay thế cho việc sở hữu xe.</p>
+                        <a href="{{ route('cate') }}">Xem tất cả xe<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                         <ul class="facts-list">
                             <li>
                                 <strong class="fact-count">100</strong>
@@ -102,8 +108,8 @@
         <div class="container">
             <div class="row">
                 <div class="tj-heading-style">
-                    <h3>Our Drivers</h3>
-                    <p>Lorem Ipsum passages, and more recently with desktop publishing software like aldus</p>
+                    <h3>Đội ngũ nhân sự</h3>
+                    <p>Những thành viên đóng góp nhiều cho công Prime Cab.</p>
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <div class="member-box">
@@ -118,8 +124,8 @@
                             </div>
                         </figure>
                         <div class="member-info">
-                            <strong class="name">John Martin</strong>
-                            <span>Luxury Driver</span>
+                            <strong class="name">Kỹ thuật viên</strong>
+                            <span>Lê Văn hiếu</span>
                         </div>
                     </div>
                 </div>
@@ -136,8 +142,8 @@
                             </div>
                         </figure>
                         <div class="member-info">
-                            <strong class="name">Paul Heyman</strong>
-                            <span>Van Driver</span>
+                            <strong class="name">Trần ngọc anh</strong>
+                            <span>Tổng giám đốc</span>
                         </div>
                     </div>
                 </div>
@@ -154,8 +160,8 @@
                             </div>
                         </figure>
                         <div class="member-info">
-                            <strong class="name">Dwayne Johnson</strong>
-                            <span>Limo Driver</span>
+                            <strong class="name">Ma Hồng Sơn</strong>
+                            <span>Kỹ thuật viên</span>
                         </div>
                     </div>
                 </div>
@@ -173,7 +179,7 @@
                         </figure>
                         <div class="member-info">
                             <strong class="name">Fernandez</strong>
-                            <span>Suv Driver</span>
+                            <span>Kỹ thuật viên</span>
                         </div>
                     </div>
                 </div>

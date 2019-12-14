@@ -37,35 +37,34 @@
     <div class="boxs-form" style="position: relative;margin-top: 17.5rem;">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                <div class="swiper-slide" style="margin-right: 0 !important;">
                     <div class="toogle-title">
                        <div class="title-slider">
-                           <p>Nào Nào! cùng chọn xe đi phượt thôi A Ưi</p>
+                           <p>Prime Cab đồng hành cùng bạn</p>
                        </div>
 {{--                        <div class="more_slider">--}}
 {{--                            <span><a href="#">Xem thêm</a></span>--}}
 {{--                        </div>--}}
                     </div>
-                    <img width="100%" src="https://cdn.shortpixel.ai/client/q_lossless,ret_img/https://themes.potenzaglobalsolutions.com/cardealer-wp/wp-content/uploads/revslider/cardealer-slider3/c83b2-ac5dd-02.jpg">
+                    <img width="100%" src="{{ asset('front-end-css/images/banner2.webp') }}">
                 </div>
                 <div class="swiper-slide">
                     <div class="toogle-title">
                         <div class="title-slider animated bouncelnLeft" style="animation-delay: .3s">
-                            <p>Nào Nào! cùng chọn xe đi phượt thôi A Ưi</p>
+                            <p>Đa dạng về xe và dịch vụ</p>
                         </div>
 {{--                        <div class="more_slider">--}}
 {{--                            <span><a href="#">Xem thêm</a></span>--}}
 {{--                        </div>--}}
                     </div>
-                    <img width="100%" src="https://files.porsche.com/microsite/boxster-spyder/assets/images/share/03.jpg">
+                    <img width="100%" src="{{ asset('front-end-css/images/banner3.webp') }}">
                 </div>
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
             <!-- Add Arrows -->
-            <div class="swiper-button-next "></div>
-{{--            <div class="button-slide"><span class="swiper-button-next"></span></div>--}}
-            <div class="swiper-button-prev"></div>
+{{--            <div class="swiper-button-next "></div>--}}
+{{--            <div class="swiper-button-prev"></div>--}}
             <!-- -->
         </div>
     {{-- form-book-car    --}}
@@ -159,9 +158,9 @@
 
                                 <figcaption class="fleet-caption">
                                     <div class="price-box">
-                                        <strong>$190 <span>/ day</span></strong>
+                                        <strong>{{ $id->price }} <span>/ day</span></strong>
                                     </div>
-                                    <span class="rated">Top Rated</span>
+                                    <span class="rated">Nổi bật</span>
                                 </figcaption>
                             </figure>
                             </a>
@@ -170,23 +169,20 @@
                             <div class="fleet-info-box">
                                 <div class="fleet-info">
                                     <h3 data-toggle="tooltip" title="2017 Chevrolet Pepe" >{{ $id->name }}</h3>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
 
                                     <ul class="fleet-meta">
-                                        <li><i class="fas fa-taxi"></i>Luxery</li>
-                                        <li><i class="fas fa-user-circle"></i>{{ $id->seat }} hành khách</li>
-{{--                                        <li><i class="fas fa-tachometer-alt"></i>5.6/100 MPG</li>--}}
+                                        <li><i class="fas fa-taxi"></i>{{ $id['user']['name'] }}</li>
+                                        <li><i class="fas fa-user-circle"></i>{{ $id->seat }} chỗ</li>
+                                        <li><i class="fas fa-tachometer-alt"></i>
+                                            <span><a class="title_user" href="{{ route('cateUser', $id->user_id) }}">{{ $id['user']['name'] }}</a></span>
+                                        </li>
                                     </ul>
                                 </div>
-                                <a href="{{ route('detail', $id->id) }}" class="tj-btn2">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                                <a href="{{ route('detail', $id->id) }}" class="tj-btn2">Xem chi tiết <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                             </div>
-                            <!--Fleet Grid Text End-->
                         </div>
                     </div>
+                        @break($key==3)
                     @endforeach
                     <!--Fleet Grid Box End-->
                 </div>
@@ -200,12 +196,11 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="promo-box">
                         <div class="offer">
-                        <h3 id="content-offer">Đăng ký nhận thông tin ưu đãi từ <span>PrimeCar</span> lên tới 50%</h3>
+                            <h3 id="">Lợi ich của khách hàng  đặt lên hàng đầu</h3>
                         </div>
                         <div class="reEmail" style="animation-delay: .3s">
-                            <h3 id="">Đăng ký nhận thông tin ưu đãi từ <span>PrimeCar</span> lên tới 60%</h3>
+                            <h3 id="">Lợi ich của khách hàng đặt xe đặt lên hàng đầu</h3>
                         </div>
-                        <a href="javascript:;" id="regiterEmail">Đăng ký nhận thông tin  <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -217,7 +212,7 @@
             <div class="row">
                 <div class="col-md-8 col-sm-8">
                     <div class="tj-heading-style">
-                        <h3>Awesome Services</h3>
+                        <h3>Lợi ích </h3>
                     </div>
                     <!--Service Outer Start-->
                     <div class="tj-service-outer">
@@ -225,8 +220,8 @@
                         <div class="service-item">
                             <img src="{{ asset('front-end-css/images/service_icon1.png') }}" alt="">
                             <div class="service-info-box">
-                                <h4>Restaurants</h4>
-                                <p>A more recently with desktop softy too aldus page maker and more recently desk publishing software.</p>
+                                <h4>Nhiều lựa chọn</h4>
+                                <p>Nhiều loại xe đa dạng ở nhiều địa điểm trên cả nước, phù hợp với mọi mục đích của bạn.</p>
                             </div>
                         </div>
                         <!--Service Item End-->
@@ -234,8 +229,8 @@
                         <div class="service-item">
                             <img src="{{ asset('front-end-css/images/service_icon2.png')}}" alt="">
                             <div class="service-info-box">
-                                <h4>Airports</h4>
-                                <p>A more recently with desktop softy too aldus page maker and more recently desk publishing software.</p>
+                                <h4>Đặt Xe </h4>
+                                <p>Nhiều loại xe đa dạng ở nhiều địa điểm trên cả nước, phù hợp với mọi mục đích của bạn</p>
                             </div>
                         </div>
                         <!--Service Item End-->
@@ -243,17 +238,17 @@
                         <div class="service-item">
                             <img src="{{ asset('front-end-css/images/service_icon3.png')}}" alt="">
                             <div class="service-info-box">
-                                <h4>Beaches</h4>
-                                <p>A more recently with desktop softy too aldus page maker and more recently desk publishing software.</p>
+                                <h4>Tin Cậy</h4>
+                                <p>Các xe đều có thời gian sử dụng  và được bảo dưỡng thường xuyên</p>
                             </div>
                         </div>
-                        <!--Service Item End-->$posts
+                        <!--Service Item End-->
                         <!--Service Item Start-->
                         <div class="service-item">
                             <img src="{{ asset('front-end-css/images/service_icon4.png')}}" alt="">
                             <div class="service-info-box">
-                                <h4>Hospitals</h4>
-                                <p>A more recently with desktop softy too aldus page maker and more recently desk publishing software.</p>
+                                <h4>Hỗ trợ </h4>
+                                <p>Hỗ Trợ 24/7 hỗ trợ khách hàng trong suốt quá trình thuê xe </p>
                             </div>
                         </div>
                         <!--Service Item End-->
@@ -308,10 +303,10 @@
                             <h4>{{ $news_id->title }}</h4>
                             </a>
                             <p>{{ $news_id->summary }}</p>
-                            <ul>
-                                <li><i class="far fa-clock"></i> Sep 19, 2018</li>
-                                <li><i class="far fa-comments"></i> 29</li>
-                            </ul>
+{{--                            <ul>--}}
+{{--                                <li><i class="far fa-clock"></i> Sep 19, 2018</li>--}}
+{{--                                <li><i class="far fa-comments"></i> 29</li>--}}
+{{--                            </ul>--}}
                         </div>
                         <!--News Detail Content End-->
                     </div>
@@ -334,10 +329,10 @@
                                     <a href="{{ route('detail_news',$id_news->id) }}">
                                     <h4>{{ $id_news->title }}</h4>
                                         <a href="{{ route('detail_news',$id_news->id) }}">
-                                    <ul class="news-meta">
-                                        <li><i class="far fa-clock"></i> Sep 19, 2018</li>
-                                        <li><i class="far fa-comments"></i> 29</li>
-                                    </ul>
+{{--                                    <ul class="news-meta">--}}
+{{--                                        <li><i class="far fa-clock"></i> Sep 19, 2018</li>--}}
+{{--                                        <li><i class="far fa-comments"></i> 29</li>--}}
+{{--                                    </ul>--}}
                                 </div>
                             </li>
                             @endforeach

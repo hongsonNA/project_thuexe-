@@ -7,22 +7,27 @@
             <div class="row" style="background-color: #f9f9f9;">
                 <div class="col-md-3  .col-sm-3">
                     <div class="profi">
+                        @if(Auth::user()->role == '2')
                         <ul class="nav">
-                            <li><label for="">Hồ sơ cá nhân</label>
+                            <li><label for="">Tài khoản cá nhân</label>
+
                                 <ul>
 {{--                                    <li><a href="javascript:;">Đổi mật khẩu</a></li>--}}
-                                    <li><a href="{{ route('manage_list') }}">Quản lý</a></li>
+                                    <li><a href="{{ route('Admin') }}">Quản lý</a></li>
                                 </ul>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-5 col-sm-5">
                     <div class="tj-tabs">
+
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="active"><a href="#user_account" data-toggle="tab"><i class="far fa-user"></i>
                                     Quản lý tài khoản</a></li>
                         </ul>
+
                     </div>
                     <div class="tab-content profile_user">
                         <form onsubmit="return checkPhone()" method="POST" enctype="multipart/form-data"
@@ -54,7 +59,7 @@
                             <div class="form-group row">
                                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input disabled type="email" name="email" class="form-control" id="email"
+                                    <input  type="email" name="email" class="form-control" id="email"
                                            placeholder="" value="{{ Auth::user()->email }}">
                                 </div>
                             </div>
@@ -63,15 +68,6 @@
                             </div>
 
                     </div>
-                    {{--                <div class="col-md-4 col-sm-4">--}}
-                    {{--                    <div class="card" style="">--}}
-                    {{--                        <img  src="https://bilutv.org/Theme/images/no-avatar.png" name="image" class="card-img-top img-fluid user_image" alt="...">--}}
-                    {{--                        <div class="card-body">--}}
-                    {{--                            <a href="#" class="btn btn-primary">Đổi ảnh đại diện</a>--}}
-                    {{--                        </div>--}}
-
-                    {{--                    </div>--}}
-                    {{--                </div>--}}
                     </form>
                 </div>
             </div>

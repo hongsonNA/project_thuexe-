@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="{{ asset('js/jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
 <link rel="stylesheet" href="{{ asset('package/css/swiper.min.css') }}">
 <link rel="stylesheet" href="{{ asset('front-end-css/css/animatePhone.css') }}">
-
+<link rel="stylesheet" href="{{ asset('front-end-css/dist/sweetalert2.min.css') }}">
+<script src="{{ asset('front-end-css/dist/sweetalert2.all.min.js') }}"></script>
 
 <!-- Css Files End -->
 {{--css menu---}}
@@ -756,6 +757,26 @@
     }
 /*xe lien quan */
     .topics_car{padding: 1rem;}
+    .fleet-info-box .fleet-info {
+        width: 400px;
+        margin-top: 40px;
+        float: left;
+    }
+   #topics_news .card-img-top {
+        width: 100%;
+        height: 240px;
+    }
+    .fleet-info-box .title_user {
+        float: right;
+        display: block;
+        border: 0 !important;
+        text-align: center;
+        padding: 0;
+        margin-top: 0 !important;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        position: relative;
+    }
 </style>
 
 

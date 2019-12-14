@@ -125,27 +125,15 @@
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label lg_em_pa">
-                                        Quyền user
+{{--                                        Quyền--}}
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
-                                                <input type="radio" checked class="form-check-input" name="role"
-                                                       value="1">
-                                                User
-                                            </label>
-                                        </div>
-
-                                        <div class="form-check-inline col-form-label">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="role" value="9">
+                                                <input type="radio" checked class="form-check-input" name="role" value="9">
                                                 Admin
                                             </label>
                                         </div>
-
-                                        @if($errors->first('status'))
-                                            <br><span class="text-danger">{{$errors->first('status')}}</span>
-                                        @endif
                                     </div>
                                 </div>
 

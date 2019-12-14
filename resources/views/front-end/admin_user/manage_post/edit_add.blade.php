@@ -16,7 +16,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title"> Thêm mới xe </h4>
-
                     </div>
                     <div class="card-body col-lg-12">
                         <div class="">
@@ -28,24 +27,38 @@
                                         <div class="form-group">
                                             <label for="formGroupExampleInput">Tên Xe </label>
                                             <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                                   placeholder="Lamboghini">
+                                                   placeholder="">
                                             @if($errors->first('name'))
                                                 <br><span class="text-danger">{{$errors->first('name')}}</span>
                                             @endif
                                         </div>
-                                        <div class="form-group">
-                                            <label for="">Gia cho thue</label>
+                                        <div class="form-row">
+                                            <div class="col-md-6 mb-3">
+                                            <label for="">Giá cho thuê</label>
                                             <input type="number" name="price" class="form-control" value="{{ old('price') }}"
-                                                   placeholder="500.000">
+                                                   placeholder="">
                                             @if($errors->first('price'))
                                                 <br><span class="text-danger">{{$errors->first('price')}}</span>
                                             @endif
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="">Danh mục</label>
+                                                <select class="form-control" name="cate_id" value="{{ old('cate_id') }}">
+                                                    @foreach($category as $key => $cate)
+                                                        <option name=""
+                                                                value="{{ $cate->id }}">{{ $cate->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @if($errors->first('cate_id'))
+                                                    <br><span class="text-danger">{{$errors->first('cate_id')}}</span>
+                                                @endif
+                                            </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">
-                                                <label for="">So cho </label>
+                                                <label for="">Số chỗ</label>
                                                 <input type="number" name="seat" class="form-control" value="{{ old('seat') }}"
-                                                       placeholder="VD: xe 4 cho" value="">
+                                                       placeholder="" value="">
                                                 @if($errors->first('seat'))
                                                     <br><span class="text-danger">{{$errors->first('seat')}}</span>
                                                 @endif
@@ -62,22 +75,11 @@
                                                     <br><span class="text-danger">{{$errors->first('model_id')}}</span>
                                                 @endif
                                             </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="">Danh muc</label>
-                                                <select class="form-control" name="cate_id" value="{{ old('cate_id') }}">
-                                                    @foreach($category as $key => $cate)
-                                                        <option name=""
-                                                                value="{{ $cate->id }}">{{ $cate->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                @if($errors->first('cate_id'))
-                                                    <br><span class="text-danger">{{$errors->first('cate_id')}}</span>
-                                                @endif
-                                            </div>
+
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">
-                                                <label for="">Thanh pho</label>
+                                                <label for="">Thành phố</label>
                                                 <select class="form-control" id="select_city" name="city_id" value="{{ old('city_id') }}">
                                                     <option value="">--Chon thanh pho--</option>
                                                     @foreach($citys as $key => $id)
@@ -89,16 +91,16 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="">Quan huyen</label>
+                                                <label for="">Quận huyện</label>
                                                 <select class="form-control" id="select_district" name="district_id" value="{{ old('district_id') }}">
                                                     <option value="">--chọn quận huyện --</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Dia chia chi tiet</label>
+                                            <label for="">Địa chỉ chi tiết</label>
                                             <input type="text" name="address" class="form-control" value="{{ old('address') }}"
-                                                   placeholder="500.000">
+                                                   placeholder="">
                                             @if($errors->first('address'))
                                                 <br><span class="text-danger">{{$errors->first('address')}}</span>
                                             @endif
@@ -106,7 +108,7 @@
                                     </div>
                                     <div class="col-lg-5">
                                         <div class="form-group">
-                                            <label for="exampleFormControlFile1">Anh dai dien</label>
+                                            <label for="exampleFormControlFile1">Ảnh đại diện</label>
                                             <div class="default-image">
                                                 <img id="blah" src="{{ asset('image_upload/default-car.jpg') }}" alt="">
                                             </div>

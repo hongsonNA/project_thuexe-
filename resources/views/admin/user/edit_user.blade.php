@@ -99,18 +99,12 @@
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label lg_em_pa">
-                                        Quyền user
+                                        {{--                                        Quyền--}}
                                     </label>
                                     <div class="col-sm-9">
                                         <div class="form-check-inline col-form-label">
                                             <label class="form-check-label">
-                                                <input type="radio" @if($user->role == 1) checked @endif class="form-check-input" name="role" value="1">
-                                                User
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline col-form-label">
-                                            <label class="form-check-label">
-                                                <input type="radio" @if($user->role == 9) checked @endif class="form-check-input" name="role" value="9">
+                                                <input type="radio" checked class="form-check-input" name="role" value="9">
                                                 Admin
                                             </label>
                                         </div>
