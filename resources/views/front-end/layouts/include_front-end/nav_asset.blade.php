@@ -86,7 +86,8 @@
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('cate') }}" class="" aria-haspopup="true" aria-expanded="false">Danh Sách xe</a>
+                                    <a href="{{ route('cate') }}" class="" aria-haspopup="true" aria-expanded="false">Danh
+                                        Sách xe</a>
                                 </li>
 
                                 <li><a href="{{ route('news') }}">Tin Tức</a>
@@ -125,14 +126,20 @@
                                                 <li>
                                                     <a href="{{ route('dashboard') }}">
                                                         <span class="edu-icon edu-user-rounded author-log-ic"></span>
-                                                        Dashboard
+                                                        Trang quản trị
                                                     </a>
                                                 </li>
                                             @endif
                                             <li>
                                                 <a href="{{ route('profile') }}">
                                                     <span class="edu-icon edu-user-rounded author-log-ic"></span>
-                                                    My Profile
+                                                    Thông tin cá nhân
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('history') }}">
+                                                    <span class="edu-icon edu-user-rounded author-log-ic"></span>
+                                                    Lịch sử đặt xe
                                                 </a>
                                             </li>
                                             <li>

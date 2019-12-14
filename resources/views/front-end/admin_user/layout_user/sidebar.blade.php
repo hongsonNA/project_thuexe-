@@ -6,7 +6,7 @@
             </div>
         </a>
         <a href="/" class="simple-text logo-normal">
-            Prime Car
+            Prime Cab
         </a>
     </div>
     <div class="sidebar-wrapper">

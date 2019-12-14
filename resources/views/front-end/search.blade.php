@@ -46,11 +46,12 @@
 
                     @if(isset($searchQuery))
                         <div class="tj-heading-style">
-                            <h3>Không tìm thấy kêt quả</h3>
+                            <h3>Kêt quả tim kiem </h3>
                         </div>
+
                     @else
                         <div class="tj-heading-style">
-                            <h3>Kêt quả tim kiem </h3>
+                            <h3>Không tìm thấy kêt quả</h3>
                         </div>
                     @endif
                 </div>

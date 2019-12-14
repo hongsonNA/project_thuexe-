@@ -102,7 +102,7 @@
                                     <div class="price-box">
                                         <strong>{{ $id->price }} <span>/ day</span></strong>
                                     </div>
-                                    <span class="rated">Nổi bật</span>
+                                    <span class="rated"></span>
                                 </figcaption>
                             </figure>
                             <!--Fleet Grid Thumb End-->
@@ -110,18 +110,20 @@
                             <div class="fleet-info-box">
                                 <div class="fleet-info">
                                     <h3>{{ $id->name }}</h3>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
+{{--                                    <span class="fas fa-star"></span>--}}
+{{--                                    <span class="fas fa-star"></span>--}}
+{{--                                    <span class="fas fa-star"></span>--}}
+{{--                                    <span class="fas fa-star"></span>--}}
+{{--                                    <span class="fas fa-star"></span>--}}
 
                                     <ul class="fleet-meta">
 
                                         <li><i class="fas fa-taxi"></i>{{ $id['modelCar']['name'] }}</li>
-                                        <li><i class="fas fa-user-circle"></i>{{ $id->seat }} chỗ</li>
+                                        <li><i class="fas fa-user-circle"></i>
+                                            <a class="title_user" href="{{ route('cateUser', $id->user_id) }}">{{ $id['user']['name'] }}</a>
+                                        </li>
                                         <li><i class="fas fa-tachometer-alt"></i>
-                                          {{ $id->user_id }} chu xe
+                                            {{ $id->seat }}chỗ
                                         </li>
                                     </ul>
                                 </div>

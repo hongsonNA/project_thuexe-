@@ -92,7 +92,7 @@
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="right-info ">
-
+                    <div class="shadow mb-xlg p-lg">
                     <div class="pr text-center">GIÁ VÀ THỦ TỤC</div>
                     <form method="post" action="{{ route('booking_car', $vechcles->id ) }}" class="cap"
                           id="detail-datetime">
@@ -138,6 +138,9 @@
                             <div class="button-sub">
                                 <button type="submit" class="btn btn-info">Đăng ký</button>
                             </div>
+                            <p class="text-center mt-lg">
+                                <a class="btn  link" id="testLinkURL" href="{{ route('cate') }}">Xem xe khác</a>
+                            </p>
                         @else
                             <div class="text-center mt-lg">
                                 Hãy <a class="account-login" data-toggle="modal" data-target="#login">Đăng
@@ -146,30 +149,29 @@
                                     ký</a> để đăng ký xe
                                 @endif
                             </div>
-                            <p class="text-center mt-lg">
-                                <a class="btn  link" id="testLinkURL" href="{{ route('cate') }}">Xem xe khác</a>
-                            </p>
-                    </form>
 
+                    </form>
+                    </div>
                 </div>
+{{--                tin lien quan--}}
 
             </div>
         </div>
     </div>
     <!-- xe lien quan -->
-    <div class="row topics_car">
+    <div class="row topics_car container" id="topics_news">
         <div><h3>Xe liên quan</h3></div>
         @foreach($topic as $id)
             <div class="col-md-4">
                 <div class="card">
                     <a href="{{ route('detail', $id->id )  }}">
                         <img class="card-img-top" data-src="{{ asset('image_upload/default-car.jpg') }}" alt=""
-                             src="{{ asset('image_upload/img_vehicle/'.$id->image) }}" data-holder-rendered="true">
+                             src="{{ asset('image_upload/img_vehicle/'.$id->image) }}" data-    holder-rendered="true">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ $id->name }}</h5>
                         {{--                        <p class="card-text">{{ $id->name }}</p>--}}
-                        <a href="{{ route('detail', $id->id )  }}" class="btn btn-primary">Xem chi tiet</a>
+                        <a href="{{ route('detail', $id->id )  }}" class="btn btn-danger">Xem chi tiết</a>
                     </div>
                 </div>
             </div>
@@ -186,6 +188,7 @@
                 )
             </script>
         </div>
+
 
     @endif
 @endsection

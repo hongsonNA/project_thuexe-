@@ -4,6 +4,7 @@
         <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
                 <div class="card">
+
                     @if($waiting != '')
                         <div class="card-header">
                             <h4 class="card-title"> Simple Table</h4>

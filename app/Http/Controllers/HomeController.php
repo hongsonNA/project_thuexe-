@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Comment;
+use App\Model\Vehicle;
 use Cassandra\Date;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,15 +43,19 @@ class HomeController extends Controller
     {
         $city = city::All();
         $category = category::All();
-        $car = DB::table('vehicles')
-            ->offset(1)
-            ->take(4)
-            ->get();
+//        $car = DB::table('vehicles')
+//            ->offset(1)
+//            ->take(4)
+//            ->get();
         //news
+        $car = managerList::with([
+            'modelCar' => function ($query) {
+                $query->select(['id', 'name']);
+            }])->get();
         $show_news = Post::All();
         $model_car = ModelCar::All();
 
-        return view('front-end.index', compact('category','model_car'), compact('city','car','show_news'));
+        return view('front-end.index', compact('category', 'model_car'), compact('city', 'car', 'show_news'));
     }
 
     public function about()
@@ -69,12 +74,12 @@ class HomeController extends Controller
         $category = category::All();
         $model_car = ModelCar::All();
         $list_cate = managerList::with([
-            'modelCar'=>function($query){
-                $query->select(['id','name']);
+            'modelCar' => function ($query) {
+                $query->select(['id', 'name']);
             }])->get();
 //dd($list_cate);
 //        $list_cate = DB::table('vehicles')->paginate(10);
-        return view('front-end.category', compact('list_cate'),compact('category','city','model_car'));
+        return view('front-end.category', compact('list_cate'), compact('category', 'city', 'model_car'));
     }
 
     public function news()
@@ -130,61 +135,63 @@ class HomeController extends Controller
 //                                        </select>';
 
     }
+
 //    cate
     public function state_cate($id)
     {
 
         $states = DB::table('districts')
             ->where("city_id", $id)->get();
-        $output='';
-           foreach ($states as $dis_id){
-               $output .='<option id="distri" value="'.$dis_id->id.'" >'.$dis_id->name.'</option>';
-            }
-           return $output;
+        $output = '';
+        foreach ($states as $dis_id) {
+            $output .= '<option id="distri" value="' . $dis_id->id . '" >' . $dis_id->name . '</option>';
+        }
+        return $output;
     }
+
     public function detail($id)
     {
-        $comment = Comments::all()->where('vehicle_id','=',$id);
+        $comment = Comments::all()->where('vehicle_id', '=', $id);
 
         $list_cate = managerList::with([
-            'CarBooking'=>function($query){
+            'CarBooking' => function ($query) {
                 $query->where('vehicle_id');
             }]);
         //topics car
-        $topic = DB::table('vehicles')->where ('id', '!=', $id)
-                            ->orderByDesc('id')
-                            ->take(3)
-                            ->get();
+        $topic = DB::table('vehicles')->where('id', '!=', $id)
+            ->orderByDesc('id')
+            ->take(3)
+            ->get();
         $vechcles = managerList::find($id);
 
 
         $comments_dl = Comment::with([
-            'user' => function($query){
-                $query->select('id','name');
+            'user' => function ($query) {
+                $query->select('id', 'name');
             },
-            'vehicle' => function($query){
-                $query->select('id','name');
+            'vehicle' => function ($query) {
+                $query->select('id', 'name');
             }
         ])->get()->toArray();
 
 //        dd($comments_dl);
-        return view('front-end.detail', compact('vechcles','comment','topic', 'comments_dl'),compact('list_cate'));
+        return view('front-end.detail', compact('vechcles', 'comment', 'topic', 'comments_dl'), compact('list_cate'));
     }
 
     public function detail_news($id)
     {
-        $topic = DB::table('posts')->where('id','!=',$id)
-                            ->orderByDesc('id')
-                            ->take(1)
-                            ->get();
+        $topic = DB::table('posts')->where('id', '!=', $id)
+            ->orderByDesc('id')
+            ->take(1)
+            ->get();
         $post = Post::find($id);
 
         $comments = Comment::with([
-            'user' => function($query){
-                $query->select('id','name');
+            'user' => function ($query) {
+                $query->select('id', 'name');
             },
-            'post' => function($query){
-                $query->select('id','title');
+            'post' => function ($query) {
+                $query->select('id', 'title');
             }
         ])->get()->toArray();
 
@@ -228,6 +235,7 @@ class HomeController extends Controller
 //        dd($searchQuery);
         return view('front-end.search', compact('searchQuery'));
     }
+
     public function search_cate(Request $request)
     {
         $cate_id = $request->get('cate_id');
@@ -266,52 +274,50 @@ class HomeController extends Controller
         $book = managerList::find($id);
 
         $all = [
-            $getList->vehicle_id   =   $book->id,
-            $getList->city_id       =   $book->city_id,
-            $getList->district_id   =   $book->district_id
+            $getList->vehicle_id = $book->id,
+            $getList->city_id = $book->city_id,
+            $getList->district_id = $book->district_id
         ];
         $getList->vehicle_id = $id;
         $getList->user_id = (Auth::user()->id);
-        $getList->status = $request->get('status','1');
-        $getList->order_id = $request->get('order_id','1');
+        $getList->status = $request->get('status', '1');
+        $getList->order_id = $request->get('order_id', '1');
         $getList->start_date = $request->get('start_date');
         $getList->end_date = $request->get('end_date');
         $getList->fill($request->all());
 
         $alert = '';
-        if ($getList->save()){
+        if ($getList->save()) {
             $alert = "Đăng ký thông tin thành công";
         }
-        return back()->with('alert',$alert);
-
+        return back()->with('alert', $alert);
 
 
     }
 //    show news home
 //loar more News
- public function loarmore(Request $request)
- {
-    if ($request->ajax())
+    public function loarmore(Request $request)
     {
-        if ($request->id > 0){
-            $data = DB::table('posts')
-                ->where('id','<',$request->id)
-                ->orderByDesc('id')
-                ->limit(1)->get();
-        }else{
-            $data = DB::table('posts')
-                ->orderByDesc('id')
-                ->limit(1)
-                ->get();
-        }
+        if ($request->ajax()) {
+            if ($request->id > 0) {
+                $data = DB::table('posts')
+                    ->where('id', '<', $request->id)
+                    ->orderByDesc('id')
+                    ->limit(1)->get();
+            } else {
+                $data = DB::table('posts')
+                    ->orderByDesc('id')
+                    ->limit(1)
+                    ->get();
+            }
 //        dd($data);
-        if (!$data->isEmpty()){
-            foreach ($data as $id){
-                return '<div class="col-md-6">
+            if (!$data->isEmpty()) {
+                foreach ($data as $id) {
+                    return '<div class="col-md-6">
                                     <div class="post-block-style">
                                         <div class="post-thumb">
-                                            <a href="" data-toggle="tooltip" title="'.$id->title .'">
-                                                    <img class="img-fluid" src="'.asset('image_upload/post/'.$id->image_posts).'"  alt="">
+                                            <a href="" data-toggle="tooltip" title="' . $id->title . '">
+                                                    <img class="img-fluid" src="' . asset('image_upload/post/' . $id->image_posts) . '"  alt="">
                                             </a>
                                             <div class="grid-cat">
                                                 <a class="post-cat lifestyle" href="#">Lifestyle</a>
@@ -319,28 +325,44 @@ class HomeController extends Controller
                                         </div>
                                         <div class="post-content">
                                             <h2 class="post-title title-md  " data-toggle="tooltip" title="{{ $id->title }}">
-                                                <a  href="'.route('detail_news', $id->id).'">'.$id->title.'</a>
+                                                <a  href="' . route('detail_news', $id->id) . '">' . $id->title . '</a>
                                             </h2>
                                             <div class="post-meta mb-7">
                                                 <span class="post-author"><i class="fa fa-user"></i> John Doe</span>
                                                 <span class="post-date"><i class="fa fa-clock-o"></i> 29 July, 2020</span>
                                             </div>
-                                            <p>'.$id->summary.'</p>
+                                            <p>' . $id->summary . '</p>
                                         </div><!-- Post content end -->
                                     </div>
                                 </div>';
+                }
             }
         }
     }
- }
 
 // history
- public function history()
- {
-     $user_id = (Auth::user()->id);
-     $history = CarBooking::where('user_id',$user_id)->get();
+    public function history()
+    {
+        $user_id = (Auth::user()->id);
+        $history = CarBooking::where('user_id', $user_id)->get();
 
-     return view('front-end.history_booking',compact('history'));
- }
+//        $comments = Vehicle::with([
+//            'car_booking' => function ($query) {
+//                $query->select(['id']);
+//            }])
+//            ->get();
+
+//        dd($comments);
+        return view('front-end.history_booking', compact('history'));
+    }
+
+//  =====danh muc xe theo tai khoan====
+    public function cateUser(Request $request, $id)
+    {
+        dd($id);
+        $carUser = managerList::all()->where('user_id', $id);
+//    dd($carUser);
+        return view('front-end.categoryCar_user', compact('carUser'));
+    }
 
 }
