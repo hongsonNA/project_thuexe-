@@ -114,10 +114,10 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="member-box">
                         <figure class="member-img">
-                            <img src="{{asset('front-end-css/images/team-img1.png')}}" alt="">
+                            <img src="{{asset('front-end-css/images/nv3.jpg')}}" width="100%" alt="">
                             <div class="member-overlay">
                                 <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.facebook.com/hieuulv"><i class="fab fa-facebook-f"></i></a></li>
                                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                 </ul>
@@ -132,10 +132,10 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="member-box">
                         <figure class="member-img">
-                            <img src="{{asset('front-end-css/images/team-img2.png')}}" alt="">
+                            <img src="{{asset('front-end-css/images/nv1.jpg')}}" width="100%" alt="">
                             <div class="member-overlay">
                                 <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.facebook.com/ngocanhhd112"><i class="fab fa-facebook-f"></i></a></li>
                                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                 </ul>
@@ -150,10 +150,10 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="member-box">
                         <figure class="member-img">
-                            <img src="{{asset('front-end-css/images/team-img3.png')}}" alt="">
+                            <img src="{{asset('front-end-css/images/nv2.jpg')}}" width="100%" alt="">
                             <div class="member-overlay">
                                 <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.facebook.com/hongson1710"><i class="fab fa-facebook-f"></i></a></li>
                                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                 </ul>
@@ -168,17 +168,17 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="member-box">
                         <figure class="member-img">
-                            <img src="{{asset('front-end-css/images/team-img4.png')}}" alt="">
+                            <img src="{{asset('front-end-css/images/nv4.jpg')}}" width="100%" alt="">
                             <div class="member-overlay">
                                 <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.facebook.com/xomlieu.nguyen"><i class="fab fa-facebook-f"></i></a></li>
                                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                 </ul>
                             </div>
                         </figure>
                         <div class="member-info">
-                            <strong class="name">Fernandez</strong>
+                            <strong class="name">Nguyễn Hoàng Hiêp</strong>
                             <span>Kỹ thuật viên</span>
                         </div>
                     </div>

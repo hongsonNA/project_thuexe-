@@ -130,7 +130,7 @@
                         <div class="caculator">
                             <div class="total">
                                 <div class="tong">Tổng giá:</div>
-                                <div class="total-price"></div>
+                                <div class="total-price" name="total"></div>
                                 <span>VND</span>
 {{--                                <input type="hidden" name="total" value="">--}}
                             </div>
@@ -179,7 +179,8 @@
         @endforeach
     </div>
     @if(session()->has('alert'))
-        <div id="alert_Booking_success" class="alert alert-success">
+{{--         class="alert alert-success" id="alert_Booking_success"--}}
+        <div>
             {{--            {{ session()->get('alert') }}--}}
             <script>
                 Swal.fire(

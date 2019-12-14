@@ -16,6 +16,8 @@
                 </tr>
                 </thead>
                 <tbody>
+
+
                 @foreach($history as $id)
                 <tr>
                     <td data-th="Product">1
@@ -40,18 +42,22 @@
                             <span>Đang thực hiện</span>
                         @elseif($id->status==4)
                             <span>Đã hoàn thành</span>
-                        @elseif($id->status==5)
+                        @elseif($id->statusit ==5)
                             <span>Từ chối </span>
                         @endif
                     </td>
                     <td class="actions" data-th="">
 {{--                        <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i>--}}
 {{--                        </button>--}}
-                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>
-                        </button>
+
+                        <a class="btn btn-danger btn-sm" href="{{ route('deleteBooking',$id->id) }}"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                     @endforeach
+
+
+
+
                 </tbody>
             </table>
         </div>
