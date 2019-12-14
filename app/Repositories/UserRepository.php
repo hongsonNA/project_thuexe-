@@ -18,12 +18,12 @@ class UserRepository implements VehicelRepositoryInterface
                                 <i class="material-icons">edit</i>
                                 <div class="ripple-container"></div>
                         </a>
-                        
+
                         <a class="btn btn-link btn-danger btn-just-icon remove" data-toggle="modal" data-target="#exampleModal">
                                 <i class="material-icons">close</i>
                                 <div class="ripple-container"></div>
                         </a>
-                        
+
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -38,7 +38,7 @@ class UserRepository implements VehicelRepositoryInterface
                               </div>
                               <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                    <a href="' . route('user_remove', $user->id) . '" class="btn btn-danger">Xóa</a>                      
+                                    <a href="' . route('user_remove', $user->id) . '" class="btn btn-danger">Xóa</a>
                               </div>
                             </div>
                           </div>
@@ -58,7 +58,7 @@ class UserRepository implements VehicelRepositoryInterface
             $image_resize->save('image_upload/user/' . $FileName);
             $user->image = $FileName;
         } else {
-            $user->image = "default.jpg";
+            $user->image = "default_avata.png";
         }
         $user->fill($request->all());
         $user->password = Hash::make($request['password']);

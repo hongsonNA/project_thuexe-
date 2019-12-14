@@ -20,20 +20,20 @@
                                     </div>
                                 </div>
 
-                                <div class="card-body">
-                                    <div class="row">
-                                        <label class="col-sm-5 col-form-label lg_em_pa">Danh mục bài viết</label>
-                                        <div class="col-sm-4">
-                                            <div class="form-group bmd-form-group">
-                                                <select class="selectpicker" name="cate_id" data-style="select-with-transition" data-size="7">
-                                                    @foreach($cate as $c)
-                                                        <option value="{{ $c->id }}" @if($c->id == $post->cate_id) selected @endif>{{ $c->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="card-body">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <label class="col-sm-5 col-form-label lg_em_pa">Danh mục bài viết</label>--}}
+{{--                                        <div class="col-sm-4">--}}
+{{--                                            <div class="form-group bmd-form-group">--}}
+{{--                                                <select class="selectpicker" name="cate_id" data-style="select-with-transition" data-size="7">--}}
+{{--                                                    @foreach($cate as $c)--}}
+{{--                                                        <option value="{{ $c->id }}" @if($c->id == $post->cate_id) selected @endif>{{ $c->name }}</option>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
 
                                 <div class="card-body ">
@@ -73,6 +73,9 @@
                                             <div class="form-group bmd-form-group">
                                                 <textarea name="content" id="editor1">{{ $post->content }}</textarea>
                                                 <script>CKEDITOR.replace('editor1');</script>
+                                                @if($errors->first('content'))
+                                                    <span class="text-danger">{{$errors->first('content')}}</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -107,7 +110,7 @@
                                                 <div class="form-check">
                                                     <label class="form-check-label">
 {{--                                                        @if($post->status == 1)checked @endif--}}
-                                                        <input class="form-check-input" name="status" type="checkbox" checked="{{ $post->status == 1 }}">
+                                                        <input class="form-check-input" name="status" type="checkbox" @if($post->status == 1)checked @endif value="1">
                                                         Đăng bài viết
                                                         <span class="form-check-sign">
                                                             <span class="check"></span>
