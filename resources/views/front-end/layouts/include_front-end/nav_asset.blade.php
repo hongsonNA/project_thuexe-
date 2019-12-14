@@ -115,7 +115,7 @@
                                                 class="Profile"> {{Auth::user()->name}} <b class="caret"></b>
                                         </a>
                                         <ul class="dropdown-menu" style="margin-top: -10px;">
-                                            @if(!Auth::check() || Auth::user()->role == '1' || Auth::user()->role == '2')
+                                            @if(!Auth::check() || Auth::user()->role == '2')
                                                 <li>
                                                     <a href="{{ route('Admin') }}">
                                                         <span class="edu-icon edu-user-rounded author-log-ic"></span>

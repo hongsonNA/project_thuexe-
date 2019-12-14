@@ -11,7 +11,7 @@
         <div class="container">
             <ul class="breadcrumb-list">
                 <li><a href="home-1.html">Home</a></li>
-                <li class="active">Contactus</li>
+                <li class="active">Liên hệ</li>
             </ul>
         </div>
     </div>
@@ -90,7 +90,7 @@
                         <div class="add-info">
                             <span class="icon-phone icomoon"></span>
                             <p>
-                                <a href="tel:1-234-567-7892">+1-234-000-2345</a>
+                                <a href="tel:19001009">19001009</a>
                             </p>
                         </div>
                         <div class="add-info">

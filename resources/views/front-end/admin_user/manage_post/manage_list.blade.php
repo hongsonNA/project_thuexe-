@@ -17,13 +17,28 @@
 
                         </div>
                     </div>
+                        @if(session()->has('mes'))
+                            <div class="alert alert-success">
+                                {{ session()->get('mes') }}
+                                <script src="">
+                                    Swal.fire(
+                                        'Thay đổi trạng thái thành công!',
+                                        '',
+                                        'success'
+                                    )
+                                </script>
+                            </div>
+                        @endif
                         @if(session()->has('mess'))
-                            <script src="text/javascript">
-                                $(".alert").hide(3000);
-                            </script>
                             <div class="alert alert-success">
                                 {{ session()->get('mess') }}
-                                <span>X</span>
+                                <script src="">
+                                    Swal.fire(
+                                        'Thay đổi trạng thái thành công!',
+                                        '',
+                                        'success'
+                                    )
+                                </script>
                             </div>
                         @endif
                     <div class="card-body">
@@ -73,6 +88,7 @@
                         <div class="card-header">
                             <h4 class="card-title">Thêm mới </h4>
                        </div>
+
                         <div clss="news_Car">
                             <a href="{{ route('add_vehicles') }}" class="float-right pull-right btn btn-success">
                                 Thêm mới xe

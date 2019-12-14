@@ -73,12 +73,11 @@ class HomeController extends Controller
         $city = city::All();
         $category = category::All();
         $model_car = ModelCar::All();
-        $list_cate = managerList::with([
-            'modelCar' => function ($query) {
-                $query->select(['id', 'name']);
-            }])->get();
-//dd($list_cate);
-//        $list_cate = DB::table('vehicles')->paginate(10);
+//        $list_cate = managerList::with([
+//            'modelCar' => function ($query) {
+//                $query->select(['id', 'name']);
+//            }])->get();
+        $list_cate = managerList::all();
         return view('front-end.category', compact('list_cate'), compact('category', 'city', 'model_car'));
     }
 
@@ -278,10 +277,9 @@ class HomeController extends Controller
             $getList->city_id = $book->city_id,
             $getList->district_id = $book->district_id
         ];
+//        dd($request->get('total'));
         $getList->vehicle_id = $id;
         $getList->user_id = (Auth::user()->id);
-        $getList->total = $request->get('total');
-//        dd($getList);
         $getList->status = $request->get('status', '1');
         $getList->order_id = $request->get('order_id', '1');
         $getList->start_date = $request->get('start_date');
@@ -353,9 +351,13 @@ class HomeController extends Controller
 //                $query->select(['id']);
 //            }])
 //            ->get();
-
 //        dd($comments);
         return view('front-end.history_booking', compact('history'));
+    }
+    public function deleteBooking($id)
+    {
+        $remote = CarBooking::destroy($id);
+        return back();
     }
 
 //  =====danh muc xe theo tai khoan====

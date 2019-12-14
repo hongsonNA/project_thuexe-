@@ -17,6 +17,7 @@ Route::post('/add-contact', 'Member\\ContactController@store');
 Route::post('loarmore', 'HomeController@loarmore')->name('loarmore');
 //load more
 Route::get('{id}/cateUser','HomeController@cateUser')->name('cateUser');
+Route::get('{id}/deleteBooking','HomeController@deleteBooking')->name('deleteBooking');
 
 Route::get('/{id}/report_comment', 'HomeController@report_comment')->name('report_comment');
 //    Route::post('/{id}/report_comment','HomeController@report_comment')->name('report_comment');
