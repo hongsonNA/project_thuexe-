@@ -23,15 +23,6 @@
                 </a>
             </li>
 
-            {{---------------------------------------comment---------------------------------------}}
-            <li class="nav-item ">
-                <a class="nav-link collapsed" href="{{ route('comment_list') }}">
-                    <i class="material-icons">comments</i>
-                    <p> Bình luận Report</p>
-                </a>
-            </li>
-            {{---------------------------------------comment---------------------------------------}}
-
             {{---------------------------------------contact---------------------------------------}}
             <li class="nav-item ">
                 <a class="nav-link collapsed" href="{{ route('contact_list') }}">
@@ -111,6 +102,13 @@
                             <a class="nav-link" href="{{ route('category_list') }}">
                                 <span class="sidebar-mini"> DM </span>
                                 <span class="sidebar-normal"> Danh Sách Danh Mục </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('model_list') }}">
+                                <span class="sidebar-mini"> H </span>
+                                <span class="sidebar-normal"> Danh Sách Hãng Xe </span>
                             </a>
                         </li>
 

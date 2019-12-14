@@ -89,6 +89,17 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
         Route::get('/{id}/remote-category', 'Admin\\CategoryController@destroy')->name('category_remove');
     });
 
+    //category
+    Route::group(['prefix' => 'model'], function () {
+        Route::get('/', 'Admin\ModelCarController@index')->name('model_list');
+        Route::get('/allModel', 'Admin\\ModelCarController@AllDatatable'); //datatable ajax
+        Route::get('/add-model', 'Admin\\ModelCarController@create')->name('model_add');
+        Route::post('/add-model', 'Admin\\ModelCarController@store')->name('model_create');
+        Route::get('/{id}/edit-model', 'Admin\\ModelCarController@edit')->name('model_edit');
+        Route::post('/{id}/edit-model', 'Admin\\ModelCarController@update')->name('model_update');
+        Route::get('/{id}/remote-model', 'Admin\\ModelCarController@destroy')->name('model_remove');
+    });
+
     //city
     Route::group(['prefix' => 'city'], function () {
 //        city
@@ -148,11 +159,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function (
         Route::get('/{id}/edit-user', 'Admin\\UserController@edit')->name('user_edit');
         Route::post('/{id}/edit-user', 'Admin\\UserController@update')->name('user_update');
         Route::get('/{id}/remote-user', 'Admin\\UserController@destroy')->name('user_remove');
-    });
-    Route::group(['prefix' => 'comments'], function () {
-        Route::get('/', 'Admin\\CommentController@comment')->name('comment_list');
-        Route::get('/{id}/remote_comment', 'Admin\\CommentController@remote_comment')->name('remote_comment');
-        Route::post('/{id}/update_cm', 'Admin\\CommentController@update_cm')->name('update_cm');
     });
 });
 

@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('image_posts');
             $table->text('content');
             $table->integer('user_id');
-            $table->integer('cate_id');
+            $table->integer('cate_id')->nullable();
             $table->integer('status')->default('0');
             $table->timestamps();
         });

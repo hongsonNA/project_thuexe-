@@ -32,6 +32,9 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            @if($errors->first('city_id'))
+                                                <span class="text-danger">{{$errors->first('city_id')}}</span>
+                                            @endif
                                         </div>
                                     </div>
 

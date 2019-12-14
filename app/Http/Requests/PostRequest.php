@@ -29,7 +29,9 @@ class PostRequest extends FormRequest
                 Rule::unique('posts')->ignore($this->id),
                 'max:140'],
             'summary' => ['required', 'max:250'],
+            'content' => ['required'],
             'image_posts' => 'mimes:jpeg,jpg,png,gif|max:10000',
+
         ];
     }
 
@@ -44,6 +46,8 @@ class PostRequest extends FormRequest
             'summary.max' => 'Tin vắn tắt không quá 250 ký tự.',
 
             'image_posts.mimes' => 'Ảnh bài viết phải chứa đuôi: jpeg, jpg, png, gif.',
+
+            'content.required' => 'Không được để trống nội dung.',
 
         ];
     }
