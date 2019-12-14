@@ -184,35 +184,9 @@
         </section>
         <!-- end serice-->
         <!-- brand -->
-        <div class=" slide-brand">
-{{--            <div class="swiper-container" id="swiper-container">--}}
-{{--                <div class="swiper-wrapper">--}}
-{{--                    <div class="swiper-slide">--}}
-{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
-{{--                    </div>--}}
-{{--                    <div class="swiper-slide">--}}
-{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
-{{--                    </div>--}}
-{{--                    <div class="swiper-slide">--}}
-{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
-{{--                    </div>--}}
-{{--                    <div class="swiper-slide">--}}
-{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
-{{--                    </div>--}}
-{{--                    <div class="swiper-slide">--}}
-{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
-{{--                    </div>--}}
-{{--                    <div class="swiper-slide">--}}
-{{--                        <img src="http://localhost/front-end-css/images/fleet-carousel-img2.png" width="140" height="70" alt="">--}}
-{{--                    </div>--}}
-
-
-{{--                </div>--}}
-{{--                <!-- Add Pagination -->--}}
-{{--                <div class="swiper-pagination"></div>--}}
-{{--            </div>--}}
+        <div class="slide-brand">
+            <h3 class="text-center" s>Đối tác của Prime Cab </h3>
             <div id="owl-suport">
-
                 <div class="item"><img src="{{ asset('front-end-css/images/cuuho1.png') }}" alt="Owl Image"></div>
                 <div class="item"><img src="{{ asset('front-end-css/images/cuuho2.png') }}" alt="Owl Image"></div>
                 <div class="item"><img src="{{ asset('front-end-css/images/cuuho3.png') }}" alt="Owl Image"></div>
@@ -225,87 +199,7 @@
             </div>
         </div>
     <!-- end -->
-        <section class="tj-contact-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="tj-heading-style">
-                            <h3>Khách hàng đánh giá chất lượng dịch vụ </h3>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class="col-md-8 col-sm-8">
-                        <div class="form-holder">
-                            <form method="POST" onsubmit="return checkContact()" class="tj-contact-form" id="contact-form" novalidate="novalidate">
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6">
-                                        <!--Inner Holder Start-->
-                                        <div class="inner-holder">
-                                            <label for="name">Name</label>
-                                            <input placeholder="Enter Your Name" name="name" type="text" id="name" required="">
-                                            <span id="error-name"></span>
-                                        </div>
-                                        <!--Inner Holder End-->
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 no-pad">
-                                        <!--Inner Holder Start-->
-                                        <div class="inner-holder">
-                                            <label for="email">Email</label>
-                                            <input placeholder="Enter Your Email" name="email" type="email" id="email">
-                                        </div>
-                                        <!--Inner Holder End-->
-                                    </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <!--Inner Holder Start-->
-                                        <div class="inner-holder">
-                                            <label for="subject">Subject</label>
-                                            <input placeholder="Your Subject" name="subject" type="text" id="subject">
-                                        </div>
-                                        <!--Inner Holder End-->
-                                    </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <!--Inner Holder Start-->
-                                        <div class="inner-holder">
-                                            <label for="message">Message</label>
-                                            <textarea name="message" placeholder="Your Message" id="message"></textarea>
-                                        </div>
-                                        <!--Inner Holder End-->
-                                    </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="inner-holder">
-                                            <button class="btn-submit" type="" id="frm_submit_btn">Send Message <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="address-box">
-                            <div class="add-info">
-                                <span class="icon-map icomoon"></span>
-                                <p>Primecabs, Orlando,<br> United States</p>
-                            </div>
-                            <div class="add-info">
-                                <span class="icon-phone icomoon"></span>
-                                <p>
-                                    <a href="tel:1-234-567-7890">+1 234 567 7890</a>
-                                    <a href="tel:1-234-567-7892">+1 234 567 7892</a>
-                                </p>div
-                            </div>
-                            <div class="add-info">
-                                <span class="icon-mail-envelope-open icomoon"></span>
-                                <p>
-                                    <a href="mailto:support@primecabs.com">
-                                        support@primecabs.com</a>
-                                    <a href="mailto:info@primecabs.com">			 info@primecabs.com</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
     </div>
     <!-- Initialize Swiper -->
     <script src="{{asset('package/js/swiper.min.js')}}"></script>

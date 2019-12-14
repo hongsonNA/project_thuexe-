@@ -16,7 +16,6 @@ class CarBooking extends Model
         'start_date',
         'end_date',
         'vehicle_id',
-        'total',
         ];
     public function user()
     {

@@ -15,8 +15,8 @@
   <div class="tj-breadcrumb">
       <div class="container">
           <ul class="breadcrumb-list">
-              <li><a href="/">Home</a></li>
-              <li class="javascript:;">Danh muc</li>
+{{--              <li><a href="/">Home</a></li>--}}
+{{--              <li class="javascript:;">Danh muc</li>--}}
           </ul>
       </div>
   </div>

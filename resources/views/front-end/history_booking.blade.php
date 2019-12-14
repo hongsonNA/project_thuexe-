@@ -16,6 +16,8 @@
                 </tr>
                 </thead>
                 <tbody>
+
+
                 @foreach($history as $id)
                 <tr>
                     <td data-th="Product">1
@@ -40,7 +42,7 @@
                             <span>Đang thực hiện</span>
                         @elseif($id->status==4)
                             <span>Đã hoàn thành</span>
-                        @elseif($id->status==5)
+                        @elseif($id->statusit ==5)
                             <span>Từ chối </span>
                         @endif
                     </td>
@@ -52,6 +54,10 @@
                     </td>
                 </tr>
                     @endforeach
+
+
+
+
                 </tbody>
             </table>
         </div>

@@ -30,7 +30,7 @@ class ManagerUsController extends Controller
     {
         $user_id = (Auth::user()->id);
         $manage = DB::table('vehicles')
-            ->where('user_id', '=', $user_id)->get();
+            ->where('user_id', '=', $user_id)->orderByDesc('id')->get();
 
         return view('front-end.admin_user.manage_post.manage_list', compact('manage'));
     }
@@ -83,11 +83,11 @@ class ManagerUsController extends Controller
             $listmul->image = "default_car.jpg";
         }
 
-        $mess = 'Thêm thành công ';
+        $mes = 'Thêm thành công ';
         if ($listmul->save()) {
-            $mess = 'Thêm thành công ';
+            $mes = 'Thêm thành công ';
         }
-        return redirect()->route('manage_list', compact('listmul'))->with('mess', $mess);
+        return redirect()->route('manage', compact('listmul'))->with('mes', $mes);
 
     }
 
@@ -116,16 +116,19 @@ class ManagerUsController extends Controller
             $listmul->image = $FileName;
         }
         $listmul->fill($request->all());
+        $mess = ' ';
+        if ($listmul->save()) {
+            $mess = 'Cập nhật thành công';
+        }
 
-        $listmul->save();
-        return redirect()->route('manage_list', compact('listmul'));
+        return redirect()->route('manage', compact('listmul'))->with('mess', $mess);
 
     }
 
     public function remote($id)
     {
         $managerList = managerList::destroy($id);
-        return redirect()->route('manage_list', compact('managerList'));
+        return redirect()->route('manage', compact('managerList'));
     }
 
 //==========car waiting==========
