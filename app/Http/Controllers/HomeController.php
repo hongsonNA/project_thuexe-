@@ -155,7 +155,18 @@ class HomeController extends Controller
                             ->get();
         $vechcles = managerList::find($id);
 
-        return view('front-end.detail', compact('vechcles','comment','topic'),compact('list_cate'));
+
+        $comments_dl = Comment::with([
+            'user' => function($query){
+                $query->select('id','name');
+            },
+            'vehicle' => function($query){
+                $query->select('id','name');
+            }
+        ])->get()->toArray();
+
+//        dd($comments_dl);
+        return view('front-end.detail', compact('vechcles','comment','topic', 'comments_dl'),compact('list_cate'));
     }
 
     public function detail_news($id)
@@ -165,28 +176,38 @@ class HomeController extends Controller
                             ->take(1)
                             ->get();
         $post = Post::find($id);
-        $comment = Comments::all()->where('post_id','=',$id);
-        $comments = Comments::with([
-            'user' => function($comments){
-                $comments->where('id','name');
+
+        $comments = Comment::with([
+            'user' => function($query){
+                $query->select('id','name');
+            },
+            'post' => function($query){
+                $query->select('id','title');
             }
-        ])->get();
-        return view('front-end.detail_news', compact('post'), compact('comment','topic','comments'));
+        ])->get()->toArray();
+
+        return view('front-end.detail_news', compact('post'), compact('topic', 'comments'));
     }
 
     public function post_comment(Request $request, $id)
     {
-//        $id_us = (Auth::user()->id);
-        $posts = new Comments();
         $com_post = Post::find($id);
+        $posts = new Comments();
         $posts->post_id = $id;
-        $posts->vehicle_id = $id;
         $posts->user_id = (Auth::user()->id);
-        $posts->status = $request->get('status','1');
         $posts->content = $request->get('content');
-        //        $data = $request->except('_token');
-        $posts->fill($request->all());
         $posts->save();
+        return back();
+    }
+
+    public function vehicle_comment(Request $request, $id)
+    {
+        $com_post = managerList::find($id);
+        $cm_vehicel = new Comments();
+        $cm_vehicel->vehicle_id = $id;
+        $cm_vehicel->user_id = (Auth::user()->id);
+        $cm_vehicel->content = $request->get('content');
+        $cm_vehicel->save();
         return back();
     }
 
@@ -225,15 +246,17 @@ class HomeController extends Controller
 //    report-comment
     public function report_comment(Request $request, $id)
     {
-        $report_uID = Comments::find($id);
-        $report_uID->report_content = $request->get('report_content');
-        $report_uID->status = $request->get('status','2');
+        $report = Comments::find($id);
+        $report->report_content = $request->get('report_content');
+        $report->status = $request->get('2');
+
         $message = '';
-        if ($report_uID->save()) {
+        if ($report->save()) {
             $message = 'Đã báo cáo vi pham ';
         }
         return redirect()->back()->with('message', $message);
     }
+
     //======booking-car=======
     public function booking_car(Request $request, $id)
     {

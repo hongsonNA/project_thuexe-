@@ -61,8 +61,6 @@ class ContactController extends Controller
             }
         }
 
-//        return redirect()->route('category_list', compact('cate'));
-
         return redirect()->route('contact_list', compact('contact'))->with('mess_update', $mess_update);
     }
 

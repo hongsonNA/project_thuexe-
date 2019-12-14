@@ -19,11 +19,11 @@ class User extends Model
 
     public function posts()
     {
-        return $this->hasMany('App\Model\Post', 'user_id');
+        return $this->hasMany('App\Model\Post','id', 'user_id');
     }
 
     public function comments()
     {
-        return $this->hasMany('App\Model\Comment', 'user_id');
+        return $this->hasMany('App\Model\Comment', 'id', 'user_id');
     }
 }
