@@ -280,6 +280,8 @@ class HomeController extends Controller
         ];
         $getList->vehicle_id = $id;
         $getList->user_id = (Auth::user()->id);
+        $getList->total = $request->get('total');
+//        dd($getList);
         $getList->status = $request->get('status', '1');
         $getList->order_id = $request->get('order_id', '1');
         $getList->start_date = $request->get('start_date');
