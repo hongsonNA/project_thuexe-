@@ -1,3 +1,4 @@
+
 @extends('admin.layouts.app_dashboard')
 @section('title', 'Posts')
 

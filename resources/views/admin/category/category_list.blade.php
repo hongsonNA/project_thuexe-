@@ -8,7 +8,7 @@
             @if(session('mess_add'))
                 <script>
                     setTimeout(function () {
-                        $('#success_cate').slideUp(5000)
+                        $('#success_cate').fadeOut(2000);
                     });
                 </script>
 
@@ -22,7 +22,7 @@
             @if(session('mess_update'))
                 <script>
                     setTimeout(function () {
-                        $('#success_cate').slideUp(5000)
+                        $('#success_cate').fadeOut(2000);
                     });
                 </script>
 

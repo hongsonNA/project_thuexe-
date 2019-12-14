@@ -6,7 +6,7 @@
                 <div class="card">
                     @if($booking != '')
                         <div class="card-header">
-                            <h4 class="card-title">Danh sách xác nhận thông tin </h4>
+                            <h4 class="card-title">Danh sách đánh giá xe </h4>
 {{--                            <a href="{{ route('add_vehicles') }}"--}}
 {{--                               class="float-right pull-right btn btn-success">--}}
 {{--                                Thêm mới xe--}}
@@ -18,27 +18,30 @@
                             <table class="table">
                                 <thead class="text-primary">
                                 <tr>
-                                    <th class="text-center">#</th>
-                                    <th>Tên người đăng ký</th>
-                                    <th>Tên Xe</th>
-                                    <th class="text-center">Khởi hành</th>
-                                    <th class="text-center">Kết thúc</th>
-                                    <th class="text-right">Actions</th>
+                                    <th width="50px">No</th>
+                                    <th>Thanh vien</th>
+                                    <th>Bình luận</th>
+                                    <th class="text-right">Thao tác</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                @foreach( $booking as $m)
 
+                                <tbody>
+
+                                @foreach($booking as $key => $id)
+                                    {{--                                        @dd($id)--}}
                                     <tr>
-                                        <td class="text-center">{{ $m->id }}</td>
-                                        <td>{{ $m->user_id }}</td>
-                                        <td>{{ $m->vehicle_id }}</td>
-                                        <td class="text-right">{{ \Carbon\Carbon::parse($m->start_date)->format('d/m/Y')}}</td>
-                                        <td class="text-center">{{ \Carbon\Carbon::parse($m->end_date)->format('d/m/Y')}}</td>
+{{--                                        <input type="hidden" name="status" value="1">--}}
+                                        <td>{{ $id->id }}</td>
+                                        <td>{{ $id['user']['name'] }}</td>
+                                        <td>{{ $id->content }}</td>
                                         <td class="text-right">
-                                            <a onclick="return confirm('Xóa bỏ khỏi danh sách')" href="{{ route('remote', $m->id) }}" class="btn btn-danger btn-icon btn-sm "
-                                               data-original-title="" title="">
-                                                <i class="fa fa-times"></i>
+{{--                                            <a onclick="return confirm('Xac nhan comment ok')"--}}
+{{--                                               href="{{ route('update_cm',$id->id) }}"><i--}}
+{{--                                                    class="material-icons">edit</i></a>--}}
+                                            <a onclick="return confirm('Loai bo binh luan nay')"
+                                               href="{{ route('removeCM',$id->id) }}">
+{{--                                                <i class="material-icons"></i>--}}
+                                                xoa
                                             </a>
                                         </td>
                                     </tr>

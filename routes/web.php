@@ -6,7 +6,7 @@ Route::get('/', 'HomeController@index')->name('index');
 
 Route::get('/gioi-thieu', 'HomeController@about')->name('about');
 Route::get('/lien-he', 'HomeController@contact')->name('contact');
-Route::get('/cate', 'HomeController@cate')->name('cate');
+Route::get('/danh-sach-xe', 'HomeController@cate')->name('cate');
 Route::get('/bai-viet', 'HomeController@news')->name('news');
 Route::get('/thong-tin-ca-nhan', 'HomeController@profile')->name('profile');
 Route::get('/dich-vu-cuu-ho', 'HomeController@support')->name('support');
@@ -23,12 +23,15 @@ Route::post('/{id}/booking_car','HomeController@booking_car')->name('booking_car
 //update_account_user
 Route::post('/{id}/update_account', 'HomeController@update_account')->name('update_account');
 //end////
+//====history=========
+Route::get('history','HomeController@history')->name('history');
 
 //-------------manager_user-----------------
 
 
 Route::group(['prefix'=> 'vehicles'], function (){
-    Route::get('/', 'ManagerUsController@manage')->name('manage_list');
+    Route::get('/','ManagerUsController@dashboard')->name('Admin');
+    Route::get('manage', 'ManagerUsController@manage')->name('manage');
     Route::get('add_vehicles','ManagerUsController@add')->name('add_vehicles');
     Route::post('create-vehicles','ManagerUsController@create')->name('create-vehicles');
     Route::get('{id}/edit_vehicles','ManagerUsController@edit_vehicles')->name('edit_vehicles');
@@ -39,9 +42,13 @@ Route::group(['prefix'=> 'vehicles'], function (){
     Route::get('states_update/{id}','ManagerUsController@states_update')->name('states_update');
     //waiting car and carBooking
     Route::get('waiting','ManagerUsController@waiting_car')->name('waiting');
+    Route::get('/allWaiting', 'ManagerUsController@AllDatatable');
     Route::get('booking','ManagerUsController@carBooking')->name('booking');
     // update status booking
     Route::post('change/{id}','ManagerUsController@change')->name('change');
+    Route::post('danger/{id}','ManagerUsController@danger')->name('danger');
+//   delete_comment
+    Route::get('/{id}/removeCM','ManagerUsController@removeCM')->name('removeCM');
     //Profile member
     Route::get('profile_member','ManagerUsController@profile_member')->name('profile_member');
 

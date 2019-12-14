@@ -1,5 +1,7 @@
 <!--   Core JS Files   -->
 <script src="{{ asset('front-end-css/assets/js/core/jquery.min.js')}}"></script>
+<script src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+{{--<script src="https://cdn.datatables.net/autofill/2.3.4/js/dataTables.autoFill.min.js"></script>--}}
 <script src="{{ asset('front-end-css/assets/js/core/popper.min.js')}}"></script>
 <script src="{{ asset('front-end-css/assets/js/core/bootstrap.min.js')}}"></script>
 <script src="{{ asset('front-end-css/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
@@ -21,4 +23,5 @@
     });
 </script>
 <script src="{{ asset('js/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
+
 

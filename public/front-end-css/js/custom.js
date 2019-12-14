@@ -354,17 +354,36 @@ $(document).ready(function () {
 			return;
 		}
 	}
+	//====dich vu cuu ho======
+    $(document).ready(function() {
+
+        $("#owl-suport").owlCarousel({
+
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+            items : 4,
+            itemsDesktop : [1199,3],
+            itemsDesktopSmall : [979,3]
+
+        });
+
+    });
     //date form-detail
+
     $(document).ready(function() {
         $( "#start_date" ).datepicker({
             dateFormat: 'yy-mm-dd',
             changeMonth: true,
             changeYear: true,
+            minDate: new Date(),
+            maxDate: '+30D'
         });
         $('#end_date').datepicker({
-            dateFormat: 'yy-mm-dd',
+             dateFormat: 'yy-mm-dd',
             changeMonth: true,
             changeYear: true,
+            minDate: new Date(),
+            maxDate: '+30D'
         });
         $('#start_date').datepicker().bind("change", function () {
             var minValue = $(this).val();
@@ -381,7 +400,10 @@ $(document).ready(function () {
             calculate();
 
         });
-
+        // var day1 = $('#start_date').val();
+        // var day2 = $('#end_date').val();
+        // if ()
+        //
         function calculate() {
             var asd = $('#peice_vehicles').val();
             var d1 = $('#start_date').datepicker('getDate');

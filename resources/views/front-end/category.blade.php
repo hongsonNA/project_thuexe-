@@ -73,12 +73,8 @@
                                 </select>
                             </div>
                           <div class="field-outer">
-                              <button style="width: 100%" type="submit" class="btn btn-danger">Tim kiem</button>
+                              <button style="width: 100%" type="submit" class="btn btn-danger">Tìm kiếm</button>
                           </div>
-{{--                            <div class="bt_search">--}}
-{{--                                <button type="submit" class="btn">Tim kiem</button>--}}
-{{--                                <a href="#" type="submit">Tìm kiếm</a>--}}
-{{--                            </div>--}}
                         </div>
                 </form>
 
@@ -87,7 +83,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="tj-heading-style">
-                        <h3>Cab Collections</h3>
+                        <h3>Danh sách xe</h3>
                         <p></p>
                     </div>
                 </div>

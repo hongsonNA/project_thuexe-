@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="{{ asset('js/jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
 <link rel="stylesheet" href="{{ asset('package/css/swiper.min.css') }}">
 <link rel="stylesheet" href="{{ asset('front-end-css/css/animatePhone.css') }}">
-
+<link rel="stylesheet" href="{{ asset('front-end-css/dist/sweetalert2.min.css') }}">
+<script src="{{ asset('front-end-css/dist/sweetalert2.all.min.js') }}"></script>
 
 <!-- Css Files End -->
 {{--css menu---}}
