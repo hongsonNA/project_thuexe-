@@ -132,11 +132,13 @@ class ManagerUsController extends Controller
     public function waiting_car()
     {
         $waiting = DB::table('car_bookings')->where('status', '1')->get();
+
         return view('front-end.admin_user.manage_post.waiting', compact('waiting'));
     }
 
     public function AllDatatable()
     {
+
 
 //        $waiting = DB::table('car_bookings')->where('status','1')->get();
         return Datatables::of(CarBooking::all())
@@ -146,7 +148,7 @@ class ManagerUsController extends Controller
             ->editColumn('vehicle_id', function ($waiting) {
                 return $waiting['vehicle']['name'];
             })
-            ->addColumn('action', function ($waiting) {
+            ->addColumn('status', function ($waiting) {
                 return '
                 <a href="javascript:;" data-id="' . $waiting->id . '"  class="changeStatus btn btn-success"
                                                    data-original-title="" title="">
@@ -155,8 +157,11 @@ class ManagerUsController extends Controller
                                                 <a href="javascript:;"  data-id="' . $waiting->id . '"  class="dangerCar btn btn-danger"
                                                    data-original-title="" title="">
                                                     <i class="fa fa-times">Hủy</i>
-                                                </a>';
-            })->rawColumns(['action'])
+                                                </a>
+
+
+                                                ';
+            })->rawColumns(['status'])
             ->make(true);
     }
 

@@ -757,6 +757,26 @@
     }
 /*xe lien quan */
     .topics_car{padding: 1rem;}
+    .fleet-info-box .fleet-info {
+        width: 400px;
+        margin-top: 40px;
+        float: left;
+    }
+   #topics_news .card-img-top {
+        width: 100%;
+        height: 240px;
+    }
+    .fleet-info-box .title_user {
+        float: right;
+        display: block;
+        border: 0 !important;
+        text-align: center;
+        padding: 0;
+        margin-top: 0 !important;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        position: relative;
+    }
 </style>
 
 

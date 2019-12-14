@@ -1,5 +1,5 @@
 
-     $(".changeStatus").click( function () {
+     $(".changeStatus").on('click', function () {
          var _token = $('input[name="_token"]').val();
          console.log(_token);
          var  getID = $(this).attr("data-id");
@@ -64,7 +64,7 @@ $(".dangerCar").click(function () {
 })
 // datatable
      $(document).ready(function () {
-         console.log('aaa')
+         // console.log('aaa')
          $('#waiting').DataTable({
              // "lengthMenu": true,
              pageLength: 0,
@@ -82,7 +82,7 @@ $(".dangerCar").click(function () {
                  {data: 'vehicle_id', name: 'vehicle_id'},
                  {data: 'start_date', name: 'start_date'},
                  {data: 'end_date', name: 'end_date'},
-                 {data: 'action', name: 'action', orderable: false, searchable: false, className: "text-right"}
+                 {data: 'status', name: 'status', orderable: false, searchable: false, className: "text-right"}
              ]
          });
 
