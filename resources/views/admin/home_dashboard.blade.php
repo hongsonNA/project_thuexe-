@@ -71,37 +71,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header card-header-success card-header-icon">
-                                <div class="card-icon">
-                                    <i class="material-icons">perm_identity</i>
-                                </div>
-                                <h3 class="card-title">{{ count($user2) }}</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    Số lượng tài khoản người dùng
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header card-header-success card-header-icon">
-                                <div class="card-icon">
-                                    <i class="material-icons">perm_identity</i>
-                                </div>
-                                <h3 class="card-title">{{ count($user1) }}</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    Số lượng tài khoản Admin
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
 
                 </div>
             </div>

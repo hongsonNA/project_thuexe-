@@ -86,8 +86,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('cate') }}" class="" aria-haspopup="true" aria-expanded="false">Danh
-                                        mục</a>
+                                    <a href="{{ route('cate') }}" class="" aria-haspopup="true" aria-expanded="false">Danh Sách xe</a>
                                 </li>
 
                                 <li><a href="{{ route('news') }}">Tin Tức</a>
@@ -117,7 +116,7 @@
                                         <ul class="dropdown-menu" style="margin-top: -10px;">
                                             @if(!Auth::check() || Auth::user()->role == '1' || Auth::user()->role == '2')
                                                 <li>
-                                                    <a href="{{ route('manage_list') }}">
+                                                    <a href="{{ route('Admin') }}">
                                                         <span class="edu-icon edu-user-rounded author-log-ic"></span>
                                                         Quản lý xe
                                                     </a>

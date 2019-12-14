@@ -17,6 +17,8 @@ use App\Model\Comments;
 use App\Model\CarBooking;
 use App\Model\ModelCar;
 use App\Model\District;
+use App\Http\Requests\BookingRequest;
+
 class HomeController extends Controller
 {
     /**
@@ -145,9 +147,9 @@ class HomeController extends Controller
         $comment = Comments::all()->where('vehicle_id','=',$id);
 
         $list_cate = managerList::with([
-            'car_Booking'=>function($query){
+            'CarBooking'=>function($query){
                 $query->where('vehicle_id');
-            }])->get();
+            }]);
         //topics car
         $topic = DB::table('vehicles')->where ('id', '!=', $id)
                             ->orderByDesc('id')
@@ -223,8 +225,7 @@ class HomeController extends Controller
             ->where('model_id', 'like', "%$model_id%")
             ->where('city_id', 'like', "%$city_id%")
             ->where('district_id', 'like', "%$district_id%")->get();
-
-
+//        dd($searchQuery);
         return view('front-end.search', compact('searchQuery'));
     }
     public function search_cate(Request $request)
@@ -258,7 +259,7 @@ class HomeController extends Controller
     }
 
     //======booking-car=======
-    public function booking_car(Request $request, $id)
+    public function booking_car(BookingRequest $request, $id)
     {
 
         $getList = new CarBooking();
@@ -333,5 +334,13 @@ class HomeController extends Controller
     }
  }
 
+// history
+ public function history()
+ {
+     $user_id = (Auth::user()->id);
+     $history = CarBooking::where('user_id',$user_id)->get();
+
+     return view('front-end.history_booking',compact('history'));
+ }
 
 }

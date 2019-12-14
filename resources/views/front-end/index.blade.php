@@ -170,21 +170,13 @@
                             <div class="fleet-info-box">
                                 <div class="fleet-info">
                                     <h3 data-toggle="tooltip" title="2017 Chevrolet Pepe" >{{ $id->name }}</h3>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
-                                    <span class="fas fa-star"></span>
 
                                     <ul class="fleet-meta">
-                                        <li><i class="fas fa-taxi"></i>Luxery</li>
                                         <li><i class="fas fa-user-circle"></i>{{ $id->seat }} hành khách</li>
-{{--                                        <li><i class="fas fa-tachometer-alt"></i>5.6/100 MPG</li>--}}
                                     </ul>
                                 </div>
-                                <a href="{{ route('detail', $id->id) }}" class="tj-btn2">Book Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                                <a href="{{ route('detail', $id->id) }}" class="tj-btn2">Xem chi tiết <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                             </div>
-                            <!--Fleet Grid Text End-->
                         </div>
                     </div>
                     @endforeach
