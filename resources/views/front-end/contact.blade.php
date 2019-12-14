@@ -29,8 +29,9 @@
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <div class="form-holder">
-                        <form method="post"  action="{{ route('contact_create') }}" class="tj-contact-form" id="contact-form" novalidate>
+                        <form action="{{ action('Member\\ContactController@store') }}" method="post" class="tj-contact-form" novalidate>
                             @csrf
+
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="inner-holder">

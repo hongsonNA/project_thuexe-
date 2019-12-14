@@ -65,7 +65,7 @@
                     </div>
                     <div class="area-comment">
                         <div>
-                            <form method="post" action="{{ route('post_comment', $vechcles->id ) }}" id="comment">
+                            <form method="post" action="{{ route('vehicle_comment', $vechcles->id ) }}" id="comment">
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Để lại ý kiến của bạn</label>
@@ -73,48 +73,35 @@
                                     <span id="alert"></span>
                                 </div>
                                 @if(isset(Auth::user()->email))
-                                    <div class="request-login">
-
-                                    </div>
+                                    <button type="submit" id="chekc-comment" class="btn btn-info">Bình luận</button>
                                 @else
                                     <div class="request-login">
                                         <p>
-                                            Hãy <a href="#" class="account-login" data-toggle="modal" data-target="#myModal">đăng nhập</a> để gủi bình luận (Lưu ý: bình luận của bạn sẽ được quản trị xác thực trước khi hiện thị )
+                                            Hãy <a class="account-login" data-toggle="modal" data-target="#login">Đăng
+                                                nhập</a> / <a class="account-register" data-toggle="modal" data-target="#register">Đăng
+                                                ký</a> để gửi bình luận.
                                         </p>
                                     </div>
                                 @endif
-                                <button type="submit" id="chekc-comment" class="btn btn-info">Bình luận</button>
                             </form>
                         </div>
                         <!--end -->
                         <div class="show-comment">
                             <ul class="nav comments">
-                                @foreach($comment as $comment_id)
-                                    <li class="comment_list">
-                                        <div class="comment-meta image-comment">
-                                            <img class="avatar" src="{{ asset('image_upload/user/default_avata.png') }}" width="50" alt="">
-                                            <p class="author-name"><span class="">Hong son</span></p>
-                                            <p class="comment-content">
-                                                {{ $comment_id->content }}
-                                            </p>
-                                            <p class="comment-actions">
-                                                <a data-id="{{ $comment_id->id }}" id="reply" href="javascript:;">Tra loi</a>
-                                                <span></span>
-                                                {{--                                    @if($comment_id->user_id != Auth::user()->id)--}}
-                                                @if(isset(Auth::user()->id) != $comment_id->user_id )
-                                                    <a id="report" href="javascript:;">Report</a>
-                                                @endif
-                                            </p>
-                                        </div>
-                                        <div class="show-reply">
-                                            <form action="">
-                                                <textarea class="form-control" id="" name="" id="content" rows="3" placeholder="Bạn có đồng ý với Hong Son"></textarea>
-                                                <br>
-                                                <button  type="submit" class="btn btn-info">Gui binh luan</button>
-                                                <a id="close" class="btn">Dong</a>
-                                            </form>
-                                        </div>
-                                    </li>
+                                @foreach($comments_dl as $comment_id)
+                                    @if($vechcles->id == $comment_id['vehicle_id'])
+                                        <li class="comment_list">
+                                            <div class="comment-meta image-comment">
+                                                <img class="avatar"
+                                                     src="{{ asset('image_upload/post/image_post_1574214572.jpeg') }}"
+                                                     width="50" alt="">
+                                                <p class="author-name"><span class="">{{ $comment_id['user']['name'] }}</span></p>
+                                                <p class="comment-content">
+                                                    {{ $comment_id['content'] }}
+                                                </p>
+                                            </div>
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>
@@ -203,34 +190,4 @@
 
         </script>
     @endif
-
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>--}}
-    <script type="text/javascript">
-        $(".show-reply").hide();
-        $('#reply').click(function () {
-            $(".show-reply").show();
-        });
-        $('#close').click(function () {
-            $(".show-reply").hide();
-
-        });
-        $(document).ready(function(){
-            $("#myBtn").click(function(){
-                $("#myModal").hide();
-                $("#myModall").modal();
-            });
-        });
-        $('#suces').fadeOut(1000);
-
-
-    </script>
-    <script>
-        $(document).ready(function (event) {
-            $('#report').click(function () {
-                $('#modal-report').modal();
-            });
-            $('#alert_Booking_success').animate({"right":"-260px"}, 3000)
-        });
-    </script>
     @endsection
