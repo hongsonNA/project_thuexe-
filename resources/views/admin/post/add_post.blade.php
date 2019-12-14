@@ -20,22 +20,22 @@
                                         <h4 class="card-title">Thêm bài viết</h4>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <label class="col-sm-5 col-form-label lg_em_pa">Danh mục bài viết</label>
-                                        <div class="col-sm-4">
-                                            <div class="form-group bmd-form-group">
-                                                <select class="selectpicker" name="cate_id"
-                                                        data-style="select-with-transition"
-                                                        data-size="7">
-                                                    @foreach($cate as $c)
-                                                        <option value="{{ $c->id }}">{{ $c->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="card-body">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <label class="col-sm-5 col-form-label lg_em_pa">Danh mục bài viết</label>--}}
+{{--                                        <div class="col-sm-4">--}}
+{{--                                            <div class="form-group bmd-form-group">--}}
+{{--                                                <select type="d" class="selectpicker" name="cate_id"--}}
+{{--                                                        data-style="select-with-transition"--}}
+{{--                                                        data-size="7">--}}
+{{--                                                    @foreach($cate as $c)--}}
+{{--                                                        <option type="hidden" value="{{ $c->id }}">{{ $c->name }}</option>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
 
                                 <div class="card-body ">
@@ -75,6 +75,9 @@
                                             <div class="form-group bmd-form-group">
                                                 <textarea name="content" id="editor1">{{ old('content') }}</textarea>
                                                 <script>CKEDITOR.replace('editor1');</script>
+                                                @if($errors->first('content'))
+                                                    <span class="text-danger">{{$errors->first('content')}}</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

@@ -28,12 +28,12 @@ class PostRepository implements VehicelRepositoryInterface
                                 <i class="material-icons">edit</i>
                                 <div class="ripple-container"></div>
                         </a>
-                       
+
                         <a class="btn btn-link btn-danger btn-just-icon remove" data-toggle="modal" data-target="#exampleModal">
                                 <i class="material-icons">close</i>
                                 <div class="ripple-container"></div>
                         </a>
-                        
+
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -48,7 +48,7 @@ class PostRepository implements VehicelRepositoryInterface
                               </div>
                               <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                    <a href="' . route('post_remove', $p->id) . '" class="btn btn-danger">Xóa</a>                      
+                                    <a href="' . route('post_remove', $p->id) . '" class="btn btn-danger">Xóa</a>
                               </div>
                             </div>
                           </div>
@@ -95,7 +95,7 @@ class PostRepository implements VehicelRepositoryInterface
 
     public function update($request, $id)
     {
-        $request->status = $request->status && $request->status == 'on' ? 1 : 0;
+//        $request->status = $request->status && $request->status == 'on' ? 1 : 0;
         $post = Post::find($id);
         if (empty($post)) {
             return view('admin.user.edit_user');

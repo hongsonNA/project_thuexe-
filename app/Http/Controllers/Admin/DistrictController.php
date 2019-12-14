@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\DistrictRequest;
 use App\Model\City;
 use App\Model\District;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class DistrictController extends Controller
         return view('admin.district.add_district', compact('city'));
     }
 
-    public function store(Request $request)
+    public function store(DistrictRequest $request)
     {
         $city = $this->city;
         $district = new District();
@@ -48,7 +49,7 @@ class DistrictController extends Controller
         return view('admin.district.edit_district', compact('city','district'));
     }
 
-    public function update(Request $request, $id)
+    public function update(DistrictRequest $request, $id)
     {
         $district = District::find($id);
         if (empty($district)) {
