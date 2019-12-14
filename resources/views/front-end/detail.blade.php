@@ -130,7 +130,7 @@
                         <div class="caculator">
                             <div class="total">
                                 <div class="tong">Tổng giá:</div>
-                                <div class="total-price" name="total"></div>
+                                <div class="total-price"></div>
                                 <span>VND</span>
 {{--                                <input type="hidden" name="total" value="">--}}
                             </div>

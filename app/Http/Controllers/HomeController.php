@@ -277,7 +277,6 @@ class HomeController extends Controller
             $getList->city_id = $book->city_id,
             $getList->district_id = $book->district_id
         ];
-//        dd($request->get('total'));
         $getList->vehicle_id = $id;
         $getList->user_id = (Auth::user()->id);
         $getList->status = $request->get('status', '1');
