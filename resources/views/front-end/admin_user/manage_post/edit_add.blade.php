@@ -129,7 +129,9 @@
                                 <!-- check -->
                                 <div>
                                     <button type="submit" class="btn btn-info">Them Moi</button>
+                                    <a href="{{ route('manage') }}" class="btn btn-danger card-title">Hủy</a>
                                 </div>
+
                             </form>
                         </div>
                     </div>

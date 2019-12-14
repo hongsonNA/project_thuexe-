@@ -88,6 +88,7 @@
                         <div class="card-header">
                             <h4 class="card-title">Thêm mới </h4>
                        </div>
+
                         <div clss="news_Car">
                             <a href="{{ route('add_vehicles') }}" class="float-right pull-right btn btn-success">
                                 Thêm mới xe

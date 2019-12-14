@@ -110,6 +110,10 @@
                                 <!-- check -->
                                 <div>
                                     <button type="submit" class="btn btn-info">Cập nhật</button>
+                                    <a href="{{ route('manage') }}" class="btn btn-danger card-title">Hủy</a>
+                                </div>
+                                <div class="card-header">
+
                                 </div>
                             </form>
                         </div>
