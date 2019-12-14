@@ -418,6 +418,7 @@ $(document).ready(function () {
             }
             $('.calculated').val(diff);
             $('.total-price').html(countVe);
+            $('#total-price').html(countVe);
 
         }
     //=====start====

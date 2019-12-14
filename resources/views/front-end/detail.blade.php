@@ -120,9 +120,9 @@
                             </div>
                         </div>
                         {{--                            @dd($vechcles['car_Booking']['start_date']);--}}
-                        @if($vechcles['car_Booking']['start_date'])
-                            <span>Đã có người đặt</span>
-                        @endif
+{{--                        @if($vechcles['car_Booking']['start_date'])--}}
+{{--                            <span>Đã có người đặt</span>--}}
+{{--                        @endif--}}
                         <div class="form-group mb-none position-relative form-group">
                             <input type="hidden" id="peice_vehicles" value="{{$vechcles->price}}">
                             <input type="hidden" class="calculated">
@@ -132,6 +132,7 @@
                                 <div class="tong">Tổng giá:</div>
                                 <div class="total-price"></div>
                                 <span>VND</span>
+{{--                                <input type="hidden" name="total" value="">--}}
                             </div>
                         </div>
                         @if(Auth::check())
