@@ -1,4 +1,8 @@
 
+        function myForm(){
+            alert('12');
+        }
+
      $(".changeStatus").on('click', function () {
          var _token = $('input[name="_token"]').val();
          console.log(_token);

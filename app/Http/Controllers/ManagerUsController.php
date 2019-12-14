@@ -150,7 +150,7 @@ class ManagerUsController extends Controller
             })
             ->addColumn('status', function ($waiting) {
                 return '
-                <a href="javascript:;" data-id="' . $waiting->id . '"  class="changeStatus btn btn-success"
+                <a onclick="return myForm();" href="javascript:;" data-id="' . $waiting->id . '"  class="changeStatus btn btn-success"
                                                    data-original-title="" title="">
                                                     <i class="fa fa-edit">Xác nhận </i>
                                                 </a>

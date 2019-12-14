@@ -47,8 +47,8 @@
                     <td class="actions" data-th="">
 {{--                        <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i>--}}
 {{--                        </button>--}}
-                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>
-                        </button>
+
+                        <a class="btn btn-danger btn-sm" href="{{ route('deleteBooking',$id->id) }}"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                     @endforeach

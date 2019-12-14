@@ -22,6 +22,7 @@ class CreateCarBookingsTable extends Migration
             $table->date('end_date');
             $table->integer('city_id');
             $table->integer('district_id');
+            $table->integer('total')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });
