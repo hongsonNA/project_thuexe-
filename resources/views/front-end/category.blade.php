@@ -120,7 +120,7 @@
 
                                         <li><i class="fas fa-taxi"></i>{{ $id['modelCar']['name'] }}</li>
                                         <li><i class="fas fa-user-circle"></i>
-                                            <a class="title_user" href="{{ route('cateUser', $id->user_id) }}">{{ $id['user']['name'] }}</a>
+                                            {{ $id['user']['name'] }}
                                         </li>
                                         <li><i class="fas fa-tachometer-alt"></i>
                                             {{ $id->seat }}chỗ

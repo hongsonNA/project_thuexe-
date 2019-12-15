@@ -174,7 +174,7 @@
                                         <li><i class="fas fa-taxi"></i>{{ $id['user']['name'] }}</li>
                                         <li><i class="fas fa-user-circle"></i>{{ $id->seat }} chỗ</li>
                                         <li><i class="fas fa-tachometer-alt"></i>
-                                            <span><a class="title_user" href="{{ route('cateUser', $id->user_id) }}">{{ $id['user']['name'] }}</a></span>
+                                            <span>{{ $id['user']['name'] }}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -210,7 +210,7 @@
     <section class="tj-services">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-sm-8">
+                <div class="col-md-12 col-sm-12">
                     <div class="tj-heading-style">
                         <h3>Lợi ích </h3>
                     </div>
@@ -244,33 +244,11 @@
                         </div>
                         <!--Service Item End-->
                         <!--Service Item Start-->
-                        <div class="service-item">
-                            <img src="{{ asset('front-end-css/images/service_icon4.png')}}" alt="">
-                            <div class="service-info-box">
-                                <h4>Hỗ trợ </h4>
-                                <p>Hỗ Trợ 24/7 hỗ trợ khách hàng trong suốt quá trình thuê xe </p>
-                            </div>
-                        </div>
                         <!--Service Item End-->
                     </div>
                     <!--Service Outer End-->
                 </div>
                 <!--Service Ad Box Section Start-->
-                <div class="col-md-4 col-sm-4">
-                    <div class="service-ad-box">
-                        <div class="fleet-box">
-                            <img src="{{asset('front-end-css/images/fleet-banner.jpg')}}" alt="">
-                            <div class="ad-info">
-                                <h4>Get Benifits worth</h4>
-                                <strong class="price">$250</strong>
-                                <h5>on booking Prime Car</h5>
-                                <div class="book_fleet">
-                                    <a href="contact.html">Grab Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!--Service Ad Box Section End-->
             </div>
         </div>
