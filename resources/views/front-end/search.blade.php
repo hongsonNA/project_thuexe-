@@ -48,7 +48,6 @@
                         <div class="tj-heading-style">
                             <h3>Kêt quả tim kiem </h3>
                         </div>
-
                     @else
                         <div class="tj-heading-style">
                             <h3>Không tìm thấy kêt quả</h3>
