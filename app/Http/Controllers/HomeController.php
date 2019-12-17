@@ -359,7 +359,6 @@ class HomeController extends Controller
 //  =====danh muc xe theo tai khoan====
     public function cateUser(Request $request, $id)
     {
-        dd($id);
         $carUser = managerList::all()->where('user_id', $id);
 //    dd($carUser);
         return view('front-end.categoryCar_user', compact('carUser'));

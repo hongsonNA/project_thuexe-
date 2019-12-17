@@ -256,21 +256,21 @@
                     <!--Service Outer End-->
                 </div>
                 <!--Service Ad Box Section Start-->
-                <div class="col-md-4 col-sm-4">
-                    <div class="service-ad-box">
-                        <div class="fleet-box">
-                            <img src="{{asset('front-end-css/images/fleet-banner.jpg')}}" alt="">
-                            <div class="ad-info">
-                                <h4>Get Benifits worth</h4>
-                                <strong class="price">$250</strong>
-                                <h5>on booking Prime Car</h5>
-                                <div class="book_fleet">
-                                    <a href="contact.html">Grab Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-md-4 col-sm-4">--}}
+{{--                    <div class="service-ad-box">--}}
+{{--                        <div class="fleet-box">--}}
+{{--                            <img src="{{asset('front-end-css/images/fleet-banner.jpg')}}" alt="">--}}
+{{--                            <div class="ad-info">--}}
+{{--                                <h4>Get Benifits worth</h4>--}}
+{{--                                <strong class="price">$250</strong>--}}
+{{--                                <h5>on booking Prime Car</h5>--}}
+{{--                                <div class="book_fleet">--}}
+{{--                                    <a href="contact.html">Grab Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <!--Service Ad Box Section End-->
             </div>
         </div>
