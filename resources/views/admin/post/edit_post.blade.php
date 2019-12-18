@@ -10,7 +10,8 @@
                 <div class="row">
                     <div class="col-12">
 
-                        <form method="post" action="{{ route('post_update', $post->id) }}" enctype="multipart/form-data" novalidate>
+                        <form method="post" action="{{ route('post_update', $post->id) }}" enctype="multipart/form-data"
+                              novalidate>
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
                             <div class="card">
@@ -19,22 +20,6 @@
                                         <h4 class="card-title">Chỉnh sửa bài viết</h4>
                                     </div>
                                 </div>
-
-{{--                                <div class="card-body">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <label class="col-sm-5 col-form-label lg_em_pa">Danh mục bài viết</label>--}}
-{{--                                        <div class="col-sm-4">--}}
-{{--                                            <div class="form-group bmd-form-group">--}}
-{{--                                                <select class="selectpicker" name="cate_id" data-style="select-with-transition" data-size="7">--}}
-{{--                                                    @foreach($cate as $c)--}}
-{{--                                                        <option value="{{ $c->id }}" @if($c->id == $post->cate_id) selected @endif>{{ $c->name }}</option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </select>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
 
                                 <div class="card-body ">
                                     <div class="row">
@@ -109,8 +94,9 @@
                                             <div class="card-footer text-right">
                                                 <div class="form-check">
                                                     <label class="form-check-label">
-{{--                                                        @if($post->status == 1)checked @endif--}}
-                                                        <input class="form-check-input" name="status" type="checkbox" @if($post->status == 1)checked @endif value="1">
+                                                        {{--                                                        @if($post->status == 1)checked @endif--}}
+                                                        <input class="form-check-input" name="status" type="checkbox"
+                                                               @if($post->status == 1)checked @endif value="1">
                                                         Đăng bài viết
                                                         <span class="form-check-sign">
                                                             <span class="check"></span>
@@ -135,7 +121,9 @@
                                 </div>
 
                                 <div class="card-footer ml-auto mr-auto">
-                                    <button type="submit" class="btn btn-success" style="margin-right: 15px">Lưu bài viết</button>
+                                    <button type="submit" class="btn btn-success" style="margin-right: 15px">Lưu bài
+                                        viết
+                                    </button>
                                     <a href="{{ route('post_list') }}" role="button" class="btn btn-default">Huỷ</a>
                                 </div>
                             </div>

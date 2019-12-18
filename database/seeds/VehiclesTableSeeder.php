@@ -17,7 +17,7 @@ class VehiclesTableSeeder extends Seeder
                 'id' => 1,
                 'name' => 'Lamborghini',
                 'seat' => 4,
-                'description' => 'A car (or automobile) is a wheeled motor vehicle used for transportation. Most definitions of car say they run primarily on roads, seat one to eight people
+                'description' => 'A car (or automobile) is a wheeled motor Vehicle used for transportation. Most definitions of car say they run primarily on roads, seat one to eight people
                 , have four tires, and mainly transport people rather than goods',
                 'cate_id' => 4,
                 'price' => 3000000,
@@ -34,7 +34,7 @@ class VehiclesTableSeeder extends Seeder
                 'id' => 2,
                 'name' => 'Lamborghini',
                 'seat' => 4,
-                'description' => 'A car (or automobile) is a wheeled motor vehicle used for transportation. Most definitions of car say they run primarily on roads, seat one to eight people
+                'description' => 'A car (or automobile) is a wheeled motor Vehicle used for transportation. Most definitions of car say they run primarily on roads, seat one to eight people
                 , have four tires, and mainly transport people rather than goods',
                 'cate_id' => 1,
                 'price' => 3000000,
@@ -51,7 +51,7 @@ class VehiclesTableSeeder extends Seeder
                 'id' => 3,
                 'name' => 'Lamborghini',
                 'seat' => 4,
-                'description' => 'A car (or automobile) is a wheeled motor vehicle used for transportation. Most definitions of car say they run primarily on roads, seat one to eight people
+                'description' => 'A car (or automobile) is a wheeled motor Vehicle used for transportation. Most definitions of car say they run primarily on roads, seat one to eight people
                 , have four tires, and mainly transport people rather than goods',
                 'cate_id' => 2,
                 'price' => 3000000,
@@ -68,7 +68,7 @@ class VehiclesTableSeeder extends Seeder
                 'id' => 4,
                 'name' => 'Lamborghini',
                 'seat' => 4,
-                'description' => 'A car (or automobile) is a wheeled motor vehicle used for transportation. Most definitions of car say they run primarily on roads, seat one to eight people
+                'description' => 'A car (or automobile) is a wheeled motor Vehicle used for transportation. Most definitions of car say they run primarily on roads, seat one to eight people
                 , have four tires, and mainly transport people rather than goods',
                 'cate_id' => 3,
                 'price' => 3000000,
@@ -85,7 +85,7 @@ class VehiclesTableSeeder extends Seeder
                 'id' => 5,
                 'name' => 'Lamborghini',
                 'seat' => 4,
-                'description' => 'A car (or automobile) is a wheeled motor vehicle used for transportation. Most definitions of car say they run primarily on roads, seat one to eight people
+                'description' => 'A car (or automobile) is a wheeled motor Vehicle used for transportation. Most definitions of car say they run primarily on roads, seat one to eight people
                 , have four tires, and mainly transport people rather than goods',
                 'cate_id' => 4,
                 'price' => 3000000,

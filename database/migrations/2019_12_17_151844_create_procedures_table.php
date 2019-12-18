@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePartnersTable extends Migration
+class CreateProceduresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreatePartnersTable extends Migration
      */
     public function up()
     {
-        Schema::create('partners', function (Blueprint $table) {
+        Schema::create('procedures', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 50);
-            $table->string('email',100)->unique();
-            $table->string('password');
+            $table->integer('identity_card')->nullable();
+            $table->integer('permanent_residence_book')->nullable();
+            $table->integer('driver_license')->nullable();
+            $table->integer('deposit')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreatePartnersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partners');
+        Schema::dropIfExists('procedures');
     }
 }

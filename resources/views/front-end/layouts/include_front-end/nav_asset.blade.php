@@ -1,23 +1,4 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-<style>
-
-    .modal {
-        text-align: center;
-    }
-
-    .modal:before {
-        display: inline-block;
-        vertical-align: middle;
-        content: " ";
-        height: 100%;
-    }
-
-    .modal-dialog {
-        display: inline-block;
-        text-align: left;
-        vertical-align: middle;
-    }
-</style>
 <header class="tj-header" style="z-index: 99999;">
     <!--Header Content Start-->
     <div class="container">
@@ -159,13 +140,13 @@
 
                             @else
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li class="account-login" data-toggle="modal" data-target="#login">
-                                        <a href="javascript:;">
+                                    <li class="account-login">
+                                        <a href="{{ route('login') }}">
                                             <span class="glyphicon glyphicon-user"></span> Đăng nhập
                                         </a>
                                     </li>
-                                    <li class="account-register" data-toggle="modal" data-target="#register">
-                                        <a href="javascript:;">
+                                    <li class="account-register">
+                                        <a href="{{ route('register') }}">
                                             <span class="glyphicon glyphicon-log-in"></span> Đăng ký
                                         </a>
                                     </li>
@@ -183,103 +164,3 @@
         </div>
     </div>
 </header>
-
-
-<!-- /HEADER -->
-<!-- FORM LOGIN -->
-<div class="modal fade" id="login" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-login">
-                <h3>Đăng nhập thành viên </h3>
-                <form class="login-frm" method="POST" onsubmit="return checkLogin();" action="{{ route('login') }}"
-                      novalidate>
-                    @csrf
-                    <div class="field-holder">
-                        <span class="far fa-envelope"></span>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}"
-                               placeholder="Email" class="@error('email') is-invalid @enderror">
-                    </div>
-                    @error('email')
-                    <label class="error_login">
-                        <strong>{{ $message }}</strong>
-                    </label>
-                    @enderror
-                    <div class="field-holder">
-                        <span class="fas fa-lock"></span>
-                        <input type="password" name="password"
-                               placeholder="Mật khẩu" class="@error('password') is-invalid @enderror">
-                    </div>
-                    @error('password')
-                    <label class="error_login">
-                        <strong>{{ $message }}</strong>
-                    </label>
-                    @enderror
-
-                    <button type="submit" id="login_submit" class="reg-btn">Login
-                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- form register -->
-<!-- Modal -->
-<div class="modal fade" id="register" role="dialog">
-    <div class="modal-dialog subcribe " style="border-radius: 5px;">
-        <!-- Modal content-->
-        <h3>Đăng ký thành viên</h3>
-        <div class="form-register">
-            <div class="modal-register" id="modal-register">
-                <form class="reg-frm" id="" method="POST" action="{{ route('register') }}">
-                    @csrf
-                    <div class="role_member_1">
-                        <div class="field-holder">
-                            <span class="far fa-user"></span>
-                            <input type="text" name="name" value="{{ old('name') }}"
-                                   placeholder="Họ và Tên" class="@error('name') is-invalid @enderror">
-                        </div>
-                        @error('name')
-                        <label class="error_login">
-                            <strong>{{ $message }}</strong>
-                        </label>
-                        @enderror
-                        <div class="field-holder">
-                            <span class="far fa-envelope"></span>
-                            <input type="email" name="email" value="{{ old('email') }}"
-                                   placeholder="Email" class="@error('email') is-invalid @enderror">
-                        </div>
-                        @error('email')
-                        <label class="error_login">
-                            <strong>{{ $message }}</strong>
-                        </label>
-                        @enderror
-                        <div class="field-holder">
-                            <span class="fas fa-lock"></span>
-                            <input type="password" name="password"
-                                   placeholder="Mật khẩu" class="@error('password') is-invalid @enderror">
-                        </div>
-                        @error('password')
-                        <label class="error_login">
-                            <strong>{{ $message }}</strong>
-                        </label>
-                        @enderror
-                        <div class="field-holder">
-                            <span class="fas fa-lock"></span>
-                            <input type="password" name="password_confirmation"
-                                   placeholder="Nhập lại mật khẩu">
-                        </div>
-                    </div>
-                    <button type="submit" class="reg-btn">Đăng ký
-                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-</div>

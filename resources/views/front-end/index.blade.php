@@ -85,15 +85,6 @@
                             <form method="POST" action="{{ route('search_car') }}" class="trip-type-frm" role="search">
                                @csrf
                                 <div class="form-row">
-                                    <div class="field-outer">
-                                        <span class="fas fa-search"></span >
-                                        <select name="cate_id"  class="form-control " style="margin-bottom: 10px" id="">
-                                            <option  value="">--Chọn danh mục--</option>
-                                            @foreach($category as $key => $id)
-                                                <option value="{{ $id->id }}">{{ $id->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
                                     <div class="field-outer col">
                                         <span class="fas fa-search"></span>
                                         <select name="model_id" class="form-control " style="margin-bottom: 10px" id="">

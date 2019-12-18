@@ -71,10 +71,7 @@
 //-----------------------End client-------------------------------
     Auth::routes();
 
-    // login & register admin
-//    Route::get('dang-nhap', 'Admin\\LoginAdminController@indexLogin')->name('adminLogin');
-//    Route::post('dang-nhap', 'Admin\\LoginAdminController@adminLogin')->name('adminsLogin');
-//    Route::get('dang-xuat', 'Admin\\LoginAdminController@adminlogout')->name('adminLogout');
+
 //-----------------------DASHBOARD-----------------------
 
     Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function () {
@@ -82,19 +79,7 @@
 
         Route::get('/', 'Admin\DashboardController@dashboard')->name('dashboard');
 
-
-        //category
-        Route::group(['prefix' => 'category'], function () {
-            Route::get('/', 'Admin\CategoryController@index')->name('category_list');
-            Route::get('/allCategory', 'Admin\\CategoryController@AllDatatable'); //datatable ajax
-            Route::get('/add-category', 'Admin\\CategoryController@create')->name('category_add');
-            Route::post('/add-category', 'Admin\\CategoryController@store')->name('category_create');
-            Route::get('/{id}/edit-category', 'Admin\\CategoryController@edit')->name('category_edit');
-            Route::post('/{id}/edit-category', 'Admin\\CategoryController@update')->name('category_update');
-            Route::get('/{id}/remote-category', 'Admin\\CategoryController@destroy')->name('category_remove');
-        });
-
-        //category
+        //model
         Route::group(['prefix' => 'model'], function () {
             Route::get('/', 'Admin\ModelCarController@index')->name('model_list');
             Route::get('/allModel', 'Admin\\ModelCarController@AllDatatable'); //datatable ajax

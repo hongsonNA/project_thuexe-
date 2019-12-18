@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Category;
 use App\Model\City;
 use App\Model\Comment;
-use App\Model\ModelCar;
+use App\Model\ModelVehicle;
 use Illuminate\Http\Request;
 use App\Http\Requests\ManagerRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Model\managerList;
 use App\Model\CarBooking;
-use App\Model\Comments;
 use Intervention\Image\ImageManagerStatic as Image;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -21,7 +19,7 @@ class ManagerUsController extends Controller
 {
     public function dashboard(){
         $vehicle = managerList::all();
-        $comment = Comments::all();
+        $comment = Comment::all();
 //        $carBooking = CarBooking
         $waitingBooking = CarBooking::where('status','1')->get();
         return view('front-end.admin_user.manage_post.dashboard',compact('vehicle','comment','waitingBooking'));
@@ -38,10 +36,9 @@ class ManagerUsController extends Controller
     public function add()
     {
         $citys = City::all();
-        $model_car = ModelCar::all();
-        $category = Category::all();
+        $model_car = ModelVehicle::all();
 
-        return view('front-end.admin_user.manage_post.edit_add', compact('citys', 'model_car', 'category'));
+        return view('front-end.admin_user.manage_post.edit_add', compact('citys', 'model_car'));
     }
 
     public function states($id)
@@ -94,14 +91,13 @@ class ManagerUsController extends Controller
     public function edit_vehicles($id)
     {
         $citys = City::all();
-        $model_car = ModelCar::all();
-        $category = Category::all();
+        $model_car = ModelVehicle::all();
         $maga_edit = managerList::find($id);
         if (empty($maga_edit)) {
             return view('front-end.admin_user.manage_post.manage_list');
         }
 
-        return view('front-end.admin_user.manage_post.edit', compact('maga_edit', 'citys', 'model_car', 'category'));
+        return view('front-end.admin_user.manage_post.edit', compact('maga_edit', 'citys', 'model_car'));
     }
 
     public function update_vehicles(Request $request, $id)
@@ -141,15 +137,12 @@ class ManagerUsController extends Controller
 
     public function AllDatatable()
     {
-
-
-//        $waiting = DB::table('car_bookings')->where('status','1')->get();
         return Datatables::of(CarBooking::all())
             ->editColumn('user_id', function ($waiting) {
                 return $waiting['user']['name'];
             })
             ->editColumn('vehicle_id', function ($waiting) {
-                return $waiting['vehicle']['name'];
+                return $waiting['Vehicle']['name'];
             })
             ->addColumn('status', function ($waiting) {
                 return '
@@ -177,16 +170,13 @@ class ManagerUsController extends Controller
     public function carBooking()
     {
         $user_id = (Auth::user()->id);
-        $booking = Comments::All()->where('vehicle_id', $user_id);
-//        dd($booking);
+        $booking = Comment::All()->where('vehicle_id', $user_id);
         return view('front-end.admin_user.manage_post.carBooking', compact('booking'));
     }
 
 //    update status booking
     public function change(Request $request, $id)
     {
-//        dd($id);
-//        $data = $request->except('_token', $id);
         $booking = new CarBooking();
         $booking = CarBooking::find($id);
         $booking->status = $request->get('status', '2');
@@ -198,9 +188,6 @@ class ManagerUsController extends Controller
 // =====DANGER======
     public function danger(Request $request, $id)
     {
-//    dd($id);
-
-//        $data = $request->except('_token', $id);
         $booking = new CarBooking();
         $booking = CarBooking::find($id);
         $booking->status = $request->get('status', '5');
@@ -217,13 +204,7 @@ class ManagerUsController extends Controller
 
     public function removeCM($id)
     {
-//        $allz = CarBooking::all();
-//        $res = array();
-//        foreach ($allz as $id){
-//            $res[] = array('start_time'=>$id['start_date'],'end_date'=>$id['end_date']);
-//        }
-//        dd($res);
-        $remote = Comments::destroy($id);
+        $remote = Comment::destroy($id);
         return back();
     }
 
