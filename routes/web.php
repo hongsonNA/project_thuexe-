@@ -57,8 +57,9 @@ Route::group(['prefix' => 'vehicles'], function () {
     Route::get('/{id}/removeCM', 'ManagerUsController@removeCM')->name('removeCM');
     //Profile member
     Route::get('profile_member', 'ManagerUsController@profile_member')->name('profile_member');
-
+//=====Chart js=====
 });
+Route::get('/chart','ManagerUsController@chartCar')->name('chart');
 
 //---search
 Route::post('/search_car', 'HomeController@search_car')->name('search_car');

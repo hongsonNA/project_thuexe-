@@ -19,13 +19,15 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ManagerUsController extends Controller
 {
-    public function dashboard(){
+    public function dashboard()
+    {
         $vehicle = managerList::all();
         $comment = Comments::all();
 //        $carBooking = CarBooking
-        $waitingBooking = CarBooking::where('status','1')->get();
-        return view('front-end.admin_user.manage_post.dashboard',compact('vehicle','comment','waitingBooking'));
+        $waitingBooking = CarBooking::where('status', '1')->get();
+        return view('front-end.admin_user.manage_post.dashboard', compact('vehicle', 'comment', 'waitingBooking'));
     }
+
     public function manage()
     {
         $user_id = (Auth::user()->id);
@@ -227,4 +229,11 @@ class ManagerUsController extends Controller
         return back();
     }
 
+    public function chartCar()
+    {
+       $countCar = DB::table('vehicles')
+           ->select(DB::raw('count(*) as vehicles'))->get();
+//       dd($countCar);
+        return response()->json($countCar);
+    }
 }
