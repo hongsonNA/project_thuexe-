@@ -2,62 +2,22 @@
 @section('title', 'Create an Account!')
 
 @section('content')
-    <div class="tj-inner-banner">
-        <div class="container">
-            <h2>Register</h2>
-        </div>
-    </div>
+
     <div class="tj-breadcrumb">
         <div class="container">
             <ul class="breadcrumb-list">
-                <li><a href="home-1.html">Home</a></li>
+                <li><a href="{{ route('index') }}">Home</a></li>
                 <li class="active">register</li>
             </ul>
         </div>
     </div>
-    <section class="tj-login">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <!--Tabs Nav Start-->
-                    <div class="tj-tabs">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="active"><a href="#login" data-toggle="tab">Register</a></li>
-                            {{--                            <li><a href="#register" data-toggle="tab">Register</a></li>--}}
-                        </ul>
-                    </div>
-                    <!--Tabs Nav End-->
-                    <!--Tabs Content Start-->
+
                     <div class="tab-content">
                         <!--Register Tabs Content Start-->
                         <div class="tab-pane active" id="register">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="reg-cta">
-                                    <ul class="cta-list">
-                                        <li>
-                                            <span class="icon-mail-envelope icomoon"></span>
-                                            <div class="cta-info">
-                                                <strong>30 Days Money Back Guarantee</strong>
-                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="icon icon-Headset"></span>
-                                            <div class="cta-info">
-                                                <strong>24/7 Customer Support</strong>
-                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="icon-lock icomoon"></span>
-                                            <div class="cta-info">
-                                                <strong>100% Secure Payment</strong>
-                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div class="col-md-6 col-sm-6">
                                 <!--Register Tabs Form Start-->
                                 <form class="reg-frm" method="POST" action="{{ route('register') }}">
@@ -108,6 +68,33 @@
                                 </form>
                                 <!--Register Tabs Form End-->
                             </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="reg-cta">
+                                    <ul class="cta-list">
+                                        <li>
+                                            <span class="icon-mail-envelope icomoon"></span>
+                                            <div class="cta-info">
+                                                <strong>30 Days Money Back Guarantee</strong>
+                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="icon icon-Headset"></span>
+                                            <div class="cta-info">
+                                                <strong>24/7 Customer Support</strong>
+                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="icon-lock icomoon"></span>
+                                            <div class="cta-info">
+                                                <strong>100% Secure Payment</strong>
+                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <!--Register Tabs Content End-->
                     </div>
@@ -115,7 +102,7 @@
                 </div>
             </div>
         </div>
-    </section>
+
     <section class="tj-footer">
         <div class="container">
             <div class="row">

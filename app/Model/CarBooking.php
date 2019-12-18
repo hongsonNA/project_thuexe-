@@ -8,14 +8,14 @@ class CarBooking extends Model
 {
     protected $table = "car_bookings";
 
-    protected $fillable = ['
-        user_id',
+    protected $fillable = [
+        'user_id',
+        'vehicle_id',
         'city_id',
         'district_id',
-        'status',
         'start_date',
         'end_date',
-        'vehicle_id',
+        'status',
         ];
     public function user()
     {
