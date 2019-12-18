@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModelsTable extends Migration
+class CreateUtilitysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('models', function (Blueprint $table) {
+        Schema::create('utilitys', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->integer('harmonic')->nullable();
+            $table->integer('locate')->nullable();
+            $table->integer('bluetooth')->nullable();
+            $table->integer('usb')->nullable();
+            $table->text('other_utility')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('models');
+        Schema::dropIfExists('utilitys');
     }
 }

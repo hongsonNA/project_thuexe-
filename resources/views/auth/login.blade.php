@@ -10,18 +10,9 @@
             </ul>
         </div>
     </div>
-    <section class="tj-login">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <!--Tabs Nav Start-->
-                    <div class="tj-tabs">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
-{{--                            <li><a href="#register" data-toggle="tab">Register</a></li>--}}
-                        </ul>
-                    </div>
-                    <!--Tabs Nav End-->
                     <!--Tabs Content Start-->
                     <div class="tab-content">
                         <!--Login Tabs Content Start-->
@@ -162,7 +153,6 @@
                 </div>
             </div>
         </div>
-    </section>
     <section class="tj-footer">
         <div class="container">
             <div class="row">

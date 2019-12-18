@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRateSupportsTable extends Migration
+class CreateGearsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateRateSupportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rate_supports', function (Blueprint $table) {
+        Schema::create('gears', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id');
-            $table->text('content');
+            $table->string('name');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateRateSupportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rate_supports');
+        Schema::dropIfExists('gears');
     }
 }
