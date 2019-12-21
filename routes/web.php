@@ -3,7 +3,6 @@
 //-----------------------client-------------------------------
 
     Route::get('/', 'HomeController@index')->name('index');
-
     Route::get('/gioi-thieu', 'HomeController@about')->name('about');
     Route::get('/lien-he', 'HomeController@contact')->name('contact');
     Route::get('/danh-sach-xe', 'HomeController@cate')->name('cate');
@@ -13,68 +12,67 @@
     Route::get('/admin_us', 'HomeController@admin_us')->name('admin_us');
     Route::get('chi-tiet/{id}', 'HomeController@detail')->name('detail');
     Route::post('/add-contact', 'Member\\ContactController@store');
-//detailNews
+    //detailNews
     Route::post('loarmore', 'HomeController@loarmore')->name('loarmore');
-//load more
+    //load more
     Route::get('{id}/cateUser', 'HomeController@cateUser')->name('cateUser');
     Route::get('{id}/deleteBooking', 'HomeController@deleteBooking')->name('deleteBooking');
 
     Route::get('/{id}/report_comment', 'HomeController@report_comment')->name('report_comment');
-//    Route::post('/{id}/report_comment','HomeController@report_comment')->name('report_comment');
+    //    Route::post('/{id}/report_comment','HomeController@report_comment')->name('report_comment');
     Route::get('{id}/detail_news', 'HomeController@detail_news')->name('detail_news');
     Route::post('/{id}/post_comment', 'HomeController@post_comment')->name('post_comment');
     Route::post('/{id}/vehicle_comment', 'HomeController@vehicle_comment')->name('vehicle_comment');
-//=======Dang ky thong tin xe=======
+    //=======Dang ky thong tin xe=======
     Route::post('/{id}/booking_car', 'HomeController@booking_car')->name('booking_car');
-//update_account_user
+    //update_account_user
     Route::post('/{id}/update_account', 'HomeController@update_account')->name('update_account');
-//end////
+    //end////
+    Route::get('/{id}/edit_member','Member\\ClientController@edit')->name('edit_member');
+    Route::post('/{id}/register_member','Member\\ClientController@register_member')->name('register_member');
+
 //====history=========
     Route::get('history', 'HomeController@history')->name('history');
-
+Auth::routes(['verify'=>true]);
 //-------------manager_user-----------------
 
 
     Route::group(['prefix' => 'vehicles'], function () {
-        Route::get('/', 'ManagerUsController@dashboard')->name('Admin');
-        Route::get('manage', 'ManagerUsController@manage')->name('manage');
-        Route::get('add_vehicles', 'ManagerUsController@add')->name('add_vehicles');
-        Route::post('create-vehicles', 'ManagerUsController@create')->name('create-vehicles');
-        Route::get('{id}/edit_vehicles', 'ManagerUsController@edit_vehicles')->name('edit_vehicles');
-        Route::post('{id}/update_vehicles', 'ManagerUsController@update_vehicles')->name('update_vehicles');
-        Route::get('/{id}/remote', 'ManagerUsController@remote')->name('remote');
+        Route::get('/', 'Vehicle\\VehicleController@dashboard')->name('Admin');
+        Route::get('manage', 'Vehicle\\VehicleController@manage')->name('manage');
+        Route::get('add_vehicles', 'Vehicle\\VehicleController@add')->name('add_vehicles');
+        Route::post('create-vehicles', 'Vehicle\\VehicleController@create')->name('create-vehicles');
+        Route::get('{id}/edit_vehicles', 'Vehicle\\VehicleController@edit_vehicles')->name('edit_vehicles');
+        Route::post('{id}/update_vehicles', 'Vehicle\\VehicleController@update_vehicles')->name('update_vehicles');
+        Route::get('/{id}/remote', 'Vehicle\\VehicleController@remote')->name('remote');
         //get district
-        Route::get('states/{id}', 'ManagerUsController@states')->name('states');
-        Route::get('states_update/{id}', 'ManagerUsController@states_update')->name('states_update');
+        Route::get('states/{id}', 'Vehicle\\VehicleController@states')->name('states');
+        Route::get('states_update/{id}', 'Vehicle\\VehicleController@states_update')->name('states_update');
         //waiting car and carBooking
-        Route::get('waiting', 'ManagerUsController@waiting_car')->name('waiting');
-        Route::get('/allWaiting', 'ManagerUsController@AllDatatable');
-        Route::get('booking', 'ManagerUsController@carBooking')->name('booking');
+        Route::get('waiting', 'Vehicle\\VehicleController@waiting_car')->name('waiting');
+        Route::get('/allWaiting', 'Vehicle\\VehicleController@AllDatatable');
+        Route::get('booking', 'Vehicle\\VehicleController@carBooking')->name('booking');
         // update status booking
-        Route::post('change/{id}', 'ManagerUsController@change')->name('change');
-        Route::post('danger/{id}', 'ManagerUsController@danger')->name('danger');
-//   delete_comment
+        Route::post('change/{id}', 'Vehicle\\VehicleController@change')->name('change');
+        Route::post('danger/{id}', 'Vehicle\\VehicleController@danger')->name('danger');
+        //delete_comment
 
-    Route::get('/{id}/removeCM', 'ManagerUsController@removeCM')->name('removeCM');
-    //Profile member
-    Route::get('profile_member', 'ManagerUsController@profile_member')->name('profile_member');
-//=====Chart js=====
-});
-Route::get('/chart','ManagerUsController@chartCar')->name('chart');
-
-
-//---search
-    Route::post('/search_car', 'HomeController@search_car')->name('search_car');
-    Route::post('/search_cate', 'HomeController@search_cate')->name('search_cate');
-//----booknow
-    Route::get('city/{id}', 'HomeController@city')->name('city');
-    Route::get('state/{id}', 'HomeController@state')->name('state');
-    Route::get('state_cate/{id}', 'HomeController@state_cate')->name('state_cate');
-//end book now
+        Route::get('/{id}/removeCM', 'Vehicle\\VehicleController@removeCM')->name('removeCM');
+        //Profile member
+        Route::get('profile_member', 'Vehicle\\VehicleController@profile_member')->name('profile_member');
+        //=====Chart js=====
+        });
+        Route::get('/chart','Vehicle\\VehicleController@chartCar')->name('chart');
+        //---search
+        Route::post('/search_car', 'HomeController@search_car')->name('search_car');
+        Route::post('/search_cate', 'HomeController@search_cate')->name('search_cate');
+        //----booknow
+        Route::get('city/{id}', 'HomeController@city')->name('city');
+        Route::get('state/{id}', 'HomeController@state')->name('state');
+        Route::get('state_cate/{id}', 'HomeController@state_cate')->name('state_cate');
+        //end book now
 //-----------------------End client-------------------------------
-    Auth::routes();
-
-
+    //    Auth::routes();
 //-----------------------DASHBOARD-----------------------
 
     Route::group(['prefix' => 'dashboard', 'middleware' => 'CheckAdmin'], function () {

@@ -483,9 +483,50 @@ $(document).ready(function () {
     		}
     	});
     }
+    /* radio check rold register*/
+    $(".checkR2").hide();
+    $(".check_role").click(function () {
+        if ($(this)){
+            $(".checkR2").show();
+        }
+    });
+    $(".remove_member").click(function () {
+        if ($(this)){
+            $(".checkR2").hide();
+        }
+    });
+    //=======*****========
+    if($('#register').length) {
+        var name = $('#name').val();
+
+        if (name == ""){
+            $('#name_verify').html('ban chua nhap ten');
+            return false;
+        }
+        }
 
 
-
+    /* checking register member
+    ======================================================*/
+    if ($('#register_member').length){
+        $("#register_member").validate({
+            rules: {
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                identity_card: "required",
+                phone: "required"
+            },
+            messages: {
+                name: "Please enter your name",
+                email: "Please enter a valid email address",
+                identity_card: "It is a required field",
+                phone: "It is a required field",
+            },
+        });
+    }
 
     /* Booking Form Script
     ======================================================*/

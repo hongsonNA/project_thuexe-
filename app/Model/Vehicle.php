@@ -61,5 +61,9 @@ class Vehicle extends Model
     {
         return $this->hasMany(District::class, 'district_id');
     }
+    public function images()
+    {
+        return $this->belongsTo(Image::class);
+    }
 
 }
