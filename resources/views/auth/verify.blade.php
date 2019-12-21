@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style type="text/css">
         @media screen {
             @font-face {
@@ -157,9 +158,8 @@
                                             @csrf
                                             <tr>
                                                 <td align="center" style="border-radius: 3px;" bgcolor="#FFA73B">
-                                                    <a href="#" target="_blank"
-                                                       style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #FFA73B; display: inline-block;">
-                                                        Gửi lại xác nhận Email</a></td>
+                                                    <button type="submit" class="btn btn-secondary"> Gửi lại xác nhận Email</button></td>
+
                                             </tr>
                                             .
                                         </form>
