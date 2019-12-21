@@ -240,7 +240,6 @@
                     <!--Service Outer End-->
                 </div>
                 <!--Service Ad Box Section Start-->
-                <!--Service Ad Box Section End-->
             </div>
         </div>
     </section>

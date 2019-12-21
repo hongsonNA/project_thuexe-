@@ -76,14 +76,14 @@
                                 <div class="fleet-info-box">
                                     <div class="fleet-info">
                                         <h3>{{ $id->name }}</h3>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
+{{--                                        <span class="fas fa-star"></span>--}}
+{{--                                        <span class="fas fa-star"></span>--}}
+{{--                                        <span class="fas fa-star"></span>--}}
+{{--                                        <span class="fas fa-star"></span>--}}
+{{--                                        <span class="fas fa-star"></span>--}}
 
                                         <ul class="fleet-meta">
-                                            <li><i class="fas fa-taxi"></i>Luxery</li>
+{{--                                            <li><i class="fas fa-taxi"></i>Luxery</li>--}}
                                             <li><i class="fas fa-user-circle"></i>{{ $id->seat }} chỗ</li>
                                             {{--                                        <li><i class="fas fa-tachometer-alt"></i>5.6/100 MPG</li>--}}
                                         </ul>

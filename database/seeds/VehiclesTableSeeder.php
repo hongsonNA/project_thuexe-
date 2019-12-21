@@ -27,7 +27,7 @@ class VehiclesTableSeeder extends Seeder
                 'city_id' => 4,
                 'user_id' => 3,
                 'district_id' => 3,
-                'image' => 'anhmau.jpeg',
+                'image_id' => 'anhmau.jpeg',
                 'status' => 4,
             ],
             [

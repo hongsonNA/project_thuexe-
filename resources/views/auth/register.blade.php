@@ -20,13 +20,14 @@
                         <div class="tab-pane active" id="register">
                             <div class="col-md-6 col-sm-6">
                                 <!--Register Tabs Form Start-->
-                                <form class="reg-frm" method="POST" action="{{ route('register') }}">
+                                <form class="reg-frm" method="POST" id="register" action="{{ route('register') }}">
                                     @csrf
 
                                     <div class="field-holder">
                                         <span class="far fa-user"></span>
-                                        <input type="text" name="name" value="{{ old('name') }}"
+                                        <input type="text" name="name" id="name" value="{{ old('name') }}"
                                                placeholder="User_name" class="@error('name') is-invalid @enderror">
+                                        <span class="err_phone" id="name_verify" style="color: red;"></span>
                                     </div>
                                     @error('name')
                                     <label class="error_login">
@@ -43,6 +44,20 @@
                                         <strong>{{ $message }}</strong>
                                     </label>
                                     @enderror
+                                    <div class="checkR2">
+                                    <div class="field-holder">
+                                        <span class="far fa-envelope"></span>
+                                        <input type="text" name="phone" value="{{ old('phone') }}"
+                                               placeholder="Số điện thoại" id="phone" class="@error('phone') is-invalid @enderror">
+                                        <span class="err_phone" id="errPhone" style="color: red;"></span>
+                                    </div>
+                                    <div class="field-holder">
+                                        <span class="far fa-envelope"></span>
+                                        <input type="text" name="identity_card" id="cmnd" value="{{ old('identity_card') }}"
+                                               placeholder="Chứng minh thư" class="@error('phone') is-invalid @enderror">
+                                        <span class="err_phone" id="errCar" style="color: red;"></span>
+                                    </div>
+                                    </div>
                                     <div class="field-holder">
                                         <span class="fas fa-lock"></span>
                                         <input type="password" name="password"
@@ -58,6 +73,12 @@
                                         <input type="password" name="password_confirmation"
                                                placeholder="password confirmation">
                                     </div>
+                                    <div class="field-holder">
+                                        <span class=""></span>
+                                        <input type="radio" name="role" value="1" class="remove_member"> Thue xe
+                                        <input type="radio" name="role" value="2" class="check_role"> Cho Thue xe
+                                    </div>
+                                    <br>
                                     <label for="terms">
                                         <input type="checkbox" name="terms" id="terms">
                                         I accept terms & conditions

@@ -26,7 +26,7 @@ class CreateVehiclesTable extends Migration
             $table->string('name', 100);
             $table->integer('price');
             $table->integer('seat');
-            $table->string('image_vehicle');
+            $table->integer('image_id');
             $table->integer('capacity');
             $table->text('description');
             $table->text('address');

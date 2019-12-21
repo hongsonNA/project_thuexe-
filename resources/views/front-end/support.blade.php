@@ -190,7 +190,7 @@
                 <div class="item"><img src="{{ asset('front-end-css/images/cuuho1.png') }}" alt="Owl Image"></div>
                 <div class="item"><img src="{{ asset('front-end-css/images/cuuho2.png') }}" alt="Owl Image"></div>
                 <div class="item"><img src="{{ asset('front-end-css/images/cuuho3.png') }}" alt="Owl Image"></div>
-                <div class="item"><img src="{{ asset('front-end-css/images/cuuho4.jpg') }}" alt="Owl Image"></div>
+{{--                <div class="item"><img src="{{ asset('front-end-css/images/cuuho4.jpg') }}" alt="Owl Image"></div>--}}
                 <div class="item"><img src="{{ asset('front-end-css/images/cuuho5.png') }}" alt="Owl Image"></div>
 {{--                <div class="item"><img src="{{ asset('front-end-css/images/cuuho1.png') }}" alt="Owl Image"></div>--}}
 {{--                <div class="item"><img src="{{ asset('front-end-css/images/cuuho1.png') }}" alt="Owl Image"></div>--}}

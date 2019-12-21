@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Model\Post;
 use App\Model\User;
 use App\Model\City;
-use App\Model\managerList;
+use App\Model\Vehicle;
 use App\Model\CarBooking;
 use App\Model\ModelVehicle;
 use App\Http\Requests\BookingRequest;
@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+       $this->middleware(['auth','verified']);
     }
 
     /**
@@ -37,7 +37,7 @@ class HomeController extends Controller
     {
         $city = city::All();
         //news
-        $car = managerList::with([
+        $car = Vehicle::with([
             'modelVehicle' => function ($query) {
                 $query->select(['id', 'name']);
             }])->get();
@@ -340,7 +340,6 @@ class HomeController extends Controller
 //  =====danh muc xe theo tai khoan====
     public function cateUser(Request $request, $id)
     {
-        dd($id);
         $carUser = managerList::all()->where('user_id', $id);
 //    dd($carUser);
         return view('front-end.categoryCar_user', compact('carUser'));
