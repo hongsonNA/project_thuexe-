@@ -30,7 +30,6 @@ class CreateVehiclesTable extends Migration
             $table->integer('capacity');
             $table->text('description');
             $table->text('address');
-            $table->longText('partime');
             $table->integer('view');
             $table->integer('status')->default(1);
             $table->timestamps();
