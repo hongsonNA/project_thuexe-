@@ -162,7 +162,7 @@
                                     <h3 data-toggle="tooltip" title="2017 Chevrolet Pepe" >{{ $id->name }}</h3>
 
                                     <ul class="fleet-meta">
-                                        <li><i class="fas fa-taxi"></i>{{ $id['user']['name'] }}</li>
+                                        <li><i class="fas fa-taxi"></i>{{ $id['modelVehicles']['name'] }}</li>
                                         <li><i class="fas fa-user-circle"></i>{{ $id->seat }} chỗ</li>
                                         <li><i class="fas fa-tachometer-alt"></i>
                                             <span>{{ $id['user']['name'] }}</span>

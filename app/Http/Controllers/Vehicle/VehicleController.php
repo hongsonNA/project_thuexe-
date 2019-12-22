@@ -19,7 +19,8 @@ class VehicleController extends Controller
 {
     public function dashboard()
     {
-        $vehicle = Vehicle::all();
+        $user_id = Auth::user()->id;
+        $vehicle = Vehicle::all()->where('user_id',$user_id);
         $comment = Comment::all();
 //        $carBooking = CarBooking
         $waitingBooking = CarBooking::where('status', '1')->get();
@@ -39,7 +40,6 @@ class VehicleController extends Controller
     {
         $citys = City::all();
         $model_car = ModelVehicle::all();
-
         return view('front-end.admin_user.manage_post.edit_add', compact('citys', 'model_car'));
     }
 
@@ -68,7 +68,7 @@ class VehicleController extends Controller
     public function create(ManagerRequest $request)
     {
 
-        $listmul = new managerList();
+        $listmul = new Vehicle();
         $listmul->view = $request->get('view', '0');
         $listmul->fill($request->all());
         $listmul->user_id = (Auth::user()->id);
