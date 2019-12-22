@@ -21,6 +21,7 @@
                         <div class="">
                             <form action="{{ route('create-vehicles') }}" method="POST" enctype="multipart/form-data" novalidate>
                                 @csrf
+
                                 <input type="hidden" name="status" value="1">
                                 <div class="row" style="padding-bottom: 20px;">
                                     <div class="col-lg-7">
@@ -31,27 +32,16 @@
                                             @if($errors->first('name'))
                                                 <br><span class="text-danger">{{$errors->first('name')}}</span>
                                             @endif
+
                                         </div>
-                                        <div class="form-row">
-                                            <div class="col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <div class="">
                                             <label for="">Giá cho thuê</label>
                                             <input type="number" name="price" class="form-control" value="{{ old('price') }}"
                                                    placeholder="">
                                             @if($errors->first('price'))
                                                 <br><span class="text-danger">{{$errors->first('price')}}</span>
                                             @endif
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="">Danh mục</label>
-                                                <select class="form-control" name="cate_id" value="{{ old('cate_id') }}">
-                                                    @foreach($category as $key => $cate)
-                                                        <option name=""
-                                                                value="{{ $cate->id }}">{{ $cate->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                @if($errors->first('cate_id'))
-                                                    <br><span class="text-danger">{{$errors->first('cate_id')}}</span>
-                                                @endif
                                             </div>
                                         </div>
                                         <div class="form-row">

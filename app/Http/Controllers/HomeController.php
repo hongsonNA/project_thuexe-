@@ -38,9 +38,10 @@ class HomeController extends Controller
         $city = city::All();
         //news
         $car = Vehicle::with([
-            'modelVehicle' => function ($query) {
-                $query->select(['id', 'name']);
-            }])->get();
+            'modelVehicles' => function ($query) {
+                $query->select(['id','name']);
+            }]);
+//        dd($car);
         $show_news = Post::All();
         $model_car = ModelVehicle::All();
 
@@ -60,8 +61,8 @@ class HomeController extends Controller
     public function cate()
     {
         $city = city::All();
-        $model_car = ModelVehicle::All();
-        $list_cate = managerList::all();
+        $model_car = Vehicle::All();
+        $list_cate = Vehicle::all();
         return view('front-end.category', compact('list_cate', 'city', 'model_car'));
     }
 
@@ -136,7 +137,7 @@ class HomeController extends Controller
     {
         $comment = Comment::all()->where('vehicle_id', '=', $id);
 
-        $list_cate = managerList::with([
+        $list_cate = Vehicle::with([
             'CarBooking' => function ($query) {
                 $query->where('vehicle_id');
             }]);
@@ -145,7 +146,7 @@ class HomeController extends Controller
             ->orderByDesc('id')
             ->take(3)
             ->get();
-        $vechcles = managerList::find($id);
+        $vechcles = Vehicle::find($id);
 
 
         $comments_dl = Comment::with([
@@ -194,7 +195,7 @@ class HomeController extends Controller
 
     public function vehicle_comment(Request $request, $id)
     {
-        $com_post = managerList::find($id);
+        $com_post = Vehicle::find($id);
         $cm_vehicel = new Comment();
         $cm_vehicel->vehicle_id = $id;
         $cm_vehicel->user_id = (Auth::user()->id);
@@ -206,13 +207,11 @@ class HomeController extends Controller
     //search form
     public function search_car(Request $request)
     {
-        $cate_id = $request->get('cate_id');
         $model_id = $request->get('model_id');
         $city_id = $request->get('city_id');
         $district_id = $request->get('district_id');
 
-        $searchQuery = managerList::where('cate_id', 'like', "%$cate_id%")
-            ->where('model_id', 'like', "%$model_id%")
+        $searchQuery = Vehicle::where('model_id', 'like', "%$model_id%")
             ->where('city_id', 'like', "%$city_id%")
             ->where('district_id', 'like', "%$district_id%")->get();
 //        dd($searchQuery);
@@ -221,18 +220,16 @@ class HomeController extends Controller
 
     public function search_cate(Request $request)
     {
-        $cate_id = $request->get('cate_id');
         $seat = $request->get('seat');
         $model_id = $request->get('model_id');
         $district_id = $request->get('district_id');
         $city_id = $request->get('city_id');
-        $searchQuery = managerList::where('cate_id', 'like', "%$cate_id%")
-            ->where('district_id', 'like', "%$district_id%")
+        $searchQuery = Vehicle::where('district_id', 'like', "%$district_id%")
             ->where('seat', 'like', "%$seat%")
             ->where('model_id', 'like', "%$model_id%")
             ->where('city_id', 'like', "%$city_id%")->get();
         return view('front-end.search', compact('searchQuery'));
-        dd($searchQuery);
+//        dd($searchQuery);
     }
 
 //    report-comment
@@ -254,7 +251,7 @@ class HomeController extends Controller
     {
 
         $getList = new CarBooking();
-        $book = managerList::find($id);
+        $book = Vehicle::find($id);
 
         $all = [
             $getList->vehicle_id = $book->id,
@@ -340,7 +337,7 @@ class HomeController extends Controller
 //  =====danh muc xe theo tai khoan====
     public function cateUser(Request $request, $id)
     {
-        $carUser = managerList::all()->where('user_id', $id);
+        $carUser = Vehicle::all()->where('user_id', $id);
 //    dd($carUser);
         return view('front-end.categoryCar_user', compact('carUser'));
     }
