@@ -46,6 +46,40 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">
+                                                <label for="">Biển số xe: </label>
+                                                <input type="text" name="license_plate" class="form-control" value="{{ old('license_plate') }}"
+                                                       placeholder="" value="">
+                                                @if($errors->first('license_plate'))
+                                                    <br><span class="text-danger">{{$errors->first('seat')}}</span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="">Hộp số:  </label>
+                                                <select name="model_id" class="form-control " style="margin-bottom: 10px" value="{{ old('model_id') }}">
+                                                    <option  value="0" selected disabled>--Chọn kiểu --</option>
+                                                        <option value="1">Số sàn</option>
+                                                        <option value="2">Số tự động</option>
+
+                                                </select>
+                                                @if($errors->first('model_id'))
+                                                    <br><span class="text-danger">{{$errors->first('model_id')}}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <label for="">Thủ tục nhận xe: </label>
+                                                <a href="javascrip:;">Chọn thủ tục</a>
+{{--                                                <input type="number" name="price" class="form-control" value="{{ old('price') }}"--}}
+{{--                                                       placeholder="">--}}
+                                                <input type="text" id="produce" value="" data-role="tagsinput"/>
+                                            @if($errors->first('price'))
+                                                    <br><span class="text-danger">{{$errors->first('price')}}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6 mb-3">
                                                 <label for="">Số chỗ</label>
                                                 <input type="number" name="seat" class="form-control" value="{{ old('seat') }}"
                                                        placeholder="" value="">
@@ -104,7 +138,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <input type="file" name="image" class="" id="imgInp">
+                                            <input type="file" name="image_vehicle" class="" id="imgInp">
                                         </div>
                                         @if($errors->first('image'))
                                             <br><span class="text-danger">{{$errors->first('image')}}</span>
@@ -154,6 +188,11 @@
             });
         });
 
+    </script>
+@endsection
+@push('scripts')
+    <script>
+        $('#produce').tagsinput('items');
         function preView(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -167,6 +206,5 @@
         $("#imgInp").change(function () {
             preView(this);
         });
-
     </script>
-@endsection
+    @endpush

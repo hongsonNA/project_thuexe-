@@ -11,6 +11,7 @@
 <script src="{{ asset('front-end-css/assets/js/plugins/chartjs.min.js')}}"></script>
 <!--  Notifications Plugin    -->
 <script src="{{ asset('front-end-css/assets/js/plugins/bootstrap-notify.js')}}"></script>
+<script src="{{ asset('front-end-css/js/bootstrap-tagsinput.js')}}"></script>
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('front-end-css/assets/js/paper-dashboard.min.js')}}" type="text/javascript"></script>
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
@@ -23,5 +24,7 @@
 {{--    });--}}
 {{--</script>--}}
 <script src="{{ asset('js/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
+@stack('scripts')
+
 
 
