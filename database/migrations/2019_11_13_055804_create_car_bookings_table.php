@@ -21,7 +21,7 @@ class CreateCarBookingsTable extends Migration
             $table->string('email');
             $table->integer('phone');
             $table->integer('total');
-            $table->integer('is_delete');
+            $table->integer('is_delete')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->date('start_date');
             $table->date('end_date');

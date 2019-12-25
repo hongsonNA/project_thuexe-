@@ -21,8 +21,8 @@ class CarBooking extends Model
     {
         return $this->belongsTo('App\Model\User', 'id');
     }
-    public function managerList()
+    public function vehicles()
     {
-        return $this->belongsTo('App\Model\managerList', 'id');
+        return $this->belongsTo('App\Model\Vehicle', 'id');
     }
 }

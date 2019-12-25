@@ -60,7 +60,7 @@
                                     <td class="text-center">{{ $m->id }}</td>
                                     <td>{{ $m->name }}</td>
                                     <td>
-                                        <img src="{{ asset('image_upload/img_vehicle/'.$m->image) }}" alt="" width="100">
+{{--                                        <img src="{{ asset('image_upload/img_vehicle/'.$m->image) }}" alt="" width="100">--}}
                                     </td>
                                     <td class="text-center">
                                         @if($m->status == 1)
