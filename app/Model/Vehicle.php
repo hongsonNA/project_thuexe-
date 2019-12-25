@@ -31,20 +31,9 @@ class Vehicle extends Model
     {
         return $this->hasMany(ModelVehicle::class, 'model_id');
     }
-
-    public function gears()
+    public function carbooking()
     {
-        return $this->hasMany(Gear::class, 'gear_id');
-    }
-
-    public function utilitys()
-    {
-        return $this->hasMany(Utility::class, 'utility_id');
-    }
-
-    public function procedures()
-    {
-        return $this->hasMany(Procedure::class, 'procedure_id');
+        return $this->hasMany(Vehicle::class, 'vehicle_id');
     }
 
     public function users()

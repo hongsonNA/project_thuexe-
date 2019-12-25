@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-//use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManagerStatic as Images;
 use Yajra\DataTables\Facades\DataTables;
 
 class VehicleController extends Controller
@@ -79,18 +79,18 @@ class VehicleController extends Controller
 
         $mes = '';
         if ($listmul->save()) {
-            $mes = 'Thêm thành công ';
             $vehicleId = $listmul->id;
-//            die(var_dump($vehicleId));
             if ($request->hasFile('image_vehicle')) {
                 $images_File = $request->file('image_vehicle');
-                $FileName = 'image' . '_' . time() . '.' . $images_File->extension();
-//            $image_resize = Image::make($images_File->getRealPath())->resize(300, 310);
-                $getImage->image = $FileName;
+                $fileName = 'image' . '_' . time() . '.' . $images_File->extension();
+                $image_resize = Images::make($images_File->getRealPath())->resize(500, 500);
+                $image_resize->save(public_path('image_upload/img_vehicle/' . $fileName));
+                $getImage->image_vehicle = $fileName;
                 $getImage->vehicle_id = $vehicleId;
-                $getImage->save(public_path('image_upload/img_vehicle/' . $FileName));
+                $getImage->save();
+                $mes = 'Thêm thành công ';
             } else {
-                $getImage->image = "default_car.jpg";
+                $getImage->image_vehicle = "default_car.jpg";
             }
         }
         return redirect()->route('manage', compact('listmul'))->with('mes', $mes);

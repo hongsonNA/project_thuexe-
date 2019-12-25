@@ -21,7 +21,6 @@
                         <div class="">
                             <form action="{{ route('create-vehicles') }}" method="POST" enctype="multipart/form-data" novalidate>
                                 @csrf
-
                                 <input type="hidden" name="status" value="1">
                                 <div class="row" style="padding-bottom: 20px;">
                                     <div class="col-lg-7">
@@ -55,7 +54,7 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="">Hộp số:  </label>
-                                                <select name="model_id" class="form-control " style="margin-bottom: 10px" value="{{ old('model_id') }}">
+                                                <select name="gear_id" class="form-control " style="margin-bottom: 10px" value="{{ old('model_id') }}">
                                                     <option  value="0" selected disabled>--Chọn kiểu --</option>
                                                         <option value="1">Số sàn</option>
                                                         <option value="2">Số tự động</option>
@@ -73,8 +72,8 @@
 {{--                                                <input type="number" name="price" class="form-control" value="{{ old('price') }}"--}}
 {{--                                                       placeholder="">--}}
                                                 <input type="text" id="produce" value="" data-role="tagsinput"/>
-                                            @if($errors->first('price'))
-                                                    <br><span class="text-danger">{{$errors->first('price')}}</span>
+                                            @if($errors->first('produce'))
+                                                    <br><span class="text-danger">{{$errors->first('produce')}}</span>
                                                 @endif
                                             </div>
                                         </div>
