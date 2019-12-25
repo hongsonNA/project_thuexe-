@@ -7,12 +7,13 @@ use App\Model\CarBooking;
 use App\Model\City;
 use App\Model\Comment;
 use App\Model\Vehicle;
+use App\Model\Image;
 use App\Model\ModelVehicle;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Intervention\Image\ImageManagerStatic as Image;
+//use Intervention\Image\ImageManagerStatic as Image;
 use Yajra\DataTables\Facades\DataTables;
 
 class VehicleController extends Controller
@@ -65,26 +66,32 @@ class VehicleController extends Controller
         return view('front-end.admin_user.manage_post.edit_add', compact('managerList'));
     }
 
-    public function create(ManagerRequest $request)
+    public function create(Request $request)
     {
-
+//    dd($request);
         $listmul = new Vehicle();
+        $getImage = new Image();
+
+
         $listmul->view = $request->get('view', '0');
         $listmul->fill($request->all());
         $listmul->user_id = (Auth::user()->id);
-        if ($request->hasFile('image')) {
-            $images_File = $request->file('image');
-            $FileName = 'image' . '_' . time() . '.' . $images_File->extension();
-            $image_resize = Image::make($images_File->getRealPath())->resize(300, 310);
-            $image_resize->save(public_path('image_upload/img_vehicle/' . $FileName));
-            $listmul->image = $FileName;
-        } else {
-            $listmul->image = "default_car.jpg";
-        }
 
-        $mes = 'Thêm thành công ';
+        $mes = '';
         if ($listmul->save()) {
             $mes = 'Thêm thành công ';
+            $vehicleId = $listmul->id;
+//            die(var_dump($vehicleId));
+            if ($request->hasFile('image_vehicle')) {
+                $images_File = $request->file('image_vehicle');
+                $FileName = 'image' . '_' . time() . '.' . $images_File->extension();
+//            $image_resize = Image::make($images_File->getRealPath())->resize(300, 310);
+                $getImage->image = $FileName;
+                $getImage->vehicle_id = $vehicleId;
+                $getImage->save(public_path('image_upload/img_vehicle/' . $FileName));
+            } else {
+                $getImage->image = "default_car.jpg";
+            }
         }
         return redirect()->route('manage', compact('listmul'))->with('mes', $mes);
 

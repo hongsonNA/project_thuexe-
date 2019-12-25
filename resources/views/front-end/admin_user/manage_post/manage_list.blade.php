@@ -17,6 +17,7 @@
 
                         </div>
                     </div>
+                    r
                         @if(session()->has('mes'))
                             <div class="alert alert-success">
                                 {{ session()->get('mes') }}

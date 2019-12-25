@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     protected $table ='images';
-    protected $fillable =['image_vehicle'];
+    protected $fillable =['vehicle_id'];
 
     public function Vehicle()
     {
-        return $this->hasMany(Vehicle::class, 'image_id');
+        return $this->hasMany(Vehicle::class);
     }
 }
