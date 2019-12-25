@@ -25,7 +25,7 @@
                             <div class="col-sm-2 hidden-xs"><img src="{{ asset('image_upload/img_vehicle/'.$id->image )}}" alt="" class="img-responsive" width="100">
                             </div>
                             <div class="col-sm-10">
-                                <h4 class="nomargin">{{ $id['vehicle']['name'] }}</h4>
+                                <h4 class="nomargin">{{ $id['Vehicle']['name'] }}</h4>
                                 <p></p>
                             </div>
                         </div>

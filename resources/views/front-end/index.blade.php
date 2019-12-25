@@ -85,15 +85,6 @@
                             <form method="POST" action="{{ route('search_car') }}" class="trip-type-frm" role="search">
                                @csrf
                                 <div class="form-row">
-                                    <div class="field-outer">
-                                        <span class="fas fa-search"></span >
-                                        <select name="cate_id"  class="form-control " style="margin-bottom: 10px" id="">
-                                            <option  value="">--Chọn danh mục--</option>
-                                            @foreach($category as $key => $id)
-                                                <option value="{{ $id->id }}">{{ $id->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
                                     <div class="field-outer col">
                                         <span class="fas fa-search"></span>
                                         <select name="model_id" class="form-control " style="margin-bottom: 10px" id="">
@@ -171,7 +162,7 @@
                                     <h3 data-toggle="tooltip" title="2017 Chevrolet Pepe" >{{ $id->name }}</h3>
 
                                     <ul class="fleet-meta">
-                                        <li><i class="fas fa-taxi"></i>{{ $id['user']['name'] }}</li>
+                                        <li><i class="fas fa-taxi"></i>{{ $id['modelVehicles']['name'] }}</li>
                                         <li><i class="fas fa-user-circle"></i>{{ $id->seat }} chỗ</li>
                                         <li><i class="fas fa-tachometer-alt"></i>
                                             <span>{{ $id['user']['name'] }}</span>
@@ -249,7 +240,6 @@
                     <!--Service Outer End-->
                 </div>
                 <!--Service Ad Box Section Start-->
-                <!--Service Ad Box Section End-->
             </div>
         </div>
     </section>

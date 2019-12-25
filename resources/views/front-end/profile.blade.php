@@ -1,3 +1,4 @@
+
 @extends('front-end.layouts.app_front-end')
 @section('content')
     <!--User Account Section Start-->
@@ -16,6 +17,8 @@
                                     <li><a href="{{ route('Admin') }}">Quản lý</a></li>
                                 </ul>
                             </li>
+                            @elseif(Auth::user()->role == '1')
+                                <li><a href="{{ route('edit_member', Auth::user()->id) }}">Đăng ký cho thuê xe</a></li>
                             @endif
                         </ul>
                     </div>

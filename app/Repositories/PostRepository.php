@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Model\Category;
 use App\Model\Post;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -83,14 +82,13 @@ class PostRepository implements VehicelRepositoryInterface
 
     public function edit($id)
     {
-        $cate = Category::all();
         $post = Post::find($id);
 
         if (empty($post)) {
             return view('admin.post.post_list');
         }
 
-        return view('admin.post.edit_post', compact('post', 'cate'));
+        return view('admin.post.edit_post', compact('post'));
     }
 
     public function update($request, $id)

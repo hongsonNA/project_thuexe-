@@ -2,35 +2,93 @@
 @section('title', 'Create an Account!')
 
 @section('content')
-    <div class="tj-inner-banner">
-        <div class="container">
-            <h2>Register</h2>
-        </div>
-    </div>
+
     <div class="tj-breadcrumb">
         <div class="container">
             <ul class="breadcrumb-list">
-                <li><a href="home-1.html">Home</a></li>
+                <li><a href="{{ route('index') }}">Home</a></li>
                 <li class="active">register</li>
             </ul>
         </div>
     </div>
-    <section class="tj-login">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <!--Tabs Nav Start-->
-                    <div class="tj-tabs">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="active"><a href="#login" data-toggle="tab">Register</a></li>
-                            {{--                            <li><a href="#register" data-toggle="tab">Register</a></li>--}}
-                        </ul>
-                    </div>
-                    <!--Tabs Nav End-->
-                    <!--Tabs Content Start-->
+
                     <div class="tab-content">
                         <!--Register Tabs Content Start-->
                         <div class="tab-pane active" id="register">
+                            <div class="col-md-6 col-sm-6">
+                                <!--Register Tabs Form Start-->
+                                <form class="reg-frm" method="POST" id="register" action="{{ route('register') }}">
+                                    @csrf
+
+                                    <div class="field-holder">
+                                        <span class="far fa-user"></span>
+                                        <input type="text" name="name" id="name" value="{{ old('name') }}"
+                                               placeholder="User_name" class="@error('name') is-invalid @enderror">
+                                        <span class="err_phone" id="name_verify" style="color: red;"></span>
+                                    </div>
+                                    @error('name')
+                                    <label class="error_login">
+                                        <strong>{{ $message }}</strong>
+                                    </label>
+                                    @enderror
+                                    <div class="field-holder">
+                                        <span class="far fa-envelope"></span>
+                                        <input type="email" name="email" value="{{ old('email') }}"
+                                               placeholder="Email" class="@error('email') is-invalid @enderror">
+                                    </div>
+                                    @error('email')
+                                    <label class="error_login">
+                                        <strong>{{ $message }}</strong>
+                                    </label>
+                                    @enderror
+                                    <div class="checkR2">
+                                    <div class="field-holder">
+                                        <span class="far fa-envelope"></span>
+                                        <input type="text" name="phone" value="{{ old('phone') }}"
+                                               placeholder="Số điện thoại" id="phone" class="@error('phone') is-invalid @enderror">
+                                        <span class="err_phone" id="errPhone" style="color: red;"></span>
+                                    </div>
+                                    <div class="field-holder">
+                                        <span class="far fa-envelope"></span>
+                                        <input type="text" name="identity_card" id="cmnd" value="{{ old('identity_card') }}"
+                                               placeholder="Chứng minh thư" class="@error('phone') is-invalid @enderror">
+                                        <span class="err_phone" id="errCar" style="color: red;"></span>
+                                    </div>
+                                    </div>
+                                    <div class="field-holder">
+                                        <span class="fas fa-lock"></span>
+                                        <input type="password" name="password"
+                                               placeholder="password" class="@error('password') is-invalid @enderror">
+                                    </div>
+                                    @error('password')
+                                    <label class="error_login">
+                                        <strong>{{ $message }}</strong>
+                                    </label>
+                                    @enderror
+                                    <div class="field-holder">
+                                        <span class="fas fa-lock"></span>
+                                        <input type="password" name="password_confirmation"
+                                               placeholder="password confirmation">
+                                    </div>
+                                    <div class="field-holder">
+                                        <span class=""></span>
+                                        <input type="radio" name="role" value="1" class="remove_member"> Thue xe
+                                        <input type="radio" name="role" value="2" class="check_role"> Cho Thue xe
+                                    </div>
+                                    <br>
+                                    <label for="terms">
+                                        <input type="checkbox" name="terms" id="terms">
+                                        I accept terms & conditions
+                                    </label>
+                                    <button type="submit" class="reg-btn">Signup <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+                                    <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+                                    <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+                                </form>
+                                <!--Register Tabs Form End-->
+                            </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="reg-cta">
                                     <ul class="cta-list">
@@ -58,56 +116,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6">
-                                <!--Register Tabs Form Start-->
-                                <form class="reg-frm" method="POST" action="{{ route('register') }}">
-                                    @csrf
-
-                                    <div class="field-holder">
-                                        <span class="far fa-user"></span>
-                                        <input type="text" name="name" value="{{ old('name') }}"
-                                               placeholder="User_name" class="@error('name') is-invalid @enderror">
-                                    </div>
-                                    @error('name')
-                                    <label class="error_login">
-                                        <strong>{{ $message }}</strong>
-                                    </label>
-                                    @enderror
-                                    <div class="field-holder">
-                                        <span class="far fa-envelope"></span>
-                                        <input type="email" name="email" value="{{ old('email') }}"
-                                               placeholder="Email" class="@error('email') is-invalid @enderror">
-                                    </div>
-                                    @error('email')
-                                    <label class="error_login">
-                                        <strong>{{ $message }}</strong>
-                                    </label>
-                                    @enderror
-                                    <div class="field-holder">
-                                        <span class="fas fa-lock"></span>
-                                        <input type="password" name="password"
-                                               placeholder="password" class="@error('password') is-invalid @enderror">
-                                    </div>
-                                    @error('password')
-                                    <label class="error_login">
-                                        <strong>{{ $message }}</strong>
-                                    </label>
-                                    @enderror
-                                    <div class="field-holder">
-                                        <span class="fas fa-lock"></span>
-                                        <input type="password" name="password_confirmation"
-                                               placeholder="password confirmation">
-                                    </div>
-                                    <label for="terms">
-                                        <input type="checkbox" name="terms" id="terms">
-                                        I accept terms & conditions
-                                    </label>
-                                    <button type="submit" class="reg-btn">Signup <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
-                                    <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
-                                    <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
-                                </form>
-                                <!--Register Tabs Form End-->
-                            </div>
                         </div>
                         <!--Register Tabs Content End-->
                     </div>
@@ -115,7 +123,7 @@
                 </div>
             </div>
         </div>
-    </section>
+
     <section class="tj-footer">
         <div class="container">
             <div class="row">

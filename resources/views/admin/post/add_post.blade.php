@@ -20,23 +20,6 @@
                                         <h4 class="card-title">Thêm bài viết</h4>
                                     </div>
                                 </div>
-{{--                                <div class="card-body">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <label class="col-sm-5 col-form-label lg_em_pa">Danh mục bài viết</label>--}}
-{{--                                        <div class="col-sm-4">--}}
-{{--                                            <div class="form-group bmd-form-group">--}}
-{{--                                                <select type="d" class="selectpicker" name="cate_id"--}}
-{{--                                                        data-style="select-with-transition"--}}
-{{--                                                        data-size="7">--}}
-{{--                                                    @foreach($cate as $c)--}}
-{{--                                                        <option type="hidden" value="{{ $c->id }}">{{ $c->name }}</option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </select>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
 
                                 <div class="card-body ">
                                     <div class="row">
@@ -137,7 +120,9 @@
                                 </div>
 
                                 <div class="card-footer ml-auto mr-auto">
-                                    <button type="submit" class="btn btn-success" style="margin-right: 15px">Lưu bài viết</button>
+                                    <button type="submit" class="btn btn-success" style="margin-right: 15px">Lưu bài
+                                        viết
+                                    </button>
                                     <a href="{{ route('post_list') }}" role="button" class="btn btn-default">Huỷ</a>
                                 </div>
                             </div>

@@ -31,9 +31,10 @@
                                             @if($errors->first('name'))
                                                 <br><span class="text-danger">{{$errors->first('name')}}</span>
                                             @endif
+
                                         </div>
-                                        <div class="form-row">
-                                            <div class="col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <div class="">
                                             <label for="">Giá cho thuê</label>
                                             <input type="number" name="price" class="form-control" value="{{ old('price') }}"
                                                    placeholder="">
@@ -41,16 +42,38 @@
                                                 <br><span class="text-danger">{{$errors->first('price')}}</span>
                                             @endif
                                             </div>
+                                        </div>
+                                        <div class="form-row">
                                             <div class="col-md-6 mb-3">
-                                                <label for="">Danh mục</label>
-                                                <select class="form-control" name="cate_id" value="{{ old('cate_id') }}">
-                                                    @foreach($category as $key => $cate)
-                                                        <option name=""
-                                                                value="{{ $cate->id }}">{{ $cate->name }}</option>
-                                                    @endforeach
+                                                <label for="">Biển số xe: </label>
+                                                <input type="text" name="license_plate" class="form-control" value="{{ old('license_plate') }}"
+                                                       placeholder="" value="">
+                                                @if($errors->first('license_plate'))
+                                                    <br><span class="text-danger">{{$errors->first('seat')}}</span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="">Hộp số:  </label>
+                                                <select name="gear_id" class="form-control " style="margin-bottom: 10px" value="{{ old('model_id') }}">
+                                                    <option  value="0" selected disabled>--Chọn kiểu --</option>
+                                                        <option value="1">Số sàn</option>
+                                                        <option value="2">Số tự động</option>
+
                                                 </select>
-                                                @if($errors->first('cate_id'))
-                                                    <br><span class="text-danger">{{$errors->first('cate_id')}}</span>
+                                                @if($errors->first('model_id'))
+                                                    <br><span class="text-danger">{{$errors->first('model_id')}}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <label for="">Thủ tục nhận xe: </label>
+                                                <a href="javascrip:;">Chọn thủ tục</a>
+{{--                                                <input type="number" name="price" class="form-control" value="{{ old('price') }}"--}}
+{{--                                                       placeholder="">--}}
+                                                <input type="text" id="produce" value="" data-role="tagsinput"/>
+                                            @if($errors->first('produce'))
+                                                    <br><span class="text-danger">{{$errors->first('produce')}}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -114,7 +137,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <input type="file" name="image" class="" id="imgInp">
+                                            <input type="file" name="image_vehicle" class="" id="imgInp">
                                         </div>
                                         @if($errors->first('image'))
                                             <br><span class="text-danger">{{$errors->first('image')}}</span>
@@ -164,6 +187,11 @@
             });
         });
 
+    </script>
+@endsection
+@push('scripts')
+    <script>
+        $('#produce').tagsinput('items');
         function preView(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -177,6 +205,5 @@
         $("#imgInp").change(function () {
             preView(this);
         });
-
     </script>
-@endsection
+    @endpush

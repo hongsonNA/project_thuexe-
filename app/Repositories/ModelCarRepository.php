@@ -2,14 +2,14 @@
 
 namespace App\Repositories;
 
-use App\Model\ModelCar;
+use App\Model\ModelVehicle;
 use Yajra\DataTables\Facades\DataTables;
 
 class ModelCarRepository implements VehicelRepositoryInterface {
 
     public function AllDatatable()
     {
-        return Datatables::of(ModelCar::all())
+        return Datatables::of(ModelVehicle::all())
             ->addColumn('action', function ($model_car) {
                 return '<a href="'.route('model_edit', $model_car->id).'" class="btn btn-link btn-info btn-just-icon edit">
                                 <i class="material-icons">edit</i>
@@ -46,7 +46,7 @@ class ModelCarRepository implements VehicelRepositoryInterface {
 
     public function store($request)
     {
-        $model_car = new ModelCar();
+        $model_car = new ModelVehicle();
         $model_car->name = $request->get('name');
         $mess_add = "";
         if ($model_car->save()) {
@@ -58,7 +58,7 @@ class ModelCarRepository implements VehicelRepositoryInterface {
 
     public function edit($id)
     {
-        $model_car = ModelCar::find($id);
+        $model_car = ModelVehicle::find($id);
         if (empty($model_car)) {
             return view('admin.model.model_list');
         }
@@ -68,7 +68,7 @@ class ModelCarRepository implements VehicelRepositoryInterface {
 
     public function update($request, $id)
     {
-        $model_car = ModelCar::find($id);
+        $model_car = ModelVehicle::find($id);
         if (empty($model_car)) {
             return view('admin.model.edit_model');
         } else {
@@ -84,9 +84,9 @@ class ModelCarRepository implements VehicelRepositoryInterface {
 
     public function destroy($id)
     {
-        $model_car = ModelCar::find($id);
+        $model_car = ModelVehicle::find($id);
         if ($model_car) {
-            $remove_model = ModelCar::destroy($id);
+            $remove_model = ModelVehicle::destroy($id);
         } else {
             return view('admin.model.model_list');
         }
