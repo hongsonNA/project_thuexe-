@@ -22,6 +22,8 @@ class CreateTargetsTable extends Migration
             $table->integer('is_delete')->default(0);
             $table->string('vehicle_registration_certificate', 100)->default(0);
             $table->text('other_targets')->nullable();
+            $table->date('start_date');
+            $table->date('end_date');
 
 
             $table->timestamps();

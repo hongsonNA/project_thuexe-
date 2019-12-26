@@ -11,6 +11,9 @@ class CarBooking extends Model
     protected $fillable = [
         'user_id',
         'vehicle_id',
+        'name',
+        'email',
+        'phone',
         'city_id',
         'district_id',
         'start_date',

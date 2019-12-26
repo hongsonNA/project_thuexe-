@@ -44,7 +44,7 @@
                                         <strong>{{ $message }}</strong>
                                     </label>
                                     @enderror
-                                    <div class="checkR2">
+                                    <div class="checkR2" style="display: none">
                                     <div class="field-holder">
                                         <span class="far fa-envelope"></span>
                                         <input type="text" name="phone" value="{{ old('phone') }}"
@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="field-holder">
                                         <span class=""></span>
-                                        <input type="radio" name="role" value="1" class="remove_member"> Thue xe
+                                        <input type="radio" name="role" value="1" checked class="remove_member"> Thue xe
                                         <input type="radio" name="role" value="2" class="check_role"> Cho Thue xe
                                     </div>
                                     <br>
