@@ -94,6 +94,9 @@
          });
 
      });
+//upload multiple  image
 
+
+//end upload
 
 

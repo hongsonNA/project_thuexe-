@@ -54,7 +54,7 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="">Hộp số:  </label>
-                                                <select name="gear_id" class="form-control " style="margin-bottom: 10px" value="{{ old('model_id') }}">
+                                                <select name="gear" class="form-control " style="margin-bottom: 10px" value="{{ old('model_id') }}">
                                                     <option  value="0" selected disabled>--Chọn kiểu --</option>
                                                         <option value="1">Số sàn</option>
                                                         <option value="2">Số tự động</option>
@@ -71,9 +71,33 @@
                                                 <a href="javascrip:;">Chọn thủ tục</a>
 {{--                                                <input type="number" name="price" class="form-control" value="{{ old('price') }}"--}}
 {{--                                                       placeholder="">--}}
-                                                <input type="text" id="produce" value="" data-role="tagsinput"/>
-                                            @if($errors->first('produce'))
-                                                    <br><span class="text-danger">{{$errors->first('produce')}}</span>
+                                                <input type="text" id="produce" name="procedure" value="" data-role="tagsinput"/>
+                                            @if($errors->first('procedure'))
+                                                    <br><span class="text-danger">{{$errors->first('procedure')}}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <label for="">tinh nang xe: </label>
+                                                <a href="javascrip:;"></a>
+                                                {{--                                                <input type="number" name="price" class="form-control" value="{{ old('price') }}"--}}
+                                                {{--                                                       placeholder="">--}}
+                                                <input type="text" id="utility" name="utility" value="" data-role="tagsinput"/>
+                                                @if($errors->first('utility'))
+                                                    <br><span class="text-danger">{{$errors->first('utility')}}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <label for="">Dung tích xăng: </label>
+                                                <a href="javascrip:;"></a>
+                                                {{--                                                <input type="number" name="price" class="form-control" value="{{ old('price') }}"--}}
+                                                {{--                                                       placeholder="">--}}
+                                                <input type="number" id="" name="capacity" value="" data-role=""/>
+                                                @if($errors->first('capacity'))
+                                                    <br><span class="text-danger">{{$errors->first('capacity')}}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -137,8 +161,10 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <input type="file" name="image_vehicle" class="" id="imgInp">
+                                            <input type="file" id="image_vehicle" name="image_vehicle[]" class="" id="imgInp" multiple>
+                                            <output id="result" />
                                         </div>
+
                                         @if($errors->first('image'))
                                             <br><span class="text-danger">{{$errors->first('image')}}</span>
                                         @endif
@@ -191,6 +217,47 @@
 @endsection
 @push('scripts')
     <script>
+        if(window.File && window.FileList && window.FileReader)
+        {
+            var filesInput = document.getElementById("image_vehicle");
+            filesInput.addEventListener("change", function(event){
+
+                var files = event.target.files; //FileList object
+                var output = document.getElementById("result");
+
+                for(var i = 0; i< files.length; i++)
+                {
+                    var file = files[i];
+
+                    //Only pics
+                    if(!file.type.match('image'))
+                        continue;
+
+                    var picReader = new FileReader();
+
+                    picReader.addEventListener("load",function(event){
+
+                        var picFile = event.target;
+
+                        var div = document.createElement("div");
+
+                        div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                            "title='" + picFile.name + "'/>";
+
+                        output.insertBefore(div,null);
+
+                    });
+
+                    //Read the image
+                    picReader.readAsDataURL(file);
+                }
+
+            });
+        } else {
+            console.log(" Trình duyệt của bạn không hỗ trợ ");
+        }
+
+
         $('#produce').tagsinput('items');
         function preView(input) {
             if (input.files && input.files[0]) {

@@ -495,15 +495,16 @@ $(document).ready(function () {
             $(".checkR2").hide();
         }
     });
-    //=======*****========
-    if($('#register').length) {
-        var name = $('#name').val();
 
-        if (name == ""){
-            $('#name_verify').html('ban chua nhap ten');
-            return false;
-        }
-        }
+    //=======*****========
+    // if($('#register').length) {
+    //     var name = $('#name').val();
+    //
+    //     if (name == ""){
+    //         $('#name_verify').html('ban chua nhap ten');
+    //         return false;
+    //     }
+    //     }
     /* checking register member
     ======================================================*/
     if ($('#register_member').length){
