@@ -90,38 +90,33 @@
                         <div class="heading clearfix">
                             <h5>Danh sách</h5>
                             <div class="view">
-                                <a href="listing-list-view.html"><i class="fa fa-th-list"></i></a>
-                                <a href="listing-grid-view.html" class="active"><i class="fa fa-th"></i></a>
+{{--                                <a href="listing-list-view.html"><i class="fa fa-th-list"></i></a>--}}
+{{--                                <a href="listing-grid-view.html" class="active"><i class="fa fa-th"></i></a>--}}
                             </div> <!-- end .view -->
                             <div class="select-wrapper sort">
-                                <select class="form-control option-select" >
-                                    <option>Sort By</option>
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
+                                <select class="filter_car form-control option-select" >
+                                    <option value="0">Sắp xếp</option>
+                                    <option value="2">Sắp xếp tăng dần</option>
+                                    <option value="1">Sắp xếp giảm dần</option>
                                 </select>
                             </div>
                             <!-- end .select-wrapper -->
                         </div>
-                        <div class="listings-grid clearfix">
-                            @foreach($list_cate as $key => $id)
-                                <div class="listing">
-                                    <div class="image">
-                                        <a href="{{ route('detail', $id->id)  }}">
-                                            {{--                                    @if(empty($id->image))--}}
-                                            {{--                                    <img src="{{ asset('image_upload/img_vehicle/'.$id->image )}}" alt="listing" class="img-responsive">--}}
-                                            {{--                                    @else--}}
-                                            <img src="https://s3.amazonaws.com/files.activate.social/user-image-32740129-1552215451-5c84ed9b68ace" alt="listing" class="img-responsive">
-
-                                            {{--                                    @endif--}}
-                                        </a>
-                                    </div>
-                                    <div class="content_car">
-                                        <div class="title"><a href="javscript:;">Ferrari <span>[ Grand ]</span></a></div>
-                                        <a href="{{ route('detail', $id->id)  }}">{{ $id->name }}</a>
-                                        <div class="price">{{ number_format($id->price) }}<span> VND</span></div>
-                                    </div>
-                                </div>
-                            @endforeach
+                        <div class="listings-grid clearfix" id="result_fillter">
+{{--                            @foreach($list_cate as $key => $id)--}}
+{{--                                <div class="listing">--}}
+{{--                                    <div class="image">--}}
+{{--                                        <a href="{{ route('detail', $id->id)  }}">--}}
+{{--                                            <img src="https://s3.amazonaws.com/files.activate.social/user-image-32740129-1552215451-5c84ed9b68ace" alt="listing" class="img-responsive">--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="content_car">--}}
+{{--                                        <div class="title"><a href="javscript:;">Ferrari <span>[ Grand ]</span></a></div>--}}
+{{--                                        <a href="{{ route('detail', $id->id)  }}">{{ $id->name }}</a>--}}
+{{--                                        <div class="price">{{ number_format($id->price) }}<span> VND</span></div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
                         </div>
                     </div>
                 </div>

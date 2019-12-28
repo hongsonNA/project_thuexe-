@@ -495,7 +495,55 @@ $(document).ready(function () {
             $(".checkR2").hide();
         }
     });
-
+    //=====request fillter sort=======
+    $(document).ready(function () {
+        $(".filter_car").on('change', function(){
+            var fillter = $(this).val();
+            switch (fillter) {
+                case '1':
+                    if (fillter){
+                        $.ajax({
+                            type : 'get',
+                            url : 'fillter_car/' + fillter,
+                            dataType: "html",
+                            success:function(res){
+                                if (res){
+                                    $(".listings-grid").append(res);
+                                }
+                            }
+                        })
+                    }
+                    break;
+                case '2':
+                    if (fillter){
+                        $.ajax({
+                            type : 'get',
+                            url : 'fillter_car/' + fillter,
+                            dataType: "html",
+                            success:function(res){
+                                if (res){
+                                    $(".listings-grid").append(res);
+                                }
+                            }
+                        })
+                    }
+                    break;
+                default:
+                    if (fillter){
+                        $.ajax({
+                            type : 'get',
+                            url : 'fillter_car/' + fillter,
+                            dataType: "html",
+                            success:function(res){
+                                if (res){
+                                    $(".listings-grid").append(res);
+                                }
+                            }
+                        })
+                    }
+            }
+        });
+    })
     //=======*****========
     // if($('#register').length) {
     //     var name = $('#name').val();

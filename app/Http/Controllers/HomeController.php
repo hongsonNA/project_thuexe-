@@ -58,13 +58,7 @@ class HomeController extends Controller
         return view('front-end.contact');
     }
 
-    public function cate()
-    {
-        $city = city::All();
-        $model_car = Vehicle::All();
-        $list_cate = Vehicle::all();
-        return view('front-end.category', compact('list_cate', 'city', 'model_car'));
-    }
+
 
     public function news()
     {

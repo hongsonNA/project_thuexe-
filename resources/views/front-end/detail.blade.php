@@ -272,7 +272,7 @@
                 <div class="card">
                     <a href="{{ route('detail', $id->id )  }}">
                         <img class="card-img-top" data-src="{{ asset('image_upload/default-car.jpg') }}" alt=""
-                             src="{{ asset('image_upload/img_vehicle/'.$id->image) }}" data-    holder-rendered="true">
+{{--                             src="{{ asset('image_upload/img_vehicle/'.$id['images']['image_vehicle']) }}" data-holder-rendered="true">--}}
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ $id->name }}</h5> {{--
