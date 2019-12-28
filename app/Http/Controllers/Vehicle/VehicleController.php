@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers\Vehicle;
 
-use App\Http\Requests\ManagerRequest;
+use App\Http\Controllers\Controller;
 use App\Model\CarBooking;
 use App\Model\City;
 use App\Model\Comment;
-use App\Model\Vehicle;
-use App\Model\Image;
+use App\Model\Image as VehicleImage;
 use App\Model\ModelVehicle;
+use App\Model\Vehicle;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Intervention\Image\ImageManagerStatic as Images;
+use Image;
 use Yajra\DataTables\Facades\DataTables;
+
+//use Intervention\Image\ImageManagerStatic as Images;
+
 
 class VehicleController extends Controller
 {
     public function dashboard()
     {
         $user_id = Auth::user()->id;
-        $vehicle = Vehicle::all()->where('user_id',$user_id);
+        $vehicle = Vehicle::all()->where('user_id', $user_id);
         $comment = Comment::all();
 //        $carBooking = CarBooking
         $waitingBooking = CarBooking::where('status', '1')->get();
@@ -68,34 +70,43 @@ class VehicleController extends Controller
 
     public function create(Request $request)
     {
-//    dd($request);
         $listmul = new Vehicle();
-        $getImage = new Image();
-
-
+        $getImage = new VehicleImage();
         $listmul->view = $request->get('view', '0');
         $listmul->fill($request->all());
         $listmul->user_id = (Auth::user()->id);
-
+        $imagefiles = $request->file('image_vehicle');
         $mes = '';
         if ($listmul->save()) {
             $vehicleId = $listmul->id;
             if ($request->hasFile('image_vehicle')) {
-                $images_File = $request->file('image_vehicle');
-                $fileName = 'image' . '_' . time() . '.' . $images_File->extension();
-                $image_resize = Images::make($images_File->getRealPath())->resize(500, 500);
-                $image_resize->save(public_path('image_upload/img_vehicle/' . $fileName));
-                $getImage->image_vehicle = $fileName;
-                dd($getImage);
-                $getImage->vehicle_id = $vehicleId;
-                $getImage->save();
-                $mes = 'Thêm thành công ';
+                $allowedfileExtension=['jpg','png'];
+                $files  = $request->file('image_vehicle');
+                $flag  = true;
+                foreach ($files as $file){
+                    $extension = $file->getClientOriginalExtension();
+                    $check=in_array($extension,$allowedfileExtension);
+                    if(!$check) {
+                        $flag = false;
+                        break;
+                    }
+                }
+                if ($flag){
+//                    $image = VehicleImage::create($request->all());
+                    foreach ($request->image_vehicle as $img_vehicle ){
+                        $filename = $img_vehicle->storeAs('image_vehicle', $img_vehicle->getClientOriginalName());
+                       VehicleImage::create([
+                          'image_vehicle' => $filename,
+                           'vehicle_id' => $vehicleId
+                       ]);
+                    }
+                    $mes ='thanh cong ';
+                }
             } else {
                 $getImage->image_vehicle = "default_car.jpg";
             }
         }
         return redirect()->route('manage', compact('listmul'))->with('mes', $mes);
-
     }
 
     public function edit_vehicles($id)
@@ -114,7 +125,7 @@ class VehicleController extends Controller
     {
         $listmul = new Vehicle();
         $listmul = Vehicle::find($id);
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('image_vehicle')) {
             $images_File = $request->file('image');
             $FileName = 'image' . '_' . time() . '.' . $images_File->extension();
             $image_resize = Image::make($images_File->getRealPath())->resize(300, 310);

@@ -5,13 +5,16 @@
     Route::get('/', 'HomeController@index')->name('index');
     Route::get('/gioi-thieu', 'HomeController@about')->name('about');
     Route::get('/lien-he', 'HomeController@contact')->name('contact');
-    Route::get('/danh-sach-xe', 'HomeController@cate')->name('cate');
+    Route::get('/danh-sach-xe', 'Member\\ClientController@cate')->name('cate');
     Route::get('/bai-viet', 'HomeController@news')->name('news');
     Route::get('/thong-tin-ca-nhan', 'HomeController@profile')->name('profile');
     Route::get('/dich-vu-cuu-ho', 'HomeController@support')->name('support');
     Route::get('/admin_us', 'HomeController@admin_us')->name('admin_us');
     Route::get('chi-tiet/{id}', 'HomeController@detail')->name('detail');
     Route::post('/add-contact', 'Member\\ContactController@store');
+    //request ajax fillter category
+    Route::get('fillter_car/{id}','Member\\ClientController@fillterCar')->name('fillterCar');
+
     //detailNews
     Route::post('loarmore', 'HomeController@loarmore')->name('loarmore');
     //load more

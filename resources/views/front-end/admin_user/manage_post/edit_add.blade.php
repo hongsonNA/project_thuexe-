@@ -241,7 +241,7 @@
 
                         var div = document.createElement("div");
 
-                        div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                        div.innerHTML = "<img class='thumbnail' name='image_vehicle' src='" + picFile.result + "'" +
                             "title='" + picFile.name + "'/>";
 
                         output.insertBefore(div,null);
