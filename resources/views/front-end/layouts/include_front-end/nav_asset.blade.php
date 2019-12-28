@@ -89,11 +89,8 @@
                             @if(isset(Auth::user()->email))
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                           aria-haspopup="true" aria-expanded="false">
-                                            <img
-                                                src="https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png"
-                                                class="Profile"> {{Auth::user()->name}} <b class="caret"></b>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <img src="https://cdn1.iconfinder.com/data/icons/avatar-1-2/512/User2-512.png" class="Profile"> {{Auth::user()->name}} <b class="caret"></b>
                                         </a>
                                         <ul class="dropdown-menu" style="margin-top: -10px;">
                                             @if(!Auth::check() || Auth::user()->role == '2')
@@ -101,6 +98,13 @@
                                                     <a href="{{ route('Admin') }}">
                                                         <span class="edu-icon edu-user-rounded author-log-ic"></span>
                                                         Quản lý xe
+                                                    </a>
+                                                </li>
+                                            @elseif (!Auth::check() || Auth::user()->role == '8')
+                                                <li>
+                                                    <a href="{{ route('Admin') }}">
+                                                        <span class="edu-icon edu-user-rounded author-log-ic"></span>
+                                                        Duyệt xe
                                                     </a>
                                                 </li>
                                             @elseif(!Auth::check() || Auth::user()->role == '9' || Auth::user()->role == '10')
@@ -124,13 +128,11 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('logout') }}"
-                                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                     <span class="edu-icon edu-locked author-log-ic"></span>
                                                     Log Out
                                                 </a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                      style="display: none;">
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                     @csrf
                                                 </form>
                                             </li>

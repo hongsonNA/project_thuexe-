@@ -61,6 +61,11 @@ Auth::routes(['verify'=>true]);
         //Profile member
         Route::get('profile_member', 'Vehicle\\VehicleController@profile_member')->name('profile_member');
         //=====Chart js=====
+
+        Route::group(['prefix' => 'target'], function () {
+            Route::get('/', 'Vehicle\\TargetController@index')->name('index_target');
+            Route::get('/kiem-duyet/{id}', 'Vehicle\\TargetController@edit')->name('edit_target');
+        });
         });
         Route::get('/chart','Vehicle\\VehicleController@chartCar')->name('chart');
         //---search
