@@ -38,6 +38,13 @@
                 </a>
             </li>
 
+            <li class="nav-item active">
+            <a href="{{ route('index_target') }}">
+                    <i class="nc-icon nc-tile-56"></i>
+                    Các xe chưa duyệt
+                </a>
+            </li>
+
         </ul>
     </div>
 </div>

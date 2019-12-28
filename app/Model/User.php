@@ -27,8 +27,13 @@ class User extends Model
         return $this->hasMany('App\Model\Comment', 'id', 'user_id');
     }
 
-    public function vehicle()
+    public function vehicles()
     {
-        return $this->belongsTo(Vehicle::class);
+        return $this->hasMany(Vehicle::class, 'vehicle_id');
+    }
+
+    public function targets()
+    {
+        return $this->hasMany(Target::class);
     }
 }

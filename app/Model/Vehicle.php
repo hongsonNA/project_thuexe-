@@ -11,6 +11,7 @@ class Vehicle extends Model
     protected $fillable = [
         'city_id',
         'user_id',
+        'target_id',
         'district_id',
         'utility',
         'procedure',
@@ -31,14 +32,14 @@ class Vehicle extends Model
     {
         return $this->hasMany(ModelVehicle::class, 'model_id');
     }
-    public function carbooking()
+    public function carbookings()
     {
         return $this->hasMany(Vehicle::class, 'vehicle_id');
     }
 
-    public function users()
+    public function user()
     {
-        return $this->hasMany(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
     public function citys()
@@ -50,6 +51,12 @@ class Vehicle extends Model
     {
         return $this->hasMany(District::class, 'district_id');
     }
+
+    public function targets()
+    {
+        return $this->hasMany(Target::class, 'target_id');
+    }
+
     public function images()
     {
         return $this->belongsTo(Image::class);
