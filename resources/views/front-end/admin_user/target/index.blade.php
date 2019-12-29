@@ -35,19 +35,21 @@
                                 </tfoot>
                                     <tbody>
                                         @foreach ( $vehicle as $vhc )
-                                        <tr>
-                                            <td>{{ $vhc['name'] }}</td>
-                                            <td>{{ $vhc['user']['name'] }}</td>
-                                            <td>
-                                                @if ($vhc['status'] == 1)
-                                                    Xe chưa kiểm duyệt
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('edit_target', $vhc['id'] ) }}" class="btn btn-simple btn-info btn-icon like">sửa</a>
-                                                <a href="#" class="btn btn-simple btn-warning btn-icon edit">hủy</a>
-                                            </td>
-                                        </tr>
+                                            @if ($vhc->status == 1)
+                                            <tr>
+                                                <td>{{ $vhc['name'] }}</td>
+                                                <td>{{ $vhc['user']['name'] }}</td>
+                                                <td>
+                                                    @if ($vhc['status'] == 1)
+                                                        Xe chưa kiểm duyệt
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('edit_target', $vhc['id'] ) }}" class="btn btn-simple btn-info btn-icon like">sửa</a>
+                                                    <a href="#" class="btn btn-simple btn-warning btn-icon edit">hủy</a>
+                                                </td>
+                                            </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>

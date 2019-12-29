@@ -15,8 +15,8 @@ class District extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function vehicle()
+    public function vehicles()
     {
-        return $this->belongsTo(Vehicle::class);
+        return $this->hasMany(Vehicle::class, 'district_id');
     }
 }

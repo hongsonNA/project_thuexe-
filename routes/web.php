@@ -67,8 +67,11 @@ Auth::routes(['verify'=>true]);
 
         Route::group(['prefix' => 'target'], function () {
             Route::get('/', 'Vehicle\\TargetController@index')->name('index_target');
-            Route::get('/kiem-duyet/{id}', 'Vehicle\\TargetController@edit')->name('edit_target');
+            Route::get('/da-duyet', 'Vehicle\\TargetController@index_success')->name('index_success');
+            Route::get('/kiem-duyet-xe/{id}', 'Vehicle\\TargetController@edit')->name('edit_target');
+            Route::post('/kiem-duyet-xe/{id}', 'Vehicle\\TargetController@update')->name('update_target');
         });
+
         });
         Route::get('/chart','Vehicle\\VehicleController@chartCar')->name('chart');
         //---search
