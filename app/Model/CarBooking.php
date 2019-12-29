@@ -14,8 +14,6 @@ class CarBooking extends Model
         'name',
         'email',
         'phone',
-        'city_id',
-        'district_id',
         'start_date',
         'end_date',
         'status',

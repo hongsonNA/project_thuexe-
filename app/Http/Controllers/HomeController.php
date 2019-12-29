@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Comment;
+use App\Model\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -117,7 +118,6 @@ class HomeController extends Controller
 //    cate
     public function state_cate($id)
     {
-
         $states = DB::table('districts')
             ->where("city_id", $id)->get();
         $output = '';
@@ -130,11 +130,18 @@ class HomeController extends Controller
     public function detail($id)
     {
         $comment = Comment::all()->where('vehicle_id', '=', $id);
+        $findCar = Vehicle::find($id);
+        if ($findCar){
+            $image = Image::where('vehicle_id', $findCar['id'])->get()->toArray();
+            $image_array['image_vehicle'] = $image;
+        }else{
+            abort(404);
+        }
 
-        $list_cate = Vehicle::with([
-            'CarBooking' => function ($query) {
-                $query->where('vehicle_id');
-            }]);
+//        $list_cate = Vehicle::with([
+//            'CarBooking' => function ($query) {
+//                $query->where('vehicle_id');
+//            }]);
         //topics car
         $topic = DB::table('vehicles')->where('id', '!=', $id)
             ->orderByDesc('id')
@@ -153,7 +160,7 @@ class HomeController extends Controller
         ])->get()->toArray();
 
 //        dd($comments_dl);
-        return view('front-end.detail', compact('vechcles', 'comment', 'topic', 'comments_dl'), compact('list_cate'));
+        return view('front-end.detail', compact('vechcles', 'comment', 'topic', 'comments_dl','image_array'), compact('findCar'));
     }
 
     public function detail_news($id)
@@ -201,30 +208,25 @@ class HomeController extends Controller
     //search form
     public function search_car(Request $request)
     {
+        $manage = Vehicle::all();
+
         $model_id = $request->get('model_id');
         $city_id = $request->get('city_id');
-        $district_id = $request->get('district_id');
-
         $searchQuery = Vehicle::where('model_id', 'like', "%$model_id%")
             ->where('city_id', 'like', "%$city_id%")
-            ->where('district_id', 'like', "%$district_id%")->get();
+            ->get();
+        $image_array = [];
+        foreach ($searchQuery as $key => $value) {
+            $image = Image::where('vehicle_id', $value['id'])->first();
+            $image_array[$key] = $value;
+            $image_array[$key]['image_vehicle'] = $image;
+        }
+//        dd($image_array);
 //        dd($searchQuery);
-        return view('front-end.search', compact('searchQuery'));
+        return view('front-end.search', compact('searchQuery','image_array'));
     }
 
-    public function search_cate(Request $request)
-    {
-        $seat = $request->get('seat');
-        $model_id = $request->get('model_id');
-        $district_id = $request->get('district_id');
-        $city_id = $request->get('city_id');
-        $searchQuery = Vehicle::where('district_id', 'like', "%$district_id%")
-            ->where('seat', 'like', "%$seat%")
-            ->where('model_id', 'like', "%$model_id%")
-            ->where('city_id', 'like', "%$city_id%")->get();
-        return view('front-end.search', compact('searchQuery'));
-//        dd($searchQuery);
-    }
+
 
 //    report-comment
     public function report_comment(Request $request, $id)
@@ -249,24 +251,16 @@ class HomeController extends Controller
 
         $all = [
             $getList->vehicle_id = $book->id,
-            $getList->city_id = $book->city_id,
-            $getList->district_id = $book->district_id
         ];
         $getList->vehicle_id = $id;
         $getList->user_id = (Auth::user()->id);
-        $getList->status = $request->get('status', '1');
-        $getList->order_id = $request->get('order_id', '1');
-        $getList->start_date = $request->get('start_date');
-        $getList->end_date = $request->get('end_date');
         $getList->fill($request->all());
-
+//        dd($getList);
         $alert = '';
         if ($getList->save()) {
             $alert = "Đăng ký thông tin thành công";
         }
         return back()->with('alert', $alert);
-
-
     }
 //    show news home
 //loar more News

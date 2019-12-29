@@ -3,8 +3,9 @@
     <style>.default-image img {
             height: 100%;
             width: 100%;
+            padding:10px
         }
-
+        #result{display: inline-block;height: 600px;overflow: scroll;}
         .default-image {
             width: 100%;
             height: 262px;
@@ -58,48 +59,49 @@
                                                     <option  value="0" selected disabled>--Chọn kiểu --</option>
                                                         <option value="1">Số sàn</option>
                                                         <option value="2">Số tự động</option>
-
                                                 </select>
-                                                @if($errors->first('model_id'))
-                                                    <br><span class="text-danger">{{$errors->first('model_id')}}</span>
+                                                @if($errors->first('gear'))
+                                                    <br><span class="text-danger">{{$errors->first('gear')}}</span>
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="">
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
                                                 <label for="">Thủ tục nhận xe: </label>
-                                                <a href="javascrip:;">Chọn thủ tục</a>
-{{--                                                <input type="number" name="price" class="form-control" value="{{ old('price') }}"--}}
-{{--                                                       placeholder="">--}}
-                                                <input type="text" id="produce" name="procedure" value="" data-role="tagsinput"/>
-                                            @if($errors->first('procedure'))
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="produce" class="form-control" name="procedure" value="" data-role="tagsinput"/>
+                                            </div>
+                                                @if($errors->first('procedure'))
                                                     <br><span class="text-danger">{{$errors->first('procedure')}}</span>
                                                 @endif
-                                            </div>
+
                                         </div>
-                                        <div class="form-group">
-                                            <div class="">
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
                                                 <label for="">tinh nang xe: </label>
                                                 <a href="javascrip:;"></a>
-                                                {{--                                                <input type="number" name="price" class="form-control" value="{{ old('price') }}"--}}
-                                                {{--                                                       placeholder="">--}}
-                                                <input type="text" id="utility" name="utility" value="" data-role="tagsinput"/>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="utility" name="utility" class="form-control" value="" data-role="tagsinput"/>
+                                            </div>
                                                 @if($errors->first('utility'))
                                                     <br><span class="text-danger">{{$errors->first('utility')}}</span>
                                                 @endif
-                                            </div>
+
                                         </div>
-                                        <div class="form-group">
-                                            <div class="">
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
                                                 <label for="">Dung tích xăng: </label>
                                                 <a href="javascrip:;"></a>
-                                                {{--                                                <input type="number" name="price" class="form-control" value="{{ old('price') }}"--}}
-                                                {{--                                                       placeholder="">--}}
-                                                <input type="number" id="" name="capacity" value="" data-role=""/>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="number" id="" name="capacity" class="form-control" value="" data-role=""/>
+                                            </div>
                                                 @if($errors->first('capacity'))
                                                     <br><span class="text-danger">{{$errors->first('capacity')}}</span>
                                                 @endif
-                                            </div>
+
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">
@@ -154,15 +156,18 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-5">
-                                        <div class="form-group">
+                                        <div class="">
                                             <label for="exampleFormControlFile1">Ảnh đại diện</label>
+
                                             <div class="default-image">
-                                                <img id="blah" src="{{ asset('image_upload/default-car.jpg') }}" alt="">
+                                                <input type="file" id="image_vehicle" name="image_vehicle[]" class="" id="imgInp" multiple>
+                                                <output id="result" />
+{{--                                                <img id="blah" src="{{ asset('image_upload/default-car.jpg') }}" alt="">--}}
                                             </div>
                                         </div>
                                         <div>
-                                            <input type="file" id="image_vehicle" name="image_vehicle[]" class="" id="imgInp" multiple>
-                                            <output id="result" />
+
+
                                         </div>
 
                                         @if($errors->first('image'))

@@ -47,22 +47,13 @@
                         <div class="shadow p-lg mb-xlg">
                             <div class="model row content-detail ">
                                 <div class="col-sm-12 detail-image car_slider">
-                                    {{-- <a href=""> <img src="{{ asset('image_upload/img_vehicle/'.$vechcles->image )}}"--}}
-                                    {{--                                                     alt=""></a>--}}
                                     <div class="swiper-container gallery-top">
                                         <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <img src="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                                            </div>
+                                            @foreach( $image_array['image_vehicle'] as $key => $value )
+                                                <div class="swiper-slide">
+                                                    <img src="/image_upload/img_vehicle/{{ $value['image_vehicle'] }}" alt="">
+                                                </div>
+                                            @endforeach
                                         </div>
                                         <!-- Add Arrows -->
                                         <div class="swiper-button-next swiper-button-white"></div>
@@ -70,18 +61,11 @@
                                     </div>
                                     <div class="swiper-container gallery-thumbs">
                                         <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <img src="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                                            </div>
+                                            @foreach( $image_array['image_vehicle'] as $key => $value )
+                                                <div class="swiper-slide">
+                                                    <img src="/image_upload/img_vehicle/{{ $value['image_vehicle'] }}" alt="">
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -203,15 +187,21 @@
                             <div class="tit3 mt-md mb-xs">{{ $vechcles->name }}</div>
 
                             <div class="form-group position-relative form-group">
-                                <label class=" pt-2">Email:</label>
+                                <label class=" pt-2">Họ tên :</label>
                                 <div class="box-date ">
-                                    <input class="input flatpickr-input form-control" type="text" id="" name="name" value="{{Auth::user()->email}}" readonly="readonly">
+                                    <input class="input flatpickr-input form-control" type="text" id="" name="name" value="{{ Auth::user()->name }}" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group position-relative form-group">
+                                <label class=" pt-2">Email :</label>
+                                <div class="box-date ">
+                                    <input class="input flatpickr-input form-control" type="text" id="" name="email" value="{{ Auth::user()->email }}" readonly="readonly">
                                 </div>
                             </div>
                             <div class="form-group position-relative form-group">
                                 <label class=" pt-2">Số điện thoại</label>
                                 <div class="box-date ">
-                                    <input class="input flatpickr-input form-control" type="email" id="" name="email" value="{{ Auth::user()->phone  }}" readonly="readonly"><br>
+                                    <input class="input flatpickr-input form-control" type="number" id="" name="phone" value="{{ Auth::user()->phone  }}" readonly="readonly"><br>
                                 </div>
                             </div>
                             <div class="form-group position-relative form-group">
@@ -231,7 +221,7 @@
                             <h5>Giá tiền:&nbsp;&nbsp; <label class=" pt-2">{{ number_format($vechcles->price) }}</label>&nbsp;VNĐ</h5>
                             {{-- @dd($vechcles['car_Booking']['start_date']);--}} {{-- @if($vechcles['car_Booking']['start_date'])--}} {{-- <span>Đã có người đặt</span>--}} {{-- @endif--}}
                             <div class="form-group mb-none position-relative form-group">
-                                <input type="hidden" id="peice_vehicles" value="{{$vechcles->price}}">
+                                <input type="hidden" id="peice_vehicles" name="total" value="{{$vechcles->price}}">
                                 <input type="hidden" class="calculated">
                             </div>
                             <div class="caculator">

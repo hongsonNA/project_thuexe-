@@ -57,9 +57,9 @@ class Vehicle extends Model
         return $this->hasMany(Target::class, 'target_id');
     }
 
-    public function images()
+    public function image()
     {
-        return $this->belongsTo(Image::class);
+        return $this->belongsTo(Image::class, 'id');
     }
 
 }
