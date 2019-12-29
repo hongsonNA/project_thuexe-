@@ -29,7 +29,7 @@ class ModelCarRequest extends FormRequest
             //
             'name' => [
                 'required',
-                Rule::unique('models')->ignore($this->id),
+                Rule::unique('model_vehicles')->ignore($this->id),
                 'min:4'
             ]
         ];

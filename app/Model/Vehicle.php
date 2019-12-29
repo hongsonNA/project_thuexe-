@@ -42,19 +42,19 @@ class Vehicle extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function citys()
+    public function city()
     {
-        return $this->hasMany(City::class, 'city_id');
+        return $this->belongsTo(City::class);
     }
 
-    public function districts()
+    public function district()
     {
-        return $this->hasMany(District::class, 'district_id');
+        return $this->belongsTo(District::class);
     }
 
-    public function targets()
+    public function target()
     {
-        return $this->hasMany(Target::class, 'target_id');
+        return $this->belongsTo(Target::class, 'id');
     }
 
     public function image()
