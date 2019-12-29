@@ -9,7 +9,7 @@ class Image extends Model
     protected $table ='images';
     protected $fillable =['vehicle_id','image_vehicle'];
 
-    public function Vehicle()
+    public function Vehicles()
     {
         return $this->hasMany(Vehicle::class);
     }

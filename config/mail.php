@@ -1,3 +1,4 @@
+
 <?php
 return [
     /*
@@ -24,7 +25,7 @@ return [
     | the Mailgun mail service which will provide reliable deliveries.
     |
     */
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Port
@@ -47,8 +48,8 @@ return [
     |
     */
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hson8711@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Primer Cab'),
     ],
     /*
     |--------------------------------------------------------------------------
@@ -71,8 +72,8 @@ return [
     | connection. You may also set the "password" value below this one.
     |
     */
-    'username' => env('MAIL_USERNAME'),
-    'password' => env('MAIL_PASSWORD'),
+    'username' => env('hson8711@gmail.com'),
+    'password' => env('hongson1710'),
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path

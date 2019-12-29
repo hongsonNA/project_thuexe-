@@ -3,19 +3,22 @@
 namespace App\Http\Controllers\Vehicle;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ManagerRequest;
 use App\Model\CarBooking;
 use App\Model\City;
 use App\Model\Comment;
-use App\Model\Image as VehicleImage;
+//use App\Model\Image as VehicleImage;
+use App\Model\Image;
 use App\Model\ModelVehicle;
 use App\Model\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Image;
+//use Image;
 use Yajra\DataTables\Facades\DataTables;
+use function GuzzleHttp\Promise\all;
 
-//use Intervention\Image\ImageManagerStatic as Images;
+//use Intervention\Image\ImageManagerStatic as Image;
 
 
 class VehicleController extends Controller
@@ -32,11 +35,14 @@ class VehicleController extends Controller
 
     public function manage()
     {
-        $user_id = (Auth::user()->id);
-        $manage = DB::table('vehicles')
-            ->where('user_id', '=', $user_id)->orderByDesc('id')->get();
-
-        return view('front-end.admin_user.manage_post.manage_list', compact('manage'));
+        $manage = Vehicle::all();
+        $image_array = [];
+        foreach ($manage as $key => $value) {
+            $image = Image::where('vehicle_id', $value['id'])->first();
+            $image_array[$key] = $value;
+            $image_array[$key]['image_vehicle'] = $image;
+        }
+        return view('front-end.admin_user.manage_post.manage_list', compact('image_array'));
     }
 
     public function add()
@@ -68,44 +74,27 @@ class VehicleController extends Controller
         return view('front-end.admin_user.manage_post.edit_add', compact('managerList'));
     }
 
-    public function create(Request $request)
+    public function create(ManagerRequest $request)
     {
         $listmul = new Vehicle();
-        $getImage = new VehicleImage();
         $listmul->view = $request->get('view', '0');
         $listmul->fill($request->all());
         $listmul->user_id = (Auth::user()->id);
-        $imagefiles = $request->file('image_vehicle');
         $mes = '';
+
+        $images_File = $request->file('image_vehicle');
         if ($listmul->save()) {
-            $vehicleId = $listmul->id;
-            if ($request->hasFile('image_vehicle')) {
-                $allowedfileExtension=['jpg','png'];
-                $files  = $request->file('image_vehicle');
-                $flag  = true;
-                foreach ($files as $file){
-                    $extension = $file->getClientOriginalExtension();
-                    $check=in_array($extension,$allowedfileExtension);
-                    if(!$check) {
-                        $flag = false;
-                        break;
-                    }
-                }
-                if ($flag){
-//                    $image = VehicleImage::create($request->all());
-                    foreach ($request->image_vehicle as $img_vehicle ){
-                        $filename = $img_vehicle->storeAs('image_vehicle', $img_vehicle->getClientOriginalName());
-                       VehicleImage::create([
-                          'image_vehicle' => $filename,
-                           'vehicle_id' => $vehicleId
-                       ]);
-                    }
-                    $mes ='thanh cong ';
-                }
-            } else {
-                $getImage->image_vehicle = "default_car.jpg";
+            foreach ($images_File as $image_Files) {
+                $new_image = new Image();
+                $FileName = $image_Files->getClientOriginalName();
+                $image_Files->move('image_upload/img_vehicle/', $FileName);
+                $new_image->image_vehicle = $FileName;
+                $new_image->vehicle_id = $listmul->id;
+                $new_image->save();
             }
         }
+        $mess ='thanh cong ';
+
         return redirect()->route('manage', compact('listmul'))->with('mes', $mes);
     }
 
@@ -114,32 +103,43 @@ class VehicleController extends Controller
         $citys = City::all();
         $model_car = ModelVehicle::all();
         $maga_edit = Vehicle::find($id);
+        $image = Image::where('vehicle_id', $maga_edit['id'])->get()->toArray();
+//        dd($image);
+        $image_array['image_vehicle'] = $image;
+
+
         if (empty($maga_edit)) {
             return view('front-end.admin_user.manage_post.manage_list');
         }
 
-        return view('front-end.admin_user.manage_post.edit', compact('maga_edit', 'citys', 'model_car'));
+        return view('front-end.admin_user.manage_post.edit', compact('maga_edit', 'citys', 'model_car','image_array'));
     }
 
     public function update_vehicles(Request $request, $id)
     {
         $listmul = new Vehicle();
         $listmul = Vehicle::find($id);
-        if ($request->hasFile('image_vehicle')) {
-            $images_File = $request->file('image');
-            $FileName = 'image' . '_' . time() . '.' . $images_File->extension();
-            $image_resize = Image::make($images_File->getRealPath())->resize(300, 310);
-            $image_resize->save(public_path('image_upload/img_vehicle/' . $FileName));
-            $listmul->image = $FileName;
+        if (empty($listmul)){
+            return view('front-end.admin_user.manage_post.manage_list');
+        }else{
+            $mes = '';
+            $images_File = $request->file('image_vehicle');
+            $listmul->fill($request->all());
+            if ($listmul->save()) {
+                if ($images_File){
+                    foreach ($images_File as $image_Files) {
+                        $new_image = new Image();
+                        $FileName = $image_Files->getClientOriginalName();
+                        $image_Files->move('image_upload/img_vehicle/', $FileName);
+                        $new_image->image_vehicle = $FileName;
+                        $new_image->vehicle_id = $listmul->id;
+                        $new_image->save();
+                    }
+                }
+                $mes = 'thanh cong ';
+            }
         }
-        $listmul->fill($request->all());
-        $mess = ' ';
-        if ($listmul->save()) {
-            $mess = 'Cập nhật thành công';
-        }
-
-        return redirect()->route('manage', compact('listmul'))->with('mess', $mess);
-
+        return redirect()->route('manage', compact('listmul'))->with('mess', $mes);
     }
 
     public function remote($id)

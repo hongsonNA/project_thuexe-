@@ -122,12 +122,13 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="select-fillter">
-                        <form action="{{ route('search_cate') }}" method="post">
+                        <form method="POST" action="{{ route('search_cate') }}" class=""
+                              role="search">
                             @csrf
                             <div class="field-outer ">
                                 <select name="model_id" class="form-control pb-2 " style="margin-bottom: 10px" id="">
                                     <option value="">--Chọn hãng xe --</option>
-                                    @foreach($model_car as $key => $id)
+                                    @foreach($model as $key => $id)
                                         <option id="model" value="{{ $id->id }}" >{{ $id->name }}</option>
                                     @endforeach
                                 </select>
@@ -150,7 +151,6 @@
                             <div class="field-outer " >
                                 <select name="district_id" class="form-control pb-2 " style="margin-bottom: 10px" id="select_district" >
                                     <option value="0" >--Chọn quận huyện--</option>
-                                    {{--                                        <option id="distri" value="0" ></option>--}}
                                 </select>
                             </div>
                             <div class="field-outer">

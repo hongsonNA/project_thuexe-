@@ -19,29 +19,29 @@
                         <div class="tab-pane active" id="login">
                             <div class="col-md-6 col-sm-6">
                                 <div class="login-cta">
-                                    <ul class="cta-list">
-                                        <li>
-                                            <span class="icon-mail-envelope icomoon"></span>
-                                            <div class="cta-info">
-                                                <strong>30 Days Money Back Guarantee</strong>
-                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="icon icon-Headset"></span>
-                                            <div class="cta-info">
-                                                <strong>24/7 Customer Support</strong>
-                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="icon-lock icomoon"></span>
-                                            <div class="cta-info">
-                                                <strong>100% Secure Payment</strong>
-                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>
-                                            </div>
-                                        </li>
-                                    </ul>
+{{--                                    <ul class="cta-list">--}}
+{{--                                        <li>--}}
+{{--                                            <span class="icon-mail-envelope icomoon"></span>--}}
+{{--                                            <div class="cta-info">--}}
+{{--                                                <strong>30 Days Money Back Guarantee</strong>--}}
+{{--                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <span class="icon icon-Headset"></span>--}}
+{{--                                            <div class="cta-info">--}}
+{{--                                                <strong>24/7 Customer Support</strong>--}}
+{{--                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <span class="icon-lock icomoon"></span>--}}
+{{--                                            <div class="cta-info">--}}
+{{--                                                <strong>100% Secure Payment</strong>--}}
+{{--                                                <p>A more recently with desktop softy like aldus pages maker still versions have evolved.</p>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
@@ -69,12 +69,12 @@
                                     @enderror
 
                                     <div style="display: flex;justify-content: space-between">
-                                    <a href="#" class="forget-pass">Forget Password?</a>
-                                    <a href="{{ route('register') }}" class="forget-pass">register acconut</a>
+                                    <a href="#" class="forget-pass">Quên mệt khẩu</a>
+                                    <a href="{{ route('register') }}" class="forget-pass">Đăng ký thành viên</a>
                                     </div>
                                     <button type="submit" class="reg-btn">Login <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
-                                    <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
-                                    <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+{{--                                    <button type="submit" class="facebook-btn">Login with Facebook <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
+{{--                                    <button type="submit" class="google-btn">Login with Google <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
                                 </form>
                             </div>
                         </div>

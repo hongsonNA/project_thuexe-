@@ -76,7 +76,7 @@ Auth::routes(['verify'=>true]);
         Route::get('/chart','Vehicle\\VehicleController@chartCar')->name('chart');
         //---search
         Route::post('/search_car', 'HomeController@search_car')->name('search_car');
-        Route::post('/search_cate', 'HomeController@search_cate')->name('search_cate');
+        Route::post('/search_cate', 'Member\\ClientController@search_cate')->name('search_cate');
         //----booknow
         Route::get('city/{id}', 'HomeController@city')->name('city');
         Route::get('state/{id}', 'HomeController@state')->name('state');
