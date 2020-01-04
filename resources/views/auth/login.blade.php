@@ -17,8 +17,8 @@
                     <div class="tab-content">
                         <!--Login Tabs Content Start-->
                         <div class="tab-pane active" id="login">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="login-cta">
+{{--                            <div class="col-md-6 col-sm-6">--}}
+{{--                                <div class="login-cta">--}}
 {{--                                    <ul class="cta-list">--}}
 {{--                                        <li>--}}
 {{--                                            <span class="icon-mail-envelope icomoon"></span>--}}
@@ -42,9 +42,9 @@
 {{--                                            </div>--}}
 {{--                                        </li>--}}
 {{--                                    </ul>--}}
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
+{{--                                </div>--}}
+{{--                            </div>--}}
+                            <div class="col-md-12 col-sm-12">
                                 <form class="login-frm" method="POST" action="{{ route('login') }}" novalidate>
                                     @csrf
                                     <div class="field-holder">

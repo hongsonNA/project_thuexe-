@@ -11,7 +11,6 @@ class Vehicle extends Model
     protected $fillable = [
         'city_id',
         'user_id',
-        'target_id',
         'district_id',
         'utility',
         'procedure',
@@ -34,7 +33,7 @@ class Vehicle extends Model
     }
     public function carbookings()
     {
-        return $this->hasMany(Vehicle::class, 'vehicle_id');
+        return $this->hasMany(CarBooking::class, 'vehicle_id');
     }
 
     public function user()

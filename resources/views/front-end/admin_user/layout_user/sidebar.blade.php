@@ -1,3 +1,4 @@
+<style>.sidebar-wrapper ul li a {color: #000 !important;}</style>
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
         <a href="#demo" class="simple-text logo-mini">
@@ -17,11 +18,22 @@
                     Thống kê
                 </a>
             </li>
-
             <li class="nav-item {{ (\Request::route()->getName() == 'manage') ? 'active' : '' }}">
                 <a href="{{ route('manage') }}">
                     <i class="nc-icon nc-tile-56"></i>
                     Quản lý xe
+                </a>
+            </li>
+            <li class="nav-item {{ (\Request::route()->getName() == 'waiting_target') ? 'active' : '' }}">
+                <a href="{{ route('waiting_target') }}">
+                    <i class="nc-icon nc-tile-56"></i>
+                    Chờ kiểm duyệt
+                </a>
+            </li>
+            <li class="nav-item {{ (\Request::route()->getName() == 'editTarget') ? 'active' : '' }}">
+                <a href="{{ route('editTarget') }}">
+                    <i class="nc-icon nc-tile-56"></i>
+                    Xe không đạt yêu cầu
                 </a>
             </li>
             <li class="nav-item {{ (\Request::route()->getName() == 'waiting') ? 'active' : '' }}">

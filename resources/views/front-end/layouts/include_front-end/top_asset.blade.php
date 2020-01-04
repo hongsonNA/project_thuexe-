@@ -17,6 +17,10 @@
 <!-- Css Files End -->
 {{--css menu---}}
 <style>
+    .dieukhoan {
+        height: 500px;
+        overflow: scroll;
+    }
     .topmenu li a {
         color: #000;
         color: #656667;
@@ -561,8 +565,9 @@
         display: flex;
         justify-content: space-between;
         border-top: 1px solid #d6d6d6;
-        padding-top: 10px;
+        padding-top: 1rem;
         font-size: 2rem;
+        padding-bottom: 2rem;
     }
 
     .button-sub button {

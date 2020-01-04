@@ -9,7 +9,7 @@
 <script src="{{asset('front-end-css/js/tweetie.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script src="{{ asset('package/js/swiper.min.js') }}"></script>
-
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <script src="{{asset('front-end-css/js/custom.js')}}"></script>
 <!-- Swiper JS-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

@@ -3,14 +3,12 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
-
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Những xe chưa được duyệt</h4>
                             <div class="box-search">
                             </div>
                         </div>
-
                         <div class="card-content">
                             <div class="toolbar">
                                 <!--Here you can write extra buttons/actions for the toolbar-->

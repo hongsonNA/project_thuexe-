@@ -18,6 +18,15 @@
                     <div class="card-header">
                         <h4 class="card-title"> Thêm mới xe </h4>
                     </div>
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="card-body col-lg-12">
                         <div class="">
                             <form action="{{ route('create-vehicles') }}" method="POST" enctype="multipart/form-data" novalidate>
@@ -70,7 +79,7 @@
                                                 <label for="">Thủ tục nhận xe: </label>
                                             </div>
                                             <div class="col-sm-9">
-                                                <input type="text" id="produce" class="form-control" name="procedure" value="" data-role="tagsinput"/>
+                                                <input type="text" id="produce" class="form-control" name="procedure" value="{{ old('procedure') }} Chứng minh nhân dân" data-role="tagsinput"/>
                                             </div>
                                                 @if($errors->first('procedure'))
                                                     <br><span class="text-danger">{{$errors->first('procedure')}}</span>
@@ -83,7 +92,7 @@
                                                 <a href="javascrip:;"></a>
                                             </div>
                                             <div class="col-sm-9">
-                                                <input type="text" id="utility" name="utility" class="form-control" value="" data-role="tagsinput"/>
+                                                <input type="text" id="utility" name="utility" class="form-control" value="{{ old('utility') }}" data-role="tagsinput"/>
                                             </div>
                                                 @if($errors->first('utility'))
                                                     <br><span class="text-danger">{{$errors->first('utility')}}</span>
@@ -96,7 +105,7 @@
                                                 <a href="javascrip:;"></a>
                                             </div>
                                             <div class="col-sm-9">
-                                                <input type="number" id="" name="capacity" class="form-control" value="" data-role=""/>
+                                                <input type="number" id="" name="capacity" class="form-control" value="{{ old('capacity') }} data-role="/>
                                             </div>
                                                 @if($errors->first('capacity'))
                                                     <br><span class="text-danger">{{$errors->first('capacity')}}</span>
@@ -165,13 +174,8 @@
 {{--                                                <img id="blah" src="{{ asset('image_upload/default-car.jpg') }}" alt="">--}}
                                             </div>
                                         </div>
-                                        <div>
-
-
-                                        </div>
-
-                                        @if($errors->first('image'))
-                                            <br><span class="text-danger">{{$errors->first('image')}}</span>
+                                        @if($errors->first('image_vehicle'))
+                                            <br><span class="text-danger">{{$errors->first('image_vehicle')}}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -246,7 +250,7 @@
 
                         var div = document.createElement("div");
 
-                        div.innerHTML = "<img class='thumbnail' name='image_vehicle' src='" + picFile.result + "'" +
+                        div.innerHTML = "<img class='thumbnail' id='remove_img' name='image_vehicle' src='" + picFile.result + "'" +
                             "title='" + picFile.name + "'/>";
 
                         output.insertBefore(div,null);

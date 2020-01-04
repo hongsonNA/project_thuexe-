@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookingRequest;
+use App\Model\CarBooking;
+use App\Model\City;
 use App\Model\Comment;
 use App\Model\Image;
+use App\Model\ModelVehicle;
+use App\Model\Post;
+use App\Model\User;
+use App\Model\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Model\Post;
-use App\Model\User;
-use App\Model\City;
-use App\Model\Vehicle;
-use App\Model\CarBooking;
-use App\Model\ModelVehicle;
-use App\Http\Requests\BookingRequest;
 
 class HomeController extends Controller
 {
@@ -40,13 +40,13 @@ class HomeController extends Controller
         //news
         $car = Vehicle::with([
             'modelVehicles' => function ($query) {
-                $query->select(['id','name']);
+                $query->select(['id', 'name']);
             }]);
 //        dd($car);
         $show_news = Post::All();
         $model_car = ModelVehicle::All();
 
-        return view('front-end.index', compact( 'model_car','city', 'car', 'show_news'));
+        return view('front-end.index', compact('model_car', 'city', 'car', 'show_news'));
     }
 
     public function about()
@@ -58,7 +58,6 @@ class HomeController extends Controller
     {
         return view('front-end.contact');
     }
-
 
 
     public function news()
@@ -118,6 +117,7 @@ class HomeController extends Controller
 //    cate
     public function state_cate($id)
     {
+
         $states = DB::table('districts')
             ->where("city_id", $id)->get();
         $output = '';
@@ -129,26 +129,37 @@ class HomeController extends Controller
 
     public function detail($id)
     {
+//        $getAll = CarBooking::where('vehicle_id',$id)->get();
+//        $res=array();
+//        foreach ($getAll as $key_id){
+//            $res[] =  array('start_date'=>date("d-m-Y", strtotime($key_id['start_date'])),
+//                'end_date'=>date("d-m-Y", strtotime($key_id['end_date'])));
+//        }
+//        dd(json_encode($res));
         $comment = Comment::all()->where('vehicle_id', '=', $id);
         $findCar = Vehicle::find($id);
-        if ($findCar){
+        if ($findCar) {
             $image = Image::where('vehicle_id', $findCar['id'])->get()->toArray();
             $image_array['image_vehicle'] = $image;
-        }else{
+        } else {
             abort(404);
         }
-
-//        $list_cate = Vehicle::with([
-//            'CarBooking' => function ($query) {
-//                $query->where('vehicle_id');
-//            }]);
-        //topics car
         $topic = DB::table('vehicles')->where('id', '!=', $id)
             ->orderByDesc('id')
             ->take(3)
             ->get();
         $vechcles = Vehicle::find($id);
-
+//        ten chu xe va ngay het han dang kiem
+        $vechcle = DB::table('vehicles')
+            ->join('users', function ($join) use ($vechcles) {
+                $join->on('users.id', '=', 'vehicles.user_id')
+                    ->where('users.id', '=', $vechcles->user_id);
+            })
+            ->join('targets', function ($join) use ($vechcles) {
+                $join->on('vehicles.id', '=', 'targets.vehicle_id')
+                    ->where('targets.vehicle_id', '=', $vechcles->id);
+            })
+            ->get()->toArray();
 
         $comments_dl = Comment::with([
             'user' => function ($query) {
@@ -158,9 +169,7 @@ class HomeController extends Controller
                 $query->select('id', 'name');
             }
         ])->get()->toArray();
-
-//        dd($comments_dl);
-        return view('front-end.detail', compact('vechcles', 'comment', 'topic', 'comments_dl','image_array'), compact('findCar'));
+        return view('front-end.detail', compact('vechcles', 'vechcle', 'comment', 'topic', 'comments_dl', 'image_array'), compact('findCar'));
     }
 
     public function detail_news($id)
@@ -223,9 +232,8 @@ class HomeController extends Controller
         }
 //        dd($image_array);
 //        dd($searchQuery);
-        return view('front-end.search', compact('searchQuery','image_array'));
+        return view('front-end.search', compact('searchQuery', 'image_array'));
     }
-
 
 
 //    report-comment
@@ -248,7 +256,6 @@ class HomeController extends Controller
 
         $getList = new CarBooking();
         $book = Vehicle::find($id);
-
         $all = [
             $getList->vehicle_id = $book->id,
         ];
@@ -312,13 +319,20 @@ class HomeController extends Controller
     public function history()
     {
         $user_id = (Auth::user()->id);
-        $history = CarBooking::where('user_id', $user_id)->get();
-
+        $history = CarBooking::where('user_id', $user_id)->where('is_delete', '!=', 1)
+            ->get();
+//        dd($history);
         return view('front-end.history_booking', compact('history'));
     }
-    public function deleteBooking($id)
+
+    public function deleteBooking(Request $request, $id)
     {
-        $remote = CarBooking::destroy($id);
+        $update_id = new CarBooking();
+        $update_id = CarBooking::find($id);
+        $update_id->is_delete = 1;
+        $update_id->fill($request->all());
+        $update_id->save();
+//        $remote = CarBooking::destroy($id);
         return back();
     }
 

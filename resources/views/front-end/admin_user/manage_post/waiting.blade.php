@@ -1,6 +1,6 @@
 @extends('front-end.admin_user.layout_user.main')
 @section('content')
-    <div class="content">
+    <div class="content" xmlns="">
         <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
                 <div class="card">
@@ -36,6 +36,8 @@
                                     <tr>
                                         <th class="text-center">#</th>
                                         <th>Tên người đăng ký</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Email</th>
                                         <th>Tên Xe</th>
                                         <th class="text-center">Khởi hành</th>
                                         <th class="text-right">Kết thúc</th>
@@ -43,25 +45,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {{--                                    @foreach( $waiting as $m)--}}
-                                    {{--                                        <tr>--}}
-                                    {{--                                            <td class="text-center">{{ $m->id }}</td>--}}
-                                    {{--                                            <td>{{ $m->user_id }}</td>--}}
-                                    {{--                                            <td>{{ $m->vehicle_id }}</td>--}}
-                                    {{--                                            <td class="text-center">{{ \Carbon\Carbon::parse($m->start_date)->format('d/m/Y')}}</td>--}}
-                                    {{--                                            <td class="text-center">{{ \Carbon\Carbon::parse($m->end_date)->format('d/m/Y')}}</td>--}}
-                                    {{--                                            <td class="text-right">--}}
-                                    {{--                                                <a href="javascript:;" data-id="{{ $m->id }}"  class="changeStatus btn btn-success"--}}
-                                    {{--                                                   data-original-title="" title="">--}}
-                                    {{--                                                    <i class="fa fa-edit">Xác nhận </i>--}}
-                                    {{--                                                </a>--}}
-                                    {{--                                                <a href="javascript:;"  data-id="{{ $m->id }}"  class="dangerCar btn btn-danger"--}}
-                                    {{--                                                   data-original-title="" title="">--}}
-                                    {{--                                                    <i class="fa fa-times">Hủy</i>--}}
-                                    {{--                                                </a>--}}
-                                    {{--                                            </td>--}}
-                                    {{--                                        </tr>--}}
-                                    {{--                                    @endforeach--}}
                                     </tbody>
                                 </table>
                             </div>
@@ -74,7 +57,7 @@
                         <div class="card-header">
                             <h4 class="card-title">Chua co xe nao dc dat</h4>
                         </div>
-                        <div clss="news_Car">
+                        <div class="news_Car">
                             <a href="{{ route('add_vehicles')}}" class="float-right pull-right btn btn-success">
 
                                 <i class="fa fa-arrow-circle-right"></i>
@@ -87,5 +70,106 @@
 
         </div>
     </div>
+    <script src="{{asset('front-end-css/js/jquery-1.12.5.min.js')}}"></script>
+
+    <script>
+        $(document).ready(function () {
+            // console.log('aaa')
+            $('#waiting').DataTable({
+                // "lengthMenu": true,
+                pageLength: 0,
+                lengthMenu: [5, 10, 20, 50],
+                order: [[0, 'desc']],
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/vehicles/allWaiting',
+
+                },
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'phone', name: 'phone'},
+                    {data: 'email', name: 'email'},
+                    {data: 'vehicle_id', name: 'vehicle_id'},
+                    {data: 'start_date', name: 'start_date'},
+                    {data: 'end_date', name: 'end_date'},
+                    {data: 'status', name: 'status', orderable: false, searchable: false, className: "text-right"}
+                ]
+            });
+
+            $("#see_status").on('change', function() {
+                var table = $('#waiting').DataTable();
+                table.column(1).
+                search($(this).val()).
+                draw();
+            });
+
+            var table = $('#waiting').DataTable();
+            table.on( 'draw', function () {
+                $(".changeStatus").on('click', function () {
+                    var _token = $('input[name="_token"]').val();
+                    console.log(_token);
+                    var  getID = $(this).attr("data-id");
+                    // console.log(getID);
+                    if (getID){
+                        $.ajax({
+                            type:"post",
+                            url:'change/'+getID,
+                            data:{getID:getID, _token:_token},
+                            success:function (data) {
+                                if (data){
+                                    Swal.fire(
+                                        'Thay đổi trạng thái thành công!',
+                                        '',
+                                        'success'
+                                    )
+                                }
+                            }
+                        });
+                    }
+                })
+                //
+                $(".dangerCar").click(function () {
+                    Swal.fire({
+                        title: 'Bạn sẽ hủy giao dịch này?',
+                        // text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Hủy bỏ',
+                        confirmButtonText: 'Đồng ý!'
+                    }).then((result) => {
+                        if (result.value) {
+                            var _token = $('input[name="_token"]').val();
+                            console.log(_token);
+                            var  getID = $(this).attr("data-id");
+                            console.log(getID);
+                            $.ajax({
+                                type:"post",
+                                url:'danger/'+getID,
+                                data:{getID:getID, _token:_token},
+                                success:function (data) {
+                                    if (data){
+                                        Swal.fire(
+                                            'Đã hủy!',
+                                            '',
+                                            'success'
+                                        )
+                                    }
+                                }
+                            });
+
+                        }
+                        //
+
+                    })
+                })
+                //
+            });
+
+        });
+    </script>
 @endsection
 

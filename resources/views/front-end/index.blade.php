@@ -4,32 +4,6 @@
     <!-- CONTENT AREA -->
     <!--Header Content End-->
     <style>
-        .swiper-container {
-            width: 100%;
-            height: 480px;
-            overflow: hidden;
-        }
-
-        .swiper-slide {
-            text-align: center;
-            font-size: 18px;
-            background: #fff;
-
-            /* Center slide text vertically */
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-        }
-
         .tj-cab-collection {
             float: left;
             width: 100%;
@@ -48,98 +22,7 @@
             font-weight: 400;
         }
     </style>
-    {{--    <div class="boxs-form" style="position: relative;margin-top: 17.5rem;">--}}
-    {{--        <div class="swiper-container">--}}
-    {{--            <div class="swiper-wrapper">--}}
-    {{--                <div class="swiper-slide" style="margin-right: 0 !important;">--}}
-    {{--                    <div class="toogle-title">--}}
-    {{--                       <div class="title-slider">--}}
-    {{--                           <p>Prime Cab đồng hành cùng bạn</p>--}}
-    {{--                       </div>--}}
-    {{--                        <div class="more_slider">--}}
-    {{--                            <span><a href="#">Xem thêm</a></span>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                    <img width="100%" src="{{ asset('front-end-css/images/banner2.webp') }}">--}}
-    {{--                </div>--}}
-    {{--                <div class="swiper-slide">--}}
-    {{--                    <div class="toogle-title">--}}
-    {{--                        <div class="title-slider animated bouncelnLeft" style="animation-delay: .3s">--}}
-    {{--                            <p>Đa dạng về xe và dịch vụ</p>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="more_slider">--}}
-    {{--                            <span><a href="#">Xem thêm</a></span>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                    <img width="100%" src="{{ asset('front-end-css/images/banner3.webp') }}">--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--            <!-- Add Pagination -->--}}
-    {{--            <div class="swiper-pagination"></div>--}}
-    {{--            <!-- Add Arrows -->--}}
-    {{--            <div class="swiper-button-next "></div>--}}
-    {{--            <div class="swiper-button-prev"></div>--}}
-    {{--            <!-- -->--}}
-    {{--        </div>--}}
-    {{--    --}}{{-- form-book-car    --}}
-    {{--    <div class="col-md-10 col-md-offset-1 search-car">--}}
-    {{--        <div class="row">--}}
-    {{--            <div class="col-md-12 col-sm-5" style="">--}}
-    {{--                <div class="trip-outer form-car">--}}
-    {{--                    <div class="trip-type-tabs">--}}
-    {{--                        <ul class="nav nav-tabs" style="width: 95.4%;text-align: center">--}}
-    {{--                            <li class="active" style="width: 100%" ><a href="#one-way" data-toggle="tab">One Way</a></li>--}}
-    {{--                            <li><a href="#two-way" data-toggle="tab">Two Way</a></li>--}}
-    {{--                        </ul>--}}
-    {{--                    </div>--}}
-    {{--                    <!--Banner Tab Content Start-->--}}
-    {{--                    <div class="tab-content">--}}
-    {{--                        <div class="tab-pane active" id="one-way">--}}
-    {{--                            <!--Banner Form Content Start-->--}}
-    {{--                            <form method="POST" action="{{ route('search_car') }}" class="trip-type-frm" role="search">--}}
-    {{--                               @csrf--}}
-    {{--                                <div class="form-row">--}}
-    {{--                                    <div class="field-outer col">--}}
-    {{--                                        <span class="fas fa-search"></span>--}}
-    {{--                                        <select name="model_id" class="form-control " style="margin-bottom: 10px" id="">--}}
-    {{--                                            <option  value="0" selected disabled>--Chọn hãng xe --</option>--}}
-    {{--                                            @foreach($model_car as $model_id)--}}
-    {{--                                                <option value="{{ $model_id->id }}">{{ $model_id->name }}</option>--}}
-    {{--                                            @endforeach--}}
-    {{--                                        </select>--}}
-    {{--                                    </div>--}}
-    {{--                                </div>--}}
-    {{--                                <div class="form-row">--}}
-    {{--                                    <div class="field-outer">--}}
-    {{--                                        <span class="fas fa-calendar-alt"></span>--}}
-{{--                                            <select name="city_id" class="form-control pb-2" style="margin-bottom: 10px" id="select_city">--}}
-{{--                                                <option value="">--Chọn thành phố--</option>--}}
-{{--                                                @foreach($city as $key => $id)--}}
-{{--                                                        <option id="distri" value="{{ $id->id }}" >{{ $id->name }}</option>--}}
-{{--                                                @endforeach--}}
-{{--                                            </select>--}}
-    {{--                                    </div>--}}
-    {{--                                    <div class="field-outer">--}}
-    {{--                                        <span class="far fa-clock"></span>--}}
-    {{--                                        <select name="district_id" class="form-control pb-2" style="margin-bottom: 10px" id="select_district">--}}
-    {{--                                            <option value="">--Chọn quận huyện --</option>--}}
 
-    {{--                                        </select>--}}
-    {{--                                    </div>--}}
-    {{--                                </div>--}}
-    {{--                                <button type="submit" class="search-btn">Tìm Xe <i--}}
-    {{--                                        class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>--}}
-    {{--                            </form>--}}
-    {{--                            <!--Banner Form Content End-->--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                    <!--Banner Tab Content End-->--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--            <!--Header Banner Form Content End-->--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-    {{--    </div>--}}
     <section class="tj-banner-form">
         <div class="container">
             <div class="row">
@@ -147,13 +30,12 @@
                 <div class="col-md-8 col-sm-7">
                     <div class="banner-caption">
                         <div class="banner-inner bounceInLeft animated delay-2s">
-                            <strong>More recently with desktop publishing software ncluding versions</strong>
-                            <h2>Upto 25% off on first booking through your app</h2>
+{{--                            <strong>More recently with desktop publishing software ncluding versions</strong>--}}
+                            <h2>Chào mừng bạn đến với Vehicle Booking</h2>
                             <div class="banner-btns">
-                                <a href="https://themesjungle.net/html/prime-cab/faq.html" class="btn-style-1"><i
-                                        class="fab fa-apple"></i> Download App</a>
-                                <a href="https://themesjungle.net/html/prime-cab/faq.html" class="btn-style-2"><i
-                                        class="fab fa-android"></i> Download App</a>
+                                <a href="{{ route('cate') }}" class="btn-style-1"><i
+                                        class="fab fa-apple"></i>Xem xe ngay</a>
+
                             </div>
                         </div>
                     </div>

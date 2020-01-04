@@ -32,9 +32,8 @@ class ManagerRequest extends FormRequest
             'license_plate' => 'required|min:4|max:10',
             'gear' => 'required',
             'procedure'=>'required|min:3',
-            'cate_id' => 'required',
             'city_id' => 'required',
-            'image' => 'required',
+//            'image_vehicle' => 'required|image|mimes:jpg,png,jpeg',
         ];
 
     }
@@ -53,9 +52,10 @@ class ManagerRequest extends FormRequest
             'model_id.required' => 'chon model xe',
             'gear.required' => 'không để trống',
             'procedure' => 'bạn cần có it nhất 1 thủ tục ',
-            'cate_id.required' => 'Bạn chưa chọn danh mục xe',
             'city_id.required' => 'Bạn chưa chọn thành phố',
-            'image.required' => 'Bạn chưa chọn Ảnh đại diện',
+            'image_vehicle.required' => 'Bạn chưa chọn Ảnh đại diện',
+//            'image_vehicle.image' => 'Vui lòng chọn file ảnh.',
+//            'image_vehicle.mimes' => 'Vui lòng chọn đúng định dạng ảnh: jpg,png,jpeg.',
         ];
     }
 }
