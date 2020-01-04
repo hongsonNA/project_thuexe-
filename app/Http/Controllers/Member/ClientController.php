@@ -70,6 +70,7 @@ class ClientController extends Controller
          $carDesc  = DB::select('SELECT * FROM `vehicles` ORDER BY price DESC');
         $carAsc  = DB::select('SELECT * FROM `vehicles` ORDER BY price asc ');
         $list_cate = Vehicle::all();
+
      $result = '';
      if ($id == 1){
          foreach ($carDesc as $car_id ){
@@ -88,6 +89,7 @@ class ClientController extends Controller
          ';
          }
      }elseif ($id == 2){
+
          foreach ($carAsc as $car_id ){
              $result .= '<div class="listing">
                                     <div class="image">
@@ -106,6 +108,48 @@ class ClientController extends Controller
      }
      return $result;
     }
+
+    public function fetch_data_car(Request $request)
+    {
+       if ($request->post('action')){
+           $getall_car = Vehicle::all()->where('status',2);
+           if ($request->post('model')){
+               $model_filter = $request->post('model');
+             $getall_car->where('model_id',$model_filter);
+           }
+           if ($request->post('seat')){
+               $seat_filter = $request->post('model');
+               $getall_car->where('seat',$model_filter);
+           }
+           if ($request->post('city')){
+               $city_filter = $request->post('model');
+               $getall_car->where('city_id',$model_filter);
+           }
+       $res = '';
+       if ($getall_car){
+           foreach ($getall_car as $car_id){
+               $res .= '<div class="listing">
+                                    <div class="image">
+                                        <a href="'.route('detail', $car_id['id']).'">
+                                            <img src="https://s3.amazonaws.com/files.activate.social/user-image-32740129-1552215451-5c84ed9b68ace" alt="listing" class="img-responsive">
+                                        </a>
+                                    </div>
+                                    <div class="content_car">
+                                        <div class="title"><a href="javscript:;">'.$car_id['name'].' <span>[ Grand ]</span></a></div>
+                                        <a href="'.route('detail', $car_id['id']).'">'.$car_id['name'].'</a>
+                                        <div class="price">'.number_format($car_id['price']).'<span> VND</span></div>
+                                    </div>
+                                </div>';
+           }
+       }else{
+           $res =  'khong co du lieu';
+       }
+       return $res;
+       }
+    }
     //====== end category ===========
+
+    //fetch_data.php
+//fetch_data.php
 
 }

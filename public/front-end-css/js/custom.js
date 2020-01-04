@@ -370,60 +370,7 @@ $(document).ready(function () {
     });
     //date form-detail
 
-    $(document).ready(function() {
-        $( "#start_date" ).datepicker({
-            dateFormat: 'yy-mm-dd',
-            changeMonth: true,
-            changeYear: true,
-            minDate: new Date(),
-            maxDate: '+30D'
-        });
-        $('#end_date').datepicker({
-             dateFormat: 'yy-mm-dd',
-            changeMonth: true,
-            changeYear: true,
-            minDate: new Date(),
-            maxDate: '+30D'
-        });
-        $('#start_date').datepicker().bind("change", function () {
-            var minValue = $(this).val();
-            minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
-            $('#end_date').datepicker("option", "minDate", minValue);
-            calculate();
 
-
-        });
-        $('#end_date').datepicker().bind("change", function () {
-            var maxValue = $(this).val();
-            maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
-            $('#start_date').datepicker("option", "maxDate", maxValue);
-            calculate();
-
-        });
-        // var day1 = $('#start_date').val();
-        // var day2 = $('#end_date').val();
-        // if ()
-        //
-        function calculate() {
-            var asd = $('#peice_vehicles').val();
-            var d1 = $('#start_date').datepicker('getDate');
-            var d2 = $('#end_date').datepicker('getDate');
-            var oneDay = 24*60*60*1000;
-            var diff = 0;
-            var countVe =0;
-            if (d1 && d2) {
-
-                diff = Math.round(Math.abs((d2.getTime() - d1.getTime())/(oneDay)));
-                countVe = asd * diff;
-            }
-            $('.calculated').val(diff);
-            $('.total-price').html(countVe);
-            $('#total-price').html(countVe);
-
-        }
-    //=====start====
-
-    });
         //===========end===============
     //===========Modal===============
 
@@ -880,3 +827,12 @@ $(document).ready(function () {
 	}
 
 });
+function validate_form()
+{
+    var terms = $('input[type=checkbox]:checked');
+  if (terms.length == 0 ){
+      $('#res_terms').html('Xác nhận điều khoản');
+      return false;
+  }
+  return true;
+}

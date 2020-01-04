@@ -164,7 +164,8 @@
 {{--                                            </div>--}}
                                             <output id="result" />
                                             @foreach( $image_array['image_vehicle'] as $key => $value )
-                                                    <img class="p-3" src="/image_upload/img_vehicle/{{ $value['image_vehicle'] }}" alt="">
+                                                    <img  class="appen_close"  class="p-3" src="/image_upload/img_vehicle/{{ $value['image_vehicle'] }}" alt="">
+                                                <a href="{{ route('remove_image', $value['id']) }}" class="remove_image"  id="remove" >Xoa anh</a>
                                             @endforeach
                                         </div>
                                         <div>

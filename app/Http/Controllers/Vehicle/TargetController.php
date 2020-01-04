@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Vehicle;
 
+use App\Model\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Target;
@@ -45,20 +46,6 @@ class TargetController extends Controller
         ])
             ->get()->toArray();
 
-        // // $target = User::where('id', $vehicle['target']['user_id'])->get();
-        // // $user_target['name'] = $target;
-        // foreach ($vehicle as $key => $value) {
-        //     $target = User::where('id', $value['target']['user_id'])->get();
-        //     $user_target['users'] = $target;
-        //     // $user_target['$key'] = $target;
-        // }
-
-        // dd($vehicle);
-
-        // $target = User::where('id', $vehicle[0]['target']['user_id'])->get();
-        // dd()
-
-
         return view('front-end.admin_user.target.index_succses', compact('vehicle'));
     }
 
@@ -67,8 +54,13 @@ class TargetController extends Controller
     {
 
         $vehicle = Vehicle::find($id);
-
-        return view('front-end.admin_user.target.edit', compact('vehicle'));
+        if ($vehicle){
+            $image = Image::where('vehicle_id', $vehicle['id'])->get()->toArray();
+            $image_array['image_vehicle'] = $image;
+        }else{
+            abort(404);
+        }
+        return view('front-end.admin_user.target.edit', compact('vehicle','image_array'));
     }
 
     public function update(Request $request, $id)

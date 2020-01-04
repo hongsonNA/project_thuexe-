@@ -7,7 +7,7 @@
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <!--Logo Start-->
                 <div class="tj-logo">
-                    <h1><a href="/">Prime Cab</a></h1>
+                    <h1><a href="/">Vehicle Booking</a></h1>
                 </div>
                 <!--Logo End-->
             </div>
@@ -76,10 +76,6 @@
 
                                 <li>
                                     <a href="{{ route('contact') }}">Liên hệ</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('support') }}">dịch vụ cứu hộ</a>
-
                                 </li>
                                 <li>
                                     <a href="{{ route('about') }}">Giới thiệu</a>

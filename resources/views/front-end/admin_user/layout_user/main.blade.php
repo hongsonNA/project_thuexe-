@@ -40,7 +40,7 @@
                 ©
                 <script>
                   document.write(new Date().getFullYear())
-                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+                </script>, made with <i class="fa fa-heart heart"></i> Primer Cab
               </span>
                     </div>
                 </div>
@@ -51,6 +51,7 @@
 
 {{--end--}}
 @include('front-end.admin_user.layout_user.bottom_asset')
+@stack('scripts')
 </body>
 </html>
 

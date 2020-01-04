@@ -14,7 +14,7 @@
     Route::post('/add-contact', 'Member\\ContactController@store');
     //request ajax fillter category
     Route::get('fillter_car/{id}','Member\\ClientController@fillterCar')->name('fillterCar');
-
+    Route::post('fetch_data_car','Member\\ClientController@fetch_data_car')->name('fetch_data_car');
     //detailNews
     Route::post('loarmore', 'HomeController@loarmore')->name('loarmore');
     //load more
@@ -40,14 +40,17 @@ Auth::routes(['verify'=>true]);
 //-------------manager_user-----------------
 
 
-    Route::group(['prefix' => 'vehicles'], function () {
+    Route::group(['prefix' => 'vehicles','middleware' => 'CheckUser'], function () {
         Route::get('/', 'Vehicle\\VehicleController@dashboard')->name('Admin');
         Route::get('manage', 'Vehicle\\VehicleController@manage')->name('manage');
+        Route::get('cho-kiem-duyet', 'Vehicle\\VehicleController@waiting_target')->name('waiting_target');
+        Route::get('kiem-duyet-lai', 'Vehicle\\EditTargetController@editTarget')->name('editTarget');
         Route::get('add_vehicles', 'Vehicle\\VehicleController@add')->name('add_vehicles');
         Route::post('create-vehicles', 'Vehicle\\VehicleController@create')->name('create-vehicles');
         Route::get('{id}/edit_vehicles', 'Vehicle\\VehicleController@edit_vehicles')->name('edit_vehicles');
         Route::post('{id}/update_vehicles', 'Vehicle\\VehicleController@update_vehicles')->name('update_vehicles');
         Route::get('/{id}/remote', 'Vehicle\\VehicleController@remote')->name('remote');
+        Route::get('/{id}/remove_image', 'Vehicle\\VehicleController@remove_image')->name('remove_image');
         //get district
         Route::get('states/{id}', 'Vehicle\\VehicleController@states')->name('states');
         Route::get('states_update/{id}', 'Vehicle\\VehicleController@states_update')->name('states_update');

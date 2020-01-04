@@ -16,7 +16,7 @@
 <script src="{{ asset('front-end-css/assets/js/paper-dashboard.min.js')}}" type="text/javascript"></script>
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ asset('front-end-css/assets/demo/demo.js')}}"></script>
-<script src="{{ asset('front-end-css/assets/demo/main.js')}}"></script>
+{{--<script src="{{ asset('front-end-css/assets/demo/main.js')}}"></script>--}}
 {{--<script>--}}
 {{--    $(document).ready(function() {--}}
 {{--        // Javascript method's body can be found in front-end-css/assets/front-end-css/assets-for-demo/js/demo.js--}}
@@ -24,6 +24,7 @@
 {{--    });--}}
 {{--</script>--}}
 <script src="{{ asset('js/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('package/js/swiper.min.js') }}"></script>
 @stack('scripts')
 
 

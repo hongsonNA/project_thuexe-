@@ -13,9 +13,11 @@
 
              },
              columns: [
-                 {data: 'id', name: 'id'},
-                 {data: 'user_id', name: 'user_id'},
-                 {data: 'vehicle_id', name: 'vehicle_id'},
+                 // {data: 'id', name: 'id'},
+                 {data: 'name', name: 'name'},
+                 {data: 'phone', name: 'phone'},
+                 {data: 'email', name: 'email'},
+                 // {data: 'vehicle_id', name: 'vehicle_id'},
                  {data: 'start_date', name: 'start_date'},
                  {data: 'end_date', name: 'end_date'},
                  {data: 'status', name: 'status', orderable: false, searchable: false, className: "text-right"}
