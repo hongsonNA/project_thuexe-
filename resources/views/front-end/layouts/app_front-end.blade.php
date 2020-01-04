@@ -17,4 +17,5 @@
     </div>
 </body>
 @include('front-end.layouts.include_front-end.bottom_asset')
+@stack('scripts')
 </html>

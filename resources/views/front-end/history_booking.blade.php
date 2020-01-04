@@ -19,13 +19,14 @@
 
 
                 @foreach($history as $id)
+{{--                    @dd($id['vehicle']['name'])--}}
                 <tr>
-                    <td data-th="Product">1
+                    <td data-th="Product">
                         <div class="row">
                             <div class="col-sm-2 hidden-xs"><img src="{{ asset('image_upload/img_vehicle/'.$id->image )}}" alt="" class="img-responsive" width="100">
                             </div>
                             <div class="col-sm-10">
-                                <h4 class="nomargin">{{ $id['Vehicle']['name'] }}</h4>
+                                <h4 class="nomargin">{{ $id->name }}</h4>
                                 <p></p>
                             </div>
                         </div>

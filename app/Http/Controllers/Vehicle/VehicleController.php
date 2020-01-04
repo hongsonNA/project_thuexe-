@@ -44,6 +44,17 @@ class VehicleController extends Controller
         }
         return view('front-end.admin_user.manage_post.manage_list', compact('image_array'));
     }
+    public function waiting_target()
+    {
+        $manage = Vehicle::all();
+        $image_array = [];
+        foreach ($manage as $key => $value) {
+            $image = Image::where('vehicle_id', $value['id'])->first();
+            $image_array[$key] = $value;
+            $image_array[$key]['image_vehicle'] = $image;
+        }
+        return view('front-end.admin_user.manage_post.waiting_target', compact('image_array'));
+    }
 
     public function add()
     {
@@ -144,26 +155,48 @@ class VehicleController extends Controller
 
     public function remote($id)
     {
+        $remote_id = Vehicle::find($id);
+        if ($remote_id) {
+            $remove_vehicle = Vehicle::destroy($id);
+            if ($remove_vehicle) {
+                $delete_img = Image::where('vehicle_id', $id)->delete();
+            }
+        } else {
+            abort(404);
+        }
         $managerList = Vehicle::destroy($id);
         return redirect()->route('manage', compact('managerList'));
     }
 
+    public function remove_image($id)
+    {
+        $image_remove = Image::destroy($id);
+        return back();
+    }
 //==========car waiting==========
     public function waiting_car()
     {
         $waiting = DB::table('car_bookings')->where('status', '1')->get();
 
+//        $waiting = CarBooking::with([
+//            'vehicle' => function ($query) {
+//                $query->select(['id', 'name']);
+//            }
+//        ])->get()->toArray();
+//
+//        dd($waiting);
         return view('front-end.admin_user.manage_post.waiting', compact('waiting'));
     }
 
     public function AllDatatable()
     {
+
         return Datatables::of(CarBooking::all())
-            ->editColumn('user_id', function ($waiting) {
-                return $waiting['user']['name'];
-            })
+//            ->editColumn('user_id', function ($waiting) {
+//                return $waiting['user']['name'];
+//            })
             ->editColumn('vehicle_id', function ($waiting) {
-                return $waiting['Vehicle']['name'];
+                return $waiting['vehicle']['name'];
             })
             ->addColumn('status', function ($waiting) {
                 return '

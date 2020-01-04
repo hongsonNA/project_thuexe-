@@ -16,14 +16,15 @@ class CarBooking extends Model
         'phone',
         'start_date',
         'end_date',
+        'total',
         'status',
         ];
     public function user()
     {
         return $this->belongsTo('App\Model\User', 'id');
     }
-    public function vehicles()
+    public function vehicle()
     {
-        return $this->belongsTo('App\Model\Vehicle', 'id');
+        return $this->belongsTo(Vehicle::class, 'id');
     }
 }

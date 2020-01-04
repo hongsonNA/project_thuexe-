@@ -9,5 +9,6 @@
 <link rel="stylesheet" href="{{ asset('front-end-css/dist/sweetalert2.min.css') }}">
 <script src="{{ asset('front-end-css/dist/sweetalert2.all.min.js') }}"></script>
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="{{ asset('package/css/swiper.min.css') }}">
 {{--<link rel="stylesheet" href="http://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">--}}
 

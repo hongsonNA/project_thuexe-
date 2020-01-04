@@ -3827,6 +3827,7 @@ h1,h2,h3,h4,h5,h6{
 .login-frm{
 	max-width:444px;
 	padding:74px 0;
+    margin: auto;
 }
 .reg-frm .field-holder,.login-frm .field-holder{
 	position:relative;

@@ -70,15 +70,9 @@
                                         @endif
                                     </td>
                                     <td class="text-right">{{ number_format($m['price']) }}</td>
+
                                     <td class="text-right">
-                                        <a href="{{ route('edit_vehicles', $m['id']) }}" class="btn btn-success btn-icon btn-sm "
-                                           data-original-title="" title="">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a onclick="return confirm('Bạn có chắc muốn xóa không ')" href="{{ route('remote', $m['id']) }}" class="btn btn-danger btn-icon btn-sm "
-                                           data-original-title="" title="">
-                                            <i class="fa fa-times"></i>
-                                        </a>
+                                        <a target="_blank" href="{{ route('detail', $m['id']) }}" class="btn btn-success">Xem chi tiết</a>
                                     </td>
                                 </tr>
                                 @endif
@@ -88,19 +82,7 @@
                         </table>
                     </div>
                 </div>
-                    <div class="">
-                        <div class="card-header">
-                            <h4 class="card-title">Thêm mới </h4>
-                       </div>
 
-                        <div clss="news_Car">
-                            <a href="{{ route('add_vehicles') }}" class="float-right pull-right btn btn-success">
-                                Thêm mới xe
-                                <i class="fa fa-arrow-circle-right"></i>
-                                <div class="ripple-container"></div>
-                            </a>
-                        </div>
-                    </div>
             </div>
 
         </div>

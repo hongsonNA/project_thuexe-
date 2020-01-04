@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Vehicle;
 
+use App\Model\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Target;
@@ -30,7 +31,6 @@ class TargetController extends Controller
 
     public function index_success()
     {
-
         $vehicle = Target::with([
             'user' => function ($query) {
                 $query->select(['id', 'name', 'email']);
@@ -40,18 +40,9 @@ class TargetController extends Controller
             }
         ])
             ->get()->toArray();
-//        $target = DB::table('targets')
-//            ->join('users', 'users.id', '=', 'targets.user_id')
-//            ->join('vehicles', 'vehicles.id', '=', 'targets.vehicle_id')
-////            ->select('users.name', 'vehicles.name')
-//            ->get();
-
-//        $users = DB::table('users')
-//            ->join('targets', 'users.id', '=', 'targets.user_id')->get()->toArray();
-
-        dd($vehicle);
 
         return view('front-end.admin_user.target.index_succses', compact('vehicle'));
+
     }
 
 
@@ -59,8 +50,13 @@ class TargetController extends Controller
     {
 
         $vehicle = Vehicle::find($id);
-
-        return view('front-end.admin_user.target.edit', compact('vehicle'));
+        if ($vehicle) {
+            $image = Image::where('vehicle_id', $vehicle['id'])->get()->toArray();
+            $image_array['image_vehicle'] = $image;
+        } else {
+            abort(404);
+        }
+        return view('front-end.admin_user.target.edit', compact('vehicle', 'image_array'));
     }
 
     public function update(Request $request, $id)

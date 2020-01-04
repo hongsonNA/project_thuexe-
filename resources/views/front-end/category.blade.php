@@ -10,6 +10,14 @@
       }
       .fleet-grid-box .price-box strong{color:#fff;}
       .fleet-thumb{height: 310px}
+      #loading{
+          width: 20%;
+          height: 136px;
+          margin: auto;
+          background-repeat: no-repeat;
+          margin-top: 10%;
+          background-image: url("{{ asset('front-end-css/images/pre-loader.gif') }}");
+      }
   </style>
   <!-- breadcrumb -->
   <div class="tj-breadcrumb">
@@ -24,66 +32,6 @@
     <section class="tj-cab-collection" style="padding: 4rem 0 80px;">
 
         <div class="container">
-            <!-- search cate -->
-
-            <!-- end -->
-{{--            <div class="row">--}}
-{{--                <div class="col-md-12 col-sm-12">--}}
-{{--                    <div class="tj-heading-style">--}}
-{{--                        <h3>Danh sách xe</h3>--}}
-{{--                        <p></p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--                <div class="cab-col-outer">--}}
-{{--                    <!--Fleet Grid Box Start-->--}}
-{{--                    @foreach($list_cate as $key => $id)--}}
-{{--                    <div class="col-md-6 col-sm-6">--}}
-{{--                        <div class="fleet-grid-box">--}}
-{{--                            <!--Fleet Grid Thumb Start-->--}}
-{{--                            <figure class="fleet-thumb">--}}
-{{--                                <a href="{{ route('detail', $id->id)  }}">--}}
-{{--                                <img src="{{ asset('image_upload/img_vehicle/'.$id->image )}}" alt="">--}}
-{{--                                </a>--}}
-{{--                                <figcaption class="fleet-caption">--}}
-{{--                                    <div class="price-box">--}}
-{{--                                        <strong>{{ $id->price }} <span>/ day</span></strong>--}}
-{{--                                    </div>--}}
-{{--                                    <span class="rated"></span>--}}
-{{--                                </figcaption>--}}
-{{--                            </figure>--}}
-{{--                            <!--Fleet Grid Thumb End-->--}}
-{{--                            <!--Fleet Grid Text Start-->--}}
-{{--                            <div class="fleet-info-box">--}}
-{{--                                <div class="fleet-info">--}}
-{{--                                    <h3>{{ $id->name }}</h3>--}}
-{{--                                    <span class="fas fa-star"></span>--}}
-{{--                                    <span class="fas fa-star"></span>--}}
-{{--                                    <span class="fas fa-star"></span>--}}
-{{--                                    <span class="fas fa-star"></span>--}}
-{{--                                    <span class="fas fa-star"></span>--}}
-
-{{--                                    <ul class="fleet-meta">--}}
-
-{{--                                        <li><i class="fas fa-taxi"></i>{{ $id['modelCar']['name'] }}</li>--}}
-{{--                                        <li><i class="fas fa-user-circle"></i>--}}
-{{--                                            {{ $id['user']['name'] }}--}}
-{{--                                        </li>--}}
-{{--                                        <li><i class="fas fa-tachometer-alt"></i>--}}
-{{--                                            {{ $id->seat }}chỗ--}}
-{{--                                        </li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                                <a href="{{ route('detail', $id->id )  }}" class="tj-btn2">Xem chi tiết<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>--}}
-{{--                            </div>--}}
-{{--                            <!--Fleet Grid Text End-->--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    @endforeach--}}
-{{--                    <!--Fleet Grid Box End-->--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
             <div class="row">
                 <div class="col-sm-9">
                     <div class="listings">
@@ -96,14 +44,14 @@
                             <div class="select-wrapper sort">
                                 <select class="filter_car form-control option-select" >
                                     <option value="0">Sắp xếp</option>
-                                    <option value="2">Sắp xếp tăng dần</option>
+                                    <option  value="2">Sắp xếp tăng dần</option>
                                     <option value="1">Sắp xếp giảm dần</option>
                                 </select>
                             </div>
                             <!-- end .select-wrapper -->
                         </div>
                         <div class="listings-grid clearfix" id="result_fillter">
-{{--                            @foreach($list_cate as $key => $id)--}}
+{{--                            @foreach($model_car as $key => $id)--}}
 {{--                                <div class="listing">--}}
 {{--                                    <div class="image">--}}
 {{--                                        <a href="{{ route('detail', $id->id)  }}">--}}
@@ -119,6 +67,9 @@
 {{--                            @endforeach--}}
                         </div>
                     </div>
+                    <div class="row filter_data">
+
+                    </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="select-fillter">
@@ -126,7 +77,7 @@
                               role="search">
                             @csrf
                             <div class="field-outer ">
-                                <select name="model_id" class="form-control pb-2 " style="margin-bottom: 10px" id="">
+                                <select name="model_id" class="common_selector model  form-control pb-2 " style="margin-bottom: 10px" id="">
                                     <option value="">--Chọn hãng xe --</option>
                                     @foreach($model as $key => $id)
                                         <option id="model" value="{{ $id->id }}" >{{ $id->name }}</option>
@@ -134,14 +85,14 @@
                                 </select>
                             </div>
                             <div class="field-outer ">
-                                <select name="seat" class="form-control pb-2 " style="margin-bottom: 10px" id="">
+                                <select name="seat" class="common_selector seat form-control pb-2 " style="margin-bottom: 10px" id="">
                                     <option value="0" >--Chọn chỗ--</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                 </select>
                             </div>
                             <div class="field-outer ">
-                                <select name="city_id" class="form-control pb-2 " style="margin-bottom: 10px" id="filte_city">
+                                <select name="city_id" class="common_selector city form-control pb-2 " style="margin-bottom: 10px" id="filte_city">
                                     <option value="">--Chọn thành phố--</option>
                                     @foreach($city as $key => $id)
                                         <option id="city" value="{{ $id->id }}" >{{ $id->name }}</option>
@@ -161,29 +112,57 @@
                 </div>
             </div>
         </div>
-
-
     </section>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-  <script>
-      $(document).ready(function () {
-          $('#filte_city').change(function () {
-              var id = $(this).val();
-              console.log(id);
-              if (id){
-                  $.ajax({
-                      type:"get",
-                      url:'state_cate/'+id,
-                      dataType: "html",
-                      success:function (res) {
-                          if (res){
-                              $("#select_district").append(res);
-                          }
-                      }
-                  });
-              }
-          })
-      });
-  </script>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#filte_city').change(function () {
+                var id = $(this).val();
+                console.log(id);
+                if (id){
+                    $.ajax({
+                        type:"get",
+                        url:'state_cate/'+id,
+                        dataType: "html",
+                        success:function (res) {
+                            if (res){
+                                $("#select_district").append(res);
+                            }
+                        }
+                    });
+                }
+            });
+            //=====filter car ==========//
+            filter_data();
+            function filter_data() {
+                // $('.filter_data').html('<div id="loading" style="" ></div>');
+                var action = 'fetch_data_car';
+                var model = get_filter('model');
+                var seat = get_filter('seat');
+                var city = get_filter('city')
+                $.ajax({
+                    type :"POST",
+                    url : "{{ route('fetch_data_car') }}",
+                    data : {action : action, model : model, seat : seat, city : city,"_token": "{{ csrf_token() }}"},
+                    success:function (data) {
+                        $('.listings-grid').html(data);
+                    }
+                });
+            }
+            function get_filter(class_name) {
+                var filter = [];
+                $('.'+class_name).each(function () {
+                    filter.push($(this).val());
+                });
+                console.log(filter);
+                return filter;
+            }
+            $('.common_selector').on('change', function(){
+                filter_data();
+            });
+        });
+    </script>
+
+    @endpush

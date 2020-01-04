@@ -33,7 +33,7 @@ class Vehicle extends Model
     }
     public function carbookings()
     {
-        return $this->hasMany(Vehicle::class, 'vehicle_id');
+        return $this->hasMany(CarBooking::class, 'vehicle_id');
     }
 
     public function user()
