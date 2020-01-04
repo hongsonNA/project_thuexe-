@@ -10,6 +10,7 @@ use App\Model\Vehicle;
 use App\User as AppUser;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TargetController extends Controller
 {
@@ -30,34 +31,25 @@ class TargetController extends Controller
     public function index_success()
     {
 
-
-        // dd($users->id);
-        // $user_target = [];
-
-        $vehicle = Vehicle::with([
+        $vehicle = Target::with([
             'user' => function ($query) {
-                $query->select(['id', 'name']);
+                $query->select(['id', 'name', 'email']);
             },
-            'target' => function ($query) {
-
-                $query->select(['id', 'vehicle_id', 'user_id', 'description']);
+            'vehicle' => function ($query) {
+                $query->select(['id', 'user_id', 'name', 'status']);
             }
         ])
             ->get()->toArray();
+//        $target = DB::table('targets')
+//            ->join('users', 'users.id', '=', 'targets.user_id')
+//            ->join('vehicles', 'vehicles.id', '=', 'targets.vehicle_id')
+////            ->select('users.name', 'vehicles.name')
+//            ->get();
 
-        // // $target = User::where('id', $vehicle['target']['user_id'])->get();
-        // // $user_target['name'] = $target;
-        // foreach ($vehicle as $key => $value) {
-        //     $target = User::where('id', $value['target']['user_id'])->get();
-        //     $user_target['users'] = $target;
-        //     // $user_target['$key'] = $target;
-        // }
+//        $users = DB::table('users')
+//            ->join('targets', 'users.id', '=', 'targets.user_id')->get()->toArray();
 
-        // dd($vehicle);
-
-        // $target = User::where('id', $vehicle[0]['target']['user_id'])->get();
-        // dd()
-
+        dd($vehicle);
 
         return view('front-end.admin_user.target.index_succses', compact('vehicle'));
     }

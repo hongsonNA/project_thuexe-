@@ -22,9 +22,9 @@ class Target extends Model
         'end_date',
     ];
 
-    public function vehicles()
+    public function vehicle()
     {
-        return $this->hasMany(Vehicle::class, 'id');
+        return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
 
     public function user()

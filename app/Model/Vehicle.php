@@ -11,7 +11,6 @@ class Vehicle extends Model
     protected $fillable = [
         'city_id',
         'user_id',
-        'target_id',
         'district_id',
         'utility',
         'procedure',
@@ -52,9 +51,9 @@ class Vehicle extends Model
         return $this->belongsTo(District::class);
     }
 
-    public function target()
+    public function targets()
     {
-        return $this->belongsTo(Target::class, 'id');
+        return $this->hasMany(Target::class);
     }
 
     public function image()

@@ -23,7 +23,7 @@
                                     <th>Tên xe</th>
                                     <th>Chủ xe</th>
                                     <th>Trạng thái</th>
-                                    <th>Người kiểm duyệt</th>
+                                    <th>Ngày duyệt xe</th>
                                     <th class="disabled-sorting">Nhận xét</th>
                                 </tr>
                                 </thead>
@@ -32,45 +32,28 @@
                                     <th>Tên xe</th>
                                     <th>Chủ xe</th>
                                     <th>Trạng thái</th>
-                                    <th>Người kiểm duyệt</th>
+                                    <th>Ngày duyệt xe</th>
                                     <th class="disabled-sorting">Nhận xét</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
                                 @foreach ( $vehicle as $vhc )
 
-                                    {{-- @dd( $vhc['target']['user_id']) --}}
-                                    {{-- @if (Auth::user()->id == $vhc['target']['user_id']) --}}
-                                    @if ($vhc['status'] == 2 && Auth::user()->id )
+                                    @if ($vhc['user_id'] == Auth::user()->id )
                                         <tr>
-                                            <td>{{ $vhc['name'] }}</td>
+                                            <td>{{ $vhc['vehicle']['name'] }}</td>
                                             <td>{{ $vhc['user']['name'] }}</td>
                                             <td>
-                                                @if ($vhc['status'] == 2)
+                                                @if ($vhc['vehicle']['status'] == 2)
                                                     Xe đã được kiểm duyệt
                                                 @endif
                                             </td>
                                             <td>
-                                                {{-- @dd($vhc['user']['id'] == $vhc['target']['user_id']) --}}
-                                                {{-- @if ($vhc['user']['name'])
-
-                                                @endif --}}
-                                                {{-- @foreach ( $user_target as $key => $u )
-                                                    @if ($vhc['target']['user_id'] == $u[$key]['id'])
-                                                    {{ $u[$key]->name }}
-                                                    @else
-                                        @endif
-                                {{-- @dd($u[$key]->name) --}}
-                                                {{-- @endforeach --}}
-
-                                                {{-- {{ $target['name'] }} --}}
+                                                {{ $vhc['start_date'] }}
                                             </td>
-                                            <td>{{ $vhc['target']['description'] }}</td>
+                                            <td>{{ $vhc['description'] }}</td>
                                         </tr>
                                     @endif
-                                    {{-- @endif --}}
-
-
                                 @endforeach
                                 </tbody>
                             </table>
