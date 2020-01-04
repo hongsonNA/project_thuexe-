@@ -51,9 +51,9 @@ class Vehicle extends Model
         return $this->belongsTo(District::class);
     }
 
-    public function target()
+    public function targets()
     {
-        return $this->belongsTo(Target::class, 'id');
+        return $this->hasMany(Target::class);
     }
 
     public function image()

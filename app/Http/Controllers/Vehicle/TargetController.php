@@ -11,6 +11,7 @@ use App\Model\Vehicle;
 use App\User as AppUser;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TargetController extends Controller
 {
@@ -30,23 +31,18 @@ class TargetController extends Controller
 
     public function index_success()
     {
-
-
-        // dd($users->id);
-        // $user_target = [];
-
-        $vehicle = Vehicle::with([
+        $vehicle = Target::with([
             'user' => function ($query) {
-                $query->select(['id', 'name']);
+                $query->select(['id', 'name', 'email']);
             },
-            'target' => function ($query) {
-
-                $query->select(['id', 'vehicle_id', 'user_id', 'description']);
+            'vehicle' => function ($query) {
+                $query->select(['id', 'user_id', 'name', 'status']);
             }
         ])
             ->get()->toArray();
 
         return view('front-end.admin_user.target.index_succses', compact('vehicle'));
+
     }
 
 
@@ -54,13 +50,13 @@ class TargetController extends Controller
     {
 
         $vehicle = Vehicle::find($id);
-        if ($vehicle){
+        if ($vehicle) {
             $image = Image::where('vehicle_id', $vehicle['id'])->get()->toArray();
             $image_array['image_vehicle'] = $image;
-        }else{
+        } else {
             abort(404);
         }
-        return view('front-end.admin_user.target.edit', compact('vehicle','image_array'));
+        return view('front-end.admin_user.target.edit', compact('vehicle', 'image_array'));
     }
 
     public function update(Request $request, $id)
