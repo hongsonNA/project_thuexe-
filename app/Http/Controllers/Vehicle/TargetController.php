@@ -44,6 +44,21 @@ class TargetController extends Controller
         return view('front-end.admin_user.target.index_succses', compact('vehicle'));
 
     }
+    public function index_error()
+    {
+        $vehicle = Target::with([
+            'user' => function ($query) {
+                $query->select(['id', 'name', 'email']);
+            },
+            'vehicle' => function ($query) {
+                $query->select(['id', 'user_id', 'name', 'status']);
+            }
+        ])
+            ->get()->toArray();
+
+        return view('front-end.admin_user.target.index_error', compact('vehicle'));
+
+    }
 
 
     public function edit($id)

@@ -51,20 +51,7 @@
                             <!-- end .select-wrapper -->
                         </div>
                         <div class="listings-grid clearfix" id="result_fillter">
-{{--                            @foreach($model_car as $key => $id)--}}
-{{--                                <div class="listing">--}}
-{{--                                    <div class="image">--}}
-{{--                                        <a href="{{ route('detail', $id->id)  }}">--}}
-{{--                                            <img src="https://s3.amazonaws.com/files.activate.social/user-image-32740129-1552215451-5c84ed9b68ace" alt="listing" class="img-responsive">--}}
-{{--                                        </a>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="content_car">--}}
-{{--                                        <div class="title"><a href="javscript:;">Ferrari <span>[ Grand ]</span></a></div>--}}
-{{--                                        <a href="{{ route('detail', $id->id)  }}">{{ $id->name }}</a>--}}
-{{--                                        <div class="price">{{ number_format($id->price) }}<span> VND</span></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            @endforeach--}}
+
                         </div>
                     </div>
                     <div class="row filter_data">
@@ -143,9 +130,10 @@
                 var seat = get_filter('seat');
                 var city = get_filter('city')
                 $.ajax({
-                    type :"POST",
+                    type :'POST',
                     url : "{{ route('fetch_data_car') }}",
                     data : {action : action, model : model, seat : seat, city : city,"_token": "{{ csrf_token() }}"},
+                    // dataType: 'html',
                     success:function (data) {
                         $('.listings-grid').html(data);
                     }
@@ -163,6 +151,24 @@
                 filter_data();
             });
         });
+    //     $(document).ready(function () {
+    //         $(".filter_car").on('change', function(){
+    //             var fillter = $(this).val();
+    //               if (fillter == 1){
+    //                         $.ajax({
+    //                             type : 'get',
+    //                             url : 'fillter_car/' + fillter,
+    //                             dataType: "html",
+    //                             success:function(res){
+    //                                 if (res){
+    //                                     $(".listings-grid").html('')
+    //                                 }
+    //                             }
+    //                         })
+    //                     }
+
+    //         });
+    // })
     </script>
 
     @endpush

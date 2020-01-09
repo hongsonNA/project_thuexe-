@@ -48,9 +48,7 @@
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
-
                 </div>
                 @else
                     <div class="">
