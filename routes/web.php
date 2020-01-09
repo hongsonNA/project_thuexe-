@@ -71,6 +71,7 @@ Auth::routes(['verify'=>true]);
         Route::group(['prefix' => 'target'], function () {
             Route::get('/', 'Vehicle\\TargetController@index')->name('index_target');
             Route::get('/da-duyet', 'Vehicle\\TargetController@index_success')->name('index_success');
+            Route::get('/khong-du-dieu-kien', 'Vehicle\\TargetController@index_error')->name('index_error');
             Route::get('/kiem-duyet-xe/{id}', 'Vehicle\\TargetController@edit')->name('edit_target');
             Route::post('/kiem-duyet-xe/{id}', 'Vehicle\\TargetController@update')->name('update_target');
         });

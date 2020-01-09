@@ -63,6 +63,12 @@
                     Các xe đã được duyệt
                 </a>
             </li>
+            <li class="nav-item {{ (\Request::route()->getName() == 'index_error') ? 'active' : '' }}">
+                <a href="{{ route('index_error') }}">
+                    <i class="nc-icon nc-tile-56"></i>
+                    Xe không đủ điều kiện
+                </a>
+            </li>
 
         </ul>
     </div>

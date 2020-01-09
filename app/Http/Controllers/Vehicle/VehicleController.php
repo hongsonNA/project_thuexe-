@@ -130,6 +130,28 @@ class VehicleController extends Controller
     {
         $listmul = new Vehicle();
         $listmul = Vehicle::find($id);
+        if($listmul['status'] == 3){
+            $mes = '';
+            $listmul->status = $request->get('status',1);
+            $images_File = $request->file('image_vehicle');
+            $listmul->fill($request->all());
+            if ($listmul->save()) {
+                if ($images_File){
+                    foreach ($images_File as $image_Files) {
+                        $new_image = new Image();
+                        $FileName = $image_Files->getClientOriginalName();
+                        $image_Files->move('image_upload/img_vehicle/', $FileName);
+                        $new_image->image_vehicle = $FileName;
+                        $new_image->vehicle_id = $listmul->id;
+                        $new_image->save();
+                    }
+                }
+                $mes = 'thanh cong ';
+            }
+            return redirect()->route('waiting_target', compact('listmul'))->with('mess', $mes);
+        }
+
+
         if (empty($listmul)){
             return view('front-end.admin_user.manage_post.manage_list');
         }else{
