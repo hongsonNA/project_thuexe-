@@ -8,8 +8,15 @@ class District extends Model
 {
     protected $table = 'districts';
 
+    protected $fillable = ['name', 'status'];
+
     public function city()
     {
-        return $this->belongsTo('App\Model\City', 'city_id');
+        return $this->belongsTo(City::class);
+    }
+
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class, 'district_id');
     }
 }

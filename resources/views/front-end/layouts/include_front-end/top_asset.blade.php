@@ -17,6 +17,10 @@
 <!-- Css Files End -->
 {{--css menu---}}
 <style>
+    .dieukhoan {
+        height: 500px;
+        overflow: scroll;
+    }
     .topmenu li a {
         color: #000;
         color: #656667;
@@ -455,9 +459,12 @@
     .box-combo {
         display: flex;
         justify-content: space-evenly;
+        background: rgba(16, 16, 16, 0.53);
+        padding: 25px 50px 16px 21px;
     }
 
     .box-combo .field-outer {
+        display: contents;
         width: 29rem;
     }
 
@@ -468,6 +475,7 @@
         width: 40%;
         text-align: center;
         background: #dd3e51;
+
     }
 
     .box-combo .field-outer .bt_search a {
@@ -535,7 +543,7 @@
     }
 
     form.cap label, .b-tit {
-        font-size: 16px;
+        /*font-size: 16px;*/
         text-transform: uppercase;
         font-weight: 600;
         color: #333;
@@ -557,8 +565,9 @@
         display: flex;
         justify-content: space-between;
         border-top: 1px solid #d6d6d6;
-        padding-top: 10px;
+        padding-top: 1rem;
         font-size: 2rem;
+        padding-bottom: 2rem;
     }
 
     .button-sub button {
@@ -777,44 +786,78 @@
         font-family: 'Montserrat', sans-serif;
         position: relative;
     }
+    .option-select {
+        height: 45px;
+        /*border-radius: 0;*/
+    }
+    .listings .listings-grid .listing {
+        width: 33.33%;
+        float: left;
+        padding: 0 14px;
+        margin-bottom: 30px;
+    }
+     .listing .content_car {
+        border: 1px solid #e8eef2;
+        border-top: none;
+        padding: 30px 21px;
+        padding-bottom: 36px;
+        line-height: 24px;
+        color: #6f828d;
+        position: relative;
+    }
+    .listings .listings-grid .listing .content_car .title {
+        font-size: 18px;
+        line-height: 21px;
+        font-weight: 500;
+        color: #2e566e;
+        margin-bottom: 18px;
+    }
+    .listings .listings-grid .listing .content_car .price {
+        line-height: 36px;
+        padding: 0 14px;
+        background: #09a0f7;
+        color: #fff;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+    .select-fillter{
+        padding: 25px 24px;
+        background: #778790;
+        color: #fff;
+        margin-bottom: 30px;
+    }
+    .field-outer {
+        margin-bottom: 3rem;
+    }
+    .listings .heading {
+        margin-bottom: 17px;
+    }
+    .listings .heading .view {
+        float: right;
+    }
+    .listings .heading .view a {
+        border: 1px solid #d0dce3;
+        color: #a1b8c6;
+        display: block;
+        width: 44px;
+        height: 44px;
+        line-height: 44px;
+        text-align: center;
+        float: left;
+        position: relative;
+    }
+    .listings .heading h5 {
+        float: left;
+        line-height: 44px;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+    .select-wrapper.sort {
+        float: right;
+        margin-right: 8px;
+    }
+
 </style>
 
-
-{{--<style>--}}
-{{--    html {--}}
-{{--        font-size: 14px;--}}
-{{--    }--}}
-
-{{--    @media (min-width: 768px) {--}}
-{{--        html {--}}
-{{--            font-size: 16px;--}}
-{{--        }--}}
-{{--    }--}}
-
-{{--    .container {--}}
-{{--        max-width: 960px;--}}
-{{--    }--}}
-
-{{--    .pricing-header {--}}
-{{--        max-width: 700px;--}}
-{{--    }--}}
-
-{{--    .card-deck .card {--}}
-{{--        min-width: 220px;--}}
-{{--    }--}}
-
-{{--    .bd-placeholder-img {--}}
-{{--        font-size: 1.125rem;--}}
-{{--        text-anchor: middle;--}}
-{{--        -webkit-user-select: none;--}}
-{{--        -moz-user-select: none;--}}
-{{--        -ms-user-select: none;--}}
-{{--        user-select: none;--}}
-{{--    }--}}
-
-{{--    @media (min-width: 768px) {--}}
-{{--        .bd-placeholder-img-lg {--}}
-{{--            font-size: 3.5rem;--}}
-{{--        }--}}
-{{--    }--}}
-{{--</style>--}}

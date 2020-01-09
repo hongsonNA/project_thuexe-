@@ -4,7 +4,6 @@
         <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
                 <div class="card">
-                    @if($manage != '')
                     <div class="card-header">
                         <h4 class="card-title">Quản lý xe</h4>
                         <div class="box-search">
@@ -54,50 +53,36 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach( $manage as $m)
+{{--                            @dd($image_array)--}}
+
+                            @foreach( $image_array as $m)
+                                @if($m['status'] == 2)
                                 <tr>
-                                    <td class="text-center">{{ $m->id }}</td>
-                                    <td>{{ $m->name }}</td>
+                                    <td class="text-center">{{ $m['id'] }}</td>
+                                    <td>{{ $m['name'] }}</td>
                                     <td>
-                                        <img src="{{ asset('image_upload/img_vehicle/'.$m->image) }}" alt="" width="100">
+                                        <img src="/image_upload/img_vehicle/{{ $m['image_vehicle']['image_vehicle'] }}" style="width: 100px">
                                     </td>
+
                                     <td class="text-center">
-                                        @if($m->status == 1)
+                                        @if($m['status'] == 1)
                                             <span>Chưa đặt</span>
                                         @endif
                                     </td>
-                                    <td class="text-right">{{ number_format($m->price) }}</td>
+                                    <td class="text-right">{{ number_format($m['price']) }}</td>
+
                                     <td class="text-right">
-                                        <a href="{{ route('edit_vehicles', $m->id) }}" class="btn btn-success btn-icon btn-sm "
-                                           data-original-title="" title="">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a onclick="return confirm('Bạn có chắc muốn xóa không ')" href="{{ route('remote', $m->id) }}" class="btn btn-danger btn-icon btn-sm "
-                                           data-original-title="" title="">
-                                            <i class="fa fa-times"></i>
-                                        </a>
+                                        <a target="_blank" href="{{ route('detail', $m['id']) }}" class="btn btn-success">Xem chi tiết</a>
                                     </td>
                                 </tr>
+                                @endif
                             @endforeach
+
                             </tbody>
                         </table>
                     </div>
                 </div>
-                @else
-                    <div class="">
-                        <div class="card-header">
-                            <h4 class="card-title">Thêm mới </h4>
-                       </div>
 
-                        <div clss="news_Car">
-                            <a href="{{ route('add_vehicles') }}" class="float-right pull-right btn btn-success">
-                                Thêm mới xe
-                                <i class="fa fa-arrow-circle-right"></i>
-                                <div class="ripple-container"></div>
-                            </a>
-                        </div>
-                    </div>
-                @endif
             </div>
 
         </div>

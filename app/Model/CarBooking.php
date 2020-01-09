@@ -8,21 +8,23 @@ class CarBooking extends Model
 {
     protected $table = "car_bookings";
 
-    protected $fillable = ['
-        user_id',
-        'city_id',
-        'district_id',
-        'status',
+    protected $fillable = [
+        'user_id',
+        'vehicle_id',
+        'name',
+        'email',
+        'phone',
         'start_date',
         'end_date',
-        'vehicle_id',
+        'total',
+        'status',
         ];
     public function user()
     {
         return $this->belongsTo('App\Model\User', 'id');
     }
-    public function managerList()
+    public function vehicle()
     {
-        return $this->belongsTo('App\Model\managerList', 'id');
+        return $this->belongsTo(Vehicle::class, 'id');
     }
 }

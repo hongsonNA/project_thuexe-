@@ -370,60 +370,7 @@ $(document).ready(function () {
     });
     //date form-detail
 
-    $(document).ready(function() {
-        $( "#start_date" ).datepicker({
-            dateFormat: 'yy-mm-dd',
-            changeMonth: true,
-            changeYear: true,
-            minDate: new Date(),
-            maxDate: '+30D'
-        });
-        $('#end_date').datepicker({
-             dateFormat: 'yy-mm-dd',
-            changeMonth: true,
-            changeYear: true,
-            minDate: new Date(),
-            maxDate: '+30D'
-        });
-        $('#start_date').datepicker().bind("change", function () {
-            var minValue = $(this).val();
-            minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
-            $('#end_date').datepicker("option", "minDate", minValue);
-            calculate();
 
-
-        });
-        $('#end_date').datepicker().bind("change", function () {
-            var maxValue = $(this).val();
-            maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
-            $('#start_date').datepicker("option", "maxDate", maxValue);
-            calculate();
-
-        });
-        // var day1 = $('#start_date').val();
-        // var day2 = $('#end_date').val();
-        // if ()
-        //
-        function calculate() {
-            var asd = $('#peice_vehicles').val();
-            var d1 = $('#start_date').datepicker('getDate');
-            var d2 = $('#end_date').datepicker('getDate');
-            var oneDay = 24*60*60*1000;
-            var diff = 0;
-            var countVe =0;
-            if (d1 && d2) {
-
-                diff = Math.round(Math.abs((d2.getTime() - d1.getTime())/(oneDay)));
-                countVe = asd * diff;
-            }
-            $('.calculated').val(diff);
-            $('.total-price').html(countVe);
-            $('#total-price').html(countVe);
-
-        }
-    //=====start====
-
-    });
         //===========end===============
     //===========Modal===============
 
@@ -483,9 +430,87 @@ $(document).ready(function () {
     		}
     	});
     }
+    /* radio check rold register*/
+    $(".checkR2").hide();
+    $(".check_role").click(function () {
+        if ($(this)){
+            $(".checkR2").show();
+        }
+    });
+    $(".remove_member").click(function () {
+        if ($(this)){
+            $(".checkR2").hide();
+        }
+    });
+    //=====request fillter sort=======
+    // $(document).ready(function () {
+    //     $(".filter_car").on('change', function(){
+    //         var fillter = $(this).val();
+    //           if (fillter == 1 || fillter == 2 ){
+    //                     $.ajax({
+    //                         type : 'get',
+    //                         url : 'fillter_car/' + fillter,
+    //                         dataType: "html",
+    //                         success:function(res){
+    //                             if (res){
+    //                                 $(".listings-grid").append(res);
+    //                             }
+    //                         }
+    //                     })
+    //                 }
+            
+    //     });
+    // })
+    //=======*****========
+    // if($('#register').length) {
+    //     var name = $('#name').val();
+    //
+    //     if (name == ""){
+    //         $('#name_verify').html('ban chua nhap ten');
+    //         return false;
+    //     }
+    //     }
+    /* checking register member
+    ======================================================*/
+    if ($('#register_member').length){
+        $("#register_member").validate({
+            rules: {
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                identity_card: "required",
+                phone: "required"
+            },
+            messages: {
+                name: "Please enter your name",
+                email: "Please enter a valid email address",
+                identity_card: "It is a required field",
+                phone: "It is a required field",
+            },
+        });
+    }
 
+    //
 
-
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
+    });
+    var galleryTop = new Swiper('.gallery-top', {
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        thumbs: {
+            swiper: galleryThumbs
+        }
+    });
 
     /* Booking Form Script
     ======================================================*/
@@ -772,3 +797,12 @@ $(document).ready(function () {
 	}
 
 });
+function validate_form()
+{
+    var terms = $('input[type=checkbox]:checked');
+  if (terms.length == 0 ){
+      $('#res_terms').html('Xác nhận điều khoản');
+      return false;
+  }
+  return true;
+}

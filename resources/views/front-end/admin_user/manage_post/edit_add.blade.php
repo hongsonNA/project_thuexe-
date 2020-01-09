@@ -3,8 +3,9 @@
     <style>.default-image img {
             height: 100%;
             width: 100%;
+            padding:10px
         }
-
+        #result{display: inline-block;height: 600px;overflow: scroll;}
         .default-image {
             width: 100%;
             height: 262px;
@@ -17,6 +18,15 @@
                     <div class="card-header">
                         <h4 class="card-title"> Thêm mới xe </h4>
                     </div>
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="card-body col-lg-12">
                         <div class="">
                             <form action="{{ route('create-vehicles') }}" method="POST" enctype="multipart/form-data" novalidate>
@@ -31,9 +41,10 @@
                                             @if($errors->first('name'))
                                                 <br><span class="text-danger">{{$errors->first('name')}}</span>
                                             @endif
+
                                         </div>
-                                        <div class="form-row">
-                                            <div class="col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <div class="">
                                             <label for="">Giá cho thuê</label>
                                             <input type="number" name="price" class="form-control" value="{{ old('price') }}"
                                                    placeholder="">
@@ -41,18 +52,65 @@
                                                 <br><span class="text-danger">{{$errors->first('price')}}</span>
                                             @endif
                                             </div>
+                                        </div>
+                                        <div class="form-row">
                                             <div class="col-md-6 mb-3">
-                                                <label for="">Danh mục</label>
-                                                <select class="form-control" name="cate_id" value="{{ old('cate_id') }}">
-                                                    @foreach($category as $key => $cate)
-                                                        <option name=""
-                                                                value="{{ $cate->id }}">{{ $cate->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                @if($errors->first('cate_id'))
-                                                    <br><span class="text-danger">{{$errors->first('cate_id')}}</span>
+                                                <label for="">Biển số xe: </label>
+                                                <input type="text" name="license_plate" class="form-control" value="{{ old('license_plate') }}"
+                                                       placeholder="" value="">
+                                                @if($errors->first('license_plate'))
+                                                    <br><span class="text-danger">{{$errors->first('seat')}}</span>
                                                 @endif
                                             </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="">Hộp số:  </label>
+                                                <select name="gear" class="form-control " style="margin-bottom: 10px" value="{{ old('model_id') }}">
+                                                    <option  value="0" selected disabled>--Chọn kiểu --</option>
+                                                        <option value="1">Số sàn</option>
+                                                        <option value="2">Số tự động</option>
+                                                </select>
+                                                @if($errors->first('gear'))
+                                                    <br><span class="text-danger">{{$errors->first('gear')}}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
+                                                <label for="">Thủ tục nhận xe: </label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="produce" class="form-control" name="procedure" value="{{ old('procedure') }} Chứng minh nhân dân" data-role="tagsinput"/>
+                                            </div>
+                                                @if($errors->first('procedure'))
+                                                    <br><span class="text-danger">{{$errors->first('procedure')}}</span>
+                                                @endif
+
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
+                                                <label for="">tinh nang xe: </label>
+                                                <a href="javascrip:;"></a>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="utility" name="utility" class="form-control" value="{{ old('utility') }}" data-role="tagsinput"/>
+                                            </div>
+                                                @if($errors->first('utility'))
+                                                    <br><span class="text-danger">{{$errors->first('utility')}}</span>
+                                                @endif
+
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
+                                                <label for="">Dung tích xăng: </label>
+                                                <a href="javascrip:;"></a>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="number" id="" name="capacity" class="form-control" value="{{ old('capacity') }} data-role="/>
+                                            </div>
+                                                @if($errors->first('capacity'))
+                                                    <br><span class="text-danger">{{$errors->first('capacity')}}</span>
+                                                @endif
+
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">
@@ -107,17 +165,17 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-5">
-                                        <div class="form-group">
+                                        <div class="">
                                             <label for="exampleFormControlFile1">Ảnh đại diện</label>
+
                                             <div class="default-image">
-                                                <img id="blah" src="{{ asset('image_upload/default-car.jpg') }}" alt="">
+                                                <input type="file" id="image_vehicle" name="image_vehicle[]" class="" id="imgInp" multiple>
+                                                <output id="result" />
+{{--                                                <img id="blah" src="{{ asset('image_upload/default-car.jpg') }}" alt="">--}}
                                             </div>
                                         </div>
-                                        <div>
-                                            <input type="file" name="image" class="" id="imgInp">
-                                        </div>
-                                        @if($errors->first('image'))
-                                            <br><span class="text-danger">{{$errors->first('image')}}</span>
+                                        @if($errors->first('image_vehicle'))
+                                            <br><span class="text-danger">{{$errors->first('image_vehicle')}}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -164,6 +222,52 @@
             });
         });
 
+    </script>
+@endsection
+@push('scripts')
+    <script>
+        if(window.File && window.FileList && window.FileReader)
+        {
+            var filesInput = document.getElementById("image_vehicle");
+            filesInput.addEventListener("change", function(event){
+
+                var files = event.target.files; //FileList object
+                var output = document.getElementById("result");
+
+                for(var i = 0; i< files.length; i++)
+                {
+                    var file = files[i];
+
+                    //Only pics
+                    if(!file.type.match('image'))
+                        continue;
+
+                    var picReader = new FileReader();
+
+                    picReader.addEventListener("load",function(event){
+
+                        var picFile = event.target;
+
+                        var div = document.createElement("div");
+
+                        div.innerHTML = "<img class='thumbnail' id='remove_img' name='image_vehicle' src='" + picFile.result + "'" +
+                            "title='" + picFile.name + "'/>";
+
+                        output.insertBefore(div,null);
+
+                    });
+
+                    //Read the image
+                    picReader.readAsDataURL(file);
+                }
+
+            });
+        } else {
+            console.log(" Trình duyệt của bạn không hỗ trợ ");
+        }
+
+
+        $('#produce').tagsinput('items');
         function preView(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -177,6 +281,5 @@
         $("#imgInp").change(function () {
             preView(this);
         });
-
     </script>
-@endsection
+    @endpush

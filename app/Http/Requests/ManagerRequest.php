@@ -29,10 +29,11 @@ class ManagerRequest extends FormRequest
             'seat' => 'required',
             'price' => 'required|string|min:5|numeric',
             'model_id' => 'required',
-            'cate_id' => 'required',
+            'license_plate' => 'required|min:4|max:10',
+            'gear' => 'required',
+            'procedure'=>'required|min:3',
             'city_id' => 'required',
-            'address' => 'min:5',
-            'image' => 'required',
+//            'image_vehicle' => 'required|image|mimes:jpg,png,jpeg',
         ];
 
     }
@@ -45,11 +46,16 @@ class ManagerRequest extends FormRequest
             'seat.required' => 'thiếu chỗ của xe',
             'price.required' => 'Yêu cập nhập giá xe',
             'price.numeric' => 'phải là số',
+            'license_plate'=>'bạn  phải nhập biển số xe',
+            'license_plate.min'=>'Biến số xe chưa phù hợp',
+            'license_plate.max'=>'Biến số xe chưa phù hợp',
             'model_id.required' => 'chon model xe',
-            'cate_id.required' => 'Bạn chưa chọn danh mục xe',
+            'gear.required' => 'không để trống',
+            'procedure' => 'bạn cần có it nhất 1 thủ tục ',
             'city_id.required' => 'Bạn chưa chọn thành phố',
-            'address.min' => 'Địa chỉ ít quá',
-            'image.required' => 'Bạn chưa chọn Ảnh đại diện',
+            'image_vehicle.required' => 'Bạn chưa chọn Ảnh đại diện',
+//            'image_vehicle.image' => 'Vui lòng chọn file ảnh.',
+//            'image_vehicle.mimes' => 'Vui lòng chọn đúng định dạng ảnh: jpg,png,jpeg.',
         ];
     }
 }
