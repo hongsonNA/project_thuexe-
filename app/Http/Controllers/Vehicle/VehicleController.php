@@ -12,9 +12,15 @@ use App\Model\Image;
 use App\Model\ModelVehicle;
 use App\Model\Vehicle;
 use Illuminate\Http\Request;
+//use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 //use Image;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\URL;
 use Yajra\DataTables\Facades\DataTables;
 use function GuzzleHttp\Promise\all;
 
@@ -291,4 +297,46 @@ class VehicleController extends Controller
 //       dd($countCar);
         return response()->json($countCar);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function changeStatus($id){
+    $statusVehicle = Vehicle::find($id);
+
+    if (!empty($statusVehicle)) {
+        if ($statusVehicle->status ==1){
+            $statusVehicle->status = 2;
+            $statusVehicle->save();
+
+//            code gui mail
+            $to_name = "le van hieu"; // ten nguoi nhan
+            $to_email = "hieulv@baokim.vn"; // mail nguoi nhan
+            $data = array('name'=>'ten nguoi gui', 'body' => 'xe ban da het han');
+            try{
+                Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+                    $message->to($to_email, $to_name)
+                        ->subject('V/v het han dang kiem xe');
+                    $message->from('hson8711@gmail.com','Test Mail');
+                });
+            } catch (\Exception $e) {
+                Log::info($e->getMessage().'-'.$e->getFile().'-'.$e->getLine());
+            }
+            return redirect()->route('waiting_target');
+
+        }
+    }
+    return Response::json(array('redirect' => Route('waiting_target')));
 }
+}
+
