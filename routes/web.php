@@ -51,6 +51,9 @@ Auth::routes(['verify'=>true]);
         Route::post('{id}/update_vehicles', 'Vehicle\\VehicleController@update_vehicles')->name('update_vehicles');
         Route::get('/{id}/remote', 'Vehicle\\VehicleController@remote')->name('remote');
         Route::get('/{id}/remove_image', 'Vehicle\\VehicleController@remove_image')->name('remove_image');
+        Route::get('thung-rac', 'Vehicle\\VehicleController@trash')->name('trash');
+        Route::get('/{id}/restore', 'Vehicle\\VehicleController@restore')->name('restore');
+        Route::get('/{id}/moveTrash', 'Vehicle\\VehicleController@moveTrash')->name('moveTrash');
         //get district
         Route::get('states/{id}', 'Vehicle\\VehicleController@states')->name('states');
         Route::get('states_update/{id}', 'Vehicle\\VehicleController@states_update')->name('states_update');

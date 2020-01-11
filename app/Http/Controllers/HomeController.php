@@ -203,18 +203,32 @@ class HomeController extends Controller {
 
 		$model_id    = $request->get('model_id');
 		$city_id     = $request->get('city_id');
-		$searchQuery = Vehicle::where('model_id', 'like', "%$model_id%")
-			->where('city_id', 'like', "%$city_id%")
-			->get();
-		$image_array = [];
-		foreach ($searchQuery as $key => $value) {
-			$image                              = Image::where('vehicle_id', $value['id'])->first();
-			$image_array[$key]                  = $value;
-			$image_array[$key]['image_vehicle'] = $image;
-		}
-		//        dd($image_array);
-		//        dd($searchQuery);
-		return view('front-end.search', compact('searchQuery', 'image_array'));
+		$start_date = $request->get('start_date');
+        $end_date = $request->get('end_date');
+
+
+            $checkCarbooking = CarBooking::where('start_date','like',"%$start_date%")
+                ->where('end_date','like',"%$end_date%")->get()->toArray();
+
+        $message = '';
+            if($checkCarbooking){
+                $message = 'khong tim thay xe ';
+
+                    return back()->with('message',$message);
+            }else{
+                $searchQuery = Vehicle::where('model_id', 'like', "%$model_id%")
+                    ->where('city_id', 'like', "%$city_id%")
+                    ->get();
+                $image_array = [];
+                foreach ($searchQuery as $key => $value) {
+                    $image                              = Image::where('vehicle_id', $value['id'])->first();
+                    $image_array[$key]                  = $value;
+                    $image_array[$key]['image_vehicle'] = $image;
+                }
+//                dd($image_array);
+                return view('front-end.search', compact('searchQuery', 'image_array'));
+
+            }
 	}
 
 	//    report-comment

@@ -91,9 +91,9 @@
                                     <option value="0" >--Chọn quận huyện--</option>
                                 </select>
                             </div>
-                            <div class="field-outer">
+                           <!--  <div class="field-outer">
                                 <button style="width: 100%" type="submit" class="btn btn-danger option-select   ">Tìm kiếm</button>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                 </div>

@@ -257,13 +257,13 @@
                                                                                               aria-controls="heading-tab4"
                                                                                               role="tab"
                                                                                               data-toggle="tab"
-                                                                                              aria-expanded="true">Mô tả
+                                                                                              aria-expanded="true">Thông số
+                                                            kĩ thuật
                                                             xe</a></li>
                                                     <li role="presentation" class=""><a href="#heading-tab5"
                                                                                         aria-controls="heading-tab5"
                                                                                         role="tab" data-toggle="tab"
-                                                                                        aria-expanded="false">Thông số
-                                                            kĩ thuật</a></li>
+                                                                                        aria-expanded="false">Mô tả</a></li>
                                                     {{--
                                                     <li role="presentation" class=""><a href="#heading-tab6" aria-controls="heading-tab6" role="tab" data-toggle="tab" aria-expanded="false">Đánh giá</a></li>--}}
                                                 </ul>
@@ -272,10 +272,7 @@
                                                     <div role="tabpanel" class="tab-pane fade active in"
                                                          id="heading-tab4">
                                                         <br>
-                                                        {!! $vechcles->description !!}
-                                                    </div>
-                                                    <!-- end .tab-panel -->
-                                                    <div role="tabpanel" class="tab-pane fade" id="heading-tab5">
+
                                                         <div class="option_car">
                                                             <div class="genarel-column">
                                                                 <div class="item_car row">
@@ -314,6 +311,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <!-- end .tab-panel -->
+                                                    <div role="tabpanel" class="tab-pane fade" id="heading-tab5">
+                                                        {!! $vechcles->description !!}
                                                     </div>
                                                 </div>
                                                 <!-- end .tab-content -->
@@ -490,9 +491,8 @@
                 </div>
             @endforeach
         </div>
-        @if(session()->has('alert')) {{-- class="alert alert-success" id="alert_Booking_success"--}}
+        @if(session()->has('alert'))
         <div>
-            {{-- {{ session()->get('alert') }}--}}
             <script>
                 Swal.fire(
                     'Đăng ký thành công!',

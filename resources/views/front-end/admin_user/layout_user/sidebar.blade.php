@@ -36,6 +36,12 @@
                     Xe không đạt yêu cầu
                 </a>
             </li>
+            <li class="nav-item {{ (\Request::route()->getName() == 'trash') ? 'active' : '' }}">
+                <a href="{{ route('trash') }}">
+                    <i class="nc-icon nc-tile-56"></i>
+                  Thùng rác
+                </a>
+            </li>
             <li class="nav-item {{ (\Request::route()->getName() == 'waiting') ? 'active' : '' }}">
                 <a href="{{ route('waiting') }}">
                     <i class="nc-icon nc-tile-56"></i>
