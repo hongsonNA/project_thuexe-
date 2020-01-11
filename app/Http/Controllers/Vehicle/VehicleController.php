@@ -180,19 +180,80 @@ class VehicleController extends Controller
         }
         return redirect()->route('manage', compact('listmul'))->with('mess', $mes);
     }
-
-    public function remote($id)
+    public function trash()
     {
-        $remote_id = Vehicle::find($id);
-        if ($remote_id) {
-            $remove_vehicle = Vehicle::destroy($id);
-            if ($remove_vehicle) {
-                $delete_img = Image::where('vehicle_id', $id)->delete();
-            }
-        } else {
-            abort(404);
+        $manage = Vehicle::all()->where('is_trash',1);
+        $image_array = [];
+        foreach ($manage as $key => $value) {
+            $image = Image::where('vehicle_id', $value['id'])->first();
+            $image_array[$key] = $value;
+            $image_array[$key]['image_vehicle'] = $image;
         }
-        $managerList = Vehicle::destroy($id);
+        return view('front-end.admin_user.manage_post.trash_list', compact('image_array'));
+    }
+
+    public function moveTrash(Request $request, $id){
+        $listmul = new Vehicle();
+        $listmul = Vehicle::find($id);
+            $mes = '';
+            $listmul->is_trash = $request->get('is_trash',1);
+            $images_File = $request->file('image_vehicle');
+            $listmul->fill($request->all());
+            if ($listmul->save()) {
+                $mes = 'thanh cong ';
+            }
+            return back()->with('mess', $mes);
+
+    }
+    public function restore(Request $request, $id){
+        $listmul = new Vehicle();
+        $listmul = Vehicle::find($id);
+        $mes = '';
+        $listmul->is_trash = $request->get('is_trash',0);
+        $images_File = $request->file('image_vehicle');
+        $listmul->fill($request->all());
+        if ($listmul->save()) {
+            $mes = 'thanh cong ';
+        }
+        return back()->with('mess', $mes);
+
+    }
+    public function remote(Request $request,$id)
+    {
+//        $remote_id = Vehicle::find($id);
+
+//        if($remote_id['is_trash'] == 1){
+//            if ($remote_id) {
+//                $remove_vehicle = Vehicle::destroy($id);
+//                if ($remove_vehicle) {
+//                    $delete_img = Image::where('vehicle_id', $id)->delete();
+//                }
+//            } else {
+//                abort(404);
+//            }
+//            $managerList = Vehicle::destroy($id);
+//            return redirect()->route('trash', compact('managerList'));
+//        }
+
+//        if ($remote_id) {
+//            $remove_vehicle = Vehicle::destroy($id);
+//            if ($remove_vehicle) {
+//                $delete_img = Image::where('vehicle_id', $id)->delete();
+//            }
+//        } else {
+//            abort(404);
+//        }
+//        $managerList = Vehicle::destroy($id);
+        $listmul = new Vehicle();
+        $listmul = Vehicle::find($id);
+        $mes = '';
+        $listmul->is_trash = $request->get('is_trash',2);
+        $images_File = $request->file('image_vehicle');
+        $listmul->fill($request->all());
+        if ($listmul->save()) {
+            $mes = 'thanh cong ';
+        }
+        return back()->with('mess', $mes);
         return redirect()->route('manage', compact('managerList'));
     }
 
@@ -204,7 +265,9 @@ class VehicleController extends Controller
 //==========car waiting==========
     public function waiting_car()
     {
-        $waiting = DB::table('car_bookings')->where('status', '1')->get();
+        $waiting = DB::table('car_bookings')->where('status', '1')
+            ->where('is_delete',0)
+            ->get();
 
 //        $waiting = CarBooking::with([
 //            'vehicle' => function ($query) {
@@ -219,7 +282,7 @@ class VehicleController extends Controller
     public function AllDatatable()
     {
 
-        return Datatables::of(CarBooking::all())
+        return Datatables::of(CarBooking::all()->where('is_delete','=',0))
 //            ->editColumn('user_id', function ($waiting) {
 //                return $waiting['user']['name'];
 //            })
@@ -227,14 +290,33 @@ class VehicleController extends Controller
                 return $waiting['vehicle']['name'];
             })
             ->addColumn('status', function ($waiting) {
-                return '
+                if($waiting['status']==2){
+                    return '
+                <a href="javascript:;" data-id="' . $waiting->id . '"  class="changeSucesed btn btn-warning"data-original-title="" title="">Đã xác nhận</a>
+                <a href="javascript:;"  data-id="' . $waiting->id . '"  class="changeDanger btn btn-danger"data-original-title="" title=""><i class="fa fa-times"></i></a>';
+
+                }if($waiting['status']==3){
+                    return '
+                <a href="javascript:;" data-id="' . $waiting->id . '"  class="doing btn btn-info"data-original-title="" title="">Đang thực hiện</a>';
+                }if($waiting['status']==4){
+                    return '
+                <a href="javascript:;"  class="btn btn-success"data-original-title="" title="">Đã hoàn thành</a>
+                 <a href="javascript:;"  data-id="' . $waiting->id . '"  class="dangerCar btn btn-danger"
+                                                   data-original-title="" title="">
+                                                    <i class="fa fa-times"></i>
+                                                </a>';
+                }if($waiting['status']==5){
+                    return '
+                <a href="javascript:;"   class="btn btn-danger"data-original-title="" title="">Bị hủy</a>';
+                }
+                    return '
                 <a onclick="return myForm();" href="javascript:;" data-id="' . $waiting->id . '"  class="changeStatus btn btn-success"
                                                    data-original-title="" title="">
-                                                    <i class="fa fa-edit">Xác nhận </i>
+                                                    <i class="fa fa-edit">Xác nhận</i>
                                                 </a>
-                                                <a href="javascript:;"  data-id="' . $waiting->id . '"  class="dangerCar btn btn-danger"
+                                                <a href="javascript:;"  data-id="' . $waiting->id . '"  class="changeDanger btn btn-danger"
                                                    data-original-title="" title="">
-                                                    <i class="fa fa-times">Hủy</i>
+                                                    <i class="fa fa-times">Từ chối</i>
                                                 </a>
 
 
@@ -242,7 +324,7 @@ class VehicleController extends Controller
             })->rawColumns(['status'])
             ->make(true);
     }
-
+//dangerCar
 //==========car_booking==========
     public function status()
     {
@@ -261,7 +343,13 @@ class VehicleController extends Controller
     {
         $booking = new CarBooking();
         $booking = CarBooking::find($id);
-        $booking->status = $request->get('status', '2');
+        if($booking['status']==1){
+            $booking->status = $request->get('status', '2');
+        }elseif($booking['status']==2){
+            $booking->status = $request->get('status', '3');
+        }elseif($booking['status']==3){
+            $booking->status = $request->get('status', '4');
+        }
         $booking->fill($request->all());
         $booking->save();
         return $booking;
@@ -272,7 +360,11 @@ class VehicleController extends Controller
     {
         $booking = new CarBooking();
         $booking = CarBooking::find($id);
-        $booking->status = $request->get('status', '5');
+        if ($booking['status']==1 || $booking['status']==2 ){
+            $booking->status = $request->get('status', '5');
+        }elseif($booking['status']==4){
+            $booking->is_delete = $request->get('is_delete', '2');
+        }
         $booking->fill($request->all());
         $booking->save();
         return $booking;

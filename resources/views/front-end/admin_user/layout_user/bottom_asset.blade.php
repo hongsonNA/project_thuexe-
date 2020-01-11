@@ -25,6 +25,7 @@
 {{--</script>--}}
 <script src="{{ asset('js/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('package/js/swiper.min.js') }}"></script>
+
 @stack('scripts')
 
 
