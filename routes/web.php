@@ -48,6 +48,7 @@ Auth::routes(['verify'=>true]);
         Route::get('add_vehicles', 'Vehicle\\VehicleController@add')->name('add_vehicles');
         Route::post('create-vehicles', 'Vehicle\\VehicleController@create')->name('create-vehicles');
         Route::get('{id}/edit_vehicles', 'Vehicle\\VehicleController@edit_vehicles')->name('edit_vehicles');
+        Route::get('changeStatus/{id}', 'Vehicle\\VehicleController@changeStatus');
         Route::post('{id}/update_vehicles', 'Vehicle\\VehicleController@update_vehicles')->name('update_vehicles');
         Route::get('/{id}/remote', 'Vehicle\\VehicleController@remote')->name('remote');
         Route::get('/{id}/remove_image', 'Vehicle\\VehicleController@remove_image')->name('remove_image');
