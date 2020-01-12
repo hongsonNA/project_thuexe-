@@ -7,22 +7,20 @@ use App\Http\Requests\ManagerRequest;
 use App\Model\CarBooking;
 use App\Model\City;
 use App\Model\Comment;
-//use App\Model\Image as VehicleImage;
 use App\Model\Image;
 use App\Model\ModelVehicle;
 use App\Model\Vehicle;
 use Illuminate\Http\Request;
-//use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-//use Image;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\URL;
 use Yajra\DataTables\Facades\DataTables;
-use function GuzzleHttp\Promise\all;
+
+//use App\Model\Image as VehicleImage;
+//use Illuminate\Routing\Route;
+//use Image;
 
 //use Intervention\Image\ImageManagerStatic as Image;
 
@@ -50,6 +48,7 @@ class VehicleController extends Controller
         }
         return view('front-end.admin_user.manage_post.manage_list', compact('image_array'));
     }
+
     public function waiting_target()
     {
         $manage = Vehicle::all();
@@ -110,7 +109,7 @@ class VehicleController extends Controller
                 $new_image->save();
             }
         }
-        $mess ='thanh cong ';
+        $mess = 'thanh cong ';
 
         return redirect()->route('manage', compact('listmul'))->with('mes', $mes);
     }
@@ -129,20 +128,20 @@ class VehicleController extends Controller
             return view('front-end.admin_user.manage_post.manage_list');
         }
 
-        return view('front-end.admin_user.manage_post.edit', compact('maga_edit', 'citys', 'model_car','image_array'));
+        return view('front-end.admin_user.manage_post.edit', compact('maga_edit', 'citys', 'model_car', 'image_array'));
     }
 
     public function update_vehicles(Request $request, $id)
     {
         $listmul = new Vehicle();
         $listmul = Vehicle::find($id);
-        if($listmul['status'] == 3){
+        if ($listmul['status'] == 3) {
             $mes = '';
-            $listmul->status = $request->get('status',1);
+            $listmul->status = $request->get('status', 1);
             $images_File = $request->file('image_vehicle');
             $listmul->fill($request->all());
             if ($listmul->save()) {
-                if ($images_File){
+                if ($images_File) {
                     foreach ($images_File as $image_Files) {
                         $new_image = new Image();
                         $FileName = $image_Files->getClientOriginalName();
@@ -158,14 +157,14 @@ class VehicleController extends Controller
         }
 
 
-        if (empty($listmul)){
+        if (empty($listmul)) {
             return view('front-end.admin_user.manage_post.manage_list');
-        }else{
+        } else {
             $mes = '';
             $images_File = $request->file('image_vehicle');
             $listmul->fill($request->all());
             if ($listmul->save()) {
-                if ($images_File){
+                if ($images_File) {
                     foreach ($images_File as $image_Files) {
                         $new_image = new Image();
                         $FileName = $image_Files->getClientOriginalName();
@@ -180,9 +179,10 @@ class VehicleController extends Controller
         }
         return redirect()->route('manage', compact('listmul'))->with('mess', $mes);
     }
+
     public function trash()
     {
-        $manage = Vehicle::all()->where('is_trash',1);
+        $manage = Vehicle::all()->where('is_trash', 1);
         $image_array = [];
         foreach ($manage as $key => $value) {
             $image = Image::where('vehicle_id', $value['id'])->first();
@@ -192,24 +192,12 @@ class VehicleController extends Controller
         return view('front-end.admin_user.manage_post.trash_list', compact('image_array'));
     }
 
-    public function moveTrash(Request $request, $id){
-        $listmul = new Vehicle();
-        $listmul = Vehicle::find($id);
-            $mes = '';
-            $listmul->is_trash = $request->get('is_trash',1);
-            $images_File = $request->file('image_vehicle');
-            $listmul->fill($request->all());
-            if ($listmul->save()) {
-                $mes = 'thanh cong ';
-            }
-            return back()->with('mess', $mes);
-
-    }
-    public function restore(Request $request, $id){
+    public function moveTrash(Request $request, $id)
+    {
         $listmul = new Vehicle();
         $listmul = Vehicle::find($id);
         $mes = '';
-        $listmul->is_trash = $request->get('is_trash',0);
+        $listmul->is_trash = $request->get('is_trash', 1);
         $images_File = $request->file('image_vehicle');
         $listmul->fill($request->all());
         if ($listmul->save()) {
@@ -218,7 +206,23 @@ class VehicleController extends Controller
         return back()->with('mess', $mes);
 
     }
-    public function remote(Request $request,$id)
+
+    public function restore(Request $request, $id)
+    {
+        $listmul = new Vehicle();
+        $listmul = Vehicle::find($id);
+        $mes = '';
+        $listmul->is_trash = $request->get('is_trash', 0);
+        $images_File = $request->file('image_vehicle');
+        $listmul->fill($request->all());
+        if ($listmul->save()) {
+            $mes = 'thanh cong ';
+        }
+        return back()->with('mess', $mes);
+
+    }
+
+    public function remote(Request $request, $id)
     {
 //        $remote_id = Vehicle::find($id);
 
@@ -247,7 +251,7 @@ class VehicleController extends Controller
         $listmul = new Vehicle();
         $listmul = Vehicle::find($id);
         $mes = '';
-        $listmul->is_trash = $request->get('is_trash',2);
+        $listmul->is_trash = $request->get('is_trash', 2);
         $images_File = $request->file('image_vehicle');
         $listmul->fill($request->all());
         if ($listmul->save()) {
@@ -262,54 +266,82 @@ class VehicleController extends Controller
         $image_remove = Image::destroy($id);
         return back();
     }
+
 //==========car waiting==========
     public function waiting_car()
     {
-        $waiting = DB::table('car_bookings')->where('status', '1')
-            ->where('is_delete',0)
-            ->get();
+        $all = CarBooking::all()->where('is_delete', '=', 0);
 
-//        $waiting = CarBooking::with([
-//            'vehicle' => function ($query) {
-//                $query->select(['id', 'name']);
-//            }
-//        ])->get()->toArray();
-//
-//        dd($waiting);
-        return view('front-end.admin_user.manage_post.waiting', compact('waiting'));
+        return view('front-end.admin_user.manage_post.waiting', compact('all'));
+    }
+
+    public function waiting_car1()
+    {
+        $all = CarBooking::all()->where('is_delete', '=', 0);
+
+        return view('front-end.admin_user.manage_post.waiting1', compact('all'));
+    }
+    public function waiting_car2()
+    {
+        $all = CarBooking::all()->where('is_delete', '=', 0);
+
+        return view('front-end.admin_user.manage_post.waiting2', compact('all'));
+    }
+    public function waiting_car3()
+    {
+        $all = CarBooking::all()->where('is_delete', '=', 0);
+
+        return view('front-end.admin_user.manage_post.waiting3', compact('all'));
+    }
+    public function waiting_car4()
+    {
+        $all = CarBooking::all()->where('is_delete', '=', 0);
+
+        return view('front-end.admin_user.manage_post.waiting4', compact('all'));
+    }
+    public function waiting_car5()
+    {
+        $all = CarBooking::all()->where('is_delete', '=', 0);
+
+        return view('front-end.admin_user.manage_post.waiting5', compact('all'));
     }
 
     public function AllDatatable()
     {
+        $waiting = CarBooking::all()->where('is_delete', '=', 0);
 
-        return Datatables::of(CarBooking::all()->where('is_delete','=',0))
-//            ->editColumn('user_id', function ($waiting) {
-//                return $waiting['user']['name'];
-//            })
+//        $waiting = DB::table('car_bookings')->where('status', '1')
+//            ->orWhere('is_delete', 0)
+//            ->get()->toArray();
+
+        return Datatables::of($waiting)
             ->editColumn('vehicle_id', function ($waiting) {
                 return $waiting['vehicle']['name'];
             })
             ->addColumn('status', function ($waiting) {
-                if($waiting['status']==2){
+                if ($waiting['status'] == 2) {
                     return '
                 <a href="javascript:;" data-id="' . $waiting->id . '"  class="changeSucesed btn btn-warning"data-original-title="" title="">Đã xác nhận</a>
                 <a href="javascript:;"  data-id="' . $waiting->id . '"  class="changeDanger btn btn-danger"data-original-title="" title=""><i class="fa fa-times"></i></a>';
 
-                }if($waiting['status']==3){
+                }
+                if ($waiting['status'] == 3) {
                     return '
                 <a href="javascript:;" data-id="' . $waiting->id . '"  class="doing btn btn-info"data-original-title="" title="">Đang thực hiện</a>';
-                }if($waiting['status']==4){
+                }
+                if ($waiting['status'] == 4) {
                     return '
                 <a href="javascript:;"  class="btn btn-success"data-original-title="" title="">Đã hoàn thành</a>
                  <a href="javascript:;"  data-id="' . $waiting->id . '"  class="dangerCar btn btn-danger"
                                                    data-original-title="" title="">
                                                     <i class="fa fa-times"></i>
                                                 </a>';
-                }if($waiting['status']==5){
+                }
+                if ($waiting['status'] == 5) {
                     return '
                 <a href="javascript:;"   class="btn btn-danger"data-original-title="" title="">Bị hủy</a>';
                 }
-                    return '
+                return '
                 <a onclick="return myForm();" href="javascript:;" data-id="' . $waiting->id . '"  class="changeStatus btn btn-success"
                                                    data-original-title="" title="">
                                                     <i class="fa fa-edit">Xác nhận</i>
@@ -343,14 +375,14 @@ class VehicleController extends Controller
     {
         $booking = new CarBooking();
         $booking = CarBooking::find($id);
-        if($booking['status']==1){
-            $booking->status = $request->get('status', '2');
-        }elseif($booking['status']==2){
-            $booking->status = $request->get('status', '3');
-        }elseif($booking['status']==3){
-            $booking->status = $request->get('status', '4');
+        if ($booking['status'] == 1) {
+            $booking->status = 2;
+        } elseif ($booking['status'] == 2) {
+            $booking->status = 3;
+        } elseif ($booking['status'] == 3) {
+            $booking->status = 4;
         }
-        $booking->fill($request->all());
+//        $booking->fill($request->all());
         $booking->save();
         return $booking;
     }
@@ -360,9 +392,9 @@ class VehicleController extends Controller
     {
         $booking = new CarBooking();
         $booking = CarBooking::find($id);
-        if ($booking['status']==1 || $booking['status']==2 ){
+        if ($booking['status'] == 1 || $booking['status'] == 2) {
             $booking->status = $request->get('status', '5');
-        }elseif($booking['status']==4){
+        } elseif ($booking['status'] == 4) {
             $booking->is_delete = $request->get('is_delete', '2');
         }
         $booking->fill($request->all());
@@ -391,44 +423,33 @@ class VehicleController extends Controller
     }
 
 
+    public function changeStatus($id)
+    {
+        $statusVehicle = Vehicle::find($id);
 
-
-
-
-
-
-
-
-
-
-
-
-    public function changeStatus($id){
-    $statusVehicle = Vehicle::find($id);
-
-    if (!empty($statusVehicle)) {
-        if ($statusVehicle->status ==1){
-            $statusVehicle->status = 2;
-            $statusVehicle->save();
+        if (!empty($statusVehicle)) {
+            if ($statusVehicle->status == 1) {
+                $statusVehicle->status = 2;
+                $statusVehicle->save();
 
 //            code gui mail
-            $to_name = "le van hieu"; // ten nguoi nhan
-            $to_email = "hieulv@baokim.vn"; // mail nguoi nhan
-            $data = array('name'=>'ten nguoi gui', 'body' => 'xe ban da het han');
-            try{
-                Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
-                    $message->to($to_email, $to_name)
-                        ->subject('V/v het han dang kiem xe');
-                    $message->from('hson8711@gmail.com','Test Mail');
-                });
-            } catch (\Exception $e) {
-                Log::info($e->getMessage().'-'.$e->getFile().'-'.$e->getLine());
-            }
-            return redirect()->route('waiting_target');
+                $to_name = "le van hieu"; // ten nguoi nhan
+                $to_email = "hieulv@baokim.vn"; // mail nguoi nhan
+                $data = array('name' => 'ten nguoi gui', 'body' => 'xe ban da het han');
+                try {
+                    Mail::send('emails.mail', $data, function ($message) use ($to_name, $to_email) {
+                        $message->to($to_email, $to_name)
+                            ->subject('V/v het han dang kiem xe');
+                        $message->from('hson8711@gmail.com', 'Test Mail');
+                    });
+                } catch (\Exception $e) {
+                    Log::info($e->getMessage() . '-' . $e->getFile() . '-' . $e->getLine());
+                }
+                return redirect()->route('waiting_target');
 
+            }
         }
+        return Response::json(array('redirect' => Route('waiting_target')));
     }
-    return Response::json(array('redirect' => Route('waiting_target')));
-}
 }
 

@@ -56,6 +56,7 @@
 {{--                            @dd($image_array)--}}
 
                             @foreach( $image_array as $m)
+                                @if($m['user_id'] == Auth::user()->id)
                                 @if($m['status'] == 2 && $m['is_trash'] == 0 )
                                 <tr>
                                     <td class="text-center">{{ $m['id'] }}</td>
@@ -77,6 +78,7 @@
 
                                     </td>
                                 </tr>
+                                @endif
                                 @endif
                             @endforeach
 

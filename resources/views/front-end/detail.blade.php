@@ -247,10 +247,6 @@
                                     </div>
                                     <div class="row mt-xlg">
                                         <div class="col-md-12">
-                                            {{--
-                                            <div class="mb-md">--}} {{--
-                                    <div class="b-tit">Mô tả và thông số xe</div>--}} {{--
-                                    <div>--}} {{-- {!! $vechcles->description !!}--}} {{-- </div>--}} {{-- </div>--}}
                                             <div class="tabpanel border" role="tabpanel">
                                                 <ul class="nav nav-tabs" role="tablist">
                                                     <li role="presentation" class="active"><a href="#heading-tab4"
@@ -379,7 +375,7 @@
                         <div class="right-info ">
                             <div class="shadow mb-xlg p-lg">
                                 <div class="pr text-center">ĐĂNG KÝ THÔNG TIN</div>
-                                <form method="post" action="{{ route('booking_car', $vechcles->id ) }}" class="cap"
+                                <form onsubmit="return bookingCar();" id="bookingCar"  method="post" action="{{ route('booking_car', $vechcles->id ) }}" class="cap"
                                       id="detail-datetime">
                                     @csrf
                                     <div class="tit3 mt-md mb-xs">{{ $vechcles->name }}</div>
@@ -388,21 +384,24 @@
                                             <label class=" pt-2">Họ tên :</label>
                                             <div class="box-date ">
                                                 <input class="input flatpickr-input form-control" type="text" id=""
-                                                       name="name" value="{{ Auth::user()->name }}">
+                                                       name="name" id="name" value="{{ Auth::user()->name }}">
+                                                <span class="err_phone text-danger" id="errName" style="color: red;"></span>
                                             </div>
                                         </div>
                                         <div class="form-group position-relative form-group">
                                             <label class=" pt-2">Email :</label>
                                             <div class="box-date ">
                                                 <input class="input flatpickr-input form-control" type="text" id=""
-                                                       name="email" value="{{ Auth::user()->email }}">
+                                                       name="email" id="email" value="{{ Auth::user()->email }}">
+                                                <span class="err_phone text-danger" id="errEmail" style="color: red;"></span>
                                             </div>
                                         </div>
                                         <div class="form-group position-relative form-group">
                                             <label class=" pt-2">Số điện thoại</label>
                                             <div class="box-date ">
-                                                <input class="input flatpickr-input form-control" type="number" id=""
-                                                       name="phone" value="{{ Auth::user()->phone  }}"><br>
+                                                <input class="input flatpickr-input form-control" type="number" id="phone"
+                                                       name="phone" value="{{ Auth::user()->phone  }} {{ old('phone')  }}"><br>
+                                                <span class="err_phone text-danger" id="errPhone" style="color: red;"></span>
                                             </div>
                                         </div>
                                     @endif
@@ -441,8 +440,8 @@
                                         <div class="total">
                                             <div class="tong">Tổng giá:</div>
                                             <div class="total-price"></div>
-                                            <span>VND</span> {{--
-                                <input type="hidden" name="total" value="">--}}
+                                            <span>VND</span>
+                                            <input type="hidden" id="total-price" name="" value="">
                                         </div>
                                     </div>
                                     @if(Auth::check())
@@ -507,6 +506,29 @@
 @endsection
 @push('scripts')
     <script>
+        // function bookingCar(){
+        //     var patemPhone = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+        //     var pathEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        //     var phone = $('#phone').val();
+        //     var email = $('#email').val();
+        //     var name = $('#name').val();
+        //     if (phone !== "") {
+        //         if (patemPhone.test(phone)) {
+        //             $('#errPhone').html('so dien thoai chua dung dinh dang ');
+        //             return false;
+        //         }
+        //     }else if(email !== ""){
+        //         if(pathEmail.test(email)){
+        //             $('#errEmail').html('khong dung dinh dang email ');
+        //             return false;
+        //         }
+        //     }else{
+        //         return true;
+        //     }
+        //
+        // }
+
+
         $(document).ready(function () {
             var unavailableDates = ["29-12-2019", "31-12-2019"];
 
@@ -566,7 +588,7 @@
                 }
                 $('.calculated').val(diff);
                 $('.total-price').html(countVe);
-                $('#total-price').html(countVe);
+                $('#total-price').append(countVe);
 
             }
         });

@@ -43,9 +43,9 @@
                             </div> <!-- end .view -->
                             <div class="select-wrapper sort">
                                 <select class="filter_car form-control option-select" >
-                                    <option value="0">Sắp xếp</option>
-                                    <option  value="2">Sắp xếp tăng dần</option>
-                                    <option value="1">Sắp xếp giảm dần</option>
+                                    <option value="ALL">Sắp xếp</option>
+                                    <option  value="ASC">Sắp xếp tăng dần</option>
+                                    <option value="DESC">Sắp xếp giảm dần</option>
                                 </select>
                             </div>
                             <!-- end .select-wrapper -->
@@ -104,6 +104,7 @@
 @endsection
 @push('scripts')
     <script>
+
         $(document).ready(function () {
             $('#filte_city').change(function () {
                 var id = $(this).val();
@@ -151,24 +152,29 @@
                 filter_data();
             });
         });
-    //     $(document).ready(function () {
-    //         $(".filter_car").on('change', function(){
-    //             var fillter = $(this).val();
-    //               if (fillter == 1){
-    //                         $.ajax({
-    //                             type : 'get',
-    //                             url : 'fillter_car/' + fillter,
-    //                             dataType: "html",
-    //                             success:function(res){
-    //                                 if (res){
-    //                                     $(".listings-grid").html('')
-    //                                 }
-    //                             }
-    //                         })
-    //                     }
+        $(document).ready(function () {
+            $(".filter_car").on('change', function(e){
+                // var fillter = $(this).val();
+                var fillter = e.target.value;
+                console.log(fillter);
+                $.getJSON('fillter_car/' + fillter, function () {
+                    console.log(data);
+                })
+                  // if (fillter){
+                  //           $.ajax({
+                  //               type : 'get',
+                  //               url : 'fillter_car/' + fillter,
+                  //               dataType: "html",
+                  //               success:function(res){
+                  //                   if (res){
+                  //                       $(".listings-grid").html('')
+                  //                   }
+                  //               }
+                  //           })
+                  //       }
 
-    //         });
-    // })
+            });
+    })
     </script>
 
     @endpush

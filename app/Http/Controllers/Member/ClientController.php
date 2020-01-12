@@ -9,6 +9,8 @@ use App\Model\ModelVehicle;
 use App\Model\User;
 use App\Model\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ClientController extends Controller {
 	public function edit($id) {
@@ -59,8 +61,19 @@ class ClientController extends Controller {
 		//        dd($searchQuery);
 	}
 	public function fillterCar(Request $request, $id) {
+//        $querySort = new Vehicle();
+//        $sorVehicle = '';
 
-		return view('category', compact('carDesc', 'carAsc'));
+            if ($request->ajax() && isset($id) == "ALL"){
+
+                   if (isset($id) == "DESC"){
+                       $sortprice = DB::table('vehicles')
+                           ->where('is_trash',0);
+//                       $sortprice->orderBy('price', 'desc')->get();
+                       dd($sortprice);
+                   }
+            }
+//            return $sortprice;
 	}
 
 	public function fetch_data_car(Request $request) {
