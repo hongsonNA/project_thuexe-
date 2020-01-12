@@ -13,7 +13,7 @@
     Route::get('chi-tiet/{id}', 'HomeController@detail')->name('detail');
     Route::post('/add-contact', 'Member\\ContactController@store');
     //request ajax fillter category
-    Route::get('fillter_car/{id}','Member\\ClientController@fillterCar')->name('fillterCar');
+    Route::get('fillter_car/{id}','Member\\ClientController@waiting')->name('fillterCar');
     Route::post('fetch_data_car','Member\\ClientController@fetch_data_car')->name('fetch_data_car');
     //detailNews
     Route::post('loarmore', 'HomeController@loarmore')->name('loarmore');
@@ -59,7 +59,12 @@ Auth::routes(['verify'=>true]);
         Route::get('states/{id}', 'Vehicle\\VehicleController@states')->name('states');
         Route::get('states_update/{id}', 'Vehicle\\VehicleController@states_update')->name('states_update');
         //waiting car and carBooking
-        Route::get('waiting', 'Vehicle\\VehicleController@waiting_car')->name('waiting');
+        Route::get('tat-ca-cac-xe', 'Vehicle\\VehicleController@waiting_car')->name('waiting');
+        Route::get('dang-cho', 'Vehicle\\VehicleController@waiting_car1')->name('waiting1');
+        Route::get('da-xac-nhan', 'Vehicle\\VehicleController@waiting_car2')->name('waiting2');
+        Route::get('dang-thuc-hien', 'Vehicle\\VehicleController@waiting_car3')->name('waiting3');
+        Route::get('da-hoan-than', 'Vehicle\\VehicleController@waiting_car4')->name('waiting4');
+        Route::get('tu-choi', 'Vehicle\\VehicleController@waiting_car5')->name('waiting5');
         Route::get('/allWaiting', 'Vehicle\\VehicleController@AllDatatable');
         Route::get('booking', 'Vehicle\\VehicleController@carBooking')->name('booking');
         // update status booking

@@ -21,10 +21,10 @@ class CarBooking extends Model
         ];
     public function user()
     {
-        return $this->belongsTo('App\Model\User', 'id');
+        return $this->belongsTo('App\Model\User', 'user_id');
     }
     public function vehicle()
     {
-        return $this->belongsTo(Vehicle::class, 'id');
+        return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
 }

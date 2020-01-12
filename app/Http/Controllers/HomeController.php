@@ -22,7 +22,7 @@ class HomeController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		 $this->middleware(['auth','verified']);
+//		 $this->middleware(['auth','verified']);
 	}
 
 	/**
@@ -35,6 +35,7 @@ class HomeController extends Controller {
 	public function index(Request $request) {
 		$city = city::All();
 		//news
+
 		$car = Vehicle::with([
 				'modelVehicles' => function ($query) {
 					$query->select(['id', 'name']);
@@ -115,13 +116,14 @@ class HomeController extends Controller {
 	}
 
 	public function detail($id) {
-		//        $getAll = CarBooking::where('vehicle_id',$id)->get();
-		//        $res=array();
-		//        foreach ($getAll as $key_id){
-		//            $res[] =  array('start_date'=>date("d-m-Y", strtotime($key_id['start_date'])),
-		//                'end_date'=>date("d-m-Y", strtotime($key_id['end_date'])));
-		//        }
-		//        dd(json_encode($res));
+//		        $getAll = CarBooking::where('vehicle_id',$id)->get();
+//		        $res=array();
+//		        foreach ($getAll as $key_id){
+//		            $res[] =  array(
+//		                'start_date'=>date("d-m-Y", strtotime($key_id['start_date'])),
+//		                'end_date'=>date("d-m-Y", strtotime($key_id['end_date'])));
+//		        }
+//		        dd(json_encode($res));
 		$comment = Comment::all()->where('vehicle_id', '=', $id);
 		$findCar = Vehicle::find($id);
 		if ($findCar) {
@@ -199,7 +201,7 @@ class HomeController extends Controller {
 
 	//search form
 	public function search_car(Request $request) {
-		$manage = Vehicle::all();
+//		$manage = Vehicle::all();
 
 		$model_id    = $request->get('model_id');
 		$city_id     = $request->get('city_id');
@@ -207,9 +209,8 @@ class HomeController extends Controller {
         $end_date = $request->get('end_date');
 
 
-            $checkCarbooking = CarBooking::where('start_date','like',"%$start_date%")
-                ->where('end_date','like',"%$end_date%")->get()->toArray();
-
+            $checkCarbooking = CarBooking::where('start_date','>=',date('Y-m-d', strtotime($start_date.'00:00:00')))
+                ->where('end_date','<=',date('Y-m-d', strtotime($end_date.'23:59:59')))->get()->toArray();
         $message = '';
             if($checkCarbooking){
                 $message = 'khong tim thay xe ';
@@ -255,7 +256,7 @@ class HomeController extends Controller {
 		$getList->vehicle_id = $id;
 		$getList->user_id    = (Auth::user()->id);
 		$getList->fill($request->all());
-		//        dd($getList);
+//		        dd($getList);
 		$alert = '';
 		if ($getList->save()) {
 			$alert = "Đăng ký thông tin thành công";
@@ -310,9 +311,17 @@ class HomeController extends Controller {
 	// history
 	public function history() {
 		$user_id = (Auth::user()->id);
-		$history = CarBooking::where('user_id', $user_id)->where('is_delete', '!=', 1)
-		                                                 ->get();
-		//        dd($history);
+        $history = CarBooking::with([
+            'user' => function ($query) {
+                $query->select(['id', 'name', 'email']);
+            },
+            'vehicle' => function ($query) {
+                $query->select(['id', 'user_id', 'name', 'status']);
+            }
+        ])->get()->toArray();
+
+//        $acb =
+//dd($history);
 		return view('front-end.history_booking', compact('history'));
 	}
 
