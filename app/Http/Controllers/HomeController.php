@@ -22,7 +22,7 @@ class HomeController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-//		 $this->middleware(['auth','verified']);
+		 $this->middleware(['auth','verified']);
 	}
 
 	/**
@@ -209,7 +209,8 @@ class HomeController extends Controller {
         $end_date = $request->get('end_date');
 
 
-            $checkCarbooking = CarBooking::where('start_date','>=',date('Y-m-d', strtotime($start_date.'00:00:00')))
+            $checkCarbooking = CarBooking::where('
+            start_date','>=',date('Y-m-d', strtotime($start_date.'00:00:00')))
                 ->where('end_date','<=',date('Y-m-d', strtotime($end_date.'23:59:59')))->get()->toArray();
         $message = '';
             if($checkCarbooking){
