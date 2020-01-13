@@ -260,8 +260,8 @@
                                                                                         aria-controls="heading-tab5"
                                                                                         role="tab" data-toggle="tab"
                                                                                         aria-expanded="false">Mô tả</a></li>
-                                                    {{--
-                                                    <li role="presentation" class=""><a href="#heading-tab6" aria-controls="heading-tab6" role="tab" data-toggle="tab" aria-expanded="false">Đánh giá</a></li>--}}
+
+                                                    <li role="presentation" class=""><a href="#heading-tab6" aria-controls="heading-tab6" role="tab" data-toggle="tab" aria-expanded="false"> Lịch hoạt động của xe</a></li>
                                                 </ul>
                                                 <!-- end .nav-tabs -->
                                                 <div class="tab-content">
@@ -312,13 +312,23 @@
                                                     <div role="tabpanel" class="tab-pane fade" id="heading-tab5">
                                                         {!! $vechcles->description !!}
                                                     </div>
+                                                     <div role="tabpanel" class="tab-pane fade" id="heading-tab6">
+                                                        @foreach($listBooking as $booking_id)
+                                                                <div class="item_car row">
+                                                                    <div class="option col-md-3">{{ $booking_id->start_date }} <span>===></span>  </div>
+                                                                    <div class="option-content col-md-3">{{ $booking_id->end_date }}</div>
+                                                                </div>
+
+
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                                 <!-- end .tab-content -->
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
+                            <input type="text" class="getValueBooking" value="{{ json_encode($res) }}">
                             </div>
                             <div class="area-comment">
                                 <div>
@@ -428,7 +438,9 @@
                                         </div>
                                     </div>
                                     <br/>
-                                    <h5>Giá tiền:&nbsp;&nbsp; <label
+                                    <h5>Giá tiền:&nbsp;
+&nbsp;
+ <label
                                             class=" pt-2">{{ number_format($vechcles->price) }}</label>&nbsp;VNĐ</h5>
                                     {{-- @dd($vechcles['car_Booking']['start_date']);--}} {{-- @if($vechcles['car_Booking']['start_date'])--}} {{-- <span>Đã có người đặt</span>--}} {{-- @endif--}}
                                     <div class="form-group mb-none position-relative form-group">
@@ -530,6 +542,14 @@
 
 
         $(document).ready(function () {
+            var valuCar =  $(".getValueBooking").val();
+            var typeCar =  valuCar.replace("[{"start_date":","[");
+            // var typeCar =  valuCar.replace("[{"end_date":","[");
+            // var typeCar =  valuCar.replace("{","");
+
+
+                console.log(typeCar);
+
             var unavailableDates = ["29-12-2019", "31-12-2019"];
 
             function unavailable(date) {

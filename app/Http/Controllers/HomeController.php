@@ -22,7 +22,7 @@ class HomeController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		 $this->middleware(['auth','verified']);
+		// $this->middleware(['auth', 'verified']);
 	}
 
 	/**
@@ -116,14 +116,16 @@ class HomeController extends Controller {
 	}
 
 	public function detail($id) {
-//		        $getAll = CarBooking::where('vehicle_id',$id)->get();
-//		        $res=array();
-//		        foreach ($getAll as $key_id){
-//		            $res[] =  array(
-//		                'start_date'=>date("d-m-Y", strtotime($key_id['start_date'])),
-//		                'end_date'=>date("d-m-Y", strtotime($key_id['end_date'])));
-//		        }
-//		        dd(json_encode($res));
+		$getAll = CarBooking::where('vehicle_id', $id)->get();
+		$res    = array();
+		foreach ($getAll as $key_id) {
+			$res[] = array(
+				'start_date' => date("d-m-Y", strtotime($key_id['start_date'])),
+				'end_date'   => date("d-m-Y", strtotime($key_id['end_date'])));
+		}
+
+		// echo json_encode($res);
+		// dd($res);
 		$comment = Comment::all()->where('vehicle_id', '=', $id);
 		$findCar = Vehicle::find($id);
 		if ($findCar) {
@@ -157,7 +159,10 @@ class HomeController extends Controller {
 					$query->select('id', 'name');
 				}
 			])->get()->toArray();
-		return view('front-end.detail', compact('vechcles', 'vechcle', 'comment', 'topic', 'comments_dl', 'image_array'), compact('findCar'));
+		// Lich xe da dat
+		$listBooking = CarBooking::where('vehicle_id', $id)->get();
+
+		return view('front-end.detail', compact('vechcles', 'vechcle', 'comment', 'topic', 'comments_dl', 'image_array', 'listBooking'), compact('findCar', 'res'));
 	}
 
 	public function detail_news($id) {
@@ -201,36 +206,36 @@ class HomeController extends Controller {
 
 	//search form
 	public function search_car(Request $request) {
-//		$manage = Vehicle::all();
+		//		$manage = Vehicle::all();
 
-		$model_id    = $request->get('model_id');
-		$city_id     = $request->get('city_id');
+		$model_id   = $request->get('model_id');
+		$city_id    = $request->get('city_id');
 		$start_date = $request->get('start_date');
-        $end_date = $request->get('end_date');
+		$end_date   = $request->get('end_date');
 
+		$checkCarbooking = CarBooking::where('
+		start_date', '>=', date('Y-m-d', strtotime($start_date.'00:00:00')))
+			->where('end_date', '<=', date('Y-m-d', strtotime($end_date.'23:59:59')))	->get()	->toArray();
+		// $checkCarbooking = CarBooking::where('start_date','>',12)->orWhere()
+		$message = '';
+		if ($checkCarbooking) {
+			$message = 'khong tim thay xe ';
 
-            $checkCarbooking = CarBooking::where('
-            start_date','>=',date('Y-m-d', strtotime($start_date.'00:00:00')))
-                ->where('end_date','<=',date('Y-m-d', strtotime($end_date.'23:59:59')))->get()->toArray();
-        $message = '';
-            if($checkCarbooking){
-                $message = 'khong tim thay xe ';
+			return back()->with('message', $message);
+		} else {
+			$searchQuery = Vehicle::where('model_id', 'like', "%$model_id%")
+				->where('city_id', 'like', "%$city_id%")
+				->get();
+			$image_array = [];
+			foreach ($searchQuery as $key => $value) {
+				$image                              = Image::where('vehicle_id', $value['id'])->first();
+				$image_array[$key]                  = $value;
+				$image_array[$key]['image_vehicle'] = $image;
+			}
+			//                dd($image_array);
+			return view('front-end.search', compact('searchQuery', 'image_array'));
 
-                    return back()->with('message',$message);
-            }else{
-                $searchQuery = Vehicle::where('model_id', 'like', "%$model_id%")
-                    ->where('city_id', 'like', "%$city_id%")
-                    ->get();
-                $image_array = [];
-                foreach ($searchQuery as $key => $value) {
-                    $image                              = Image::where('vehicle_id', $value['id'])->first();
-                    $image_array[$key]                  = $value;
-                    $image_array[$key]['image_vehicle'] = $image;
-                }
-//                dd($image_array);
-                return view('front-end.search', compact('searchQuery', 'image_array'));
-
-            }
+		}
 	}
 
 	//    report-comment
@@ -250,14 +255,19 @@ class HomeController extends Controller {
 	public function booking_car(BookingRequest $request, $id) {
 
 		$getList = new CarBooking();
-		$book    = Vehicle::find($id);
-		$all     = [
+
+		// $checkBooking = DB::select('');
+
+		// dd($checkBooking);
+
+		$book = Vehicle::find($id);
+		$all  = [
 			$getList->vehicle_id = $book->id,
 		];
 		$getList->vehicle_id = $id;
 		$getList->user_id    = (Auth::user()->id);
 		$getList->fill($request->all());
-//		        dd($getList);
+		//		        dd($getList);
 		$alert = '';
 		if ($getList->save()) {
 			$alert = "Đăng ký thông tin thành công";
@@ -312,17 +322,17 @@ class HomeController extends Controller {
 	// history
 	public function history() {
 		$user_id = (Auth::user()->id);
-        $history = CarBooking::with([
-            'user' => function ($query) {
-                $query->select(['id', 'name', 'email']);
-            },
-            'vehicle' => function ($query) {
-                $query->select(['id', 'user_id', 'name', 'status']);
-            }
-        ])->get()->toArray();
+		$history = CarBooking::with([
+				'user' => function ($query) {
+					$query->select(['id', 'name', 'email']);
+				},
+				'vehicle' => function ($query) {
+					$query->select(['id', 'user_id', 'name', 'status']);
+				}
+			])->get()->toArray();
 
-//        $acb =
-//dd($history);
+		//        $acb =
+		//dd($history);
 		return view('front-end.history_booking', compact('history'));
 	}
 
