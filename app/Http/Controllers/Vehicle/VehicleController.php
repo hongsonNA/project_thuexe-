@@ -428,8 +428,8 @@ class VehicleController extends Controller
         $statusVehicle = Vehicle::find($id);
 
         if (!empty($statusVehicle)) {
-            if ($statusVehicle->status == 1) {
-                $statusVehicle->status = 2;
+            if ($statusVehicle->status == 2) {
+                $statusVehicle->status = 1;
                 $statusVehicle->save();
 
 //            code gui mail
