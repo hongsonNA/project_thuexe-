@@ -41,17 +41,35 @@
 {{--                                <a href="listing-list-view.html"><i class="fa fa-th-list"></i></a>--}}
 {{--                                <a href="listing-grid-view.html" class="active"><i class="fa fa-th"></i></a>--}}
                             </div> <!-- end .view -->
-                            <div class="select-wrapper sort">
+                          {{--   <div class="select-wrapper sort">
                                 <select class="filter_car form-control option-select" >
                                     <option value="ALL">Sắp xếp</option>
                                     <option  value="ASC">Sắp xếp tăng dần</option>
                                     <option value="DESC">Sắp xếp giảm dần</option>
                                 </select>
-                            </div>
+                            </div> --}}
                             <!-- end .select-wrapper -->
                         </div>
                         <div class="listings-grid clearfix" id="result_fillter">
+                          @foreach($image_array as $id_cate)
+                          <div class="listing">
+                                     <div class="image">
 
+                                           <a href="{{ route('detail', $id_cate->id)  }}">
+                                            @if($id_cate['image_vehicle']['image_vehicle'])
+                                        <img src="/image_upload/img_vehicle/{{ $id_cate['image_vehicle']['image_vehicle'] }}" class="img-responsive" alt="">
+                                        @else
+                                          <img src="{{ asset('image_upload/default-car.jpg') }}" class="img-responsive" alt="">
+                                        @endif
+                                    </a>
+                                     </div>
+                                     <div class="content_car">
+                                         <div class="title"><a href="javscript:;">{{ $id_cate['name']  }} <span></span></a></div>
+                                         <a href="{{ route('detail', $id_cate->id)  }}"></a>
+                                         <div class="price">{{ number_format($id_cate['price'])  }}<span> VND</span></div>
+                                     </div>
+                                 </div>
+                                 @endforeach
                         </div>
                     </div>
                     <div class="row filter_data">
@@ -59,7 +77,7 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="select-fillter">
+                  {{--   <div class="select-fillter">
                         <form method="POST" action="{{ route('search_cate') }}" class=""
                               role="search">
                             @csrf
@@ -95,7 +113,7 @@
                                 <button style="width: 100%" type="submit" class="btn btn-danger option-select   ">Tìm kiếm</button>
                             </div> -->
                         </form>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

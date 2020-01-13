@@ -328,7 +328,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            <input type="text" class="getValueBooking" value="{{ json_encode($res) }}">
+                            <input type="hidden" class="getValueBooking" value="{{ json_encode($res) }}">
                             </div>
                             <div class="area-comment">
                                 <div>
@@ -543,12 +543,13 @@
 
         $(document).ready(function () {
             var valuCar =  $(".getValueBooking").val();
-            var typeCar =  valuCar.replace("[{"start_date":","[");
-            // var typeCar =  valuCar.replace("[{"end_date":","[");
-            // var typeCar =  valuCar.replace("{","");
+            // var obj = JSON.parse(valuCar);
+            var typeCar =  valuCar.replace('{"start_date":',"");
+            var typeCar2 =  typeCar.replace('end_date":"',"");
+            // var typeCar3 =  typeCar2.replace('}',"");
 
 
-                console.log(typeCar);
+                console.log(obj);
 
             var unavailableDates = ["29-12-2019", "31-12-2019"];
 

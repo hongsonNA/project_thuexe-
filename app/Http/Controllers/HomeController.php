@@ -118,12 +118,14 @@ class HomeController extends Controller {
 	public function detail($id) {
 		$getAll = CarBooking::where('vehicle_id', $id)->get();
 		$res    = array();
+		$getRes = null;
 		foreach ($getAll as $key_id) {
 			$res[] = array(
 				'start_date' => date("d-m-Y", strtotime($key_id['start_date'])),
 				'end_date'   => date("d-m-Y", strtotime($key_id['end_date'])));
 		}
-
+		$getRes = $res;
+		// dd($getRes);
 		// echo json_encode($res);
 		// dd($res);
 		$comment = Comment::all()->where('vehicle_id', '=', $id);

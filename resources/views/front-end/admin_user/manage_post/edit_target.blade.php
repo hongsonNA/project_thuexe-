@@ -5,7 +5,7 @@
             <div class="col-md-12 ml-auto mr-auto">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Quản lý xe</h4>
+                        <h4 class="card-title">Xe không đạt yêu cầu </h4>
                         <div class="box-search">
                             <a href="{{ route('add_vehicles') }}"
                                class="float-right pull-right btn btn-success">
