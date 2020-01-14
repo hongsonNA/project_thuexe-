@@ -22,7 +22,7 @@ class HomeController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		// $this->middleware(['auth', 'verified']);
+		$this->middleware(['auth', 'verified']);
 	}
 
 	/**
@@ -36,15 +36,19 @@ class HomeController extends Controller {
 		$city = city::All();
 		//news
 
-		$car = Vehicle::with([
-				'modelVehicles' => function ($query) {
-					$query->select(['id', 'name']);
-				}]);
-		//        dd($car);
+		$car = Vehicle::where('status', 2)->where('is_trash', 0)->get();
+
+		$image_array = [];
+		foreach ($car as $key => $value) {
+			$image                              = Image::where('vehicle_id', $value['id'])->first();
+			$image_array[$key]                  = $value;
+			$image_array[$key]['image_vehicle'] = $image;
+		}
+		// dd($image_array);
 		$show_news = Post::All();
 		$model_car = ModelVehicle::All();
 
-		return view('front-end.index', compact('model_car', 'city', 'car', 'show_news'));
+		return view('front-end.index', compact('model_car', 'city', 'image_array', 'show_news'));
 	}
 
 	public function about() {
@@ -120,12 +124,10 @@ class HomeController extends Controller {
 		$res    = array();
 		$getRes = null;
 		foreach ($getAll as $key_id) {
-			$res[] = array(
-				'start_date' => date("d-m-Y", strtotime($key_id['start_date'])),
-				'end_date'   => date("d-m-Y", strtotime($key_id['end_date'])));
+			$res = array(
+				'start_date' => date("j-n-Y", strtotime($key_id['start_date'])),
+				'end_date'   => date("j-n-Y", strtotime($key_id['end_date'])));
 		}
-		$getRes = $res;
-		// dd($getRes);
 		// echo json_encode($res);
 		// dd($res);
 		$comment = Comment::all()->where('vehicle_id', '=', $id);
@@ -269,7 +271,7 @@ class HomeController extends Controller {
 		$getList->vehicle_id = $id;
 		$getList->user_id    = (Auth::user()->id);
 		$getList->fill($request->all());
-		//		        dd($getList);
+		// dd($getList);
 		$alert = '';
 		if ($getList->save()) {
 			$alert = "Đăng ký thông tin thành công";

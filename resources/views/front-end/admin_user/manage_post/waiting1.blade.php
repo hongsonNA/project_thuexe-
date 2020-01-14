@@ -50,12 +50,12 @@
 
                                                 <td>
                                                     <a  href="javascript:;" data-id=" {{ $k->id }}"  class="changeStatus btn btn-success"
-                                                       data-original-title="" title="">
-                                                        <i class="fa fa-edit">Xác nhận</i>
+                                                       data-toggle="tooltip" title="Xác nhận">
+                                                        <i class="fa fa-edit"></i>
                                                     </a>
                                                     <a href="javascript:;"  data-id="{{ $k->id }}"  class="changeDanger btn btn-danger"
-                                                       data-original-title="" title="">
-                                                        <i class="fa fa-times">Từ chối</i>
+                                                        data-toggle="tooltip" title="Từ chối">
+                                                        <i class="fa fa-times"></i>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -104,6 +104,7 @@
                                         '',
                                         'success'
                                     )
+                                      setTimeout(refresh, 2000);
                                 }
                             }
                         });
@@ -126,6 +127,7 @@
                                         '',
                                         'success'
                                     )
+                                    setTimeout(refresh, 2000);
                                 }
                             }
                         });
@@ -148,6 +150,7 @@
                                         '',
                                         'success'
                                     )
+                                    setTimeout(refresh, 2000);
                                 }
                             }
                         });
@@ -181,6 +184,7 @@
                                             '',
                                             'success'
                                         )
+                                        setTimeout(refresh, 2000);
                                     }
                                 }
                             });
@@ -217,6 +221,7 @@
                                             '',
                                             'success'
                                         )
+                                        setTimeout(refresh, 2000);
                                     }
                                 }
                             });

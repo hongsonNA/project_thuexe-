@@ -35,7 +35,7 @@ class ClientController extends Controller {
 	//====== category blade =========
 	public function cate() {
 		$city        = city::All();
-		$model_car   = Vehicle::all();
+		$model_car   = Vehicle::where('status', 2)->where('is_trash', 0)->get();
 		$model       = ModelVehicle::all();
 		$image_array = [];
 		foreach ($model_car as $key => $value) {

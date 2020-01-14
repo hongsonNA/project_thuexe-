@@ -64,7 +64,7 @@
                                     </a>
                                      </div>
                                      <div class="content_car">
-                                         <div class="title"><a href="javscript:;">{{ $id_cate['name']  }} <span></span></a></div>
+                                         <div class="title"><a href="{{ route('detail', $id_cate->id)  }}">{{ $id_cate['name']  }} <span></span></a></div>
                                          <a href="{{ route('detail', $id_cate->id)  }}"></a>
                                          <div class="price">{{ number_format($id_cate['price'])  }}<span> VND</span></div>
                                      </div>

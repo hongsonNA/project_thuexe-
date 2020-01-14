@@ -66,7 +66,7 @@
     </div>
     <script src="{{asset('front-end-css/js/jquery-1.12.5.min.js')}}"></script>
 
-    <script>
+          <script>
         $(document).ready(function () {
             // console.log('aaa')
 
@@ -78,7 +78,7 @@
             // });
 
             // var table = $('#waiting').DataTable();
-            // table.on('draw', function () {
+
                 $(".changeStatus").on('click', function () {
                     var _token = $('input[name="_token"]').val();
                     console.log(_token);
@@ -96,6 +96,7 @@
                                         '',
                                         'success'
                                     )
+                                      setTimeout(refresh, 2000);
                                 }
                             }
                         });
@@ -118,6 +119,7 @@
                                         '',
                                         'success'
                                     )
+                                    setTimeout(refresh, 2000);
                                 }
                             }
                         });
@@ -140,6 +142,7 @@
                                         '',
                                         'success'
                                     )
+                                    setTimeout(refresh, 2000);
                                 }
                             }
                         });
@@ -173,6 +176,7 @@
                                             '',
                                             'success'
                                         )
+                                        setTimeout(refresh, 2000);
                                     }
                                 }
                             });
@@ -209,6 +213,7 @@
                                             '',
                                             'success'
                                         )
+                                        setTimeout(refresh, 2000);
                                     }
                                 }
                             });
@@ -219,9 +224,9 @@
                     })
                 })
                 //
-            });
 
-        // });
+
+        });
     </script>
 @endsection
 

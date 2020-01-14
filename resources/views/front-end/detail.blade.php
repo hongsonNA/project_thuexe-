@@ -39,7 +39,12 @@
             padding: 5px;
             border-bottom: 1px dotted #0000003b;
         }
-
+.bookingStyle{
+    color:red !important;
+}
+.bookingStyle .ui-state-default{
+    background: red !important;
+}
     </style>
     <div class="">
         <div class="row container">
@@ -543,15 +548,14 @@
 
         $(document).ready(function () {
             var valuCar =  $(".getValueBooking").val();
-            // var obj = JSON.parse(valuCar);
-            var typeCar =  valuCar.replace('{"start_date":',"");
-            var typeCar2 =  typeCar.replace('end_date":"',"");
-            // var typeCar3 =  typeCar2.replace('}',"");
+            var obj = JSON.parse(valuCar);
+            var arr1 = obj.start_date;
+             var arr2 = obj.end_date
+             // var arrRes = arr1.concat(arr2);
+             var creArray =  [arr1,arr2];
+            console.log(creArray);
 
-
-                console.log(obj);
-
-            var unavailableDates = ["29-12-2019", "31-12-2019"];
+            var unavailableDates = creArray;
 
             function unavailable(date) {
                 let dmy;
@@ -559,12 +563,12 @@
                 if ($.inArray(dmy, unavailableDates) == -1) {
                     return [true, ""];
                 } else {
-                    return [false, "", "Unavailable"];
+                    return [false, "bookingStyle", "Unavailable"];
                 }
             }
 
             $("#start_date").datepicker({
-                dateFormat: 'yy-mm-dd',
+                dateFormat: 'yy-m-dd',
                 changeMonth: true,
                 changeYear: true,
                 minDate: new Date(),
@@ -572,7 +576,7 @@
                 beforeShowDay: unavailable
             });
             $('#end_date').datepicker({
-                dateFormat: 'yy-mm-dd',
+                dateFormat: 'yy-m-dd',
                 changeMonth: true,
                 changeYear: true,
                 minDate: new Date(),
