@@ -16,7 +16,7 @@
                     <i class="fa fa-home"></i>
                     <div class="info_text">
                         <span class="info_title">Địa chỉ</span>
-                        <span>15 Cầu Giấy, Hà Nội</span>
+                        <span>15 Đông Quan, Quan <br> Hoa, Cầu Giấy, Hà Nội</span>
                     </div>
                 </div>
             </div>

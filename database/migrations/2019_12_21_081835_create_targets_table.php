@@ -15,8 +15,8 @@ class CreateTargetsTable extends Migration
     {
         Schema::create('targets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('vehicle_id');
-            $table->integer('user_id');
+            $table->integer('vehicle_id')->nullable();
+            $table->integer('user_id')->nullable();
             $table->text('description')->nullable();
             $table->integer('status')->default(1);
             $table->integer('is_delete')->default(0);

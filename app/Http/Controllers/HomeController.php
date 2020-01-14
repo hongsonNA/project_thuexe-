@@ -217,9 +217,8 @@ class HomeController extends Controller {
 		$start_date = $request->get('start_date');
 		$end_date   = $request->get('end_date');
 
-		$checkCarbooking = CarBooking::where('
-		start_date', '>=', date('Y-m-d', strtotime($start_date.'00:00:00')))
-			->where('end_date', '<=', date('Y-m-d', strtotime($end_date.'23:59:59')))	->get()	->toArray();
+		$checkCarbooking = CarBooking::where('start_date', '>=', date('Y-m-d', strtotime($start_date.'00:00:00')))
+			->where('end_date', '<=', date('Y-m-d', strtotime($end_date.'23:59:59')))->get()->toArray();
 		// $checkCarbooking = CarBooking::where('start_date','>',12)->orWhere()
 		$message = '';
 		if ($checkCarbooking) {

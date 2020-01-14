@@ -15,21 +15,21 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
             $table->integer('city_id')->nullable();
             $table->integer('district_id')->nullable();
             $table->integer('model_id')->nullable();
-            $table->string('utility',255);
-            $table->string('procedure',255);
-            $table->integer('gear');
-            $table->string('license_plate', 10);
-            $table->string('name', 100);
-            $table->integer('price');
-            $table->integer('seat');
-            $table->integer('capacity');
-            $table->text('description');
-            $table->text('address');
-            $table->integer('view');
+            $table->string('utility',255)->nullable();
+            $table->string('procedure',255)->nullable();
+            $table->integer('gear')->nullable();
+            $table->string('license_plate', 10)->nullable();
+            $table->string('name', 100)->nullable();
+            $table->integer('price')->nullable();
+            $table->integer('seat')->nullable();
+            $table->integer('capacity')->nullable();
+            $table->text('description')->nullable();
+            $table->text('address')->nullable();
+            $table->integer('view')->nullable();
             $table->integer('is_trash')->default(0);
             $table->integer('status')->default(1);
             $table->timestamps();

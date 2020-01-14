@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-//        Commands\DemoCron::class,
+        Commands\SendEmailCron::class,
     ];
 
     /**
@@ -25,7 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('demo:cron')->everyMinute();
+        $schedule->command('cron:email')->everyMinute();
+        $schedule->command('status:update')->everyMinute();
     }
 
     /**
