@@ -66,41 +66,41 @@ class ClientController extends Controller {
 		return view('front-end.search', compact('searchQuery', 'image_array'));
 		//        dd($searchQuery);
 	}
-	public function fillterCar(Request $request, $id) {
-		//        $querySort = new Vehicle();
-		//        $sorVehicle = '';
-
-		if ($request->ajax() && isset($id) == "ALL") {
-
-			if (isset($id) == "DESC") {
-				$sortprice = DB::table('vehicles')
-					->where('is_trash', 0);
-				//                       $sortprice->orderBy('price', 'desc')->get();
-				dd($sortprice);
-			}
-		}
-		//            return $sortprice;
-	}
-
-	public function fetch_data_car(Request $request) {
-		if ($request->ajax() && isset($request->model)) {
-			$getall_car = Vehicle::all()->where('status', 2);
-			if (isset($request->model)) {
-				$model_filter = implode(',', $request->model);
-				$getall_car->where('model_id', $model_filter);
-				//               dd($getall_car->where('model_id',$model_filter));
-			}
-			$res = '';
-			if ($getall_car) {
-				foreach ($getall_car as $car_id) {
-					$res .= '';
-				}
-			} else {
-				$res .= 'khong co du lieu';
-			}
-		}
-		return $res;
-	}
+//	public function fillterCar(Request $request, $id) {
+//		//        $querySort = new Vehicle();
+//		//        $sorVehicle = '';
+//
+//		if ($request->ajax() && isset($id) == "ALL") {
+//
+//			if (isset($id) == "DESC") {
+//				$sortprice = DB::table('vehicles')
+//					->where('is_trash', 0);
+//				//                       $sortprice->orderBy('price', 'desc')->get();
+//				dd($sortprice);
+//			}
+//		}
+//		//            return $sortprice;
+//	}
+//
+//	public function fetch_data_car(Request $request) {
+//		if ($request->ajax() && isset($request->model)) {
+//			$getall_car = Vehicle::all()->where('status', 2);
+//			if (isset($request->model)) {
+//				$model_filter = implode(',', $request->model);
+//				$getall_car->where('model_id', $model_filter);
+//				//               dd($getall_car->where('model_id',$model_filter));
+//			}
+//			$res = '';
+//			if ($getall_car) {
+//				foreach ($getall_car as $car_id) {
+//					$res .= '';
+//				}
+//			} else {
+//				$res .= 'khong co du lieu';
+//			}
+//		}
+//		return $res;
+//	}
 	//====== end category ===========
 
 }

@@ -12,13 +12,13 @@ class CreateCommentsTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('comments', function (Blueprint $table) {
-				$table->bigIncrements('id');
-				$table->integer('user_id');
+				$table->bigIncrements('id')->nullable();
+				$table->integer('user_id')->nullable();
 				$table->integer('post_id')->nullable();
 				$table->integer('vehicle_id')->nullable();
-				$table->timestamp('comment_date');
-				$table->text('content');
-				$table->text('status');
+				$table->timestamp('comment_date')->nullable();
+				$table->text('content')->nullable();
+				$table->text('status')->nullable();
 				$table->text('is_delete')->nullable();
 				$table->text('url')->nullable();
 				$table->timestamps();

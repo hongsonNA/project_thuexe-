@@ -19,7 +19,7 @@ class PostController extends Controller
     public function __construct(PostRepository $PostRepository)
     {
         $this->PostRepository = $PostRepository;
-        $this->cate = Category::all();
+//        $this->cate = Category::all();
     }
 
     public function index()

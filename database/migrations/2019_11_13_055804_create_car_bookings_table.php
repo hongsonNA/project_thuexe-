@@ -13,16 +13,16 @@ class CreateCarBookingsTable extends Migration {
 	public function up() {
 		Schema::create('car_bookings', function (Blueprint $table) {
 				$table->bigIncrements('id');
-				$table->integer('user_id');
-				$table->integer('vehicle_id');
-				$table->string('name');
-				$table->string('email');
-				$table->integer('phone');
-				$table->integer('total');
+				$table->integer('user_id')->nullable();
+				$table->integer('vehicle_id')->nullable();
+				$table->string('name')->nullable();
+				$table->string('email')->nullable();
+				$table->integer('phone')->nullable();
+				$table->integer('total')->nullable();
 				$table->integer('is_delete')->nullable();
 				$table->timestamp('email_verified_at')->nullable();
-				$table->text('start_date');
-				$table->text('end_date');
+				$table->text('start_date')->nullable();
+				$table->text('end_date')->nullable();
 				$table->integer('status')->default(1);
 				$table->timestamps();
 			});

@@ -35,10 +35,11 @@ class VehicleController extends Controller {
 	}
 
 	public function manage() {
-		$manage      = Vehicle::all();
+		$manage      = Vehicle::all()->where('status', 2);
+//		dd($manage);
 		$image_array = [];
 		foreach ($manage as $key => $value) {
-			$image                              = Image::where('vehicle_id', $value['id'])->first();
+			$image                              = Image::all()->where('vehicle_id', $value['id'])->first();
 			$image_array[$key]                  = $value;
 			$image_array[$key]['image_vehicle'] = $image;
 		}
@@ -49,7 +50,7 @@ class VehicleController extends Controller {
 		$manage      = Vehicle::all();
 		$image_array = [];
 		foreach ($manage as $key => $value) {
-			$image                              = Image::where('vehicle_id', $value['id'])->first();
+			$image                              = Image::all()->where('vehicle_id', $value['id'])->first();
 			$image_array[$key]                  = $value;
 			$image_array[$key]['image_vehicle'] = $image;
 		}
@@ -108,7 +109,7 @@ class VehicleController extends Controller {
 		$citys     = City::all();
 		$model_car = ModelVehicle::all();
 		$maga_edit = Vehicle::find($id);
-		$image     = Image::where('vehicle_id', $maga_edit['id'])->get()->toArray();
+		$image     = Image::all()->where('vehicle_id', $maga_edit['id'])->get()->toArray();
 		//        dd($image);
 		$image_array['image_vehicle'] = $image;
 

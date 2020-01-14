@@ -152,6 +152,11 @@
                                                                     <div
                                                                         class="option-content col-md-offset-6">{{ $vechcles->utility	 }}</div>
                                                                 </div>
+                                                                <div class="item_car row">
+                                                                    <div class="option col-md-6">Thủ tục nhận xe</div>
+                                                                    <div
+                                                                        class="option-content col-md-offset-6">{{ $vechcles->procedure}}</div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
