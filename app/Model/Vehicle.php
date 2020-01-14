@@ -25,15 +25,16 @@ class Vehicle extends Model
         'address',
         'view',
         'status',
+        'is_trash',
     ];
 
     public function modelVehicles()
     {
         return $this->hasMany(ModelVehicle::class, 'model_id');
     }
-    public function carbookings()
+    public function car_bookings()
     {
-        return $this->hasMany(CarBooking::class, 'vehicle_id');
+        return $this->hasMany(CarBooking::class, 'id');
     }
 
     public function user()

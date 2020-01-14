@@ -7,12 +7,12 @@
                     <div class="card-header">
                         <h4 class="card-title">Quản lý xe</h4>
                         <div class="box-search">
-                        <a href="{{ route('add_vehicles') }}"
-                           class="float-right pull-right btn btn-success">
-                            Thêm mới xe
-                            <i class="fa fa-arrow-circle-right"></i>
-                            <div class="ripple-container"></div>
-                        </a>
+{{--                        <a href="{{ route('add_vehicles') }}"--}}
+{{--                           class="float-right pull-right btn btn-success">--}}
+{{--                            Thêm mới xe--}}
+{{--                            <i class="fa fa-arrow-circle-right"></i>--}}
+{{--                            <div class="ripple-container"></div>--}}
+{{--                        </a>--}}
 
                         </div>
                     </div>
@@ -56,8 +56,7 @@
 {{--                            @dd($image_array)--}}
 
                             @foreach( $image_array as $m)
-                                @if($m['user_id'] == Auth::user()->id)
-                                @if($m['status'] == 2 && $m['is_trash'] == 0 )
+{{--                                @if($m['status'] == 4)--}}
                                 <tr>
                                     <td class="text-center">{{ $m['id'] }}</td>
                                     <td>{{ $m['name'] }}</td>
@@ -66,20 +65,19 @@
                                     </td>
 
                                     <td class="text-center">
-                                        @if($m['status'] == 2)
+{{--                                        @if($m['status'] == 2)--}}
                                             <span>Đang chờ...</span>
-                                        @endif
+{{--                                        @endif--}}
                                     </td>
                                     <td class="text-right">{{ number_format($m['price']) }}</td>
 
                                     <td class="text-right">
-                                        <a target="_blank" href="{{ route('detail', $m['id']) }}" class="btn btn-success">Xem chi tiết</a>
-                                        <a  href="{{ route('moveTrash', $m['id']) }}" class="btn btn-danger">Ngưng hoạt động</a>
+                                        <a  href="{{ route('restore', $m['id']) }}" class="btn btn-info">Hoàn tác</a>
+                                        <a onclick="return confirm('Bạn có chắc xóa xe này không?');"  href="{{ route('remote', $m['id']) }}" class="btn btn-danger">Xóa</a>
 
                                     </td>
                                 </tr>
-                                @endif
-                                @endif
+{{--                                @endif--}}
                             @endforeach
 
                             </tbody>

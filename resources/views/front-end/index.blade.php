@@ -9,7 +9,8 @@
             width: 100%;
             padding: 28rem 0 80px;
         }
-        .form-book{
+
+        .form-book {
             display: block;
             height: 45px;
             padding: 0 15px;
@@ -21,6 +22,10 @@
             background-color: #f6f6f6;
             font-weight: 400;
         }
+
+        .error {
+            color: red !important;
+        }
     </style>
 
     <section class="tj-banner-form">
@@ -30,7 +35,7 @@
                 <div class="col-md-8 col-sm-7">
                     <div class="banner-caption">
                         <div class="banner-inner bounceInLeft animated delay-2s">
-{{--                            <strong>More recently with desktop publishing software ncluding versions</strong>--}}
+                            {{--                            <strong>More recently with desktop publishing software ncluding versions</strong>--}}
                             <h2>Chào mừng bạn đến với Vehicle Booking</h2>
                             <div class="banner-btns">
                                 <a href="{{ route('cate') }}" class="btn-style-1"><i
@@ -46,7 +51,8 @@
                     <div class="trip-outer">
                         <div class="trip-type-tabs">
                             <ul class="nav nav-tabs">
-                                <li class="active text-center" style="width:100%"><a href="#one-way" data-toggle="tab">Bạn cần thuê xe </a></li>
+                                <li class="active text-center" style="width:100%"><a href="#one-way" data-toggle="tab">Bạn
+                                        cần thuê xe </a></li>
                                 {{--                                <li><a href="#two-way" data-toggle="tab">Two Way</a></li>--}}
                             </ul>
                         </div>
@@ -54,38 +60,41 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="one-way">
                                 <!--Banner Form Content Start-->
-                                <form method="POST" action="{{ route('search_car') }}" class="trip-type-frm"
+                                <form id="checkSearchHome" method="POST" action="{{ route('search_car') }}"
+                                      class="trip-type-frm"
                                       role="search">
                                     @csrf
                                     <div class="field-outer">
-                                        <select name="model_id" class="form-control form-book" style="margin-bottom: 10px" id="">
+                                        <select name="model_id" class="form-control form-book"
+                                                style="margin-bottom: 10px" id="">
                                             <option value="0" selected disabled>--Chọn hãng xe --</option>
                                             @foreach($model_car as $model_id)
                                                 <option value="{{ $model_id->id }}">{{ $model_id->name }}</option>
                                             @endforeach
                                         </select>
+                                        <span id="pls_select_model"></span>
                                     </div>
                                     <div class="field-outer">
-                                        <select name="city_id" class="form-control pb-2 form-book" style="margin-bottom: 10px" id="select_city">
+                                        <select name="city_id" class="form-control pb-2 form-book"
+                                                style="margin-bottom: 10px" id="select_city">
                                             <option value="">--Chọn thành phố--</option>
                                             @foreach($city as $key => $id)
-                                                <option id="distri" value="{{ $id->id }}" >{{ $id->name }}</option>
+                                                <option id="distri" value="{{ $id->id }}">{{ $id->name }}</option>
                                             @endforeach
                                         </select>
+                                        <span id="pls_select_city"></span>
                                     </div>
                                     <div class="field-outer">
                                         <span class="fas fa-calendar-alt"></span>
-                                        <input type="text" name="pick_date" placeholder="Ngày nhận xe ">
+                                        <input type="text" id="start_date" name="start_date"
+                                               placeholder="Ngày nhận xe ">
+
                                     </div>
                                     <div class="field-outer">
                                         <span class="far fa-clock"></span>
-                                        <input type="text" name="pick_date" placeholder="Ngày trả xe ">
+                                        <input type="text" id="end_date" name="end_date" placeholder="Ngày trả xe ">
                                     </div>
-                                    <div class="field-outer">
-                                        <input type="checkbox" name="promo_code" id="promo_code">
-                                        <label for="promo_code">I Have Promotional Code</label>
-                                    </div>
-                                    <button type="submit" class="search-btn">Search Cabs <i
+                                    <button type="submit" class="search-btn">Tìm xe <i
                                             class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
                                 </form>
                                 <!--Banner Form Content End-->
@@ -111,18 +120,18 @@
                 </div>
                 <div class="cab-col-outer">
                     <!--Fleet Grid Box Start-->
-                    @foreach($car as $key => $id)
+                    @foreach($image_array as $key => $id)
                         <div class="col-md-6 col-sm-6">
                             <div class="fleet-grid-box">
                                 <!--Fleet Grid Thumb Start-->
                                 <a href="{{ route('detail', $id->id) }}">
                                     <figure class="fleet-thumb">
-                                        <img src="{{ asset('image_upload/img_vehicle/'.$id->image )}}" height="313"
+                                        <img src="/image_upload/img_vehicle/{{ $id['image_vehicle']['image_vehicle'] }}" height="313"
                                              alt="">
 
                                         <figcaption class="fleet-caption">
                                             <div class="price-box">
-                                                <strong>{{ $id->price }} <span>/ day</span></strong>
+                                                <strong>{{ $id['price'] }} <span>/ day</span></strong>
                                             </div>
                                             <span class="rated">Nổi bật</span>
                                         </figcaption>
@@ -132,11 +141,11 @@
                                 <!--Fleet Grid Text Start-->
                                 <div class="fleet-info-box">
                                     <div class="fleet-info">
-                                        <h3 data-toggle="tooltip" title="2017 Chevrolet Pepe">{{ $id->name }}</h3>
+                                        <h3 data-toggle="tooltip" title="2017 Chevrolet Pepe">{{ $id['name'] }}</h3>
 
                                         <ul class="fleet-meta">
-                                            <li><i class="fas fa-taxi"></i>{{ $id['modelVehicles']['name'] }}</li>
-                                            <li><i class="fas fa-user-circle"></i>{{ $id->seat }} chỗ</li>
+                                            {{-- <li><i class="fas fa-taxi"></i>{{ $id['modelVehicles']['name'] }}</li> --}}
+                                            <li><i class="fas fa-user-circle"></i>{{ $id['seat'] }} chỗ</li>
                                             <li><i class="fas fa-tachometer-alt"></i>
                                                 <span>{{ $id['user']['name'] }}</span>
                                             </li>
@@ -295,31 +304,59 @@
     <!--News Content End-->
     <!--Footer Copyright End-->
     <!-- /CONTENT AREA -->
-    <script src="{{asset('package/js/swiper.min.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    {{--    <script src="{{asset('package/js/swiper.min.js')}}"></script>--}}
+    {{--    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>--}}
     <a href="javascript:;" class="back-top" id="back-to-top" title="Back to top"><i class="fas fa-arrow-circle-up"></i></a>
+    @if(session()->has('message'))
+    <div>
+        <script>
+            Swal.fire(
+                'không tìm thấy xe!',
+                '',
+                'warning'
+            )
+        </script>
+    </div>
+    @endif
+@endsection
+@push('scripts')
+
     <script>
-        var swiper = new Swiper('.swiper-container', {
-            spaceBetween: 30,
-            centeredSlides: true,
-            speed: 3000,
-            loop: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
+        $('#checkSearchHome').validate({
+            rules: {
+                model_id: "required",
+                city_id: "required",
+                start_date: "required",
+                end_date: "required",
             },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+            messages: {
+                model_id: "Bạn phải chọn thông tin ",
+                city_id: "Bạn phải chọn thông tin ",
+                start_date: "Chọn ngày nhận xe  ",
+                end_date: "Chọn ngày trả xe ",
+            }
         });
-    </script>
-    <script>
+        //scroll
         $(document).ready(function () {
+            $("#start_date").datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(),
+                maxDate: '+30D',
+
+            });
+            $('#end_date').datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(),
+                maxDate: '+30D',
+
+            });
+
+
+
             $("#select_city").change(function () {
                 var city_id = $(this).val();
                 console.log(city_id);
@@ -343,5 +380,4 @@
 
     </script>
 
-
-@endsection
+@endpush

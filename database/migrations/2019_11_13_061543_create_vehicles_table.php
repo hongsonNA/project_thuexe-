@@ -30,6 +30,7 @@ class CreateVehiclesTable extends Migration
             $table->text('description');
             $table->text('address');
             $table->integer('view');
+            $table->integer('is_trash')->default(0);
             $table->integer('status')->default(1);
             $table->timestamps();
         });

@@ -6,7 +6,7 @@
             <div class="col-md-12 ml-auto mr-auto">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"> Tất cả các xe</h4>
+                        <h4 class="card-title">Đang chờ</h4>
                     </div>
 
                     <div class="card-body">
@@ -14,7 +14,8 @@
                         <div class="material-datatables">
                             <table id="waiting" class="table table-striped table-no-bordered table-hover"
                                    style="width:100%">
-                                @csrf
+{{--                                @csrf--}}
+                                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                                 <thead class="text-primary">
                                 <tr>
                                     <th class="text-center">#</th>
@@ -31,6 +32,7 @@
 
                                         @foreach($all as $k)
                                             @if($k['vehicle']['user_id'] == Auth::user()->id)
+                                                @if($k['status']==1)
                                             <tr>
                                                 <td>{{ $k['id'] }}</td>
 
@@ -47,24 +49,27 @@
                                                 <td>{{ $k['end_date'] }}</td>
 
                                                 <td>
-                                                    <a onclick="return myForm();" href="javascript:;" data-id="' . $waiting->id . '"  class="changeStatus btn btn-success"
-                                                       data-original-title="" title="">
-                                                        <i class="fa fa-edit">Xác nhận</i>
+                                                    <a  href="javascript:;" data-id=" {{ $k->id }}"  class="changeStatus btn btn-success"
+                                                       data-toggle="tooltip" title="Xác nhận">
+                                                        <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="javascript:;"  data-id="' . $waiting->id . '"  class="changeDanger btn btn-danger"
-                                                       data-original-title="" title="">
-                                                        <i class="fa fa-times">Từ chối</i>
+                                                    <a href="javascript:;"  data-id="{{ $k->id }}"  class="changeDanger btn btn-danger"
+                                                        data-toggle="tooltip" title="Từ chối">
+                                                        <i class="fa fa-times"></i>
                                                     </a>
                                                 </td>
                                             </tr>
+                                                @endif
                                             @endif
                                         @endforeach
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <script src="{{asset('front-end-css/js/jquery-1.12.5.min.js')}}"></script>
@@ -81,7 +86,7 @@
             // });
 
             // var table = $('#waiting').DataTable();
-            table.on('draw', function () {
+
                 $(".changeStatus").on('click', function () {
                     var _token = $('input[name="_token"]').val();
                     console.log(_token);
@@ -99,6 +104,7 @@
                                         '',
                                         'success'
                                     )
+                                      setTimeout(refresh, 2000);
                                 }
                             }
                         });
@@ -121,6 +127,7 @@
                                         '',
                                         'success'
                                     )
+                                    setTimeout(refresh, 2000);
                                 }
                             }
                         });
@@ -143,6 +150,7 @@
                                         '',
                                         'success'
                                     )
+                                    setTimeout(refresh, 2000);
                                 }
                             }
                         });
@@ -176,6 +184,7 @@
                                             '',
                                             'success'
                                         )
+                                        setTimeout(refresh, 2000);
                                     }
                                 }
                             });
@@ -212,6 +221,7 @@
                                             '',
                                             'success'
                                         )
+                                        setTimeout(refresh, 2000);
                                     }
                                 }
                             });
@@ -222,7 +232,7 @@
                     })
                 })
                 //
-            });
+
 
         });
     </script>

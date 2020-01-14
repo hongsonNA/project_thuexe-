@@ -9,6 +9,7 @@ use App\Model\ModelVehicle;
 use App\Model\User;
 use App\Model\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller {
 	public function edit($id) {
@@ -33,10 +34,17 @@ class ClientController extends Controller {
 
 	//====== category blade =========
 	public function cate() {
-		$city      = city::All();
-		$model_car = Vehicle::all();
-		$model     = ModelVehicle::all();
-		return view('front-end.category', compact('model', 'city', 'model_car'));
+		$city        = city::All();
+		$model_car   = Vehicle::where('status', 2)->where('is_trash', 0)->get();
+		$model       = ModelVehicle::all();
+		$image_array = [];
+		foreach ($model_car as $key => $value) {
+			$image                              = Image::where('vehicle_id', $value['id'])->first();
+			$image_array[$key]                  = $value;
+			$image_array[$key]['image_vehicle'] = $image;
+		}
+
+		return view('front-end.category', compact('model', 'city', 'image_array'));
 	}
 	public function search_cate(Request $request) {
 		$seat        = $request->get('seat');
@@ -47,7 +55,7 @@ class ClientController extends Controller {
 			->where('district_id', 'like', "%$district_id%")
 			->where('seat', 'like', "%$seat%")
 			->where('city_id', 'like', "%$city_id%")	->get();
-		dd($searchQuery);
+		// dd($searchQuery);
 		$image_array = [];
 		foreach ($searchQuery as $key => $value) {
 			$image                              = Image::where('vehicle_id', $value['id'])->first();
@@ -59,8 +67,19 @@ class ClientController extends Controller {
 		//        dd($searchQuery);
 	}
 	public function fillterCar(Request $request, $id) {
+		//        $querySort = new Vehicle();
+		//        $sorVehicle = '';
 
-		return view('category', compact('carDesc', 'carAsc'));
+		if ($request->ajax() && isset($id) == "ALL") {
+
+			if (isset($id) == "DESC") {
+				$sortprice = DB::table('vehicles')
+					->where('is_trash', 0);
+				//                       $sortprice->orderBy('price', 'desc')->get();
+				dd($sortprice);
+			}
+		}
+		//            return $sortprice;
 	}
 
 	public function fetch_data_car(Request $request) {
@@ -74,18 +93,7 @@ class ClientController extends Controller {
 			$res = '';
 			if ($getall_car) {
 				foreach ($getall_car as $car_id) {
-					$res .= '<div class="listing">
-	                                   <div class="image">
-	                                       <a href="'.route('detail', $car_id['id']).'">
-	                                           <img src="https://s3.amazonaws.com/files.activate.social/user-image-32740129-1552215451-5c84ed9b68ace" alt="listing" class="img-responsive">
-	                                       </a>
-	                                   </div>
-	                                   <div class="content_car">
-	                                       <div class="title"><a href="javscript:;">'.$car_id['name'].' <span>[ Grand ]</span></a></div>
-	                                       <a href="'.route('detail', $car_id['id']).'">'.$car_id['name'].'</a>
-	                                       <div class="price">'.number_format($car_id['price']).'<span> VND</span></div>
-	                                   </div>
-	                               </div>';
+					$res .= '';
 				}
 			} else {
 				$res .= 'khong co du lieu';

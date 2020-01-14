@@ -38,8 +38,7 @@ class TargetController extends Controller
             'vehicle' => function ($query) {
                 $query->select(['id', 'user_id', 'name', 'status']);
             }
-        ])
-            ->get()->toArray();
+        ])->get()->toArray();
 
         return view('front-end.admin_user.target.index_succses', compact('vehicle'));
 

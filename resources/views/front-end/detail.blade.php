@@ -39,7 +39,12 @@
             padding: 5px;
             border-bottom: 1px dotted #0000003b;
         }
-
+.bookingStyle{
+    color:red !important;
+}
+.bookingStyle .ui-state-default{
+    background: red !important;
+}
     </style>
     <div class="">
         <div class="row container">
@@ -247,35 +252,28 @@
                                     </div>
                                     <div class="row mt-xlg">
                                         <div class="col-md-12">
-                                            {{--
-                                            <div class="mb-md">--}} {{--
-                                    <div class="b-tit">Mô tả và thông số xe</div>--}} {{--
-                                    <div>--}} {{-- {!! $vechcles->description !!}--}} {{-- </div>--}} {{-- </div>--}}
                                             <div class="tabpanel border" role="tabpanel">
                                                 <ul class="nav nav-tabs" role="tablist">
                                                     <li role="presentation" class="active"><a href="#heading-tab4"
                                                                                               aria-controls="heading-tab4"
                                                                                               role="tab"
                                                                                               data-toggle="tab"
-                                                                                              aria-expanded="true">Mô tả
+                                                                                              aria-expanded="true">Thông số
+                                                            kĩ thuật
                                                             xe</a></li>
                                                     <li role="presentation" class=""><a href="#heading-tab5"
                                                                                         aria-controls="heading-tab5"
                                                                                         role="tab" data-toggle="tab"
-                                                                                        aria-expanded="false">Thông số
-                                                            kĩ thuật</a></li>
-                                                    {{--
-                                                    <li role="presentation" class=""><a href="#heading-tab6" aria-controls="heading-tab6" role="tab" data-toggle="tab" aria-expanded="false">Đánh giá</a></li>--}}
+                                                                                        aria-expanded="false">Mô tả</a></li>
+
+                                                    <li role="presentation" class=""><a href="#heading-tab6" aria-controls="heading-tab6" role="tab" data-toggle="tab" aria-expanded="false"> Lịch hoạt động của xe</a></li>
                                                 </ul>
                                                 <!-- end .nav-tabs -->
                                                 <div class="tab-content">
                                                     <div role="tabpanel" class="tab-pane fade active in"
                                                          id="heading-tab4">
                                                         <br>
-                                                        {!! $vechcles->description !!}
-                                                    </div>
-                                                    <!-- end .tab-panel -->
-                                                    <div role="tabpanel" class="tab-pane fade" id="heading-tab5">
+
                                                         <div class="option_car">
                                                             <div class="genarel-column">
                                                                 <div class="item_car row">
@@ -315,13 +313,27 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!-- end .tab-panel -->
+                                                    <div role="tabpanel" class="tab-pane fade" id="heading-tab5">
+                                                        {!! $vechcles->description !!}
+                                                    </div>
+                                                     <div role="tabpanel" class="tab-pane fade" id="heading-tab6">
+                                                        @foreach($listBooking as $booking_id)
+                                                                <div class="item_car row">
+                                                                    <div class="option col-md-3">{{ $booking_id->start_date }} <span>===></span>  </div>
+                                                                    <div class="option-content col-md-3">{{ $booking_id->end_date }}</div>
+                                                                </div>
+
+
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                                 <!-- end .tab-content -->
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
+                            <input type="hidden" class="getValueBooking" value="{{ json_encode($res) }}">
                             </div>
                             <div class="area-comment">
                                 <div>
@@ -378,7 +390,7 @@
                         <div class="right-info ">
                             <div class="shadow mb-xlg p-lg">
                                 <div class="pr text-center">ĐĂNG KÝ THÔNG TIN</div>
-                                <form method="post" action="{{ route('booking_car', $vechcles->id ) }}" class="cap"
+                                <form onsubmit="return bookingCar();" id="bookingCar"  method="post" action="{{ route('booking_car', $vechcles->id ) }}" class="cap"
                                       id="detail-datetime">
                                     @csrf
                                     <div class="tit3 mt-md mb-xs">{{ $vechcles->name }}</div>
@@ -387,21 +399,24 @@
                                             <label class=" pt-2">Họ tên :</label>
                                             <div class="box-date ">
                                                 <input class="input flatpickr-input form-control" type="text" id=""
-                                                       name="name" value="{{ Auth::user()->name }}">
+                                                       name="name" id="name" value="{{ Auth::user()->name }}">
+                                                <span class="err_phone text-danger" id="errName" style="color: red;"></span>
                                             </div>
                                         </div>
                                         <div class="form-group position-relative form-group">
                                             <label class=" pt-2">Email :</label>
                                             <div class="box-date ">
                                                 <input class="input flatpickr-input form-control" type="text" id=""
-                                                       name="email" value="{{ Auth::user()->email }}">
+                                                       name="email" id="email" value="{{ Auth::user()->email }}">
+                                                <span class="err_phone text-danger" id="errEmail" style="color: red;"></span>
                                             </div>
                                         </div>
                                         <div class="form-group position-relative form-group">
                                             <label class=" pt-2">Số điện thoại</label>
                                             <div class="box-date ">
-                                                <input class="input flatpickr-input form-control" type="number" id=""
-                                                       name="phone" value="{{ Auth::user()->phone  }}"><br>
+                                                <input class="input flatpickr-input form-control" type="number" id="phone"
+                                                       name="phone" value="{{ Auth::user()->phone  }} {{ old('phone')  }}"><br>
+                                                <span class="err_phone text-danger" id="errPhone" style="color: red;"></span>
                                             </div>
                                         </div>
                                     @endif
@@ -428,7 +443,9 @@
                                         </div>
                                     </div>
                                     <br/>
-                                    <h5>Giá tiền:&nbsp;&nbsp; <label
+                                    <h5>Giá tiền:&nbsp;
+&nbsp;
+ <label
                                             class=" pt-2">{{ number_format($vechcles->price) }}</label>&nbsp;VNĐ</h5>
                                     {{-- @dd($vechcles['car_Booking']['start_date']);--}} {{-- @if($vechcles['car_Booking']['start_date'])--}} {{-- <span>Đã có người đặt</span>--}} {{-- @endif--}}
                                     <div class="form-group mb-none position-relative form-group">
@@ -440,8 +457,8 @@
                                         <div class="total">
                                             <div class="tong">Tổng giá:</div>
                                             <div class="total-price"></div>
-                                            <span>VND</span> {{--
-                                <input type="hidden" name="total" value="">--}}
+                                            <span>VND</span>
+                                            <input type="hidden" id="total-price" name="" value="">
                                         </div>
                                     </div>
                                     @if(Auth::check())
@@ -490,9 +507,8 @@
                 </div>
             @endforeach
         </div>
-        @if(session()->has('alert')) {{-- class="alert alert-success" id="alert_Booking_success"--}}
+        @if(session()->has('alert'))
         <div>
-            {{-- {{ session()->get('alert') }}--}}
             <script>
                 Swal.fire(
                     'Đăng ký thành công!',
@@ -507,8 +523,39 @@
 @endsection
 @push('scripts')
     <script>
+        // function bookingCar(){
+        //     var patemPhone = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+        //     var pathEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        //     var phone = $('#phone').val();
+        //     var email = $('#email').val();
+        //     var name = $('#name').val();
+        //     if (phone !== "") {
+        //         if (patemPhone.test(phone)) {
+        //             $('#errPhone').html('so dien thoai chua dung dinh dang ');
+        //             return false;
+        //         }
+        //     }else if(email !== ""){
+        //         if(pathEmail.test(email)){
+        //             $('#errEmail').html('khong dung dinh dang email ');
+        //             return false;
+        //         }
+        //     }else{
+        //         return true;
+        //     }
+        //
+        // }
+
+
         $(document).ready(function () {
-            var unavailableDates = ["29-12-2019", "31-12-2019"];
+            var valuCar =  $(".getValueBooking").val();
+            var obj = JSON.parse(valuCar);
+            var arr1 = obj.start_date;
+             var arr2 = obj.end_date
+             // var arrRes = arr1.concat(arr2);
+             var creArray =  [arr1,arr2];
+            console.log(creArray);
+
+            var unavailableDates = creArray;
 
             function unavailable(date) {
                 let dmy;
@@ -516,12 +563,12 @@
                 if ($.inArray(dmy, unavailableDates) == -1) {
                     return [true, ""];
                 } else {
-                    return [false, "", "Unavailable"];
+                    return [false, "bookingStyle", "Unavailable"];
                 }
             }
 
             $("#start_date").datepicker({
-                dateFormat: 'yy-mm-dd',
+                dateFormat: 'yy-m-dd',
                 changeMonth: true,
                 changeYear: true,
                 minDate: new Date(),
@@ -529,7 +576,7 @@
                 beforeShowDay: unavailable
             });
             $('#end_date').datepicker({
-                dateFormat: 'yy-mm-dd',
+                dateFormat: 'yy-m-dd',
                 changeMonth: true,
                 changeYear: true,
                 minDate: new Date(),
@@ -566,7 +613,7 @@
                 }
                 $('.calculated').val(diff);
                 $('.total-price').html(countVe);
-                $('#total-price').html(countVe);
+                $('#total-price').append(countVe);
 
             }
         });

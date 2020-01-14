@@ -5,7 +5,7 @@
             <div class="col-md-12 ml-auto mr-auto">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Quản lý xe</h4>
+                        <h4 class="card-title">Chờ kiểm duyệt </h4>
                         <div class="box-search">
                             <a href="{{ route('add_vehicles') }}"
                                class="float-right pull-right btn btn-success">
@@ -73,10 +73,23 @@
 
                                         <td class="text-right">
                                             <a href="{{ route('edit_vehicles', $m['id']) }}" class="btn btn-success btn-icon btn-sm "
-                                               data-original-title="" title="">
+                                                data-toggle="tooltip"  title="Chỉnh sửa
+                                                ">
+                                                <i class="fa fa-edit"  ></i>
+                                            </a>
+
+                                            <a  href="{{ URL::to('/vehicles/changeStatus/' . $m['id'] ) }}"
+                                                class="btn btn-info btn-icon btn-sm changeStatus"
+                                                data-method="POST" data-type="json"
+                                                data-action1="{{ "<i class='fa fa-times'></i> ".Lang::get('form.label.cancel') }}"
+                                                data-action2="{{ "<i class='fa fa-check'></i> " . Lang::get('form.label.ok') }}"
+                                                data-table='1'>
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a onclick="return confirm('Bạn có chắc muốn xóa không ')" href="{{ route('remote', $m['id']) }}" class="btn btn-danger btn-icon btn-sm "
+
+                                            <a   data-toggle="tooltip"  title="Xóa
+
+                                                " onclick="return confirm('Bạn có chắc muốn xóa không ')" href="{{ route('remote', $m['id']) }}" class="btn btn-danger btn-icon btn-sm "
                                                data-original-title="" title="">
                                                 <i class="fa fa-times"></i>
                                             </a>
@@ -86,6 +99,7 @@
                             @endforeach
 
                             </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -94,6 +108,65 @@
 
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        (function ($) {
+            var $document = $(document);
+
+            // change status function
+            $(document).ready(function () {
+                $('#content').on('click', '.changeStatus', function (e) {
+                    e.preventDefault();
+                    var that = this;
+                    bootbox.confirm({
+                        message: $(this).data('confirm'),
+                        buttons: {
+                            'cancel': {
+                                label: $(this).data('action1'),
+                                className: 'btn-default'
+                            },
+                            'confirm': {
+                                label: $(this).data('action2'),
+                                className: 'btn-info'
+                            }
+                        },
+                        callback: function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: $(that).attr('href'),
+                                    type: $(that).data('method'),
+                                    data: {name: 'emtpy_petition_data', value: 'empty'},
+                                    dataType: 'json',
+                                    beforeSend: function (xhr, settings) {
+                                    },
+                                    success: function (data, status, xhr) {
+                                        if ($(that).hasClass('changeStatus')) {
+                                            console.log(data.status);
+                                            if (data.status) {
+                                                window.location.href = data.href;
+                                            }
+                                        }
+                                    },
+                                    complete: function (xhr, status) {
+                                    },
+                                    error: function (xhr, ajaxOptions, thrownError) {
+                                        $("#error-modal").modal('show');
+                                    }
+                                });
+                            }
+                        }
+                    });
+                });
+            });
+
+        })(jQuery);
+    </script>
 
 @endsection
 

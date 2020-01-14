@@ -24,6 +24,6 @@ class Comment extends Model
 
     public function vehicle()
     {
-        return $this->belongsTo('App\Model\managerList', 'vehicle_id');
+        return $this->belongsTo('App\Model\Vehicle', 'vehicle_id');
     }
 }
