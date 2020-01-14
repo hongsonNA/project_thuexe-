@@ -10,7 +10,7 @@
                 <tr>
                     <th>Tên xe</th>
                     <th>hinh anh </th>
-                    <th>Chu xe</th>
+                    {{-- <th>Chu xe</th> --}}
                     <th  class="text-center">Ngày khởi hành</th>
                     <th  class="text-center">Ngày kết thúc</th>
                     <th  class="text-center">Trạng thái</th>
@@ -26,7 +26,7 @@
 
                     <td>{{ $id['vehicle']['name'] }}</td>
                     <td><img src="{{ asset('image_upload/img_vehicle/911t-0357.jpg')}}" alt="" class="img-responsive" width="100"></td>
-                    <td>{{ $id['user']['name'] }}</td>
+                    {{-- <td>{{ $id['user']['name'] }}</td> --}}
 
                     <td class="text-center">{{ \Carbon\Carbon::parse($id['start_date'])->format('d/m/Y')}}</td>
                     <td class="text-center">{{ \Carbon\Carbon::parse($id['end_date'])->format('d/m/Y')}}</td>

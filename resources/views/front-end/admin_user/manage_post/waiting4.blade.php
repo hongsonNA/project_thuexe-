@@ -48,7 +48,8 @@
                                                 <td>{{ $k['end_date'] }}</td>
 
                                                 <td>
-                                                    <a href="javascript:;"  class="btn btn-success"data-original-title="" title="">Đã hoàn thành</a>
+                                                    <a href="javascript:;"  class="btn btn-success"data-toggle="tooltip" title="Đã hoàn thành
+                                                    "> <i class="fa fa-edit"></i></a>
                                                     <a href="javascript:;"  data-id=" {{ $k->id }}"   class="dangerCar btn btn-danger"
                                                        data-original-title="" title="">
                                                         <i class="fa fa-times"></i>

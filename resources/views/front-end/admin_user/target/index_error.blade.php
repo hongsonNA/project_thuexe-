@@ -38,7 +38,7 @@
                                 </tfoot>
                                 <tbody>
                                 @foreach ( $vehicle as $vhc )
-
+                                    @if ($vhc['status'] == 3)
                                     @if ($vhc['user_id'] == Auth::user()->id  )
                                         <tr>
                                             <td>{{ $vhc['vehicle']['name'] }}</td>
@@ -53,6 +53,7 @@
                                             </td>
                                             <td>{{ $vhc['description'] }}</td>
                                         </tr>
+                                    @endif
                                     @endif
                                 @endforeach
                                 </tbody>

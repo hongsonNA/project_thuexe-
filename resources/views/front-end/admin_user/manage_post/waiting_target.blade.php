@@ -73,8 +73,9 @@
 
                                         <td class="text-right">
                                             <a href="{{ route('edit_vehicles', $m['id']) }}" class="btn btn-success btn-icon btn-sm "
-                                               data-original-title="" title="">
-                                                <i class="fa fa-edit"></i>
+                                                data-toggle="tooltip"  title="Chỉnh sửa
+                                                ">
+                                                <i class="fa fa-edit"  ></i>
                                             </a>
 
                                             <a  href="{{ URL::to('/vehicles/changeStatus/' . $m['id'] ) }}"
@@ -86,7 +87,9 @@
                                                 <i class="fa fa-edit"></i>
                                             </a>
 
-                                            <a onclick="return confirm('Bạn có chắc muốn xóa không ')" href="{{ route('remote', $m['id']) }}" class="btn btn-danger btn-icon btn-sm "
+                                            <a   data-toggle="tooltip"  title="Xóa
+
+                                                " onclick="return confirm('Bạn có chắc muốn xóa không ')" href="{{ route('remote', $m['id']) }}" class="btn btn-danger btn-icon btn-sm "
                                                data-original-title="" title="">
                                                 <i class="fa fa-times"></i>
                                             </a>

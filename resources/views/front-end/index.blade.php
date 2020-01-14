@@ -120,18 +120,18 @@
                 </div>
                 <div class="cab-col-outer">
                     <!--Fleet Grid Box Start-->
-                    @foreach($car as $key => $id)
+                    @foreach($image_array as $key => $id)
                         <div class="col-md-6 col-sm-6">
                             <div class="fleet-grid-box">
                                 <!--Fleet Grid Thumb Start-->
                                 <a href="{{ route('detail', $id->id) }}">
                                     <figure class="fleet-thumb">
-                                        <img src="{{ asset('image_upload/img_vehicle/'.$id->image )}}" height="313"
+                                        <img src="/image_upload/img_vehicle/{{ $id['image_vehicle']['image_vehicle'] }}" height="313"
                                              alt="">
 
                                         <figcaption class="fleet-caption">
                                             <div class="price-box">
-                                                <strong>{{ $id->price }} <span>/ day</span></strong>
+                                                <strong>{{ $id['price'] }} <span>/ day</span></strong>
                                             </div>
                                             <span class="rated">Nổi bật</span>
                                         </figcaption>
@@ -141,11 +141,11 @@
                                 <!--Fleet Grid Text Start-->
                                 <div class="fleet-info-box">
                                     <div class="fleet-info">
-                                        <h3 data-toggle="tooltip" title="2017 Chevrolet Pepe">{{ $id->name }}</h3>
+                                        <h3 data-toggle="tooltip" title="2017 Chevrolet Pepe">{{ $id['name'] }}</h3>
 
                                         <ul class="fleet-meta">
-                                            <li><i class="fas fa-taxi"></i>{{ $id['modelVehicles']['name'] }}</li>
-                                            <li><i class="fas fa-user-circle"></i>{{ $id->seat }} chỗ</li>
+                                            {{-- <li><i class="fas fa-taxi"></i>{{ $id['modelVehicles']['name'] }}</li> --}}
+                                            <li><i class="fas fa-user-circle"></i>{{ $id['seat'] }} chỗ</li>
                                             <li><i class="fas fa-tachometer-alt"></i>
                                                 <span>{{ $id['user']['name'] }}</span>
                                             </li>
